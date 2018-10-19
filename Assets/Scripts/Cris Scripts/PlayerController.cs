@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     */
 
     public float speed = 5f;
+    public GameObject gameOverPanel;
 
     private Health health;
 
     private void Start()
     {
         health = GetComponent<Health>();
+        gameOverPanel.SetActive(false);
     }
 
     void FixedUpdate()
@@ -23,9 +25,13 @@ public class PlayerController : MonoBehaviour
             Move();
 
         #region Reset Health (When Dead)
-        else if (Input.GetKey(KeyCode.Space))
+        //else if (Input.GetKey(KeyCode.Space))
+        //{
+        //    health.Reset();
+        //}
+        else
         {
-            health.Reset();
+            gameOverPanel.SetActive(true);
         }
         #endregion
     }

@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
         offset = transform.position - player.transform.position;
 	}
 	
-	void LateUpdate () {
+	void FixedUpdate () {
         switch (moveType)
         {
             case MoveType.smoothDampFollow:

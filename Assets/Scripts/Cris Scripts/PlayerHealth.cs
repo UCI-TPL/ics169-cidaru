@@ -1,0 +1,51 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerHealth : Health {
+    /* Tracks player health. Includes player-specific effects
+    Based on:
+    https://unity3d.com/learn/tutorials/projects/survival-shooter/player-health
+    */
+
+    public Slider healthBar;
+
+    private void Start()
+    {
+        healthBar.maxValue = startingHealth;
+        healthBar.value = startingHealth;
+    }
+
+    public override void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        updateHealthBar();
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            Death();
+        }
+    }
+
+    public void Heal(int amount)
+    {
+        if (currentHealth + amount >= startingHealth)
+            currentHealth = startingHealth;
+        else
+            currentHealth += amount;
+    }
+
+    public void Reset()
+    {
+        currentHealth = startingHealth;
+        updateHealthBar();
+        isDead = false;
+    }
+
+    private void updateHealthBar()
+    {
+        healthBar.value = currentHealth;
+        Debug.Log("updated health bar");
+    }
+}

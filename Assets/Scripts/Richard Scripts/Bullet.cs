@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     public float movementSpeed;
 
+    public int dmg = 1;
+
     private Rigidbody2D rb2d;
 
 	// Use this for initialization
@@ -27,9 +29,12 @@ public class Bullet : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player" && tag == "Enemy Bullet") // Enemy bullet hits player
         {
+            col.gameObject.GetComponent<Health>().TakeDamage(dmg);
             Destroy(gameObject);
         } else if (col.gameObject.tag == "Enemy" && tag == "Player Bullet")
         {
+            col.gameObject.GetComponent<Health>().TakeDamage(dmg);
+
             Destroy(gameObject);
         }
     }

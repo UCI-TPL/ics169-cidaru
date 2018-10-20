@@ -8,10 +8,12 @@ public class EnemyController : MonoBehaviour {
 
     private GameObject player;
     private float fireTimer;
+    private Health hp;
 
     private void Awake()
     {
         fireTimer = setFireTimer;
+        hp = GetComponent<Health>();
     }
 
     // Use this for initialization
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
         fireTimer -= Time.deltaTime;
 
+        // Timer to fire bullets on set intervals
         if (fireTimer <= 0f)
         {
             GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
@@ -31,6 +34,12 @@ public class EnemyController : MonoBehaviour {
             newBullet.tag = "Enemy Bullet";
 
             fireTimer = setFireTimer;
+        }
+
+        // Checks if enemy is dead and destorys them
+        if (hp.dead())
+        {
+            Destroy(gameObject);
         }
     }
 }

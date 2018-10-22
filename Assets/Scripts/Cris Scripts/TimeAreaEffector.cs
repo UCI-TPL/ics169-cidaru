@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,14 @@ public class TimeAreaEffector : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ChangeTime(collision.gameObject, 1/timeEffect);
+        //Resets time for the player and their enemies
+        if (!collision.gameObject.tag.Contains("Bullet"))
+            ChangeTime(collision.gameObject, 1/timeEffect);
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     private void ChangeTime(GameObject other, float effect)
@@ -26,6 +34,7 @@ public class TimeAreaEffector : MonoBehaviour {
             changeBulletTime(other, effect);
     }
 
+    #region Changing Times of Important Objects
     private void changePlayerTime(GameObject player, float effect)
     {
         PlayerController pc = player.GetComponent<PlayerController>();
@@ -42,4 +51,5 @@ public class TimeAreaEffector : MonoBehaviour {
         Bullet bulletController = bullet.GetComponent<Bullet>();
         bulletController.movementSpeed *= effect;
     }
+    #endregion
 }

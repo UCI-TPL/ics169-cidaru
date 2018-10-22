@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeManipulation : MonoBehaviour{
-    public float timeSpeed = 1f;
+    public float timeSpeed = 2f;
+    public float timeLimit = 2f;
+    public GameObject speedForce;
+
     private PlayerController pController;
+    private bool powersActive = false;
 
     private void Start()
     {
@@ -13,13 +17,31 @@ public class TimeManipulation : MonoBehaviour{
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            adjustSpeed();
+        if (!powersActive && Input.GetKeyDown(KeyCode.Space))
+        {
+            activatePowers();
+        }
+
     }
 
-    private void adjustSpeed()
+    private void activatePowers()
     {
-        pController.currentSpeed = pController.originalSpeed * timeSpeed;
+        adjustSpeed(timeSpeed);
+        speedForce.SetActive(true);
+        powersActive = true;
+    }
+
+    private void deactivatePowers()
+    {
+        adjustSpeed(1 / timeSpeed);
+        speedForce.SetActive(false);
+        powersActive = false;
+    }
+
+
+    private void adjustSpeed(float speedMultiplier)
+    {
+        pController.currentSpeed = pController.originalSpeed * speedMultiplier;
     }
 
 }

@@ -19,11 +19,6 @@ public class TimeAreaEffector : MonoBehaviour {
             ChangeTime(collision.gameObject, 1/timeEffect);
     }
 
-    private void OnDisable()
-    {
-        
-    }
-
     private void ChangeTime(GameObject other, float effect)
     {
         if (other.tag.Equals("Player"))

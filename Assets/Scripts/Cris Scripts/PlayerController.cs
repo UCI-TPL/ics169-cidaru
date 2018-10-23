@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     https://unity3d.com/learn/tutorials/projects/survival-shooter/player-character?playlist=17144
     */
 
-    public float speed = 5f;
+    public float originalSpeed = 5f;
+    //[HideInInspector]
+    public float currentSpeed;
     public GameObject gameOverPanel;
 
     private Health health;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         health = GetComponent<Health>();
         gameOverPanel.SetActive(false);
+        currentSpeed = originalSpeed;
     }
 
     void FixedUpdate()
@@ -25,10 +28,6 @@ public class PlayerController : MonoBehaviour
             Move();
 
         #region Reset Health (When Dead)
-        //else if (Input.GetKey(KeyCode.Space))
-        //{
-        //    health.Reset();
-        //}
         else
         {
             gameOverPanel.SetActive(true);
@@ -44,7 +43,7 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         Vector3 movement = new Vector3(x, y, 0);
-        movement = movement.normalized * speed * Time.deltaTime;
+        movement = movement.normalized * currentSpeed * Time.deltaTime;
         gameObject.transform.Translate(movement);
     }
 }

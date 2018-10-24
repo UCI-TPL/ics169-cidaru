@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // If timer is not over perform blinking effect else reenable sprite and vulnerability
         if (invincibilityTimer > 0f)
         {
             sprite.enabled = !sprite.enabled;
@@ -75,6 +76,13 @@ public class PlayerController : MonoBehaviour
 
     public void startInvincibility()
     {
-        invincibilityTimer = setInvincibilityTimer;
+        // Checks if player is dead first, if so disable sprite else start invincibility
+        if (health.dead())
+        {
+            sprite.enabled = false;
+        } else
+        {
+            invincibilityTimer = setInvincibilityTimer;
+        }
     }
 }

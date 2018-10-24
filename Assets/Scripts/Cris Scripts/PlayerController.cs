@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private PlayerHealth health;
     private float invincibilityTimer;
+    private CharacterController controller;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        controller = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -71,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(x, y, 0);
         movement = movement.normalized * currentSpeed * Time.deltaTime;
-        gameObject.transform.Translate(movement);
+        //gameObject.transform.Translate(movement);
+        controller.Move(movement);
     }
 
     public void startInvincibility()

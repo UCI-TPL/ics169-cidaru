@@ -15,7 +15,10 @@ public class GunController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        FaceMouse();
+        if (Time.timeScale != 0)
+        {
+            FaceMouse();
+        }
 
         // Player Shoot Code
         if (Input.GetMouseButtonDown(0))

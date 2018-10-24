@@ -27,12 +27,13 @@ public class PlayerController : MonoBehaviour
         if (!health.dead())
             Move();
 
+        /* USING GAMESTATE MANAGER TO CONTROL THIS
         #region Reset Health (When Dead)
         else
         {
             gameOverPanel.SetActive(true);
         }
-        #endregion
+        #endregion*/
     }
 
     void Move()

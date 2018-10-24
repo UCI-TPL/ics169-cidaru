@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52466d8f8944e2542b60bfc93cc3fba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setFireTimer: 3
+  setFireTimer: 1
   bullet: {fileID: 1696281229995658, guid: d4bddd46493fa0e43b0d0d10c5281cb0, type: 2}
 --- !u!212 &393879148
 SpriteRenderer:
@@ -2437,8 +2437,8 @@ GameObject:
   - component: {fileID: 1925917955}
   - component: {fileID: 1925917958}
   - component: {fileID: 1925917961}
-  - component: {fileID: 1925917959}
   - component: {fileID: 1925917960}
+  - component: {fileID: 1925917959}
   - component: {fileID: 1925917957}
   m_Layer: 0
   m_Name: Player
@@ -2572,11 +2572,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925917954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6fe49ae12886d43b6ab53e1ec0ef20, type: 3}
+  m_Script: {fileID: 11500000, guid: b99e8cee951772a4da242f4139116520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 2
   currentHealth: 2
+  healthBar: {fileID: 0}
 --- !u!114 &1925917961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2589,8 +2590,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSpeed: 5
+  setInvincibilityTimer: 2
   currentSpeed: 0
-  gameOverPanel: {fileID: 1095976594}
 --- !u!1 &2140869863
 GameObject:
   m_ObjectHideFlags: 0

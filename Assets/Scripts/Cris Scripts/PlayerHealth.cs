@@ -11,16 +11,30 @@ public class PlayerHealth : Health {
 
     public Slider healthBar;
 
+    private bool invincible = false;
+    private PlayerController player;
+
+    private void Awake()
+    {
+        player = GetComponent<PlayerController>();
+    }
+
     private void Start()
     {
-        healthBar.maxValue = startingHealth;
-        healthBar.value = startingHealth;
+        //healthBar.maxValue = startingHealth;
+        //healthBar.value = startingHealth;
+        invincible = false;
     }
 
     public override void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        updateHealthBar();
+        if (!invincible)
+        {
+            currentHealth -= amount;
+            invincible = true;
+            player.startInvincibility();
+        }
+        //updateHealthBar(); TEMP COMMENT
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -47,5 +61,15 @@ public class PlayerHealth : Health {
     {
         healthBar.value = currentHealth;
         Debug.Log("updated health bar");
+    }
+
+    public bool isInvincible()
+    {
+        return invincible;
+    }
+
+    public void setVulnerable()
+    {
+        invincible = false;
     }
 }

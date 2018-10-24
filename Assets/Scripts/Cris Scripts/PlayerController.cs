@@ -9,17 +9,42 @@ public class PlayerController : MonoBehaviour
     */
 
     public float originalSpeed = 5f;
+    public float setInvincibilityTimer = 2f;
+
     //[HideInInspector]
     public float currentSpeed;
-    public GameObject gameOverPanel;
+    //public GameObject gameOverPanel;
 
-    private Health health;
+    private SpriteRenderer sprite;
+    private PlayerHealth health;
+    private float invincibilityTimer;
+
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
-        health = GetComponent<Health>();
-        gameOverPanel.SetActive(false);
+        health = GetComponent<PlayerHealth>();
+        //gameOverPanel.SetActive(false);
         currentSpeed = originalSpeed;
+
+        invincibilityTimer = 0f;
+    }
+
+    private void Update()
+    {
+        if (invincibilityTimer > 0f)
+        {
+            sprite.enabled = !sprite.enabled;
+            invincibilityTimer -= Time.deltaTime;
+        }
+        else
+        {
+            sprite.enabled = true;
+            health.setVulnerable();
+        }
     }
 
     void FixedUpdate()
@@ -46,5 +71,10 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(x, y, 0);
         movement = movement.normalized * currentSpeed * Time.deltaTime;
         gameObject.transform.Translate(movement);
+    }
+
+    public void startInvincibility()
+    {
+        invincibilityTimer = setInvincibilityTimer;
     }
 }

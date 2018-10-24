@@ -7,17 +7,17 @@ public class Bullet : MonoBehaviour {
 
     public int dmg = 1;
 
-    private Rigidbody2D rb2d;
+    private Rigidbody rb;
 
 	// Use this for initialization
 	void Awake () {
-        rb2d = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 move = transform.up * movementSpeed * Time.deltaTime;
-        rb2d.MovePosition(rb2d.position + move);
+        Vector3 move = transform.up * movementSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + move);
     }
 
     public void OnBecameInvisible()
@@ -25,15 +25,15 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player" && tag == "Enemy Bullet") // Enemy bullet hits player
+        if (col.tag == "Player" && tag == "Enemy Bullet") // Enemy bullet hits player
         {
-            col.gameObject.GetComponent<Health>().TakeDamage(dmg);
+            col.GetComponent<Health>().TakeDamage(dmg);
             Destroy(gameObject);
-        } else if (col.gameObject.tag == "Enemy" && tag == "Player Bullet")
+        } else if (col.tag == "Enemy" && tag == "Player Bullet")
         {
-            col.gameObject.GetComponent<Health>().TakeDamage(dmg);
+            col.GetComponent<Health>().TakeDamage(dmg);
 
             Destroy(gameObject);
         }

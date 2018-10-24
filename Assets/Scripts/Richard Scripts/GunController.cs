@@ -33,7 +33,6 @@ public class GunController : MonoBehaviour {
     {
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Vector3 result = ray.GetPoint((sr.transform.position.z - cam.transform.z) / ray.direction.z);
 
         Vector3 mousePos = ray.GetPoint((0 - Camera.main.transform.position.z) / ray.direction.z);
 

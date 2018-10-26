@@ -29,6 +29,8 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
+        // Center then Rotato
         if (currentMovement == BulletMovementState.Normal)
         {
             Vector2 move = transform.up * movementSpeed * Time.deltaTime;
@@ -53,6 +55,47 @@ public class Bullet : MonoBehaviour {
 
             rb2d.MoveRotation(rb2d.rotation + rotationSpeed * Time.deltaTime);
             rb2d.MovePosition(center + radius * new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180), Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180)));
+        }*/
+
+        // Rotato into distance
+        if (currentMovement == BulletMovementState.Normal)
+        {
+            Vector2 move = transform.up * movementSpeed * Time.deltaTime;
+            rb2d.MovePosition(rb2d.position + move);
+        }
+        else if (currentMovement == BulletMovementState.Succing)
+        {
+            float angle = Mathf.Sin(transform.position.y - center.y / Vector3.Distance(transform.position, center)) * 180 / Mathf.PI;
+
+            float xDist = transform.position.x - center.x;
+            float yDist = transform.position.y - center.y;
+
+            if (xDist >= 0 && yDist < 0)
+            {
+                angle = -angle;
+            } else if (xDist < 0 && yDist > 0)
+            {
+                angle = 180 - angle;
+            } else if (xDist < 0 && yDist <= 0)
+            {
+                angle = 180 + angle;
+            }
+
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+            currentMovement = BulletMovementState.Rotato;
+        }
+        else if (currentMovement == BulletMovementState.Rotato)
+        {
+            radius = Mathf.Abs(Vector3.Distance(transform.position, center));
+            if (radius >= 0.5f)
+            {
+                radius -= 0.01f;
+            }
+
+            rb2d.MoveRotation(rb2d.rotation + rotationSpeed * Time.deltaTime);
+            
+            rb2d.MovePosition(center + radius * new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180), Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180)));
+            
         }
 
     }

@@ -102,9 +102,17 @@ public class Bullet : MonoBehaviour {
         transform.rotation = Quaternion.identity;
     }
 
+    public void endVortex()
+    {
+        currentMovement = BulletMovementState.Normal;
+    }
+
     public void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        if (currentMovement == BulletMovementState.Normal)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D col)

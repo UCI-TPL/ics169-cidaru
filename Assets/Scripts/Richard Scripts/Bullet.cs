@@ -65,28 +65,24 @@ public class Bullet : MonoBehaviour {
         }
         else if (currentMovement == BulletMovementState.Succing)
         {
-            float angle = Mathf.Sin(transform.position.y - center.y / Vector3.Distance(transform.position, center)) * 180 / Mathf.PI;
+            Vector2 difference = transform.position - center;
 
-            float xDist = transform.position.x - center.x;
-            float yDist = transform.position.y - center.y;
+            float angle = Vector2.Angle(Vector2.right, difference);
 
-            if (xDist >= 0 && yDist < 0)
+            if (transform.position.y - center.y < 0)
             {
                 angle = -angle;
-            } else if (xDist < 0 && yDist > 0)
-            {
-                angle = 180 - angle;
-            } else if (xDist < 0 && yDist <= 0)
-            {
-                angle = 180 + angle;
             }
 
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            print(angle);
+
+            transform.eulerAngles = new Vector3(0, 0, angle);
+
             currentMovement = BulletMovementState.Rotato;
         }
         else if (currentMovement == BulletMovementState.Rotato)
         {
-            radius = Mathf.Abs(Vector3.Distance(transform.position, center));
+            radius = Vector3.Distance(transform.position, center);
             if (radius >= 0.5f)
             {
                 radius -= 0.01f;
@@ -95,7 +91,6 @@ public class Bullet : MonoBehaviour {
             rb2d.MoveRotation(rb2d.rotation + rotationSpeed * Time.deltaTime);
             
             rb2d.MovePosition(center + radius * new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180), Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180)));
-            
         }
 
     }
@@ -112,15 +107,15 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && tag == "Enemy Bullet") // Enemy bullet hits player
+        if (col.tag == "Player" && tag == "Enemy Bullet") // Enemy bullet hits player
         {
-            col.gameObject.GetComponent<Health>().TakeDamage(dmg);
+            col.GetComponent<Health>().TakeDamage(dmg);
             Destroy(gameObject);
-        } else if (col.gameObject.tag == "Enemy" && tag == "Player Bullet")
+        } else if (col.tag == "Enemy" && tag == "Player Bullet")
         {
-            col.gameObject.GetComponent<Health>().TakeDamage(dmg);
+            col.GetComponent<Health>().TakeDamage(dmg);
 
             Destroy(gameObject);
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunController : MonoBehaviour {
 
     public GameObject bullet;
+    public GameObject vortexSpawner;
 
     private Transform gun;
 
@@ -25,6 +26,10 @@ public class GunController : MonoBehaviour {
         {
             GameObject newBullet = Instantiate(bullet, transform.position, gun.rotation);
             newBullet.tag = "Player Bullet";
+        } else if (Input.GetMouseButtonDown(1))
+        {
+            GameObject newVortex = Instantiate(vortexSpawner, transform.position, gun.rotation);
+            newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 	}
 

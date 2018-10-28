@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float originalSpeed = 5f;
     public float setInvincibilityTimer = 2f;
 
-    //[HideInInspector]
+    [HideInInspector]
     public float currentSpeed;
     //public GameObject gameOverPanel;
 

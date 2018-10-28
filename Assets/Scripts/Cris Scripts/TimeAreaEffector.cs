@@ -32,13 +32,19 @@ public class TimeAreaEffector : MonoBehaviour {
     #region Changing Times of Important Objects
     private void changePlayerTime(GameObject player, float effect)
     {
-        PlayerController pc = player.GetComponent<PlayerController>();
-        pc.currentSpeed *= effect;
+        //PlayerController pc = player.GetComponent<PlayerController>();
+        //pc.currentSpeed *= effect;
     }
 
     private void changeEnemyTime(GameObject enemy, float effect)
     {
-        //TODO: change enemy time
+        RangedEnemy enemyAttack = enemy.GetComponent<RangedEnemy>();
+        if (enemyAttack)
+            enemyAttack.setFireTimer *= effect;
+
+        EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+        if (enemyMovement)
+            enemyMovement.currentSpeed *= effect;
     }
 
     private void changeBulletTime(GameObject bullet, float effect)

@@ -19,13 +19,20 @@ public class Vortex : MonoBehaviour {
     private VortexStates vortexState = VortexStates.Succ;
 
     // Use this for initialization
-    void Start () {
-		
+    void Awake () {
+        vortexTimer = setVortexTimer;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.B))
+        {
+            Blow();
+        }
+
+        vortexTimer -= Time.deltaTime;
+
+        if (vortexTimer <= 0)
         {
             Blow();
         }

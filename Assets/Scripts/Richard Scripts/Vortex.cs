@@ -19,8 +19,8 @@ public class Vortex : MonoBehaviour {
     private VortexStates vortexState = VortexStates.Succ;
 
     // Use this for initialization
-    void Start () {
-		
+    void Awake () {
+        vortexTimer = setVortexTimer;
 	}
 	
 	// Update is called once per frame

@@ -29,6 +29,13 @@ public class Vortex : MonoBehaviour {
         {
             Blow();
         }
+
+        vortexTimer -= Time.deltaTime;
+
+        if (vortexTimer <= 0)
+        {
+            Blow();
+        }
 	}
 
     private void Blow()

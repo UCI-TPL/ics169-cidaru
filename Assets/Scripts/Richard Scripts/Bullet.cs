@@ -74,8 +74,6 @@ public class Bullet : MonoBehaviour {
                 angle = -angle;
             }
 
-            print(angle);
-
             transform.eulerAngles = new Vector3(0, 0, angle);
 
             currentMovement = BulletMovementState.Rotato;

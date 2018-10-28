@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1766127868089118}
   m_IsPrefabAsset: 1
+--- !u!1 &1127684251436828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4276258425698568}
+  m_Layer: 0
+  m_Name: Succ Things
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1175745457643074
 GameObject:
   m_ObjectHideFlags: 1
@@ -36,9 +51,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4005456755763048}
+  - component: {fileID: 58575682920794728}
+  - component: {fileID: 95809951013707878}
+  - component: {fileID: 114520234103876936}
   m_Layer: 0
   m_Name: Vortex Sprites
-  m_TagString: Untagged
+  m_TagString: Vortex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,12 +86,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4867686756306800}
-  - component: {fileID: 58182619816034254}
-  - component: {fileID: 114646374131174822}
-  - component: {fileID: 95770397570432770}
   m_Layer: 0
   m_Name: Vortex
-  m_TagString: Untagged
+  m_TagString: Vortex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +107,19 @@ Transform:
   - {fileID: 4354878079099796}
   m_Father: {fileID: 4867686756306800}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4276258425698568
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127684251436828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4867686756306800}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4322027187263224
 Transform:
@@ -130,24 +158,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4005456755763048}
+  - {fileID: 4276258425698568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58182619816034254
+--- !u!58 &58575682920794728
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766127868089118}
+  m_GameObject: {fileID: 1362278844569464}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 2.4
 --- !u!95 &95390795443777556
 Animator:
   serializedVersion: 3
@@ -184,16 +213,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95770397570432770
+--- !u!95 &95809951013707878
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766127868089118}
+  m_GameObject: {fileID: 1362278844569464}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d98954ad43f302241b0e89389496396b, type: 2}
+  m_Controller: {fileID: 9100000, guid: b51f0ee88a274d34b9af6824149eddf3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -202,18 +231,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114646374131174822
+--- !u!114 &114520234103876936
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766127868089118}
+  m_GameObject: {fileID: 1362278844569464}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3be0df5e136640347b974c3401eb1120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setVortexTimer: 0
+  setVortexTimer: 5
+  vortexInside: {fileID: 1127684251436828}
   succedThings: []
 --- !u!212 &212085178530806192
 SpriteRenderer:

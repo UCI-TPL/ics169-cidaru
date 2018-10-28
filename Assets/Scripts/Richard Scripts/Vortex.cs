@@ -6,6 +6,8 @@ public class Vortex : MonoBehaviour {
 
     public float setVortexTimer;
 
+    public GameObject vortexInside;
+
     public List<GameObject> succedThings = new List<GameObject>();
 
     private float vortexTimer;
@@ -40,21 +42,31 @@ public class Vortex : MonoBehaviour {
 
     private void Blow()
     {
+        /*
         foreach (GameObject thing in succedThings)
         {
             thing.GetComponent<Bullet>().endVortex();
+        }*/
+
+        foreach (Transform child in vortexInside.transform)
+        {
+            child.parent = null;
+            child.GetComponent<Bullet>().endVortex();
         }
 
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (vortexState == VortexStates.Succ)
+        if (vortexState == VortexStates.Succ && col.tag != "Vortex")
         {
             col.GetComponent<Bullet>().startVortex(transform.position);
 
-            succedThings.Add(col.gameObject);
+            col.transform.parent = vortexInside.transform;
+            
+
+            //succedThings.Add(col.gameObject);
         }
     }
 

@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour {
     //[HideInInspector]
     public float currentSpeed;
 
-    private GameObject player;
+    protected GameObject player;
 
     private void Start()
     {
@@ -17,8 +17,13 @@ public class EnemyMovement : MonoBehaviour {
         player = GameObject.Find("Player");
     }
 
-    void Update() {
+    void FixedUpdate() {
+        Move(player.transform);
+    }
+
+    protected void Move(Transform target)
+    {
         float step = currentSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
     }
 }

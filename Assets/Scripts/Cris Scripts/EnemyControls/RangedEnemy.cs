@@ -10,6 +10,7 @@ public class RangedEnemy : MonoBehaviour {
 
     public float setFireTimer;
     public GameObject bullet;
+    public int aggroRange;
 
     private float fireTimer;
     private GameObject player;
@@ -17,7 +18,7 @@ public class RangedEnemy : MonoBehaviour {
 
     private void Awake()
     {
-        fireTimer = setFireTimer;
+        fireTimer = 0f;
         hp = GetComponent<Health>();
     }
 
@@ -33,6 +34,13 @@ public class RangedEnemy : MonoBehaviour {
 
     private void Attack()
     {
+        if (Vector3.Distance(player.transform.position, transform.position) <= aggroRange)
+            Shoot();
+        checkDeath();
+    }
+
+    private void Shoot()
+    {
         fireTimer -= Time.deltaTime;
 
         // Timer to fire bullets on set intervals
@@ -45,6 +53,11 @@ public class RangedEnemy : MonoBehaviour {
             fireTimer = setFireTimer;
         }
 
+        
+    }
+
+    private void checkDeath()
+    {
         // Checks if enemy is dead and destorys them
         if (hp.dead())
         {

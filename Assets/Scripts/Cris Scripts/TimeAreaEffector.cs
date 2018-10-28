@@ -14,9 +14,8 @@ public class TimeAreaEffector : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Resets time for the player and their enemies
-        if (!collision.gameObject.tag.Contains("Bullet"))
-            ChangeTime(collision.gameObject, 1/timeEffect);
+        //Resets time
+        ChangeTime(collision.gameObject, 1/timeEffect);
     }
 
     private void ChangeTime(GameObject other, float effect)

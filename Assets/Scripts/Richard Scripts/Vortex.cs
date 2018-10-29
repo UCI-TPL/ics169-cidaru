@@ -46,6 +46,7 @@ public class Vortex : MonoBehaviour {
         foreach(Bullet b in bullets)
         {
             b.gameObject.transform.parent = null;
+            b.gameObject.tag = "Vortex Bullet";
 
             b.endVortex();
         }
@@ -68,6 +69,8 @@ public class Vortex : MonoBehaviour {
     {   
         if (vortexState == VortexStates.Succ && col.tag != "Vortex")
         {
+            col.tag = "Rotating Bullet";
+
             col.GetComponent<Bullet>().startVortex(transform.position);
 
             col.transform.parent = vortexInside.transform;

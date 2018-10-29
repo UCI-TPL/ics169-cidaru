@@ -124,6 +124,14 @@ public class Bullet : MonoBehaviour {
             col.GetComponent<Health>().TakeDamage(dmg);
 
             Destroy(gameObject);
+        } else if ((col.tag == "Player" || col.tag == "Enemy") && tag == "Vortex Bullet")
+        {
+            col.GetComponent<Health>().TakeDamage(dmg);
+
+            Destroy(gameObject);
+        } else if (col.tag == "Obstacle" && tag != "Rotating Bullet")
+        {
+            Destroy(gameObject);
         }
     }
 }

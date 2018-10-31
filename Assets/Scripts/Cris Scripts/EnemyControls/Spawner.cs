@@ -8,13 +8,16 @@ public class Spawner : MonoBehaviour
     public GameObject thingToSpawn;
     public int spawnDelay;
     public int timeInterval;
+    public int spawnLimit;
 
     private float totalTimer = 0;
     private float timer;
+    private float spawnCount;
 
     private void Start()
     {
         timer = timeInterval;
+        spawnCount = 0;
     }
 
 
@@ -37,6 +40,9 @@ public class Spawner : MonoBehaviour
 
     private void SpawnThing()
     {
+        if (spawnCount >= spawnLimit)
+            return;
+        spawnCount++;
         Instantiate(thingToSpawn, transform.position, Quaternion.identity);
     }
 }

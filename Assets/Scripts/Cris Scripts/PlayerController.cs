@@ -18,10 +18,12 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private PlayerHealth health;
     private float invincibilityTimer;
+	private Animator anim;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+		anim = this.GetComponent<Animator> ();
     }
 
     private void Start()
@@ -68,6 +70,20 @@ public class PlayerController : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+
+		if (x < 0) {
+			this.transform.localScale = new Vector3 (-1.0f,
+				transform.localScale.y);
+		} else if (x > 0) {
+			this.transform.localScale = new Vector3 (1.0f,
+				transform.localScale.y);
+		}
+
+		if (x != 0 || y != 0) {
+			anim.SetBool ("moving", true);
+		} else {
+			anim.SetBool ("moving", false);
+		}
 
         Vector3 movement = new Vector3(x, y, 0);
         movement = movement.normalized * currentSpeed * Time.deltaTime;

@@ -72,12 +72,10 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
 		if (x < 0) {
-			this.transform.localScale = new Vector3 (-1.0f,
-				transform.localScale.y);
+            sprite.flipX = true;
 		} else if (x > 0) {
-			this.transform.localScale = new Vector3 (1.0f,
-				transform.localScale.y);
-		}
+            sprite.flipX = false;
+		}   
 
 		if (x != 0 || y != 0) {
 			anim.SetBool ("moving", true);

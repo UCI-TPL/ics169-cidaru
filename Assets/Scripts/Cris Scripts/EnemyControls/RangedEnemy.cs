@@ -25,18 +25,22 @@ public class RangedEnemy : MonoBehaviour {
     private void Start()
     {
         player = GameObject.Find("Player");
+        GetComponent<EnemyMovement>().move = false;
     }
 
     private void Update()
     {
         Attack();
+        checkDeath();
     }
 
     private void Attack()
     {
         if (Vector3.Distance(player.transform.position, transform.position) <= aggroRange)
+        {
             Shoot();
-        checkDeath();
+            GetComponent<EnemyMovement>().move = true;
+        }
     }
 
     private void Shoot()

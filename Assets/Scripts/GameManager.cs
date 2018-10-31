@@ -7,22 +7,27 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public Text healthUI;
+    public Text manaUI;
+
     public GameObject gameOverMenu;
 
-    private Health player;
+    private Health playerHp;
+    private Mana playerMana;
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Health>();
+        playerHp = GameObject.Find("Player").GetComponent<Health>();
+        playerMana = GameObject.Find("Player").GetComponent<Mana>();
     }
 
     void Start () {
     }
 	
 	void Update () {
-        healthUI.text = "Health: " + player.currentHealth;
+        healthUI.text = "Health: " + playerHp.currentHealth;
+        manaUI.text = "Mana: " + playerMana.getCurrentMana();
 
-        if (player.dead() && !gameOverMenu.activeSelf)
+        if (playerHp.dead() && !gameOverMenu.activeSelf)
         {
             Time.timeScale = 0f;
 

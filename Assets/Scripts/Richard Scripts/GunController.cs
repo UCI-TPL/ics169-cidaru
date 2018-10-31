@@ -7,11 +7,17 @@ public class GunController : MonoBehaviour {
     public GameObject bullet;
     public GameObject vortexSpawner;
 
+    public int vortexManaCost;
+
     private Transform gun;
+
+    private Mana manaController;
 
     // Use this for initialization
     void Awake () {
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
+
+        manaController = GetComponent<Mana>();
 	}
 	
 	// Update is called once per frame
@@ -26,8 +32,9 @@ public class GunController : MonoBehaviour {
         {
             GameObject newBullet = Instantiate(bullet, transform.position, gun.rotation);
             newBullet.tag = "Player Bullet";
-        } else if (Input.GetMouseButtonDown(1))
+        } else if (Input.GetMouseButtonDown(1) && manaController.getCurrentMana() > vortexManaCost)
         {
+            manaController.useMana(vortexManaCost);
             GameObject newVortex = Instantiate(vortexSpawner, transform.position, gun.rotation);
             newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }

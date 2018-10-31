@@ -51,13 +51,11 @@ public class Mana : MonoBehaviour {
 
         while (currentMana < maxMana)
         {
-            currentMana++;
-
             yield return new WaitForSeconds(regenTime);
+
+            currentMana++;
         }
 
         regening = false;
-
-
     }
 }

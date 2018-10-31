@@ -34,6 +34,17 @@ public class Mana : MonoBehaviour {
         currentMana -= m;
     }
 
+    public void gainMana(int m)
+    {
+        if (currentMana + m >= maxMana)
+        {
+            currentMana = maxMana;
+        } else
+        {
+            currentMana += m;
+        }
+    }
+
     private IEnumerator ManaRegen()
     {
         regening = true;

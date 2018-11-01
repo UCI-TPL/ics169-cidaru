@@ -27,6 +27,7 @@ public class GunController : MonoBehaviour {
         reloading = false;
 
         manaController = GetComponent<Mana>();
+
 	}
 	
 	// Update is called once per frame
@@ -34,26 +35,27 @@ public class GunController : MonoBehaviour {
         if (Time.timeScale != 0)
         {
             FaceMouse();
-        }
 
-        if ((Input.GetKeyDown(KeyCode.R) && currentAmmo != setMaxAmmo && !reloading) || currentAmmo == 0)
-        {
-            StartCoroutine(Reload());
-        }
+            if ((Input.GetKeyDown(KeyCode.R) && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
+            {
+                StartCoroutine(Reload());
+            }
 
-        // Player Shoot Code
-        if (Input.GetMouseButtonDown(0) && currentAmmo > 0)
-        {
-            currentAmmo--;
+            // Player Shoot Code
+            if (Input.GetMouseButtonDown(0) && currentAmmo > 0 && !reloading)
+            {
+                currentAmmo--;
 
-            GameObject newBullet = Instantiate(bullet, transform.position, gun.rotation);
-            newBullet.tag = "Player Bullet";
-        } else if (Input.GetMouseButtonDown(1) && manaController.getCurrentMana() > vortexManaCost)
-        {
-            manaController.useMana(vortexManaCost);
+                GameObject newBullet = Instantiate(bullet, transform.position, gun.rotation);
+                newBullet.tag = "Player Bullet";
+            }
+            else if (Input.GetMouseButtonDown(1) && manaController.getCurrentMana() > vortexManaCost)
+            {
+                manaController.useMana(vortexManaCost);
 
-            GameObject newVortex = Instantiate(vortexSpawner, transform.position, gun.rotation);
-            newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                GameObject newVortex = Instantiate(vortexSpawner, transform.position, gun.rotation);
+                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
         }
 	}
 

@@ -67,7 +67,7 @@ public class Vortex : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {   
-        if (vortexState == VortexStates.Succ && col.tag != "Vortex")
+        if (vortexState == VortexStates.Succ && (col.tag == "Player Bullet" || col.tag == "Enemy Bullet" || col.tag == "Rotating Bullet" || col.tag == "Vortex Bullet"))
         {
             col.tag = "Rotating Bullet";
 
@@ -77,5 +77,16 @@ public class Vortex : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (vortexState == VortexStates.Succ && col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.layer = 10;
+
+            col.gameObject.GetComponent<EnemyController>().startVortex(transform.position);
+
+            col.transform.parent = vortexInside.transform;
+        }
+    }
 
 }

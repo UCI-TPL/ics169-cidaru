@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
 
     public GameObject gameOverMenu;
 
+    public Texture2D cursor;
+
     private GameObject player;
     private Health playerHp;
     private Mana playerMana;
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour {
         playerHp = player.GetComponent<Health>();
         playerMana = player.GetComponent<Mana>();
         gun = player.GetComponent<GunController>();
+
+        Cursor.SetCursor(cursor, new Vector2(512 / 2, 512 / 2), CursorMode.Auto);
     }
 
     void Start () {

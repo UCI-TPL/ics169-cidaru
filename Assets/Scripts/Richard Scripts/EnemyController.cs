@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour {
     private float fireTimer;
     private Health hp;
 
+    private Vector3 center;
+
     private void Awake()
     {
         fireTimer = setFireTimer;
@@ -41,5 +43,10 @@ public class EnemyController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+
+    public void startVortex(Vector3 c)
+    {
+        center = c;
     }
 }

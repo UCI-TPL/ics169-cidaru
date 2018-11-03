@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212635175155836802}
   - component: {fileID: 50389489425095948}
   - component: {fileID: 61060357320501126}
+  - component: {fileID: 114655572538459558}
   - component: {fileID: 114865942759217826}
   - component: {fileID: 114445646090929044}
   - component: {fileID: 114188416572548524}
@@ -103,6 +104,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalSpeed: 1
   currentSpeed: 0
+  move: 0
+  patrolPoints: []
+  chargeDistance: 0
+  chargeTime: 0
 --- !u!114 &114445646090929044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +121,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 1
   currentHealth: 0
+--- !u!114 &114655572538459558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776546509141650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6609b624b8e1c448a00bcf0cff368bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackStyle: {fileID: 114865942759217826}
+  movement: {fileID: 114188416572548524}
+  aggroRange: 10
 --- !u!114 &114865942759217826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setFireTimer: 2
   bullet: {fileID: 1696281229995658, guid: d4bddd46493fa0e43b0d0d10c5281cb0, type: 2}
-  aggroRange: 5
 --- !u!212 &212635175155836802
 SpriteRenderer:
   m_ObjectHideFlags: 1

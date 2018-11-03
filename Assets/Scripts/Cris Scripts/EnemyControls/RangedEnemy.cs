@@ -2,45 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
-public class RangedEnemy : MonoBehaviour {
+public class RangedEnemy : EnemyAttack {
     /* Defines the attack behavior for Ranged Enemies 
      Adapted from Richard's EnemyController script 
      */
 
     public float setFireTimer;
     public GameObject bullet;
-    public int aggroRange;
 
     private float fireTimer;
-    private GameObject player;
-    private Health hp;
 
     private void Awake()
     {
         fireTimer = 0f;
-        hp = GetComponent<Health>();
     }
 
-    private void Start()
+    public override void Attack()
     {
-        player = GameObject.Find("Player");
-        GetComponent<EnemyMovement>().move = false;
-    }
-
-    private void Update()
-    {
-        Attack();
-        checkDeath();
-    }
-
-    private void Attack()
-    {
-        if (Vector3.Distance(player.transform.position, transform.position) <= aggroRange)
-        {
-            Shoot();
-            GetComponent<EnemyMovement>().move = true;
-        }
+        Shoot();
     }
 
     private void Shoot()
@@ -55,17 +34,6 @@ public class RangedEnemy : MonoBehaviour {
             newBullet.tag = "Enemy Bullet";
 
             fireTimer = setFireTimer;
-        }
-
-        
-    }
-
-    private void checkDeath()
-    {
-        // Checks if enemy is dead and destorys them
-        if (hp.dead())
-        {
-            Destroy(gameObject);
         }
     }
 }

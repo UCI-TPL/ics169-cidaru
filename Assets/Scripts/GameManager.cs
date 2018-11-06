@@ -5,6 +5,13 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
+    public enum Opening
+    {
+        Bottom,
+        Top,
+        Left,
+        Right
+    }
 
     public Text healthUI;
     public Text manaUI;

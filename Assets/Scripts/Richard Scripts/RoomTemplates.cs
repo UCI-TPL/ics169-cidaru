@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomTemplates : MonoBehaviour {
-    public GameObject[] bottomRooms;
-    public GameObject[] topRooms;
-    public GameObject[] leftRooms;
-    public GameObject[] rightRooms;
+    public List<GameObject> bottomRooms;
+    public List<GameObject> topRooms;
+    public List<GameObject> leftRooms;
+    public List<GameObject> rightRooms;
+
+    public GameObject blFiller;
+    public GameObject brFiller;
+    public GameObject tlFiller;
+    public GameObject trFiller;
 }

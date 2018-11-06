@@ -10,6 +10,7 @@ public class Vortex : MonoBehaviour {
     
     private float vortexTimer;
     private List<Bullet> bullets = new List<Bullet>();
+    private List<Enemy> enemies = new List<Enemy>();
 
     public enum VortexStates
     {
@@ -43,12 +44,19 @@ public class Vortex : MonoBehaviour {
     {
         getBullets();
 
-        foreach(Bullet b in bullets)
+        foreach (Bullet b in bullets)
         {
             b.gameObject.transform.parent = null;
             b.gameObject.tag = "Vortex Bullet";
 
             b.endVortex();
+        }
+
+        foreach (Enemy e in enemies)
+        {
+            e.gameObject.transform.parent = null;
+
+            e.endVortex();
         }
 
         Destroy(gameObject.transform.parent.gameObject);
@@ -61,7 +69,13 @@ public class Vortex : MonoBehaviour {
 
         for (int i = 0; i < numOfChildren; i++)
         {
-            bullets.Add(vortexInside.transform.GetChild(i).GetComponent<Bullet>());
+            if (vortexInside.transform.GetChild(i).GetComponent<Bullet>() != null)
+            {
+                bullets.Add(vortexInside.transform.GetChild(i).GetComponent<Bullet>());
+            } else if (vortexInside.transform.GetChild(i).GetComponent<Enemy>() != null)
+            {
+                enemies.Add(vortexInside.transform.GetChild(i).GetComponent<Enemy>());
+            }
         }
     }
 
@@ -81,9 +95,9 @@ public class Vortex : MonoBehaviour {
     {
         if (vortexState == VortexStates.Succ && col.gameObject.tag == "Enemy")
         {
-            col.gameObject.layer = 10;
+            col.gameObject.layer = 11;
 
-            col.gameObject.GetComponent<EnemyController>().startVortex(transform.position);
+            col.gameObject.GetComponent<Enemy>().startVortex(transform.position);
 
             col.transform.parent = vortexInside.transform;
         }

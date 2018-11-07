@@ -45,8 +45,6 @@ public class Enemy : MonoBehaviour {
             attackStyle.Attack();
         }
         checkDeath();
-
-        
     }
 
     public void Update()
@@ -96,6 +94,10 @@ public class Enemy : MonoBehaviour {
         movement.enabled = true;
 
         gameObject.layer = 0;
+
+        transform.rotation = Quaternion.identity;
+
+        rb2d.freezeRotation = true;
     }
 
     private void checkDeath()

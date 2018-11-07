@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212282269015009340}
   - component: {fileID: 50331575624222316}
   - component: {fileID: 58940496622311248}
-  - component: {fileID: 114889799582682320}
+  - component: {fileID: 114428681481902342}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
---- !u!114 &114889799582682320
+--- !u!114 &114428681481902342
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,12 +86,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1696281229995658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109169af0be94c54ab72bcd66bd3b8a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 52efc20e4a575e646aa935aebed1a030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  rotationSpeed: 500
+  movementSpeed: 5
+  rotationSpeed: 200
   dmg: 1
+  setFlameLengthTimer: 0.5
 --- !u!212 &212282269015009340
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -128,7 +129,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d32f639f030be034c98f74ffe4dba7c0, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.0543108, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.23502254, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -21,14 +21,14 @@ public class Projectile : MonoBehaviour {
     protected ProjectileMovementState currentMovement = ProjectileMovementState.Normal;
     protected float radius = 0f;
 
-    void Awake()
+    public virtual void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         currentMovement = ProjectileMovementState.Normal;
         radius = 0f;
     }
 
-    void Update()
+    public virtual void Update()
     {
         /*
         // Center then Rotato

@@ -71,7 +71,7 @@ public class Vortex : MonoBehaviour {
         {
             if (vortexInside.transform.GetChild(i).GetComponent<Projectile>() != null)
             {
-                projectiles.Add(vortexInside.transform.GetChild(i).GetComponent<Bullet>());
+                projectiles.Add(vortexInside.transform.GetChild(i).GetComponent<Projectile>());
             } else if (vortexInside.transform.GetChild(i).GetComponent<Enemy>() != null)
             {
                 enemies.Add(vortexInside.transform.GetChild(i).GetComponent<Enemy>());
@@ -85,7 +85,7 @@ public class Vortex : MonoBehaviour {
         {
             col.tag = "Rotating Bullet";
 
-            col.GetComponent<Bullet>().startVortex(transform.position);
+            col.GetComponent<Projectile>().startVortex(transform.position);
 
             col.transform.parent = vortexInside.transform;
         }

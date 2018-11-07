@@ -8,9 +8,9 @@ public class Vortex : MonoBehaviour {
 
     public GameObject vortexInside;
     
-    private float vortexTimer;
-    private List<Projectile> projectiles = new List<Projectile>();
-    private List<Enemy> enemies = new List<Enemy>();
+    protected float vortexTimer;
+    protected List<Projectile> projectiles = new List<Projectile>();
+    protected List<Enemy> enemies = new List<Enemy>();
 
     public enum VortexStates
     {
@@ -18,7 +18,7 @@ public class Vortex : MonoBehaviour {
         Blow
     }
 
-    private VortexStates vortexState = VortexStates.Succ;
+    protected VortexStates vortexState = VortexStates.Succ;
 
     // Use this for initialization
     void Awake () {
@@ -42,7 +42,7 @@ public class Vortex : MonoBehaviour {
 
     private void Blow()
     {
-        getBullets();
+        getProjectiles();
 
         foreach (Projectile p in projectiles)
         {
@@ -62,7 +62,7 @@ public class Vortex : MonoBehaviour {
         Destroy(gameObject.transform.parent.gameObject);
     }
 
-    private void getBullets()
+    private void getProjectiles()
     {
         int numOfChildren = vortexInside.transform.childCount;
         
@@ -79,7 +79,7 @@ public class Vortex : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public virtual void OnTriggerEnter2D(Collider2D col)
     {   
         if (vortexState == VortexStates.Succ && (col.tag == "Player Bullet" || col.tag == "Enemy Bullet" || col.tag == "Rotating Bullet" || col.tag == "Vortex Projectile"))
         {
@@ -91,7 +91,7 @@ public class Vortex : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    public virtual void OnCollisionEnter2D(Collision2D col)
     {
         if (vortexState == VortexStates.Succ && col.gameObject.tag == "Enemy")
         {

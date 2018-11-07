@@ -10,12 +10,13 @@ public class Spawner : MonoBehaviour
     public int timeInterval;
     public int spawnLimit;
 
-    private float totalTimer = 0;
+    private float totalTimer;
     private float timer;
     private float spawnCount;
 
     private void Start()
     {
+        totalTimer = 0;
         timer = timeInterval;
         spawnCount = 0;
     }
@@ -36,6 +37,7 @@ public class Spawner : MonoBehaviour
             timer = 0;
         }
 
+        checkLimit(); //Destroys gameObject if at or over limit
     }
 
     private void SpawnThing()
@@ -44,5 +46,11 @@ public class Spawner : MonoBehaviour
             return;
         spawnCount++;
         Instantiate(thingToSpawn, transform.position, Quaternion.identity);
+    }
+
+    private void checkLimit()
+    {
+        if (spawnCount >= spawnLimit)
+            Destroy(gameObject);
     }
 }

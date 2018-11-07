@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 61395566988725580}
   - component: {fileID: 114577012771450244}
   - component: {fileID: 114639768852332036}
-  - component: {fileID: 114921542924382218}
   - component: {fileID: 114865693859055728}
+  - component: {fileID: 114921542924382218}
+  - component: {fileID: 95688338355938572}
   m_Layer: 0
   m_Name: Ranged Enemy
   m_TagString: Enemy
@@ -91,6 +92,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 1.2}
   m_EdgeRadius: 0
+--- !u!95 &95688338355938572
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078318880203492}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e603641a01bf504419d5dbc24bd20ec1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114577012771450244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,6 +125,8 @@ MonoBehaviour:
   movement: {fileID: 114921542924382218}
   aggroRange: 5
   rotationSpeed: 100
+  radius: 0
+  aggressing: 0
 --- !u!114 &114639768852332036
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -75,6 +75,7 @@ public class EnemyMovement : MonoBehaviour
             currentPatrolPoint = patrolPoints[currentPatrolIndex];
         }
         Move(currentPatrolPoint.position);
+        currentTarget = currentPatrolPoint.position;
     }
 
     private void Pursue()
@@ -84,6 +85,7 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             Move(player.transform.position);
+            currentTarget = player.transform.position;
         }
     }
 
@@ -167,7 +169,7 @@ public class EnemyMovement : MonoBehaviour
     private void updateAnimations()
     {
         anim.SetBool("walking", GetComponent<Enemy>().aggressing);
-        if (player.transform.position.x < transform.position.x)
+        if (currentTarget.x < transform.position.x)
             this.transform.localScale = new Vector3(-1.0f, transform.localScale.y);
         else
             this.transform.localScale = new Vector3(1.0f, transform.localScale.y);

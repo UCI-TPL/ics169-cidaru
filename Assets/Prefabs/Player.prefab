@@ -62,7 +62,7 @@ GameObject:
   m_Layer: 0
   m_Name: Gun Handle
   m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -77,7 +77,7 @@ GameObject:
   m_Layer: 0
   m_Name: Gun Point
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1113635209509042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.65, y: 7.72, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515939022308886}
@@ -258,7 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   babyBomb: {fileID: 1052338716521706, guid: 2851f0a389093ac40befcced544d2bb4, type: 2}
-  timeBomb: {fileID: 0}
+  hasteBomb: {fileID: 1771855800534360, guid: e2964be41baaa6a4a9a5dd18be1aeddb, type: 2}
+  slowBomb: {fileID: 1406737527791250, guid: da45eb066640b8841bd2741ed8350614, type: 2}
   manaCost: 20
 --- !u!114 &114917135925875528
 MonoBehaviour:

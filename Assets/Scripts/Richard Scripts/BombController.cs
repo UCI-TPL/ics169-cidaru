@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour {
     public GameObject babyBomb;
-    public GameObject timeBomb;
+    public GameObject hasteBomb;
+    public GameObject slowBomb;
 
     public int manaCost = 20;
 
@@ -28,7 +29,12 @@ public class BombController : MonoBehaviour {
             {
                 manaController.useMana(manaCost);
 
-                Instantiate(timeBomb, transform.position, Quaternion.identity);
+                Instantiate(hasteBomb, transform.position, Quaternion.identity);
+            } else if (Input.GetKeyDown(KeyCode.C) && manaController.getCurrentMana() > manaCost)
+            {
+                manaController.useMana(manaCost);
+
+                Instantiate(slowBomb, transform.position, Quaternion.identity);
             }
         }
     }

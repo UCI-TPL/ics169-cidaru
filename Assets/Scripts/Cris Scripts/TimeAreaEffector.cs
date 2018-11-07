@@ -7,6 +7,29 @@ public class TimeAreaEffector : MonoBehaviour {
 
     public float timeEffect = 1f;
 
+    public float radius = 3f;
+
+    public float setAreaTimer;
+
+    private float areaTimer;
+
+    private void Awake()
+    {
+        transform.localScale *= radius;
+
+        areaTimer = setAreaTimer;
+    }
+
+    private void Update()
+    {
+        areaTimer -= Time.deltaTime;
+
+        if (areaTimer <= 0f)
+        { 
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ChangeTime(collision.gameObject, timeEffect);
@@ -25,14 +48,17 @@ public class TimeAreaEffector : MonoBehaviour {
         else if (other.tag.Equals("Enemy"))
             changeEnemyTime(other, effect);
         else if (other.tag.Contains("Bullet"))
-            changeBulletTime(other, effect);
+            changeProjectileTime(other, effect);
     }
 
     #region Changing Times of Important Objects
     private void changePlayerTime(GameObject player, float effect)
     {
-        //PlayerController pc = player.GetComponent<PlayerController>();
-        //pc.currentSpeed *= effect;
+        if (timeEffect > 1f) 
+        {
+            PlayerController pc = player.GetComponent<PlayerController>();
+            pc.currentSpeed *= effect;
+        }
     }
 
     private void changeEnemyTime(GameObject enemy, float effect)
@@ -46,10 +72,10 @@ public class TimeAreaEffector : MonoBehaviour {
             enemyMovement.currentSpeed *= effect;
     }
 
-    private void changeBulletTime(GameObject bullet, float effect)
+    private void changeProjectileTime(GameObject projectile, float effect)
     {
-        Bullet bulletController = bullet.GetComponent<Bullet>();
-        bulletController.movementSpeed *= effect;
+        Projectile projectileController = projectile.GetComponent<Projectile>();
+        projectileController.movementSpeed *= effect;
     }
     #endregion
 }

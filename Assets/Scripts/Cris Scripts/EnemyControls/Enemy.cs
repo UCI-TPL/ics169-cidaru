@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour {
     private EnemyState currentState = EnemyState.Normal;
     private Vector3 center;
     public float radius = 0f;
+    [HideInInspector]
+    public bool aggressing = false;
 
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -35,12 +37,17 @@ public class Enemy : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-        if (Vector3.Distance(player.transform.position, transform.position) <= aggroRange && currentState == EnemyState.Normal)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position));
+        aggressing = hit.collider.tag == "Player" && Vector3.Distance(player.transform.position, transform.position) <= aggroRange && currentState == EnemyState.Normal;
+
+        if (aggressing)
         {
             attackStyle.Attack();
         }
         checkDeath();
-	}
+
+        
+    }
 
     public void Update()
     {

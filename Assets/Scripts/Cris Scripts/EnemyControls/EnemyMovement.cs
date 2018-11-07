@@ -56,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
         if (!move)
             return;
 
-        if (playerCloserThan(GetComponent<Enemy>().aggroRange))
+        if (GetComponent<Enemy>().aggressing)
             Pursue();
         else if (patrolPoints.Length != 0)
             Patrol();

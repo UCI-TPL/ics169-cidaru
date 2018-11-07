@@ -35,9 +35,12 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 currentTarget;
     #endregion
 
+    private Animator anim;
 
     private void Start()
     {
+
+        anim = GetComponent<Animator>();
         currentSpeed = originalSpeed;
         lastSpeed = currentSpeed;
 
@@ -53,6 +56,8 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        updateAnimations();
+
         if (!move)
             return;
 
@@ -158,4 +163,13 @@ public class EnemyMovement : MonoBehaviour
         return Vector3.Distance(transform.position, position);
     }
     #endregion
+
+    private void updateAnimations()
+    {
+        anim.SetBool("walking", GetComponent<Enemy>().aggressing);
+        if (player.transform.position.x < transform.position.x)
+            this.transform.localScale = new Vector3(-1.0f, transform.localScale.y);
+        else
+            this.transform.localScale = new Vector3(1.0f, transform.localScale.y);
+    }
 }

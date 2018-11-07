@@ -956,7 +956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1002227400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1152,7 +1152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1022376679
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1253,7 +1253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1059990059
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2605,6 +2605,7 @@ GameObject:
   - component: {fileID: 2034591723}
   - component: {fileID: 2034591730}
   - component: {fileID: 2034591729}
+  - component: {fileID: 2034591731}
   m_Layer: 0
   m_Name: Ranged Enemy
   m_TagString: Enemy
@@ -2780,6 +2781,24 @@ MonoBehaviour:
   patrolPoints: []
   chargeDistance: 0
   chargeTime: 0
+--- !u!95 &2034591731
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034591722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e603641a01bf504419d5dbc24bd20ec1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2091579821
 GameObject:
   m_ObjectHideFlags: 0

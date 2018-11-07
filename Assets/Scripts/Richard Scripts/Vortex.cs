@@ -9,7 +9,7 @@ public class Vortex : MonoBehaviour {
     public GameObject vortexInside;
     
     private float vortexTimer;
-    private List<Bullet> bullets = new List<Bullet>();
+    private List<Projectile> projectiles = new List<Projectile>();
     private List<Enemy> enemies = new List<Enemy>();
 
     public enum VortexStates
@@ -44,12 +44,12 @@ public class Vortex : MonoBehaviour {
     {
         getBullets();
 
-        foreach (Bullet b in bullets)
+        foreach (Projectile p in projectiles)
         {
-            b.gameObject.transform.parent = null;
-            b.gameObject.tag = "Vortex Bullet";
+            p.gameObject.transform.parent = null;
+            p.gameObject.tag = "Vortex Projectile";
 
-            b.endVortex();
+            p.endVortex();
         }
 
         foreach (Enemy e in enemies)
@@ -69,9 +69,9 @@ public class Vortex : MonoBehaviour {
 
         for (int i = 0; i < numOfChildren; i++)
         {
-            if (vortexInside.transform.GetChild(i).GetComponent<Bullet>() != null)
+            if (vortexInside.transform.GetChild(i).GetComponent<Projectile>() != null)
             {
-                bullets.Add(vortexInside.transform.GetChild(i).GetComponent<Bullet>());
+                projectiles.Add(vortexInside.transform.GetChild(i).GetComponent<Bullet>());
             } else if (vortexInside.transform.GetChild(i).GetComponent<Enemy>() != null)
             {
                 enemies.Add(vortexInside.transform.GetChild(i).GetComponent<Enemy>());
@@ -81,7 +81,7 @@ public class Vortex : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {   
-        if (vortexState == VortexStates.Succ && (col.tag == "Player Bullet" || col.tag == "Enemy Bullet" || col.tag == "Rotating Bullet" || col.tag == "Vortex Bullet"))
+        if (vortexState == VortexStates.Succ && (col.tag == "Player Bullet" || col.tag == "Enemy Bullet" || col.tag == "Rotating Bullet" || col.tag == "Vortex Projectile"))
         {
             col.tag = "Rotating Bullet";
 

@@ -94,6 +94,8 @@ public class Enemy : MonoBehaviour {
         currentState = EnemyState.Normal;
 
         movement.enabled = true;
+
+        gameObject.layer = 0;
     }
 
     private void checkDeath()

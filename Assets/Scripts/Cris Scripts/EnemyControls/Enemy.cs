@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour {
 
         movement.enabled = true;
 
-        gameObject.layer = 0;
+        gameObject.layer = 12;
 
         transform.rotation = Quaternion.identity;
 

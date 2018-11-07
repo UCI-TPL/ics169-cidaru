@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114917135925875528}
   - component: {fileID: 114649309819767184}
   - component: {fileID: 114599682523961464}
+  - component: {fileID: 114839942819917348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -245,6 +246,20 @@ MonoBehaviour:
   setMaxAmmo: 10
   reloadTime: 3
   vortexManaCost: 20
+--- !u!114 &114839942819917348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113635209509042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e64900935f1bff40b33ab2cdc91bd27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  babyBomb: {fileID: 1052338716521706, guid: 2851f0a389093ac40befcced544d2bb4, type: 2}
+  timeBomb: {fileID: 0}
+  manaCost: 20
 --- !u!114 &114917135925875528
 MonoBehaviour:
   m_ObjectHideFlags: 1

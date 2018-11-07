@@ -3,16 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GunController : MonoBehaviour {
+    public enum GunTypes
+    {
+        Normal,
+        Fire,
+        Ice,
+        Thunder,
+    }
 
     public GameObject bullet;
+    public GameObject flame;
     public GameObject vortexSpawner;
 
-    public int setMaxAmmo = 10;
+    public SpriteRenderer gunSprite;
+    public Transform gunPoint;
 
+    public int setMaxAmmo = 10;
     public float reloadTime = 3;
 
     public int vortexManaCost = 20;
 
+    private GunTypes currentGun;
     private Transform gun;
     private int currentAmmo;
     private bool reloading;
@@ -22,6 +33,7 @@ public class GunController : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
+        currentGun = GunTypes.Normal;
 
         currentAmmo = setMaxAmmo;
         reloading = false;
@@ -36,24 +48,39 @@ public class GunController : MonoBehaviour {
         {
             FaceMouse();
 
-            if ((Input.GetKeyDown(KeyCode.R) && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                currentGun = GunTypes.Normal;
+            } else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                currentGun = GunTypes.Fire;
+            } else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                currentGun = GunTypes.Ice;
+            } else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                currentGun = GunTypes.Thunder;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.R) && currentGun == GunTypes.Normal && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
             {
                 StartCoroutine(Reload());
             }
 
             // Player Shoot Code
-            if (Input.GetMouseButtonDown(0) && currentAmmo > 0 && !reloading)
+            if (currentGun == GunTypes.Normal)
             {
-                currentAmmo--;
-
-                GameObject newBullet = Instantiate(bullet, transform.position, gun.rotation);
-                newBullet.tag = "Player Bullet";
+                NormalShoot();
+            } else if (currentGun == GunTypes.Fire)
+            {
+                FlameShoot();
             }
-            else if (Input.GetMouseButtonDown(1) && manaController.getCurrentMana() > vortexManaCost)
+            
+            if (Input.GetMouseButtonDown(1) && manaController.getCurrentMana() > vortexManaCost)
             {
                 manaController.useMana(vortexManaCost);
 
-                GameObject newVortex = Instantiate(vortexSpawner, transform.position, gun.rotation);
+                GameObject newVortex = Instantiate(vortexSpawner, gunPoint.position, gun.rotation);
                 newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
         }
@@ -64,7 +91,15 @@ public class GunController : MonoBehaviour {
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        gun.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+        gun.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gunPoint.position);
+
+        if (gun.rotation.eulerAngles.z > 180)
+        {
+            gunSprite.flipY = true;
+        } else if (gun.rotation.eulerAngles.z < 180)
+        {
+            gunSprite.flipY = false;
+        }
     }
 
     private IEnumerator Reload()
@@ -86,6 +121,26 @@ public class GunController : MonoBehaviour {
         } else
         {
             return "" + currentAmmo;
+        }
+    }
+
+    private void NormalShoot()
+    {
+        if (Input.GetMouseButtonDown(0) && currentAmmo > 0 && !reloading)
+        {
+            currentAmmo--;
+
+            GameObject newBullet = Instantiate(bullet, gunPoint.position, gun.rotation);
+            newBullet.tag = "Player Bullet";
+        }
+    }
+
+    private void FlameShoot()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            GameObject newFlame = Instantiate(flame, gunPoint.position, gun.rotation);
+            newFlame.tag = "Player Bullet";
         }
     }
 }

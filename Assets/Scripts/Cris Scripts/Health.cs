@@ -6,11 +6,13 @@ public class Health : MonoBehaviour {
     
 
     public int startingHealth = 1;
+    
+    [HideInInspector]
     public int currentHealth;
 
     protected bool isDead; //TODO: Make private
 
-    private void Awake()
+    public virtual void Awake()
     {
         currentHealth = startingHealth;
         isDead = false;

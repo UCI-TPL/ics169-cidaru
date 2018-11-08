@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114865942759217826}
   - component: {fileID: 114188416572548524}
   - component: {fileID: 95996730183925888}
+  - component: {fileID: 114646716148653956}
   m_Layer: 12
   m_Name: Movement Enemy
   m_TagString: Enemy
@@ -140,6 +141,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 1
   currentHealth: 0
+--- !u!114 &114646716148653956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776546509141650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7caf4b0567fe7b54c9768dbca8f5bcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114655572538459558
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,15 +12,19 @@ public class StasisController : MonoBehaviour {
 
     private float stasisTickTimer;
     private int tickAmount;
-    public Stasis currentStasis;
+    private Stasis currentStasis;
 
     private Health hp;
+
+    private SpriteRenderer sprite;
 
     private void Awake()
     {
         currentStasis = Stasis.Normal;
 
         hp = GetComponent<Health>();
+
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,7 @@ public class StasisController : MonoBehaviour {
             } else
             {
                 currentStasis = Stasis.Normal;
+                sprite.color = Color.white;
             }
         }
 	}
@@ -54,5 +59,7 @@ public class StasisController : MonoBehaviour {
 
         currentStasis = s;
         tickAmount = tAmt;
+
+        sprite.color = Color.red;
     }
 }

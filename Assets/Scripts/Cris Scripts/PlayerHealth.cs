@@ -9,13 +9,15 @@ public class PlayerHealth : Health {
     https://unity3d.com/learn/tutorials/projects/survival-shooter/player-health
     */
 
-    public Slider healthBar;
+    //public Slider healthBar;
 
     private bool invincible = false;
     private PlayerController player;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+
         player = GetComponent<PlayerController>();
     }
 
@@ -53,15 +55,16 @@ public class PlayerHealth : Health {
     public void Reset()
     {
         currentHealth = startingHealth;
-        updateHealthBar();
+        //updateHealthBar();
         isDead = false;
     }
 
+    /*
     private void updateHealthBar()
     {
         healthBar.value = currentHealth;
         Debug.Log("updated health bar");
-    }
+    }*/
 
     public bool isInvincible()
     {

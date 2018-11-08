@@ -673,7 +673,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1941504095909056, guid: 06297c079698c5f45a6b7f5edbb57834, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114314499556002170, guid: 06297c079698c5f45a6b7f5edbb57834,
         type: 2}
@@ -1197,6 +1197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeEffect: 0.3
+  radius: 3
+  setAreaTimer: 0
 --- !u!58 &1588726647
 CircleCollider2D:
   m_ObjectHideFlags: 0

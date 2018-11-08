@@ -91,14 +91,23 @@ public class GunController : MonoBehaviour {
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        gun.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gunPoint.position);
+        print(mousePos);
 
-        if (gun.rotation.eulerAngles.z > 180)
+        print("gun: " + gunPoint.position);
+
+        if (gunPoint.position.x - 0.8f >= mousePos.x || gunPoint.position.x + 0.8f <= mousePos.x ||
+            gunPoint.position.y - 0.8f >= mousePos.y || gunPoint.position.y + 0.8f <= mousePos.y)
         {
-            gunSprite.flipY = true;
-        } else if (gun.rotation.eulerAngles.z < 180)
-        {
-            gunSprite.flipY = false;
+            gun.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gunPoint.position);
+
+            if (gun.rotation.eulerAngles.z > 180)
+            {
+                gunSprite.flipY = true;
+            }
+            else if (gun.rotation.eulerAngles.z < 180)
+            {
+                gunSprite.flipY = false;
+            }
         }
     }
 

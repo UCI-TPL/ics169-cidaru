@@ -91,10 +91,6 @@ public class GunController : MonoBehaviour {
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        print(mousePos);
-
-        print("gun: " + gunPoint.position);
-
         if (gunPoint.position.x - 0.8f >= mousePos.x || gunPoint.position.x + 0.8f <= mousePos.x ||
             gunPoint.position.y - 0.8f >= mousePos.y || gunPoint.position.y + 0.8f <= mousePos.y)
         {

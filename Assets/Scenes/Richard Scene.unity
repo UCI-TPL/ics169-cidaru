@@ -537,7 +537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &390594575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1069,6 +1069,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1016930423453108, guid: 8f97eb5d523337a4f9d49a6acb05b99d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f97eb5d523337a4f9d49a6acb05b99d, type: 2}
   m_IsPrefabAsset: 0
@@ -1325,7 +1329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthUI: {fileID: 305570734}
-  manaUI: {fileID: 390594576}
   ammoUI: {fileID: 0}
   gameOverMenu: {fileID: 1095976594}
   cursor: {fileID: 0}

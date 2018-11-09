@@ -26,9 +26,9 @@ GameObject:
   - component: {fileID: 114122663472953520}
   - component: {fileID: 114917135925875528}
   - component: {fileID: 114649309819767184}
-  - component: {fileID: 114599682523961464}
   - component: {fileID: 114839942819917348}
   - component: {fileID: 114027703791223562}
+  - component: {fileID: 114889018061775954}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1113635209509042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.64, y: -3.24, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515939022308886}
@@ -226,19 +226,6 @@ MonoBehaviour:
   originalSpeed: 5
   setInvincibilityTimer: 2
   currentSpeed: 0
---- !u!114 &114599682523961464
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1113635209509042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c646ba14abdfb4abd21da1acd35140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMana: 100
-  regenTime: 5
 --- !u!114 &114649309819767184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,13 +239,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1696281229995658, guid: d4bddd46493fa0e43b0d0d10c5281cb0, type: 2}
   flame: {fileID: 1696281229995658, guid: e81f95421993ffe469b16698d097c208, type: 2}
-  vortexSpawner: {fileID: 1696281229995658, guid: 04226231320db4045a22d0e9232c1387,
-    type: 2}
+  vortex: {fileID: 11400000, guid: 790a9a35f571e084e8e65c232a70e696, type: 2}
   gunSprite: {fileID: 212524024538758684}
   gunPoint: {fileID: 4998787749327776}
   setMaxAmmo: 10
   reloadTime: 3
-  vortexManaCost: 20
 --- !u!114 &114839942819917348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,10 +255,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e64900935f1bff40b33ab2cdc91bd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  babyBomb: {fileID: 1052338716521706, guid: 2851f0a389093ac40befcced544d2bb4, type: 2}
-  hasteBomb: {fileID: 1771855800534360, guid: e2964be41baaa6a4a9a5dd18be1aeddb, type: 2}
-  slowBomb: {fileID: 1406737527791250, guid: da45eb066640b8841bd2741ed8350614, type: 2}
-  manaCost: 20
+  babyBomb: {fileID: 11400000, guid: 64369ca561ab9e44d8731dd06dabcd7f, type: 2}
+  hasteBomb: {fileID: 11400000, guid: 17c11ef415c375948935888ef326bc38, type: 2}
+  slowBomb: {fileID: 11400000, guid: 4d97931f7a18fce49ae923dfb010c8d0, type: 2}
+--- !u!114 &114889018061775954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113635209509042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715c368ec9d96c34e83987ae84f5c9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114917135925875528
 MonoBehaviour:
   m_ObjectHideFlags: 1

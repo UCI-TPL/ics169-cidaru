@@ -3,39 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BombController : MonoBehaviour {
-    public GameObject babyBomb;
-    public GameObject hasteBomb;
-    public GameObject slowBomb;
+    public Ability babyBomb;
+    public Ability hasteBomb;
+    public Ability slowBomb;
 
-    public int manaCost = 20;
+    //public int manaCost = 20;
 
-    private Mana manaController;
+    //private Mana manaController;
 
     private void Awake()
     {
-        manaController = GetComponent<Mana>();
+        //manaController = GetComponent<Mana>();
+
+        initAbilityCharges();
     }
 
     private void Update()
     {
         if (Time.timeScale != 0)
         {
-            if (Input.GetKeyDown(KeyCode.Z) && manaController.getCurrentMana() > manaCost)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && babyBomb.isAbilityReady())
             {
-                manaController.useMana(manaCost);
+                babyBomb.PutOnCooldown();
 
-                Instantiate(babyBomb, transform.position, Quaternion.identity);
-            } else if (Input.GetKeyDown(KeyCode.X) && manaController.getCurrentMana() > manaCost)
+                Instantiate(babyBomb.abilityPrefab, transform.position, Quaternion.identity);
+            } else if (Input.GetKeyDown(KeyCode.Alpha2) && hasteBomb.isAbilityReady())
             {
-                manaController.useMana(manaCost);
+                hasteBomb.PutOnCooldown();
 
-                Instantiate(hasteBomb, transform.position, Quaternion.identity);
-            } else if (Input.GetKeyDown(KeyCode.C) && manaController.getCurrentMana() > manaCost)
+                Instantiate(hasteBomb.abilityPrefab, transform.position, Quaternion.identity);
+            } else if (Input.GetKeyDown(KeyCode.Alpha3) && slowBomb.isAbilityReady())
             {
-                manaController.useMana(manaCost);
+                slowBomb.PutOnCooldown();
 
-                Instantiate(slowBomb, transform.position, Quaternion.identity);
+                Instantiate(slowBomb.abilityPrefab, transform.position, Quaternion.identity);
             }
         }
+    }
+
+    private void initAbilityCharges()
+    {
+        babyBomb.initCharges();
+        hasteBomb.initCharges();
+        slowBomb.initCharges();
     }
 }

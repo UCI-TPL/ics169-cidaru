@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public Text healthUI;
-    public Text manaUI;
+    //public Text manaUI;
     public Text ammoUI;
 
     public GameObject gameOverMenu;
@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour {
 
     private GameObject player;
     private Health playerHp;
-    private Mana playerMana;
+    //private Mana playerMana;
     private GunController gun;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
         playerHp = player.GetComponent<Health>();
-        playerMana = player.GetComponent<Mana>();
+        // playerMana = player.GetComponent<Mana>();
         gun = player.GetComponent<GunController>();
 
         Cursor.SetCursor(cursor, new Vector2(512 / 2, 512 / 2), CursorMode.Auto);
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
         healthUI.text = "Health: " + playerHp.currentHealth;
-        manaUI.text = "Mana: " + playerMana.getCurrentMana();
+        // manaUI.text = "Mana: " + playerMana.getCurrentMana();
         ammoUI.text = "Ammo: " + gun.getCurrentAmmoState();
 
         if (playerHp.dead() && !gameOverMenu.activeSelf)

@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour {
 
     public GameObject bullet;
     public GameObject flame;
-    public GameObject vortexSpawner;
+    public Ability vortex;
 
     public SpriteRenderer gunSprite;
     public Transform gunPoint;
@@ -21,14 +21,14 @@ public class GunController : MonoBehaviour {
     public int setMaxAmmo = 10;
     public float reloadTime = 3;
 
-    public int vortexManaCost = 20;
+    //public int vortexManaCost = 20;
 
     private GunTypes currentGun;
     private Transform gun;
     private int currentAmmo;
     private bool reloading;
 
-    private Mana manaController;
+    //private Mana manaController;
 
     // Use this for initialization
     void Awake () {
@@ -38,28 +38,21 @@ public class GunController : MonoBehaviour {
         currentAmmo = setMaxAmmo;
         reloading = false;
 
-        manaController = GetComponent<Mana>();
+        initAbilityCharges();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        //manaController = GetComponent<Mana>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Time.timeScale != 0)
         {
             FaceMouse();
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                currentGun = GunTypes.Normal;
-            } else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                currentGun = GunTypes.Fire;
-            } else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                currentGun = GunTypes.Ice;
-            } else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                currentGun = GunTypes.Thunder;
+                changeGun();
             }
 
             if ((Input.GetKeyDown(KeyCode.R) && currentGun == GunTypes.Normal && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
@@ -76,11 +69,13 @@ public class GunController : MonoBehaviour {
                 FlameShoot();
             }
             
-            if (Input.GetMouseButtonDown(1) && manaController.getCurrentMana() > vortexManaCost)
+            if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())//manaController.getCurrentMana() > vortexManaCost)
             {
-                manaController.useMana(vortexManaCost);
+                //manaController.useMana(vortexManaCost);
 
-                GameObject newVortex = Instantiate(vortexSpawner, gunPoint.position, gun.rotation);
+                vortex.PutOnCooldown();
+
+                GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
                 newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
         }
@@ -147,5 +142,21 @@ public class GunController : MonoBehaviour {
             GameObject newFlame = Instantiate(flame, gunPoint.position, gun.rotation);
             newFlame.tag = "Player Bullet";
         }
+    }
+
+    private void changeGun()
+    {
+        if (currentGun == GunTypes.Normal)
+        {
+            currentGun = GunTypes.Fire;
+        } else if (currentGun == GunTypes.Fire)
+        {
+            currentGun = GunTypes.Normal;
+        }
+    }
+
+    private void initAbilityCharges()
+    {
+        vortex.initCharges();
     }
 }

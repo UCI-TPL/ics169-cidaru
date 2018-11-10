@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour {
 	
 	void FixedUpdate () {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position, Vector2.Distance(player.transform.position, transform.position));
-        if (hit && hit.collider.tag == "Enemy")
+        if (hit && hit.collider.tag == "Enemy Weapon")
             hit = Physics2D.Raycast(hit.collider.transform.position, player.transform.position, Vector2.Distance(player.transform.position, transform.position));
 
         aggressing = hit.collider.tag == "Player" && Vector3.Distance(player.transform.position, transform.position) <= aggroRange && currentState == EnemyState.Normal;

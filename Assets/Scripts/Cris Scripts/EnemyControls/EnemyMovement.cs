@@ -29,7 +29,8 @@ public class EnemyMovement : MonoBehaviour
     #region Charge Vars
     [Header("Charging")]
     public float chargeDistance = 0f; //the closest the player needs to be for charge
-    public float chargeTime = 0f; //both the time it waits to charge and the percent speed/power is increased
+    public float chargeTime = 0f; //the time takes to charge (how long it waits)
+    public float chargePower = 0f; //the percent speed/power is increased
 
     private bool charged;
     private Vector3 currentTarget;
@@ -39,7 +40,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-
         anim = GetComponent<Animator>();
         currentSpeed = originalSpeed;
         lastSpeed = currentSpeed;
@@ -93,8 +93,6 @@ public class EnemyMovement : MonoBehaviour
     #region Charging
     private void ChargeBasedMovement()
     {
-        Debug.Log(playerCloserThan(chargeDistance));
-        Debug.Log(GetComponent<Enemy>().aggressing);
         if (playerCloserThan(chargeDistance) && !charged)
         {
             Charge(currentTarget);
@@ -107,25 +105,24 @@ public class EnemyMovement : MonoBehaviour
                 {
                     StartCoroutine(Wait(.5f));
                     currentSpeed = lastSpeed;
-                    charged = false;//!playerFartherThan(chargeDistance);
+                    charged = false;
                 }
                 else
                     currentTarget = player.transform.position;
             }
-            Debug.Log("Moving to: " + currentTarget);
             Move(currentTarget);
         }
 
-        Debug.Log("Charged up: " + charged);
+        //Debug.Log("Charged up: " + charged);
     }
 
     private void Charge(Vector3 position)
     {
-        Debug.Log("Charging");
+        //Debug.Log("Charging");
         lastSpeed = currentSpeed;
         currentTarget = player.transform.position;
         StartCoroutine(Wait(chargeTime));
-        currentSpeed += (originalSpeed * chargeTime);
+        currentSpeed += (originalSpeed * chargePower);
         Move(currentTarget);
         charged = true;
     }

@@ -5,13 +5,38 @@ using UnityEngine;
 public class Door : MonoBehaviour {
     public List<GameObject> enemies;
 
-    public Collider2D doorCollider;
+    public List<Collider2D> doorColliders;
+
+    private bool active;
+
+    public void Awake()
+    {
+        active = false;
+
+        foreach (Collider2D dc in doorColliders)
+        {
+            dc.enabled = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (active)
+        {
+            checkRoomCleared();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isCleared())
         {
-            doorCollider.enabled = true;
+            active = true;
+
+            foreach (Collider2D dc in doorColliders)
+            {
+                dc.enabled = true;
+            }
         }
     }
 
@@ -23,5 +48,23 @@ public class Door : MonoBehaviour {
         }
 
         return false;
+    }
+
+    public void checkRoomCleared()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                return;
+            }
+        }
+
+        active = false;
+
+        foreach (Collider2D dc in doorColliders)
+        {
+            dc.enabled = false;
+        }
     }
 }

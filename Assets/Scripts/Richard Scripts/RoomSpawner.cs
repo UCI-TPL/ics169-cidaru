@@ -10,6 +10,9 @@ public class RoomSpawner : MonoBehaviour {
     private int rand;
     private bool spawned;
 
+    private int verticalDistance = 16;
+    private int horizontalDistance = 20;
+
     private void Start()
     {
         templates = GameObject.Find("Game Manager").GetComponent<RoomTemplates>();
@@ -29,42 +32,42 @@ public class RoomSpawner : MonoBehaviour {
 
         if (openingDirection == GameManager.Opening.Bottom)
         {
-            List<GameObject> tempRooms = new List<GameObject>(templates.bottomRooms);
-            updateBotList(tempRooms);
+            List<GameObject> botRooms = new List<GameObject>();
+            updateBotList(botRooms);
 
-            rand = Random.Range(0, tempRooms.Count - 1);
+            rand = Random.Range(0, botRooms.Count - 1);
 
-            GameObject room = Instantiate(tempRooms[rand], transform.position, Quaternion.identity);
+            GameObject room = Instantiate(botRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
         }
         else if (openingDirection == GameManager.Opening.Top)
         {
-            List<GameObject> tempRooms = new List<GameObject>(templates.topRooms);
-            updateTopList(tempRooms);
+            List<GameObject> topRooms = new List<GameObject>();
+            updateTopList(topRooms);
 
-            rand = Random.Range(0, tempRooms.Count - 1);
+            rand = Random.Range(0, topRooms.Count - 1);
 
-            GameObject room = Instantiate(tempRooms[rand], transform.position, Quaternion.identity);
+            GameObject room = Instantiate(topRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
         }
         else if (openingDirection == GameManager.Opening.Left)
         {
-            List<GameObject> tempRooms = new List<GameObject>(templates.leftRooms);
-            updateLeftList(tempRooms);
+            List<GameObject> leftRooms = new List<GameObject>();
+            updateLeftList(leftRooms);
 
-            rand = Random.Range(0, tempRooms.Count - 1);
+            rand = Random.Range(0, leftRooms.Count - 1);
 
-            GameObject room = Instantiate(tempRooms[rand], transform.position, Quaternion.identity);
+            GameObject room = Instantiate(leftRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
         }
         else if (openingDirection == GameManager.Opening.Right)
         {
-            List<GameObject> tempRooms = new List<GameObject>(templates.rightRooms);
-            updateRightList(tempRooms);
+            List<GameObject> rightRooms = new List<GameObject>();
+            updateRightList(rightRooms);
 
-            rand = Random.Range(0, tempRooms.Count - 1);
+            rand = Random.Range(0, rightRooms.Count - 1);
 
-            GameObject room = Instantiate(tempRooms[rand], transform.position, Quaternion.identity);
+            GameObject room = Instantiate(rightRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
         }
 
@@ -88,25 +91,33 @@ public class RoomSpawner : MonoBehaviour {
             {
                 if (checkBL(otherRS.openingDirection))
                 {
-                    GameObject room = Instantiate(templates.blFiller, transform.position, Quaternion.identity);
+                    rand = Random.Range(0, templates.blRooms.Length - 1);
+
+                    GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
                     Destroy(gameObject);
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
-                    GameObject room = Instantiate(templates.brFiller, transform.position, Quaternion.identity);
+                    rand = Random.Range(0, templates.brRooms.Length - 1);
+
+                    GameObject room = Instantiate(templates.brRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
                     Destroy(gameObject);
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
-                    GameObject room = Instantiate(templates.tlFiller, transform.position, Quaternion.identity);
+                    rand = Random.Range(0, templates.tlRooms.Length - 1);
+
+                    GameObject room = Instantiate(templates.tlRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
                     Destroy(gameObject);
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
-                    GameObject room = Instantiate(templates.trFiller, transform.position, Quaternion.identity);
+                    rand = Random.Range(0, templates.trRooms.Length - 1);
+
+                    GameObject room = Instantiate(templates.trRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
                     Destroy(gameObject);
                 }
@@ -142,69 +153,77 @@ public class RoomSpawner : MonoBehaviour {
 
     private bool checkTop()
     {
-        return Physics2D.OverlapCircle(transform.position + (5 * Vector3.up), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (verticalDistance * Vector3.up), 1) != null;
     }
 
     private bool checkBot()
     {
-        return Physics2D.OverlapCircle(transform.position + (-5 * Vector3.up), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (-verticalDistance * Vector3.up), 1) != null;
     }
 
     private bool checkLeft()
     {
-        return Physics2D.OverlapCircle(transform.position + (5 * Vector3.left), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (horizontalDistance * Vector3.left), 1) != null;
     }
 
     private bool checkRight()
     {
-        return Physics2D.OverlapCircle(transform.position + (-5 * Vector3.left), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) != null;
     }
 
     private void updateBotList(List<GameObject> rooms)
     {
-        if (checkTop())
-            rooms.RemoveAt(1);
+        rooms.AddRange(templates.bRooms);
 
-        if (checkLeft())
-            rooms.RemoveAt(3);
+        if (!checkTop())
+            rooms.AddRange(templates.tbRooms);
 
-        if (checkRight())
-            rooms.RemoveAt(2);
+        if (!checkLeft())
+            rooms.AddRange(templates.blRooms);
+
+        if (!checkRight())
+            rooms.AddRange(templates.brRooms);
     }
 
     private void updateTopList(List<GameObject> rooms)
     {
-        if (checkBot())
-            rooms.RemoveAt(1);
+        rooms.AddRange(templates.tRooms);
 
-        if (checkLeft())
-            rooms.RemoveAt(2);
+        if (!checkBot())
+            rooms.AddRange(templates.tbRooms);
 
-        if (checkRight())
-            rooms.RemoveAt(3);
+        if (!checkLeft())
+            rooms.AddRange(templates.tlRooms);
+
+        if (!checkRight())
+            rooms.AddRange(templates.trRooms);
     }
 
     private void updateLeftList(List<GameObject> rooms)
     {
-        if (checkBot())
-            rooms.RemoveAt(0);
+        rooms.AddRange(templates.lRooms);
 
-        if (checkTop())
-            rooms.RemoveAt(3);
+        if (!checkBot())
+            rooms.AddRange(templates.blRooms);
 
-        if (checkRight())
-            rooms.RemoveAt(2);
+        if (!checkTop())
+            rooms.AddRange(templates.tlRooms);
+
+        if (!checkRight())
+            rooms.AddRange(templates.lrRooms);
     }
 
     private void updateRightList(List<GameObject> rooms)
     {
-        if (checkBot())
-            rooms.RemoveAt(0);
+        rooms.AddRange(templates.rRooms);
 
-        if (checkLeft())
-            rooms.RemoveAt(1);
+        if (!checkBot())
+            rooms.AddRange(templates.brRooms);
 
-        if (checkTop())
-            rooms.RemoveAt(3);
+        if (!checkLeft())
+            rooms.AddRange(templates.blRooms);
+
+        if (!checkTop())
+            rooms.AddRange(templates.trRooms);
     }
 }

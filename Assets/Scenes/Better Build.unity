@@ -608,6 +608,27 @@ Prefab:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 212004522973993172, guid: 1420b703e544f9840b110f3bd3ea11de,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 212004522973993172, guid: 1420b703e544f9840b110f3bd3ea11de,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 212004522973993172, guid: 1420b703e544f9840b110f3bd3ea11de,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dc10aecfffa103241993d27551ee41e5,
+        type: 3}
+    - target: {fileID: 212004522973993172, guid: 1420b703e544f9840b110f3bd3ea11de,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1420b703e544f9840b110f3bd3ea11de, type: 2}
   m_IsPrefabAsset: 0
@@ -664,7 +685,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d5fc874505c04da48aeb2732352a0b66, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.222
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4370,7 +4391,32 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1576994936458772, guid: 7ef1e6df27981c44abb5aeff939028b6, type: 2}
       propertyPath: m_Name
-      value: Dummy Enemy (1)
+      value: Charge Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634519379323382, guid: 7ef1e6df27981c44abb5aeff939028b6,
+        type: 2}
+      propertyPath: originalSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634519379323382, guid: 7ef1e6df27981c44abb5aeff939028b6,
+        type: 2}
+      propertyPath: chargeDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634519379323382, guid: 7ef1e6df27981c44abb5aeff939028b6,
+        type: 2}
+      propertyPath: chargeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114473433071247642, guid: 7ef1e6df27981c44abb5aeff939028b6,
+        type: 2}
+      propertyPath: aggroRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114749011592658674, guid: 7ef1e6df27981c44abb5aeff939028b6,
+        type: 2}
+      propertyPath: startingHealth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ef1e6df27981c44abb5aeff939028b6, type: 2}

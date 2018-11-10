@@ -29,7 +29,8 @@ public class EnemyMovement : MonoBehaviour
     #region Charge Vars
     [Header("Charging")]
     public float chargeDistance = 0f; //the closest the player needs to be for charge
-    public float chargeTime = 0f; //both the time it waits to charge and the percent speed/power is increased
+    public float chargeTime = 0f; //the time takes to charge (how long it waits)
+    public float chargePower = 0f; //the percent speed/power is increased
 
     private bool charged;
     private Vector3 currentTarget;
@@ -39,7 +40,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-
         anim = GetComponent<Animator>();
         currentSpeed = originalSpeed;
         lastSpeed = currentSpeed;
@@ -57,10 +57,10 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         updateAnimations();
-
         if (!move)
             return;
 
+        Debug.Log(GetComponent<Enemy>().aggressing);
         if (GetComponent<Enemy>().aggressing)
             Pursue();
         else if (patrolPoints.Length != 0)
@@ -80,6 +80,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Pursue()
     {
+        Debug.Log("Pursing");
         if (chargeTime != 0)
             ChargeBasedMovement();
         else
@@ -104,23 +105,24 @@ public class EnemyMovement : MonoBehaviour
                 {
                     StartCoroutine(Wait(.5f));
                     currentSpeed = lastSpeed;
-                    charged = !playerFartherThan(chargeDistance);
+                    charged = false;
                 }
-                currentTarget = player.transform.position;
+                else
+                    currentTarget = player.transform.position;
             }
             Move(currentTarget);
         }
 
-        Debug.Log("Charged up: " + charged);
+        //Debug.Log("Charged up: " + charged);
     }
 
     private void Charge(Vector3 position)
     {
-        Debug.Log("Charging");
+        //Debug.Log("Charging");
         lastSpeed = currentSpeed;
         currentTarget = player.transform.position;
         StartCoroutine(Wait(chargeTime));
-        currentSpeed += (originalSpeed * chargeTime);
+        currentSpeed += (originalSpeed * chargePower);
         Move(currentTarget);
         charged = true;
     }
@@ -147,12 +149,12 @@ public class EnemyMovement : MonoBehaviour
     #region Distance-based Helper Functions
     private bool playerCloserThan(float limit)
     {
-        return distFromPlayer() < limit;
+        return distFromPlayer() <= limit;
     }
 
     private bool playerFartherThan(float limit)
     {
-        return distFromPlayer() > limit;
+        return distFromPlayer() >= limit;
     }
 
     private float distFromPlayer()

@@ -221,7 +221,7 @@ public class RoomSpawner : MonoBehaviour {
             rooms.AddRange(templates.brRooms);
 
         if (!checkLeft())
-            rooms.AddRange(templates.blRooms);
+            rooms.AddRange(templates.lrRooms);
 
         if (!checkTop())
             rooms.AddRange(templates.trRooms);

@@ -57,10 +57,10 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         updateAnimations();
-
         if (!move)
             return;
 
+        Debug.Log(GetComponent<Enemy>().aggressing);
         if (GetComponent<Enemy>().aggressing)
             Pursue();
         else if (patrolPoints.Length != 0)
@@ -80,6 +80,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Pursue()
     {
+        Debug.Log("Pursing");
         if (chargeTime != 0)
             ChargeBasedMovement();
         else
@@ -92,6 +93,8 @@ public class EnemyMovement : MonoBehaviour
     #region Charging
     private void ChargeBasedMovement()
     {
+        Debug.Log(playerCloserThan(chargeDistance));
+        Debug.Log(GetComponent<Enemy>().aggressing);
         if (playerCloserThan(chargeDistance) && !charged)
         {
             Charge(currentTarget);
@@ -104,10 +107,12 @@ public class EnemyMovement : MonoBehaviour
                 {
                     StartCoroutine(Wait(.5f));
                     currentSpeed = lastSpeed;
-                    charged = !playerFartherThan(chargeDistance);
+                    charged = false;//!playerFartherThan(chargeDistance);
                 }
-                currentTarget = player.transform.position;
+                else
+                    currentTarget = player.transform.position;
             }
+            Debug.Log("Moving to: " + currentTarget);
             Move(currentTarget);
         }
 
@@ -147,12 +152,12 @@ public class EnemyMovement : MonoBehaviour
     #region Distance-based Helper Functions
     private bool playerCloserThan(float limit)
     {
-        return distFromPlayer() < limit;
+        return distFromPlayer() <= limit;
     }
 
     private bool playerFartherThan(float limit)
     {
-        return distFromPlayer() > limit;
+        return distFromPlayer() >= limit;
     }
 
     private float distFromPlayer()

@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 292427471}
   m_Layer: 0
   m_Name: Melee Weapon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,14 +199,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 292427469}
-  m_LocalRotation: {x: -0, y: -0, z: 0.17061499, w: 0.9853378}
-  m_LocalPosition: {x: 0.43, y: 0.05, z: 0.36816406}
+  m_LocalRotation: {x: -0, y: -0, z: -0.033538006, w: 0.99943745}
+  m_LocalPosition: {x: 0.52, y: -0.15, z: 0.36816406}
   m_LocalScale: {x: -0.7568, y: 0.7568, z: 0.7568}
   m_Children:
   - {fileID: 1827713033}
   m_Father: {fileID: 1616274177}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.647001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.844}
 --- !u!61 &292427471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -437,6 +437,10 @@ Prefab:
         type: 2}
       propertyPath: currentHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283669626555108, guid: 1420b703e544f9840b110f3bd3ea11de, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1420b703e544f9840b110f3bd3ea11de, type: 2}
@@ -1296,7 +1300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1616274172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,7 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackStyle: {fileID: 1616274178}
   movement: {fileID: 1616274179}
-  aggroRange: 6
+  aggroRange: 10
   rotationSpeed: 200
   radius: 0
   aggressing: 0
@@ -1463,7 +1467,7 @@ MonoBehaviour:
   move: 0
   patrolPoints: []
   chargeDistance: 4
-  chargeTime: 1
+  chargeTime: 0.3
 --- !u!95 &1616274180
 Animator:
   serializedVersion: 3

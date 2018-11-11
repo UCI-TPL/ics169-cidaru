@@ -99,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            if (distFromTarget(currentTarget) == 0)
+            if ((int) distFromTarget(currentTarget) == 0)
             {
                 if (charged)
                 {
@@ -139,9 +139,9 @@ public class EnemyMovement : MonoBehaviour
     public IEnumerator Wait(float secs)
     {
         move = false;
-        Debug.Log("Waiting...");
+        //Debug.Log("Waiting...");
         yield return new WaitForSeconds(secs);
-        Debug.Log("DONE!");
+        //Debug.Log("DONE!");
         move = true;
     }
     #endregion

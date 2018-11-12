@@ -20,8 +20,6 @@ public class MeleeWeapon : MonoBehaviour {
     {
         if (collision.tag == "Player Bullet" && tag == "Enemy Weapon" && deflection)
         {
-            Debug.Log("BITCH U THOT");
-            //Destroy(collision.gameObject);
             Debug.Log(collision.GetComponent<Rigidbody2D>().rotation);
             collision.transform.Rotate(new Vector3 (0,0,1), collision.GetComponent<Rigidbody2D>().rotation);
         }

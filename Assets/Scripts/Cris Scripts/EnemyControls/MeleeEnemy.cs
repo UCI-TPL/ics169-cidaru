@@ -24,7 +24,7 @@ public class MeleeEnemy : EnemyAttack {
 
     public override void Attack()
     {
-        if (whirlwindSpeed == 0) //No whirlwind, no worries
+        if (whirlwindLimit == 0) //No whirlwind, no worries
             return;
 
         if (whirlwindTimer >= whirlwindLimit)
@@ -36,6 +36,7 @@ public class MeleeEnemy : EnemyAttack {
         {
             weapon.transform.Rotate(new Vector3(0, 0, whirlwindSpeed));
             hp.setInvincible(true);
+            weapon.GetComponent<MeleeWeapon>().deflection = true;
             whirlwindTimer += Time.deltaTime;
         }
         if (restTimer >= whirlwindLimit)
@@ -50,6 +51,7 @@ public class MeleeEnemy : EnemyAttack {
     {
         weapon.transform.rotation = defaultWeaponRotation;
         hp.setInvincible(false);
+        weapon.GetComponent<MeleeWeapon>().deflection = false;
         return;
     }
 }

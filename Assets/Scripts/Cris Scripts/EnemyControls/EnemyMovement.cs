@@ -60,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
         if (!move)
             return;
 
-        Debug.Log(GetComponent<Enemy>().aggressing);
+        //Debug.Log(GetComponent<Enemy>().aggressing);
         if (GetComponent<Enemy>().aggressing)
             Pursue();
         else if (patrolPoints.Length != 0)
@@ -80,7 +80,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Pursue()
     {
-        Debug.Log("Pursing");
+        //Debug.Log("Pursing");
         if (chargeTime != 0)
             ChargeBasedMovement();
         else

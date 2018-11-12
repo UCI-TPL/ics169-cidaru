@@ -11,7 +11,6 @@ public class PlayerHealth : Health {
 
     //public Slider healthBar;
 
-    private bool invincible = false;
     private PlayerController player;
 
     public override void Awake()

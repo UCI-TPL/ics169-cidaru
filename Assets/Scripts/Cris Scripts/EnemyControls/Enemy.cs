@@ -40,9 +40,9 @@ public class Enemy : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(player.transform.position, transform.position));
         if (hit && (hit.collider.tag == "Enemy Weapon" || hit.collider.tag == "Enemy"))
             hit = Physics2D.Raycast(hit.collider.transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position));
-
         //Debug.DrawLine(transform.position, player.transform.position, Color.red);
         //Debug.DrawLine(transform.position, (Vector3)hit.point);
+
         if (hit.collider == null)
             aggressing = false;
         else

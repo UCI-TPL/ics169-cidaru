@@ -11,6 +11,7 @@ public class Health : MonoBehaviour {
     public int currentHealth;
 
     protected bool isDead; //TODO: Make private
+    protected bool invincible = false;
 
     public virtual void Awake()
     {
@@ -20,7 +21,10 @@ public class Health : MonoBehaviour {
 
     public virtual void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        if (!invincible)
+        {
+            currentHealth -= amount;
+        }
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -37,5 +41,10 @@ public class Health : MonoBehaviour {
     {
         isDead = true;
     }
-    
+
+    public void setInvincible(bool invin)
+    {
+        invincible = invin;
+    }
+
 }

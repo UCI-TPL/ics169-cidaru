@@ -974,6 +974,96 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1132618001
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.4327937
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713807193727730, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533388205781256, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: originalSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185563679627766, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_Name
+      value: Melee Enemy - Whirlwind
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533388205781256, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: chargeDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533388205781256, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: chargeTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533388205781256, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: chargePower
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114226608948347582, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: whirlwind
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114226608948347582, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: whirlwindSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114226608948347582, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: whirlwindLimit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463990485402902, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: deflection
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1455374743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,6 +1247,28 @@ Prefab:
     - target: {fileID: 4756578941844502, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713807193727730, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533388205781256, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: originalSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185563679627766, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_Name
+      value: Melee Enemy - Charge
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185563679627766, guid: e299feffac2dc9242b0994e744c5279c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463990485402902, guid: e299feffac2dc9242b0994e744c5279c,
+        type: 2}
+      propertyPath: deflection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e299feffac2dc9242b0994e744c5279c, type: 2}

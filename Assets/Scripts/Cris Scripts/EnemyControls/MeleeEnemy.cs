@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemy : EnemyAttack {
-    /* Defines the attack behavior for Melee Enemies */
+    /* Defines the attack behavior for Melee Enemies 
+     * Standard Melee Enemies attack using their weapons, 
+     * so this just serves for clarity in how they attack.
+     * However, it also allows for the "whirlwind" ability.
+     */
+    
     public GameObject weapon;
     public float whirlwindLimit;
 
@@ -27,6 +32,17 @@ public class MeleeEnemy : EnemyAttack {
         if (whirlwindLimit == 0) //No whirlwind, no worries
             return;
 
+        doWhirlWind();
+    }
+
+    private void doWhirlWind()
+    {
+        /* The whirlwind spins the melee weapon for (whirlwindSpeed) seconds
+         * and makes the attacker invincible for that duration.
+         * After which, it takes a brief rest, where it is vulnerable.
+         * It also makes the weapon deflect bullets while spinning.
+         */
+
         if (whirlwindTimer >= whirlwindLimit)
         {
             makeVulnerable();
@@ -44,7 +60,6 @@ public class MeleeEnemy : EnemyAttack {
             whirlwindTimer = 0;
             restTimer = 0;
         }
-
     }
 
     private void makeVulnerable()

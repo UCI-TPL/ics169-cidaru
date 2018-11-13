@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour {
+    /* Defines behavior for melee weapons.
+     * Namely delivering damage and deflecting bullets
+     */
 
     public int dmg = 1;
     public bool deflection;

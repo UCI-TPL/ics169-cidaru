@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
     public GameObject thingToSpawn;
-    public int spawnDelay;
-    public int timeInterval;
-    public int spawnLimit;
+    public float spawnDelay;  //The amount of time before it first starts spawning
+    public float timeInterval;  //The time between spawns
+    public int spawnNum;  //Number of thing to spawn in one go
+    public int spawnLimit;  //The limit of total spawns it can do
 
     private float totalTimer;
     private float timer;
@@ -44,8 +44,11 @@ public class Spawner : MonoBehaviour
     {
         if (spawnCount >= spawnLimit)
             return;
-        spawnCount++;
-        Instantiate(thingToSpawn, transform.position, Quaternion.identity);
+        for (int i=0; i<spawnNum; i++)
+        {
+            spawnCount++;
+            Instantiate(thingToSpawn, transform.position, Quaternion.identity);
+        }
     }
 
     private void checkLimit()

@@ -37,10 +37,12 @@ public class EnemyMovement : MonoBehaviour
     #endregion
 
     private Animator anim;
+    private Vector3 startScale;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        startScale = transform.localScale;
         currentSpeed = originalSpeed;
         lastSpeed = currentSpeed;
 
@@ -170,10 +172,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void updateAnimations()
     {
-        anim.SetBool("walking", GetComponent<Enemy>().aggressing);
+        if (anim)
+            anim.SetBool("walking", GetComponent<Enemy>().aggressing);
+
         if (currentTarget.x < transform.position.x)
-            this.transform.localScale = new Vector3(-1.0f, transform.localScale.y);
+            this.transform.localScale = new Vector3(-1.0f * startScale.x, transform.localScale.y);
         else
-            this.transform.localScale = new Vector3(1.0f, transform.localScale.y);
+            this.transform.localScale = new Vector3(1.0f * startScale.x, transform.localScale.y);
     }
 }

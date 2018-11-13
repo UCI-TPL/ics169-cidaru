@@ -24,7 +24,8 @@ public class MeleeEnemy : EnemyAttack {
         hp = GetComponent<Health>();
         whirlwindTimer = 0;
         restTimer = 0;
-        defaultWeaponRotation = weapon.transform.rotation;
+        if (weapon)
+            defaultWeaponRotation = weapon.transform.rotation;
     }
 
     public override void Attack()

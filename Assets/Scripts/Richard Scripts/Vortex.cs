@@ -12,6 +12,7 @@ public class Vortex : MonoBehaviour {
     protected List<Projectile> projectiles = new List<Projectile>();
     protected List<Enemy> enemies = new List<Enemy>();
     protected List<Destroyable> destroyables = new List<Destroyable>();
+    protected List<RotatingController> babies = new List<RotatingController>();
 
     public enum VortexStates
     {
@@ -67,6 +68,13 @@ public class Vortex : MonoBehaviour {
             d.endVortex();
         }
 
+        foreach (RotatingController b in babies)
+        {
+            b.gameObject.transform.parent = null;
+
+            b.endVortex();
+        }
+
         Destroy(gameObject.transform.parent.gameObject);
     }
 
@@ -86,7 +94,11 @@ public class Vortex : MonoBehaviour {
             } else if (vortexInside.transform.GetChild(i).GetComponent<Destroyable>() != null)
             {
                 destroyables.Add(vortexInside.transform.GetChild(i).GetComponent<Destroyable>());
+            } else if (vortexInside.transform.GetChild(i).GetComponent<RotatingController>() != null)
+            {
+                babies.Add(vortexInside.transform.GetChild(i).GetComponent<RotatingController>());
             }
+
         }
     }
 
@@ -100,7 +112,13 @@ public class Vortex : MonoBehaviour {
 
             col.transform.parent = vortexInside.transform;
         }
-        
+        else if (vortexState == VortexStates.Succ && col.tag == "Baby")
+        {
+            col.GetComponent<RotatingController>().startVortex(transform.position);
+
+            col.transform.parent = vortexInside.transform;
+        }
+
     }
 
     public virtual void OnCollisionEnter2D(Collision2D col)

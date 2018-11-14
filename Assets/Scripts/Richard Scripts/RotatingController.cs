@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroyable : MonoBehaviour {
-    public enum DestroyableRotatingState
+public class RotatingController : MonoBehaviour {
+    public enum BabyState
     {
         Normal,
         Succing,
@@ -15,30 +15,21 @@ public class Destroyable : MonoBehaviour {
     protected Vector3 center;
 
     protected Rigidbody2D rb2d;
-    protected DestroyableRotatingState currentState = DestroyableRotatingState.Normal;
+    protected BabyState currentState = BabyState.Normal;
     protected float radius = 0f;
 
-    private Health hp;
-
-	// Use this for initialization
-	void Awake () {
-        hp = GetComponent<Health>();
-
+    // Use this for initialization
+    void Awake()
+    {
         rb2d = GetComponent<Rigidbody2D>();
-        currentState = DestroyableRotatingState.Normal;
+        currentState = BabyState.Normal;
         radius = 0f;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (hp.dead())
+        if (currentState == BabyState.Succing)
         {
-            Destroy(gameObject);
-        }
-
-        if (currentState == DestroyableRotatingState.Succing)
-        {
-            rb2d.freezeRotation = false;
             Vector2 difference = transform.position - center;
 
             float angle = Vector2.Angle(Vector2.right, difference);
@@ -50,9 +41,9 @@ public class Destroyable : MonoBehaviour {
 
             transform.eulerAngles = new Vector3(0, 0, angle);
 
-            currentState = DestroyableRotatingState.Rotato;
+            currentState = BabyState.Rotato;
         }
-        else if (currentState == DestroyableRotatingState.Rotato)
+        else if (currentState == BabyState.Rotato)
         {
             radius = Vector3.Distance(transform.position, center);
             if (radius >= 0.03f)
@@ -69,19 +60,14 @@ public class Destroyable : MonoBehaviour {
     public void startVortex(Vector3 c)
     {
         center = c;
-        currentState = DestroyableRotatingState.Succing;
-        rb2d.constraints = RigidbodyConstraints2D.None;
+        currentState = BabyState.Succing;
         transform.rotation = Quaternion.identity;
     }
 
     public void endVortex()
     {
-        currentState = DestroyableRotatingState.Normal;
-
-        gameObject.layer = 0;
-
+        currentState = BabyState.Normal;
+        
         transform.rotation = Quaternion.identity;
-
-        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 }

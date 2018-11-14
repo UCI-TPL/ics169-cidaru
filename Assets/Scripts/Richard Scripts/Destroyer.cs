@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour {
 
-    private float destroyDelay = 5f;
+    private float destroyDelay = 3f;
 
     private void Start()
     {
-        //Destroy(gameObject, destroyDelay);
+        Destroy(gameObject, destroyDelay);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

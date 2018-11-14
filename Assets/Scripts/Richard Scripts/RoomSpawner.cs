@@ -20,7 +20,7 @@ public class RoomSpawner : MonoBehaviour {
 
         spawned = false;
 
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 2f);
     }
 
     private void Spawn()
@@ -76,22 +76,21 @@ public class RoomSpawner : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Destroyer"))
+        {
+            Destroy(gameObject);
+            spawned = true;
+            return;
+        }
+
         if (other.CompareTag("Spawn Point"))
         {
             RoomSpawner otherRS = other.GetComponent<RoomSpawner>();
-
-            if (otherRS == null)
-            {
-                Destroy(gameObject);
-                spawned = true;
-                return;
-            }
 
             if (!otherRS.spawned && !spawned)
             {
                 if (checkBL(otherRS.openingDirection))
                 {
-                    print("lol");
                     rand = Random.Range(0, templates.blRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
@@ -100,7 +99,6 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
-                    print("lol");
                     rand = Random.Range(0, templates.brRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.brRooms[rand], transform.position, Quaternion.identity);
@@ -109,7 +107,6 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
-                    print("lol");
                     rand = Random.Range(0, templates.tlRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.tlRooms[rand], transform.position, Quaternion.identity);
@@ -118,7 +115,6 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
-                    print("lol");
                     rand = Random.Range(0, templates.trRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.trRooms[rand], transform.position, Quaternion.identity);
@@ -157,22 +153,70 @@ public class RoomSpawner : MonoBehaviour {
 
     private bool isTopClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (verticalDistance * Vector3.up), 1) == null;
+        //return Physics2D.OverlapCircle(transform.position + (verticalDistance * Vector3.up), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (verticalDistance * Vector3.up))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private bool isBotClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (-verticalDistance * Vector3.up), 1) == null;
+        //return Physics2D.OverlapCircle(transform.position + (-verticalDistance * Vector3.up), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (-verticalDistance * Vector3.up))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private bool isLeftClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (horizontalDistance * Vector3.left), 1) == null;
+        //return Physics2D.OverlapCircle(transform.position + (horizontalDistance * Vector3.left), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (horizontalDistance * Vector3.left))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private bool isRightClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) == null;
+        //return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (-horizontalDistance * Vector3.left))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void updateBotList(List<GameObject> rooms)

@@ -12,6 +12,7 @@ public class MeleeWeapon : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.collider.tag == "Player" && tag.Contains("Enemy")) // Weapon hits player
         {
             collision.collider.GetComponent<Health>().TakeDamage(dmg);

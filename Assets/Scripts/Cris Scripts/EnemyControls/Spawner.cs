@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour
     public int spawnNum;  //Number of thing to spawn in one go
     public int spawnLimit;  //The limit of total spawns it can do
 
+    public float percentHealthSpawn; //The amount of health it gets down to before it starts spawning
+    public Health hp;
+
     private float totalTimer;
     private float timer;
     private float spawnCount;
@@ -24,6 +27,9 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (hp && hp.currentHealth > hp.startingHealth*percentHealthSpawn)
+            return;
+
         if (totalTimer < spawnDelay)
         {
             totalTimer += Time.deltaTime;

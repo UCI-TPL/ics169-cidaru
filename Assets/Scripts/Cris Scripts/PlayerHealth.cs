@@ -9,7 +9,7 @@ public class PlayerHealth : Health {
     https://unity3d.com/learn/tutorials/projects/survival-shooter/player-health
     */
 
-    //public Slider healthBar;
+    public Slider healthBar;
 
     private PlayerController player;
 
@@ -22,8 +22,9 @@ public class PlayerHealth : Health {
 
     private void Start()
     {
-        //healthBar.maxValue = startingHealth;
-        //healthBar.value = startingHealth;
+        healthBar.maxValue = startingHealth;
+        healthBar.value = startingHealth;
+
         invincible = false;
     }
 
@@ -35,7 +36,8 @@ public class PlayerHealth : Health {
             invincible = true;
             player.startInvincibility();
         }
-        //updateHealthBar(); TEMP COMMENT
+
+        updateHealthBar();
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -57,13 +59,12 @@ public class PlayerHealth : Health {
         //updateHealthBar();
         isDead = false;
     }
-
-    /*
+    
     private void updateHealthBar()
     {
         healthBar.value = currentHealth;
-        Debug.Log("updated health bar");
-    }*/
+        //Debug.Log("updated health bar");
+    }
 
     public bool isInvincible()
     {

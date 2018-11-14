@@ -43,8 +43,8 @@ public class BombController : MonoBehaviour {
 
     private void initAbilityCharges()
     {
-        babyBomb.initCharges();
-        hasteBomb.initCharges();
-        slowBomb.initCharges();
+        babyBomb.initAbility();
+        hasteBomb.initAbility();
+        slowBomb.initAbility();
     }
 }

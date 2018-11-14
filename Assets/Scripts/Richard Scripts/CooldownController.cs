@@ -17,19 +17,17 @@ public class CooldownController : MonoBehaviour {
         {
             Destroy(this);
         }
-
-        DontDestroyOnLoad(this); // CHANGE LATER
     }
 
     private void Update()
     {
         foreach (Ability ability in abilitiesOnCooldown)
         {
-            ability.currentCooldown -= Time.deltaTime;
+            ability.updateCooldown();
             
             if (ability.currentCooldown <= 0f)
             {
-                ability.numberOfCharges++;
+                ability.increaseCharge();
 
                 if (ability.numberOfCharges == ability.maxNumberOfCharges)
                 {

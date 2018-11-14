@@ -40,9 +40,9 @@ public class GameManager : MonoBehaviour {
     }
 	
 	void Update () {
-        healthUI.text = "Health: " + playerHp.currentHealth;
+        //healthUI.text = "Health: " + playerHp.currentHealth;
         // manaUI.text = "Mana: " + playerMana.getCurrentMana();
-        ammoUI.text = "Ammo: " + gun.getCurrentAmmoState();
+        //ammoUI.text = "Ammo: " + gun.getCurrentAmmoState();
 
         if (playerHp.dead() && !gameOverMenu.activeSelf)
         {

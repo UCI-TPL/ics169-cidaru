@@ -157,6 +157,6 @@ public class GunController : MonoBehaviour {
 
     private void initAbilityCharges()
     {
-        vortex.initCharges();
+        vortex.initAbility();
     }
 }

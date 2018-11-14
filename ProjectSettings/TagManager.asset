@@ -13,6 +13,7 @@ TagManager:
   - Spawn Point
   - Vortex Projectile
   - Enemy Weapon
+  - Destroyable
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Bottom Layer
   - Top Layer
   - Vortex Layer
-  - Rotating Enemy Layer
+  - Rotating Layer
   - Enemy Layer
   - 
   - 
@@ -64,6 +65,9 @@ TagManager:
     locked: 0
   - name: Vortex
     uniqueID: 1373102723
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3661452821
     locked: 0
   - name: Player
     uniqueID: 444411791

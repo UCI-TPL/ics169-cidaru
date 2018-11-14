@@ -26,7 +26,7 @@ public class TimeAreaEffector : MonoBehaviour {
 
         if (areaTimer <= 0f)
         { 
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 

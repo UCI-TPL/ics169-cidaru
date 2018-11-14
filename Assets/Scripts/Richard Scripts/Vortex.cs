@@ -11,6 +11,7 @@ public class Vortex : MonoBehaviour {
     protected float vortexTimer;
     protected List<Projectile> projectiles = new List<Projectile>();
     protected List<Enemy> enemies = new List<Enemy>();
+    protected List<Destroyable> destroyables = new List<Destroyable>();
 
     public enum VortexStates
     {
@@ -42,7 +43,7 @@ public class Vortex : MonoBehaviour {
 
     private void Blow()
     {
-        getProjectiles();
+        getSuccedObjects();
 
         foreach (Projectile p in projectiles)
         {
@@ -59,10 +60,17 @@ public class Vortex : MonoBehaviour {
             e.endVortex();
         }
 
+        foreach (Destroyable d in destroyables)
+        {
+            d.gameObject.transform.parent = null;
+
+            d.endVortex();
+        }
+
         Destroy(gameObject.transform.parent.gameObject);
     }
 
-    private void getProjectiles()
+    private void getSuccedObjects()
     {
         int numOfChildren = vortexInside.transform.childCount;
         
@@ -75,6 +83,9 @@ public class Vortex : MonoBehaviour {
             } else if (vortexInside.transform.GetChild(i).GetComponent<Enemy>() != null)
             {
                 enemies.Add(vortexInside.transform.GetChild(i).GetComponent<Enemy>());
+            } else if (vortexInside.transform.GetChild(i).GetComponent<Destroyable>() != null)
+            {
+                destroyables.Add(vortexInside.transform.GetChild(i).GetComponent<Destroyable>());
             }
         }
     }
@@ -89,6 +100,7 @@ public class Vortex : MonoBehaviour {
 
             col.transform.parent = vortexInside.transform;
         }
+        
     }
 
     public virtual void OnCollisionEnter2D(Collision2D col)
@@ -98,6 +110,14 @@ public class Vortex : MonoBehaviour {
             col.gameObject.layer = 11;
 
             col.gameObject.GetComponent<Enemy>().startVortex(transform.position);
+
+            col.transform.parent = vortexInside.transform;
+        }
+        else if (vortexState == VortexStates.Succ && col.gameObject.tag == "Destroyable")
+        {
+            col.gameObject.layer = 11;
+
+            col.gameObject.GetComponent<Destroyable>().startVortex(transform.position);
 
             col.transform.parent = vortexInside.transform;
         }

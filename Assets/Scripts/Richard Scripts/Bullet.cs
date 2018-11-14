@@ -22,6 +22,11 @@ public class Bullet : Projectile {
         } else if (col.tag == "Obstacle" && tag != "Rotating Bullet")
         {
             Destroy(gameObject);
+        } else if (col.tag == "Destroyable")
+        {
+            col.GetComponent<Health>().TakeDamage(dmg);
+
+            Destroy(gameObject);
         }
     }
 }

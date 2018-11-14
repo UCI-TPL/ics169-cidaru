@@ -35,7 +35,7 @@ public class VortexSpawner : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag != "Player")
+        if (col.tag != "Player" && col.tag != "Time Area" && col.tag != "Baby")
         {
             Instantiate(vortex, transform.position, Quaternion.identity);
             Destroy(gameObject);

@@ -49,6 +49,8 @@ public class TimeAreaEffector : MonoBehaviour {
             changeEnemyTime(other, effect);
         else if (other.tag.Contains("Bullet"))
             changeProjectileTime(other, effect);
+        else if (other.tag.Equals("Vortex"))
+            changeVortexTime(other, effect);
     }
 
     #region Changing Times of Important Objects
@@ -76,6 +78,12 @@ public class TimeAreaEffector : MonoBehaviour {
     {
         Projectile projectileController = projectile.GetComponent<Projectile>();
         projectileController.movementSpeed *= effect;
+    }
+
+    private void changeVortexTime(GameObject vortex, float effect)
+    {
+        VortexSpawner vortexController = vortex.GetComponent<VortexSpawner>();
+        vortexController.movementSpeed *= effect;
     }
     #endregion
 }

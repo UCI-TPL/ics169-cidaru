@@ -15,12 +15,12 @@ public class RoomSpawner : MonoBehaviour {
 
     private void Start()
     {
-        templates = GameObject.Find("Game Manager").GetComponent<RoomTemplates>();
+        templates = GameObject.Find("GameManager").GetComponent<RoomTemplates>();
         grid = GameObject.Find("Grid");
 
         spawned = false;
 
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 2f);
     }
 
     private void Spawn()
@@ -91,6 +91,7 @@ public class RoomSpawner : MonoBehaviour {
             {
                 if (checkBL(otherRS.openingDirection))
                 {
+                    print("lol");
                     rand = Random.Range(0, templates.blRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
@@ -99,6 +100,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
+                    print("lol");
                     rand = Random.Range(0, templates.brRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.brRooms[rand], transform.position, Quaternion.identity);
@@ -107,6 +109,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
+                    print("lol");
                     rand = Random.Range(0, templates.tlRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.tlRooms[rand], transform.position, Quaternion.identity);
@@ -115,6 +118,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
+                    print("lol");
                     rand = Random.Range(0, templates.trRooms.Length - 1);
 
                     GameObject room = Instantiate(templates.trRooms[rand], transform.position, Quaternion.identity);
@@ -151,37 +155,37 @@ public class RoomSpawner : MonoBehaviour {
             (openingDirection == GameManager.Opening.Right && dir == GameManager.Opening.Top));
     }
 
-    private bool checkTop()
+    private bool isTopClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (verticalDistance * Vector3.up), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (verticalDistance * Vector3.up), 1) == null;
     }
 
-    private bool checkBot()
+    private bool isBotClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (-verticalDistance * Vector3.up), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (-verticalDistance * Vector3.up), 1) == null;
     }
 
-    private bool checkLeft()
+    private bool isLeftClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (horizontalDistance * Vector3.left), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (horizontalDistance * Vector3.left), 1) == null;
     }
 
-    private bool checkRight()
+    private bool isRightClear()
     {
-        return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) != null;
+        return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) == null;
     }
 
     private void updateBotList(List<GameObject> rooms)
     {
         rooms.AddRange(templates.bRooms);
 
-        if (!checkTop())
+        if (isTopClear())
             rooms.AddRange(templates.tbRooms);
 
-        if (!checkLeft())
+        if (isLeftClear())
             rooms.AddRange(templates.blRooms);
 
-        if (!checkRight())
+        if (isRightClear())
             rooms.AddRange(templates.brRooms);
     }
 
@@ -189,13 +193,13 @@ public class RoomSpawner : MonoBehaviour {
     {
         rooms.AddRange(templates.tRooms);
 
-        if (!checkBot())
+        if (isBotClear())
             rooms.AddRange(templates.tbRooms);
 
-        if (!checkLeft())
+        if (isLeftClear())
             rooms.AddRange(templates.tlRooms);
 
-        if (!checkRight())
+        if (isRightClear())
             rooms.AddRange(templates.trRooms);
     }
 
@@ -203,13 +207,13 @@ public class RoomSpawner : MonoBehaviour {
     {
         rooms.AddRange(templates.lRooms);
 
-        if (!checkBot())
+        if (isBotClear())
             rooms.AddRange(templates.blRooms);
 
-        if (!checkTop())
+        if (isTopClear())
             rooms.AddRange(templates.tlRooms);
 
-        if (!checkRight())
+        if (isRightClear())
             rooms.AddRange(templates.lrRooms);
     }
 
@@ -217,13 +221,13 @@ public class RoomSpawner : MonoBehaviour {
     {
         rooms.AddRange(templates.rRooms);
 
-        if (!checkBot())
+        if (isBotClear())
             rooms.AddRange(templates.brRooms);
 
-        if (!checkLeft())
+        if (isLeftClear())
             rooms.AddRange(templates.lrRooms);
 
-        if (!checkTop())
+        if (isTopClear())
             rooms.AddRange(templates.trRooms);
     }
 }

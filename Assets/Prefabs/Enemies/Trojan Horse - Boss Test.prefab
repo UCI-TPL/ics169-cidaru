@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 114149903795387072}
   - component: {fileID: 114151132987145036}
   - component: {fileID: 114183308005173796}
-  - component: {fileID: 114331712488189954}
   - component: {fileID: 114148883576450860}
+  - component: {fileID: 50319007179060598}
+  - component: {fileID: 114982989142717036}
   m_Layer: 0
   m_Name: Trojan Horse - Boss Test
   m_TagString: Enemy
@@ -48,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4268232838673262
 Transform:
   m_ObjectHideFlags: 1
@@ -56,8 +57,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214733998205538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.288, y: 0.288, z: 0.288}
+  m_LocalPosition: {x: -6.95, y: 5.32, z: 0}
+  m_LocalScale: {x: 0.41907454, y: 0.41907454, z: 0.41907454}
   m_Children:
   - {fileID: 4525004768800694}
   m_Father: {fileID: 0}
@@ -76,6 +77,26 @@ Transform:
   m_Father: {fileID: 4268232838673262}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50319007179060598
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214733998205538}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61170747163033814
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -125,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6609b624b8e1c448a00bcf0cff368bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackStyle: {fileID: 114331712488189954}
+  attackStyle: {fileID: 114982989142717036}
   movement: {fileID: 114183308005173796}
   aggroRange: 200
   rotationSpeed: 200
@@ -161,20 +182,7 @@ MonoBehaviour:
   patrolPoints: []
   chargeDistance: 6
   chargeTime: 1
-  chargePower: 3
---- !u!114 &114331712488189954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1214733998205538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa1fdcc39de928b49a169a36163a0691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 1214733998205538}
-  whirlwindLimit: 0
+  chargePower: 1
 --- !u!114 &114803266478613108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,11 +197,23 @@ MonoBehaviour:
   thingToSpawn: {fileID: 1078318880203492, guid: 7ada9be20db1c0a4e8be5473a40b599c,
     type: 2}
   spawnDelay: 0
-  timeInterval: 5
-  spawnNum: 5
-  spawnLimit: 20
-  percentHealthSpawn: 0.7
-  hp: {fileID: 114151132987145036}
+  timeInterval: 0.1
+  spawnLimit: 2
+  destroyAfterSpawn: 0
+--- !u!114 &114982989142717036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214733998205538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa2f4f9984621046bea5e7ffb6ca377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 3
+  spawner: {fileID: 1823084294765170}
+  percentHealth: 0.25
 --- !u!212 &212585402350381768
 SpriteRenderer:
   m_ObjectHideFlags: 1

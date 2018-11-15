@@ -346,11 +346,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 28097935}
   m_CullTransparentMesh: 0
---- !u!1 &176902768 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1823084294765170, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-    type: 2}
-  m_PrefabInternal: {fileID: 2145370046}
 --- !u!1 &198796860
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b91b8cff6459a641ba1fb314b9813e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoUI: {fileID: 509622715}
   gameOverMenu: {fileID: 3628384}
   cursor: {fileID: 2800000, guid: 56f9403f4643f89468b3eb93cb3c06a5, type: 3}
 --- !u!114 &352135427
@@ -2838,45 +2832,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1005081702}
   m_CullTransparentMesh: 0
---- !u!1 &1037545798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1214733998205538, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-    type: 2}
-  m_PrefabInternal: {fileID: 2145370046}
---- !u!114 &1037545799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1037545798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa2f4f9984621046bea5e7ffb6ca377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 3
-  spawner: {fileID: 176902768}
-  percentHealth: 0.25
---- !u!50 &1037545800
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1037545798}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1058649959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4935,66 +4890,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4268232838673262, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.41907454
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268232838673262, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.41907454
-      objectReference: {fileID: 0}
-    - target: {fileID: 4268232838673262, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.41907454
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214733998205538, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114149903795387072, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: attackStyle
-      value: 
-      objectReference: {fileID: 1037545799}
-    - target: {fileID: 114803266478613108, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: timeInterval
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114803266478613108, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: spawnLimit
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114803266478613108, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: spawnNum
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1823084294765170, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1214733998205538, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
       propertyPath: m_Name
       value: Trojan Horse Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 114183308005173796, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: chargePower
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61170747163033814, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114183308005173796, guid: 696e55d6b0d721f4c95eabc5227ae85b,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114331712488189954, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 2}
   m_IsPrefabAsset: 0

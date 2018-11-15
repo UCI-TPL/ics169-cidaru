@@ -25,6 +25,7 @@ public class GunController : MonoBehaviour {
 
     private GunTypes currentGun;
     private Transform gun;
+    private AudioSource gunSFX;
     private int currentAmmo;
     private bool reloading;
 
@@ -33,6 +34,7 @@ public class GunController : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
+        gunSFX = gun.GetComponent<AudioSource>();
         currentGun = GunTypes.Normal;
 
         currentAmmo = setMaxAmmo;
@@ -130,6 +132,7 @@ public class GunController : MonoBehaviour {
         {
             currentAmmo--;
 
+            gunSFX.Play();
             GameObject newBullet = Instantiate(bullet, gunPoint.position, gun.rotation);
             newBullet.tag = "Player Bullet";
         }

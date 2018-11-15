@@ -14,13 +14,13 @@ public class BabyBomb : Bomb {
     public SpriteRenderer areaSprite;
 
     private SpriteRenderer sprite;
-    private AudioSource audio;
+    private AudioSource audioSource;
     private bool sound;
 
     public void Start()
     {
         bombArea.transform.localScale *= radius;
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
 
         sound = false;
@@ -43,7 +43,7 @@ public class BabyBomb : Bomb {
             sound = true;
             sprite.enabled = false;
             areaSprite.enabled = false;
-            audio.Play();
+            audioSource.Play();
 
             Destroy(gameObject, 1.5f);
         }

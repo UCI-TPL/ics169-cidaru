@@ -7,12 +7,10 @@ public class VortexSpawner : MonoBehaviour {
     public float movementSpeed;
     public GameObject vortex;
 
-    private Rigidbody2D rb2d;
     private Vector3 location;
 
 	// Use this for initialization
 	void Awake () {
-        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

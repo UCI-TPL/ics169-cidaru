@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     #region Basic Movement Vars
     [Header("Basic Movement")]
     public float originalSpeed = 0f;
-    [HideInInspector]
+    //[HideInInspector]
     public float currentSpeed;
     [HideInInspector]
     public bool move;
@@ -106,7 +106,7 @@ public class EnemyMovement : MonoBehaviour
                 if (charged)
                 {
                     StartCoroutine(Wait(.5f));
-                    currentSpeed = lastSpeed;
+                    currentSpeed = originalSpeed;
                     charged = false;
                 }
                 else
@@ -124,7 +124,7 @@ public class EnemyMovement : MonoBehaviour
         lastSpeed = currentSpeed;
         currentTarget = player.transform.position;
         StartCoroutine(Wait(chargeTime));
-        currentSpeed += (originalSpeed * chargePower);
+        currentSpeed += (currentSpeed * chargePower);
         Move(currentTarget);
         charged = true;
     }

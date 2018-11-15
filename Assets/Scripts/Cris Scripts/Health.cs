@@ -7,7 +7,7 @@ public class Health : MonoBehaviour {
 
     public int startingHealth = 1;
     
-    [HideInInspector]
+    //[HideInInspector]
     public int currentHealth;
 
     protected bool isDead; //TODO: Make private

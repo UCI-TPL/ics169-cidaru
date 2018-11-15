@@ -7,11 +7,12 @@ public class Spawner : MonoBehaviour
     public GameObject thingToSpawn;
     public float spawnDelay;  //The amount of time before it first starts spawning
     public float timeInterval;  //The time between spawns
-    public int spawnNum;  //Number of thing to spawn in one go
+    //public int spawnNum;  //Number of thing to spawn in one go
     public int spawnLimit;  //The limit of total spawns it can do
+    public bool destroyAfterSpawn;
 
-    public float percentHealthSpawn; //The amount of health it gets down to before it starts spawning
-    public Health hp;
+    //public float percentHealthSpawn; //The amount of health it gets down to before it starts spawning
+    //public Health hp;
 
     private float totalTimer;
     private float timer;
@@ -27,8 +28,8 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (hp && hp.currentHealth > hp.startingHealth*percentHealthSpawn)
-            return;
+        //if (hp && hp.currentHealth > hp.startingHealth*percentHealthSpawn)
+        //    return;
 
         if (totalTimer < spawnDelay)
         {
@@ -50,16 +51,23 @@ public class Spawner : MonoBehaviour
     {
         if (spawnCount >= spawnLimit)
             return;
-        for (int i=0; i<spawnNum; i++)
-        {
+        //for (int i=0; i<spawnNum; i++)
+        //{
             spawnCount++;
             Instantiate(thingToSpawn, transform.position, Quaternion.identity);
-        }
+        //}
     }
 
     private void checkLimit()
     {
-        if (spawnCount >= spawnLimit)
+        if (destroyAfterSpawn && spawnCount >= spawnLimit)
             Destroy(gameObject);
+    }
+
+    public void reset()
+    {
+        totalTimer = 0;
+        timer = timeInterval;
+        spawnCount = 0;
     }
 }

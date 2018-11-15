@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunController : MonoBehaviour {
     public enum GunTypes
@@ -23,6 +24,9 @@ public class GunController : MonoBehaviour {
 
     //public int vortexManaCost = 20;
 
+    private AmmoUI ammoUI;
+    private GameObject reloadBarUI;
+    private Slider reloadSlider;
     private GunTypes currentGun;
     private Transform gun;
     private AudioSource gunSFX;
@@ -33,6 +37,13 @@ public class GunController : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        ammoUI = GameObject.Find("Ammo Panel").GetComponent<AmmoUI>();
+        reloadBarUI = GameObject.Find("Reload Bar");
+        reloadSlider = reloadBarUI.GetComponent<Slider>();
+
+        reloadSlider.maxValue = reloadTime;
+        reloadBarUI.SetActive(false);
+
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
         gunSFX = gun.GetComponent<AudioSource>();
         currentGun = GunTypes.Normal;
@@ -41,8 +52,6 @@ public class GunController : MonoBehaviour {
         reloading = false;
 
         initAbilityCharges();
-
-        //manaController = GetComponent<Mana>();
 
     }
 
@@ -60,6 +69,11 @@ public class GunController : MonoBehaviour {
             if ((Input.GetKeyDown(KeyCode.R) && currentGun == GunTypes.Normal && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
             {
                 StartCoroutine(Reload());
+            }
+
+            if (reloading)
+            {
+                reloadSlider.value = reloadSlider.value - Time.deltaTime;
             }
 
             // Player Shoot Code
@@ -106,10 +120,14 @@ public class GunController : MonoBehaviour {
 
     private IEnumerator Reload()
     {
+        reloadBarUI.SetActive(true);
+        reloadSlider.value = reloadTime;
         reloading = true;
 
         yield return new WaitForSeconds(reloadTime);
 
+        reloadBarUI.SetActive(false);
+        ammoUI.reloadAmmo();
         currentAmmo = setMaxAmmo;
 
         reloading = false;
@@ -130,6 +148,7 @@ public class GunController : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0) && currentAmmo > 0 && !reloading)
         {
+            ammoUI.updateAmmo();
             currentAmmo--;
 
             gunSFX.Play();

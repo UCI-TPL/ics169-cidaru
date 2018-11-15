@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour {
         Right
     }
     
-    public Text ammoUI;
-
     public GameObject gameOverMenu;
 
     public Texture2D cursor;
@@ -36,8 +34,6 @@ public class GameManager : MonoBehaviour {
     }
 	
 	void Update () {
-        ammoUI.text = "Ammo: " + gun.getCurrentAmmoState();
-
         if (playerHp.dead() && !gameOverMenu.activeSelf)
         {
             Time.timeScale = 0f;

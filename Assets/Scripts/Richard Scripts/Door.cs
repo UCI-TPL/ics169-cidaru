@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour {
     public List<GameObject> enemies;
 
-    public List<Collider2D> doorColliders;
+    public List<GameObject> doorColliders;
 
     private bool active;
 
@@ -13,9 +13,9 @@ public class Door : MonoBehaviour {
     {
         active = false;
 
-        foreach (Collider2D dc in doorColliders)
+        foreach (GameObject dc in doorColliders)
         {
-            dc.enabled = false;
+            dc.SetActive(false);
         }
     }
 
@@ -33,9 +33,9 @@ public class Door : MonoBehaviour {
         {
             active = true;
 
-            foreach (Collider2D dc in doorColliders)
+            foreach (GameObject dc in doorColliders)
             {
-                dc.enabled = true;
+                dc.SetActive(true);
             }
         }
     }
@@ -62,9 +62,9 @@ public class Door : MonoBehaviour {
 
         active = false;
 
-        foreach (Collider2D dc in doorColliders)
+        foreach (GameObject dc in doorColliders)
         {
-            dc.enabled = false;
+            dc.SetActive(false);
         }
     }
 }

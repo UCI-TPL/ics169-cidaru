@@ -124,6 +124,8 @@ public class GunController : MonoBehaviour {
         reloadSlider.value = reloadTime;
         reloading = true;
 
+        ammoUI.clearAmmo();
+
         yield return new WaitForSeconds(reloadTime);
 
         reloadBarUI.SetActive(false);

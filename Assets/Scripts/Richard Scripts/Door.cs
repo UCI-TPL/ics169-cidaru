@@ -9,6 +9,8 @@ public class Door : MonoBehaviour {
 
     private bool active;
 
+    private SpriteRenderer roomSprite;
+
     public void Awake()
     {
         active = false;
@@ -17,6 +19,9 @@ public class Door : MonoBehaviour {
         {
             dc.SetActive(false);
         }
+
+        roomSprite = transform.parent.Find("Minimap Sprite").GetComponent<SpriteRenderer>();
+        roomSprite.enabled = false;
     }
 
     private void Update()
@@ -29,13 +34,23 @@ public class Door : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isCleared())
+        if (collision.tag == "Player")
         {
-            active = true;
-
-            foreach (GameObject dc in doorColliders)
+            if (roomSprite.enabled == false)
             {
-                dc.SetActive(true);
+                roomSprite.enabled = true;
+            }
+
+            GameManager.gm.updateMinimapPosition(transform.parent.position);
+
+            if (!isCleared())
+            {
+                active = true;
+
+                foreach (GameObject dc in doorColliders)
+                {
+                    dc.SetActive(true);
+                }
             }
         }
     }

@@ -34,4 +34,12 @@ public class AmmoUI : MonoBehaviour {
 
         ammoIndexToDisable = ammoImages.Length - 1;
     }
+
+    public void clearAmmo()
+    {
+        foreach (Image ammoImage in ammoImages)
+        {
+            ammoImage.enabled = false;
+        }
+    }
 }

@@ -291,6 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4137326653612668}
+  - component: {fileID: 114576976968227352}
   m_Layer: 0
   m_Name: TB-Room
   m_TagString: Untagged
@@ -1090,6 +1091,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setFireTimer: 2
   bullet: {fileID: 1696281229995658, guid: d4bddd46493fa0e43b0d0d10c5281cb0, type: 2}
+--- !u!114 &114576976968227352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730392725550010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675b27641d43dfa44b1ac96f27c17e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114716905333527014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1194,7 +1206,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1799833889
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc90cf019be309640a46a688fd61c61c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

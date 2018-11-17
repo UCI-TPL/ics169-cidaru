@@ -13,4 +13,24 @@ public class RoomTemplates : MonoBehaviour {
     public GameObject[] bRooms;
     public GameObject[] lRooms;
     public GameObject[] rRooms;
+
+    public List<GameObject> rooms;
+
+    public float waitTime;
+    public GameObject finalRoomObject;
+    private bool spawned = false;
+
+    private void Update()
+    {
+        if (waitTime > 0)
+        {
+            waitTime -= Time.deltaTime;
+        }
+
+        if (waitTime <= 0 && !spawned)
+        {
+            Instantiate(finalRoomObject, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
+            spawned = true;
+        }
+    }
 }

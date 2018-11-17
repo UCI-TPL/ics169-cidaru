@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
             sprite.enabled = true;
             health.setVulnerable();
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            health.TakeDamage(100);
+        }
     }
 
     void FixedUpdate()

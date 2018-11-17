@@ -1597,7 +1597,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1657,9 +1657,9 @@ RectTransform:
   m_Father: {fileID: 1444637188}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -250.00006, y: 209.9049}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -250, y: -200}
   m_SizeDelta: {x: 470, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531341075
@@ -2893,7 +2893,7 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.2
-  m_DeadZoneHeight: 0.1
+  m_DeadZoneHeight: 0.23
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
@@ -4930,6 +4930,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1804051932183312, guid: 519fcdaa0099bce48aabfe40ac41daf9, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212348251596655118, guid: 519fcdaa0099bce48aabfe40ac41daf9,
+        type: 2}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

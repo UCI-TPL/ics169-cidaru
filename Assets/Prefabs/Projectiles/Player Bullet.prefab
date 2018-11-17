@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4222206764058312}
   - component: {fileID: 212282269015009340}
   - component: {fileID: 50331575624222316}
-  - component: {fileID: 58940496622311248}
+  - component: {fileID: 58395848869020046}
   - component: {fileID: 114889799582682320}
   - component: {fileID: 96621122571883586}
   m_Layer: 0
@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1696281229995658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.28, y: 3.37, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 1}
+  m_LocalPosition: {x: 2.142, y: 3.145, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -64,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58940496622311248
+--- !u!58 &58395848869020046
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 0.2
 --- !u!96 &96621122571883586
 TrailRenderer:
   serializedVersion: 2
@@ -113,7 +113,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 444411791
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Time: 0.1
   m_Parameters:
@@ -123,8 +123,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.118919395
-        value: 0.58333397
+        time: 0.13225177
+        value: 0.2681179
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -229,14 +229,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 444411791
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: d32f639f030be034c98f74ffe4dba7c0, type: 3}
-  m_Color: {r: 0, g: 0.72122526, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d69797b377de66241a2bfb8d80022a15, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6, y: 6}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

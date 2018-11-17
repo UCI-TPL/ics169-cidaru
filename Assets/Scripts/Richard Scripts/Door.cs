@@ -15,6 +15,11 @@ public class Door : MonoBehaviour {
     {
         active = false;
 
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.SetActive(false);
+        }
+
         foreach (GameObject dc in doorColliders)
         {
             dc.SetActive(false);
@@ -43,9 +48,14 @@ public class Door : MonoBehaviour {
 
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
-            if (!isCleared())
+            if (!isCleared() && !active)
             {
                 active = true;
+
+                foreach (GameObject enemy in enemies)
+                {
+                    enemy.SetActive(true);
+                }
 
                 foreach (GameObject dc in doorColliders)
                 {

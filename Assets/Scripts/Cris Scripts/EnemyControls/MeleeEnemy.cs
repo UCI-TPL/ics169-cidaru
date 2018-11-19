@@ -11,21 +11,35 @@ public class MeleeEnemy : EnemyAttack {
     
     public GameObject weapon;
     public float whirlwindLimit;
+    public bool tasmanian; //spin like the tasmanian devil/diabolo beserkers
 
     private int whirlwindSpeed = 40;
     private float whirlwindTimer;
     private float restTimer;
+    private bool deflect;
 
     private Quaternion defaultWeaponRotation;
     private Health hp;
+    private Quaternion startRotation;
 
     public void Start()
     {
         hp = GetComponent<Health>();
+        startRotation = transform.rotation;
         whirlwindTimer = 0;
         restTimer = 0;
-        if (weapon)
+        if (weapon){
             defaultWeaponRotation = weapon.transform.rotation;
+            deflect = weapon.GetComponent<MeleeWeapon>().deflection;
+        }
+    }
+
+    private void Update()
+    {
+        if (!GetComponent<Enemy>().aggressing)
+        {
+            resetRotations();
+        }
     }
 
     public override void Attack()
@@ -51,9 +65,9 @@ public class MeleeEnemy : EnemyAttack {
         }
         else
         {
-            weapon.transform.Rotate(new Vector3(0, 0, whirlwindSpeed));
+            animate();
             hp.setInvincible(true);
-            weapon.GetComponent<MeleeWeapon>().deflection = true;
+            weapon.GetComponent<MeleeWeapon>().deflection = deflect;
             whirlwindTimer += Time.deltaTime;
         }
         if (restTimer >= whirlwindLimit)
@@ -63,9 +77,35 @@ public class MeleeEnemy : EnemyAttack {
         }
     }
 
-    private void makeVulnerable()
+    private void animate()
+    {
+        if (tasmanian)
+            tasSpin();
+        else
+            colorGuardTwirl();
+    }
+
+    private void colorGuardTwirl()
+    {
+        //Appearance/Animation for the type of spin
+        weapon.transform.Rotate(new Vector3(0, 0, whirlwindSpeed));
+    }
+
+    private void tasSpin()
+    {
+        //Appearance/Animation for the type of spin
+        this.transform.Rotate(new Vector3(0, whirlwindSpeed, 0));
+    }
+
+    private void resetRotations()
     {
         weapon.transform.rotation = defaultWeaponRotation;
+        transform.rotation = startRotation;
+    }
+
+    private void makeVulnerable()
+    {
+        resetRotations();
         hp.setInvincible(false);
         weapon.GetComponent<MeleeWeapon>().deflection = false;
         return;

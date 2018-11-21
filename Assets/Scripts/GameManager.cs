@@ -20,9 +20,10 @@ public class GameManager : MonoBehaviour {
 
     public Texture2D cursor;
 
-    public DialogTextBox playerDialogueBubble;
+    public GameObject map;
 
     private GameObject player;
+    private DialogTextBox playerDialogueBubble;
     private Health playerHp;
     private GunController gun;
     private Transform minimapPos;
@@ -48,12 +49,14 @@ public class GameManager : MonoBehaviour {
         Cursor.SetCursor(cursor, new Vector2(512 / 2, 512 / 2), CursorMode.Auto);
 
         playerDialogue = false;
+
+        map.SetActive(false);
     }
 
     void Start () {
     }
-	
-	void Update () {
+
+    void Update() {
         if (playerHp.dead() && !gameOverMenu.activeSelf)
         {
             Time.timeScale = 0f;
@@ -61,6 +64,20 @@ public class GameManager : MonoBehaviour {
             gameOverMenu.SetActive(true);
 
             GetComponent<PauseController>().enabled = false;
+        }
+
+        if (Time.timeScale != 0f)
+        {
+            if (Input.GetKey(KeyCode.Tab))
+            {
+                map.SetActive(true);
+                print("yo");
+            }
+
+            if (Input.GetKeyUp(KeyCode.Tab))
+            {
+                map.SetActive(false);
+            }
         }
     }
 
@@ -72,7 +89,7 @@ public class GameManager : MonoBehaviour {
     public void LoadNextLevel()
     {
         Time.timeScale = 0;
-        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex)); // ADD ONE FOR NEXT LEVEL CURRENTLY LOOPING
     }
 
     IEnumerator FadeWait(int sceneIndex)

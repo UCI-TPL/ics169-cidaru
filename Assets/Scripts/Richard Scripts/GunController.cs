@@ -63,7 +63,7 @@ public class GunController : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                changeGun();
+                //changeGun();
             }
 
             if ((Input.GetKeyDown(KeyCode.R) && currentGun == GunTypes.Normal && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))

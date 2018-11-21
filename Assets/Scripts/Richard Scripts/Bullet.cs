@@ -13,7 +13,7 @@ public class Bullet : Projectile {
 
             Instantiate(bulletEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
-        } else if (col.tag == "Enemy" && tag == "Player Bullet")
+        } else if ((col.tag == "Enemy" || col.tag == "Enemy Boss") && tag == "Player Bullet")
         {
             col.GetComponent<Health>().TakeDamage(dmg);
 

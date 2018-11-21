@@ -36,13 +36,17 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 currentTarget;
     #endregion
 
+    #region Visual Stuff
     private Animator anim;
     private Vector3 startScale;
+    private Quaternion startRotation;
+    #endregion 
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         startScale = transform.localScale;
+        startRotation = transform.rotation;
         currentSpeed = originalSpeed;
         lastSpeed = currentSpeed;
 
@@ -179,5 +183,8 @@ public class EnemyMovement : MonoBehaviour
             this.transform.localScale = new Vector3(-1.0f * startScale.x, transform.localScale.y);
         else
             this.transform.localScale = new Vector3(1.0f * startScale.x, transform.localScale.y);
+
+        if (this.tag.Contains("Boss")) //to allow for the tasmansian rotation
+            this.transform.rotation = startRotation;
     }
 }

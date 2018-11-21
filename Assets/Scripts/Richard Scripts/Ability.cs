@@ -13,11 +13,14 @@ public class Ability : ScriptableObject {
     public string chargeUIName;
 
     [Header("Ability Properties")]
-    public int maxNumberOfCharges = 1;
+    public int setMaxNumberOfCharges = 1;
     public float setCooldown = 3f;
 
     [HideInInspector]
-    public float numberOfCharges = 0;
+    public int numberOfCharges = 0;
+
+    [HideInInspector]
+    public int maxNumberOfCharges;
 
     [HideInInspector]
     public float currentCooldown = 0;
@@ -30,6 +33,7 @@ public class Ability : ScriptableObject {
 
     private void Awake()
     {
+        maxNumberOfCharges = setMaxNumberOfCharges;
         numberOfCharges = maxNumberOfCharges;
     }
 
@@ -66,8 +70,22 @@ public class Ability : ScriptableObject {
         cooldownUI.value = setCooldown - currentCooldown;
     }
 
+    private void increaseChargeCD()
+    {
+        chargeUI.text = "" + numberOfCharges;
+
+        CooldownController.cdInstance.StartCooldown(this);
+    }
+
+    public void increaseMaxCharge()
+    {
+        maxNumberOfCharges++;
+        increaseChargeCD();
+    }
+
     public void initAbility()
     {
+        maxNumberOfCharges = setMaxNumberOfCharges;
         numberOfCharges = maxNumberOfCharges;
 
         currentCooldown = setCooldown;

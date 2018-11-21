@@ -51,6 +51,8 @@ public class PlayerHealth : Health {
             currentHealth = startingHealth;
         else
             currentHealth += amount;
+
+        updateHealthBar();
     }
 
     public void Reset()

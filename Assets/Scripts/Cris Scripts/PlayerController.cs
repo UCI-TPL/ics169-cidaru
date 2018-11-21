@@ -37,21 +37,28 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // If timer is not over perform blinking effect else reenable sprite and vulnerability
-        if (invincibilityTimer > 0f)
+        if (health.dead())
         {
-            sprite.enabled = !sprite.enabled;
-            invincibilityTimer -= Time.deltaTime;
-        }
-        else
+            invincibilityTimer = 0f;
+            sprite.enabled = false;
+        } else
         {
-            sprite.enabled = true;
-            health.setVulnerable();
-        }
+            // If timer is not over perform blinking effect else reenable sprite and vulnerability
+            if (invincibilityTimer > 0f)
+            {
+                sprite.enabled = !sprite.enabled;
+                invincibilityTimer -= Time.deltaTime;
+            }
+            else
+            {
+                sprite.enabled = true;
+                health.setVulnerable();
+            }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            health.TakeDamage(100);
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                health.TakeDamage(100);
+            }
         }
     }
 

@@ -146,6 +146,7 @@ public class EnemyMovement : MonoBehaviour
     {
         move = false;
         //Debug.Log("Waiting...");
+        this.transform.Rotate(new Vector3(startRotation.x, startRotation.y, startRotation.z + 20));
         yield return new WaitForSeconds(secs);
         //Debug.Log("DONE!");
         move = true;
@@ -184,7 +185,15 @@ public class EnemyMovement : MonoBehaviour
         else
             this.transform.localScale = new Vector3(1.0f * startScale.x, transform.localScale.y);
 
-        if (this.tag.Contains("Boss")) //to allow for the tasmansian rotation
-            this.transform.rotation = startRotation;
+        //Reseting rotations
+        if (move)
+        {
+            if (this.tag.Contains("Boss"))
+            {
+                this.transform.rotation = startRotation;
+            }
+            if (chargeDistance != 0)
+                this.transform.rotation = startRotation;
+        }
     }
 }

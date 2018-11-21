@@ -38,5 +38,14 @@ public class BossAttack : EnemyAttack {
         {
             collision.collider.GetComponent<Health>().TakeDamage(dmg);
         }
+        if (collision.collider.tag == "Vortex" && isCharging())
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private bool isCharging()
+    {
+        return GetComponent<EnemyMovement>().originalSpeed < GetComponent<EnemyMovement>().currentSpeed;
     }
 }

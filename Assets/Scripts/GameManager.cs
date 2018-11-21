@@ -20,12 +20,16 @@ public class GameManager : MonoBehaviour {
 
     public Texture2D cursor;
 
+    public DialogTextBox playerDialogueBubble;
+
     private GameObject player;
     private Health playerHp;
     private GunController gun;
     private Transform minimapPos;
 
     private Fader fade;
+
+    private bool playerDialogue;
 
     private void Awake()
     {
@@ -35,11 +39,15 @@ public class GameManager : MonoBehaviour {
         playerHp = player.GetComponent<Health>();
         gun = player.GetComponent<GunController>();
 
+        playerDialogueBubble = GameObject.Find("Player Text Bubble").GetComponent<DialogTextBox>();
+
         minimapPos = GameObject.Find("Minimap Objects").transform;
 
         fade = GetComponent<Fader>();
 
         Cursor.SetCursor(cursor, new Vector2(512 / 2, 512 / 2), CursorMode.Auto);
+
+        playerDialogue = false;
     }
 
     void Start () {
@@ -77,5 +85,22 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1;
 
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public bool getDialogue()
+    {
+        return playerDialogue;
+    }
+
+    public void startDialogue(TextAsset txt)
+    {
+        playerDialogue = true;
+
+        playerDialogueBubble.startText(txt);
+    }
+
+    public void endDialogue()
+    {
+        playerDialogue = false;
     }
 }

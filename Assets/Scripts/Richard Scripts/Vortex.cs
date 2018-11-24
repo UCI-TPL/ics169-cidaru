@@ -11,6 +11,7 @@ public class Vortex : MonoBehaviour {
     protected float vortexTimer;
     protected List<Projectile> projectiles = new List<Projectile>();
     protected List<Enemy> enemies = new List<Enemy>();
+    protected List<MeleeWeapon> weapons = new List<MeleeWeapon>();
     protected List<Destroyable> destroyables = new List<Destroyable>();
     protected List<RotatingController> babies = new List<RotatingController>();
 
@@ -61,6 +62,12 @@ public class Vortex : MonoBehaviour {
             e.endVortex();
         }
 
+        foreach (MeleeWeapon w in weapons)
+        {
+            w.gameObject.transform.parent = null;
+            w.endVortex();
+        }
+
         foreach (Destroyable d in destroyables)
         {
             d.gameObject.transform.parent = null;
@@ -97,6 +104,9 @@ public class Vortex : MonoBehaviour {
             } else if (vortexInside.transform.GetChild(i).GetComponent<RotatingController>() != null)
             {
                 babies.Add(vortexInside.transform.GetChild(i).GetComponent<RotatingController>());
+            } else if (vortexInside.transform.GetChild(i).GetComponent<MeleeWeapon>() != null)
+            {
+                weapons.Add(vortexInside.transform.GetChild(i).GetComponent<MeleeWeapon>());
             }
 
         }
@@ -123,13 +133,17 @@ public class Vortex : MonoBehaviour {
 
     public virtual void OnCollisionEnter2D(Collision2D col)
     {
-        if (vortexState == VortexStates.Succ && col.gameObject.tag == "Enemy")
+        if (vortexState == VortexStates.Succ && col.gameObject.tag.Contains("Enemy"))
         {
             col.gameObject.layer = 11;
-
-            col.gameObject.GetComponent<Enemy>().startVortex(transform.position);
-
             col.transform.parent = vortexInside.transform;
+
+            if (col.gameObject.GetComponent<Enemy>() &&
+                col.gameObject.GetComponent<Enemy>().vortex)
+            {
+                col.gameObject.GetComponent<Enemy>().startVortex(transform.position);
+            }
+
         }
         else if (vortexState == VortexStates.Succ && col.gameObject.tag == "Destroyable")
         {

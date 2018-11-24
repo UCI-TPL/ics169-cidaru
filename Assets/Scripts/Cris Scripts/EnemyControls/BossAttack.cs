@@ -38,7 +38,7 @@ public class BossAttack : EnemyAttack {
         {
             collision.collider.GetComponent<Health>().TakeDamage(dmg);
         }
-        if (collision.collider.tag == "Vortex" && isCharging())
+        if (collision.collider.tag == "Vortex" && isCharging()) //Eats vortex while charging
         {
             Destroy(collision.gameObject);
         }

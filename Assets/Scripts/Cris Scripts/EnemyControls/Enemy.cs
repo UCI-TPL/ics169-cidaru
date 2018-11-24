@@ -11,22 +11,29 @@ public class Enemy : MonoBehaviour {
         Rotato
     }
 
+    [Header("Attributes")]
     public EnemyAttack attackStyle;
     public EnemyMovement movement;
     public int aggroRange;
     public bool raycastEnabled;
+    [HideInInspector]
+    public bool aggressing = false;
 
     protected GameObject player;
     private Health hp;
 
+    [Header("Affected By")]
+    public bool babyBomb;
+    public bool speedBubbles;
+    public bool vortex;
+
+    //[Header("Vortex Stuff")]
     public float rotationSpeed = 200f;
 
     private Rigidbody2D rb2d;
     private EnemyState currentState = EnemyState.Normal;
     private Vector3 center;
     public float radius = 0f;
-    [HideInInspector]
-    public bool aggressing = false;
 
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -38,6 +45,9 @@ public class Enemy : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+        if (currentState != EnemyState.Normal)
+            return;
+
         aggressing = true;
 
         if (raycastEnabled)
@@ -103,6 +113,12 @@ public class Enemy : MonoBehaviour {
         transform.rotation = Quaternion.identity;
 
         movement.enabled = false;
+
+        if (typeof(MeleeEnemy) == attackStyle.GetType())
+        {
+            MeleeEnemy attack = (MeleeEnemy) attackStyle;
+            attack.weapon.GetComponent<MeleeWeapon>().startVortex(c);
+        }
     }
 
     public void endVortex()
@@ -116,6 +132,12 @@ public class Enemy : MonoBehaviour {
         transform.rotation = Quaternion.identity;
 
         rb2d.freezeRotation = true;
+
+        if (typeof(MeleeEnemy) == attackStyle.GetType())
+        {
+            MeleeEnemy attack = (MeleeEnemy)attackStyle;
+            attack.weapon.GetComponent<MeleeWeapon>().endVortex();
+        }
     }
 
     private void checkDeath()

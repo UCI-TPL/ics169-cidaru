@@ -36,6 +36,11 @@ public class BabyBomb : Bomb {
 
             foreach (Collider2D hitCollider in hitColliders)
             {
+                if (hitCollider.gameObject.tag.Contains("Enemy") && hitCollider.gameObject.GetComponent<Enemy>() && !hitCollider.gameObject.GetComponent<Enemy>().babyBomb)
+                    continue;
+                if (hitCollider.gameObject.tag.Contains("Weapon"))
+                    continue;
+
                 Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
 
                 Destroy(hitCollider.gameObject);

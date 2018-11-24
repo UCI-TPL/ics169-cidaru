@@ -226,6 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 1
   deflection: 0
+  rotationSpeed: 200
+  radius: 0
 --- !u!114 &114535855920386582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,9 +256,12 @@ MonoBehaviour:
   movement: {fileID: 114882582479683330}
   aggroRange: 10
   raycastEnabled: 1
+  aggressing: 0
+  babyBomb: 1
+  speedBubbles: 1
+  vortex: 1
   rotationSpeed: 200
   radius: 0
-  aggressing: 0
 --- !u!114 &114842247401857972
 MonoBehaviour:
   m_ObjectHideFlags: 1

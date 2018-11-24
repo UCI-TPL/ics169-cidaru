@@ -35,7 +35,7 @@ public class RoomSpawner : MonoBehaviour {
             List<GameObject> botRooms = new List<GameObject>();
             updateBotList(botRooms);
 
-            rand = Random.Range(0, botRooms.Count - 1);
+            rand = Random.Range(0, botRooms.Count);
 
             GameObject room = Instantiate(botRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
@@ -45,7 +45,7 @@ public class RoomSpawner : MonoBehaviour {
             List<GameObject> topRooms = new List<GameObject>();
             updateTopList(topRooms);
 
-            rand = Random.Range(0, topRooms.Count - 1);
+            rand = Random.Range(0, topRooms.Count);
 
             GameObject room = Instantiate(topRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
@@ -55,7 +55,7 @@ public class RoomSpawner : MonoBehaviour {
             List<GameObject> leftRooms = new List<GameObject>();
             updateLeftList(leftRooms);
 
-            rand = Random.Range(0, leftRooms.Count - 1);
+            rand = Random.Range(0, leftRooms.Count);
 
             GameObject room = Instantiate(leftRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
@@ -65,7 +65,7 @@ public class RoomSpawner : MonoBehaviour {
             List<GameObject> rightRooms = new List<GameObject>();
             updateRightList(rightRooms);
 
-            rand = Random.Range(0, rightRooms.Count - 1);
+            rand = Random.Range(0, rightRooms.Count);
 
             GameObject room = Instantiate(rightRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
@@ -91,7 +91,7 @@ public class RoomSpawner : MonoBehaviour {
             {
                 if (checkBL(otherRS.openingDirection))
                 {
-                    rand = Random.Range(0, templates.blRooms.Length - 1);
+                    rand = Random.Range(0, templates.blRooms.Length);
 
                     GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
@@ -99,7 +99,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
-                    rand = Random.Range(0, templates.brRooms.Length - 1);
+                    rand = Random.Range(0, templates.brRooms.Length);
 
                     GameObject room = Instantiate(templates.brRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
@@ -107,7 +107,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
-                    rand = Random.Range(0, templates.tlRooms.Length - 1);
+                    rand = Random.Range(0, templates.tlRooms.Length);
 
                     GameObject room = Instantiate(templates.tlRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
@@ -115,7 +115,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
-                    rand = Random.Range(0, templates.trRooms.Length - 1);
+                    rand = Random.Range(0, templates.trRooms.Length);
 
                     GameObject room = Instantiate(templates.trRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
@@ -221,8 +221,6 @@ public class RoomSpawner : MonoBehaviour {
 
     private void updateBotList(List<GameObject> rooms)
     {
-        rooms.AddRange(templates.bRooms);
-
         if (isTopClear())
             rooms.AddRange(templates.tbRooms);
 
@@ -231,12 +229,18 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isRightClear())
             rooms.AddRange(templates.brRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.bRooms);
+        }
     }
 
     private void updateTopList(List<GameObject> rooms)
     {
-        rooms.AddRange(templates.tRooms);
-
         if (isBotClear())
             rooms.AddRange(templates.tbRooms);
 
@@ -245,12 +249,18 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isRightClear())
             rooms.AddRange(templates.trRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.tRooms);
+        }
     }
 
     private void updateLeftList(List<GameObject> rooms)
     {
-        rooms.AddRange(templates.lRooms);
-
         if (isBotClear())
             rooms.AddRange(templates.blRooms);
 
@@ -259,12 +269,18 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isRightClear())
             rooms.AddRange(templates.lrRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.lRooms);
+        }
     }
 
     private void updateRightList(List<GameObject> rooms)
     {
-        rooms.AddRange(templates.rRooms);
-
         if (isBotClear())
             rooms.AddRange(templates.brRooms);
 
@@ -273,5 +289,13 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isTopClear())
             rooms.AddRange(templates.trRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.rRooms);
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour {
 
-    private float destroyDelay = 3f;
+    private float destroyDelay = 10f;
 
     private void Start()
     {

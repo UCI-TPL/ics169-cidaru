@@ -14,6 +14,8 @@ public class RoomTemplates : MonoBehaviour {
     public GameObject[] lRooms;
     public GameObject[] rRooms;
 
+    public int minRooms = 10;
+    public int maxRooms = 30;
     public List<GameObject> rooms;
 
     public float waitTime;
@@ -32,5 +34,15 @@ public class RoomTemplates : MonoBehaviour {
             Instantiate(finalRoomObject, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
             spawned = true;
         }
+    }
+
+    public bool checkMinRooms()
+    {
+        return rooms.Count >= minRooms;
+    }
+
+    public bool checkMaxRooms()
+    {
+        return rooms.Count >= maxRooms;
     }
 }

@@ -8,11 +8,12 @@ public class StasisController : MonoBehaviour {
         Normal,
         Burned
     }
+
     private float setStasisTickTimer;
 
     private float stasisTickTimer;
     private int tickAmount;
-    private Stasis currentStasis;
+    private List<Stasis> currentStasis;
 
     private Health hp;
 
@@ -20,8 +21,6 @@ public class StasisController : MonoBehaviour {
 
     private void Awake()
     {
-        currentStasis = Stasis.Normal;
-
         hp = GetComponent<Health>();
 
         sprite = GetComponent<SpriteRenderer>();
@@ -29,7 +28,7 @@ public class StasisController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (currentStasis == Stasis.Burned)
+		if (currentStasis.Contains(Stasis.Burned))
         {
             if (tickAmount != 0)
             {
@@ -43,23 +42,23 @@ public class StasisController : MonoBehaviour {
                 }
             } else
             {
-                currentStasis = Stasis.Normal;
+                currentStasis.Remove(Stasis.Burned);
                 sprite.color = Color.white;
             }
         }
 	}
 
-    public void setStasisProperties(Stasis s, float stt, int tAmt) // stt = stasisTickTimer, tAmt = tickAmount
+    public void startBurn(float stt, int tAmt) // stt = stasisTickTimer, tAmt = tickAmount
     {
-        if (currentStasis != s)
+        if (!currentStasis.Contains(Stasis.Burned))
         {
             setStasisTickTimer = stt;
             stasisTickTimer = stt;
+            currentStasis.Add(Stasis.Burned);
         }
 
-        currentStasis = s;
         tickAmount = tAmt;
 
-        sprite.color = Color.red;
+        sprite.color += Color.red;
     }
 }

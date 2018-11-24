@@ -14,6 +14,7 @@ public class GunController : MonoBehaviour {
 
     public GameObject bullet;
     public GameObject flame;
+    public GameObject electric;
     public Ability vortex;
 
     public SpriteRenderer gunSprite;
@@ -165,6 +166,15 @@ public class GunController : MonoBehaviour {
         {
             GameObject newFlame = Instantiate(flame, gunPoint.position, gun.rotation);
             newFlame.tag = "Player Bullet";
+        }
+    }
+
+    private void ElectricShoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject newElect = Instantiate(electric, gunPoint.position, gun.rotation);
+            newElect.tag = "Player Bullet";
         }
     }
 

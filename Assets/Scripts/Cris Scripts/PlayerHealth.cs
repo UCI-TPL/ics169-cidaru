@@ -10,6 +10,9 @@ public class PlayerHealth : Health {
     */
 
     public Slider healthBar;
+    public Slider armorBar;
+
+    public int armor;
 
     private PlayerController player;
 
@@ -32,12 +35,23 @@ public class PlayerHealth : Health {
     {
         if (!invincible)
         {
+            if (armor < amount)
+            {
+                amount -= armor;
+                armor = 0;
+            } else
+            {
+                armor -= amount;
+                amount = 0;
+            }
+
             currentHealth -= amount;
             invincible = true;
             player.startInvincibility();
         }
 
         updateHealthBar();
+        updateArmorBar();
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -55,6 +69,13 @@ public class PlayerHealth : Health {
         updateHealthBar();
     }
 
+    public void AddArmor(int amount)
+    {
+        armor += amount;
+
+        updateArmorBar();
+    }
+
     public void Reset()
     {
         currentHealth = startingHealth;
@@ -66,6 +87,11 @@ public class PlayerHealth : Health {
     {
         healthBar.value = currentHealth;
         //Debug.Log("updated health bar");
+    }
+
+    private void updateArmorBar()
+    {
+        armorBar.value = armor;
     }
 
     public bool isInvincible()

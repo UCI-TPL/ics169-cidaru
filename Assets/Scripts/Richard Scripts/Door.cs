@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour {
-    public List<GameObject> enemies;
+    public List<GameObject> enemySpawners;
 
     public List<GameObject> doorColliders;
 
     private bool active;
+    private List<GameObject> enemies;
 
     private SpriteRenderer roomSprite;
 
@@ -15,7 +16,7 @@ public class Door : MonoBehaviour {
     {
         active = false;
 
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in enemySpawners)
         {
             enemy.SetActive(false);
         }
@@ -52,10 +53,12 @@ public class Door : MonoBehaviour {
             {
                 active = true;
 
-                foreach (GameObject enemy in enemies)
+                foreach (GameObject enemy in enemySpawners)
                 {
                     enemy.SetActive(true);
                 }
+
+                enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
                 foreach (GameObject dc in doorColliders)
                 {
@@ -67,9 +70,9 @@ public class Door : MonoBehaviour {
 
     public bool isCleared()
     {
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemySpawner in enemySpawners)
         {
-            return enemy == null;
+            return enemySpawner == null;
         }
 
         return false;

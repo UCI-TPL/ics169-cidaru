@@ -3,41 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Electric : Projectile {
-    public GameObject bulletEffect;
+    public GameObject electricField;
+    public float stunTimer = 2f;
+
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Player" && tag == "Enemy Bullet") // Enemy bullet hits player
+        if ((col.tag == "Enemy" || col.tag == "Enemy Boss") && tag == "Player Bullet")
         {
             col.GetComponent<Health>().TakeDamage(dmg);
+            col.GetComponent<StasisController>().startStun(stunTimer);
 
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-        else if ((col.tag == "Enemy" || col.tag == "Enemy Boss") && tag == "Player Bullet")
-        {
-            col.GetComponent<Health>().TakeDamage(dmg);
-
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            GameObject ef = Instantiate(electricField, col.transform.position, Quaternion.identity);
+            ef.GetComponent<ElectricField>().setDamage(dmg);
+            ef.GetComponent<ElectricField>().setStunTime(stunTimer);
             Destroy(gameObject);
         }
         else if ((col.tag == "Player" || col.tag == "Enemy") && tag == "Vortex Projectile")
         {
             col.GetComponent<Health>().TakeDamage(dmg);
 
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            if (col.tag == "Enemy")
+                col.GetComponent<StasisController>().startStun(stunTimer);
+
+            GameObject ef = Instantiate(electricField, col.transform.position, Quaternion.identity);
+            ef.transform.GetComponent<ElectricField>().setDamage(dmg);
+            ef.transform.GetComponent<ElectricField>().setStunTime(stunTimer);
             Destroy(gameObject);
         }
         else if (col.tag == "Obstacle" && tag != "Rotating Bullet")
         {
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            GameObject ef = Instantiate(electricField, col.transform.position, Quaternion.identity);
+            ef.GetComponent<ElectricField>().setDamage(dmg);
+            ef.GetComponent<ElectricField>().setStunTime(stunTimer);
             Destroy(gameObject);
         }
         else if (col.tag == "Destroyable")
         {
             col.GetComponent<Health>().TakeDamage(dmg);
 
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            GameObject ef = Instantiate(electricField, col.transform.position, Quaternion.identity);
+            ef.GetComponent<ElectricField>().setDamage(dmg);
+            ef.GetComponent<ElectricField>().setStunTime(stunTimer);
             Destroy(gameObject);
         }
     }

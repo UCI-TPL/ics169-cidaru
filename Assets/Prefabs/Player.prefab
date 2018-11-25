@@ -395,10 +395,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1696281229995658, guid: 0c83dad9b146dbe4ebc2be957304fac0, type: 2}
   flame: {fileID: 1696281229995658, guid: e81f95421993ffe469b16698d097c208, type: 2}
-  electric: {fileID: 0}
+  electric: {fileID: 1408986520318600, guid: 5a4cf3675343ba8468e8133d2f9bd108, type: 2}
   vortex: {fileID: 11400000, guid: 790a9a35f571e084e8e65c232a70e696, type: 2}
   gunSprite: {fileID: 212524024538758684}
   gunPoint: {fileID: 4998787749327776}
+  intialGunPointX: 0
   setMaxAmmo: 6
   reloadTime: 1
 --- !u!114 &114793766150521610
@@ -469,8 +470,9 @@ MonoBehaviour:
   startingHealth: 5
   currentHealth: 1
   healthBar: {fileID: 0}
-  armorBar: {fileID: 0}
-  armor: 0
+  shieldBar: {fileID: 0}
+  maxShield: 5
+  shield: 0
 --- !u!114 &114981326636427352
 MonoBehaviour:
   m_ObjectHideFlags: 1

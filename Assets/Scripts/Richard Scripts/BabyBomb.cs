@@ -15,7 +15,7 @@ public class BabyBomb : Bomb {
 
     private SpriteRenderer sprite;
     private AudioSource audioSource;
-    private bool sound;
+    private bool audioPlaying;
 
     public void Start()
     {
@@ -23,14 +23,14 @@ public class BabyBomb : Bomb {
         audioSource = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
 
-        sound = false;
+        audioPlaying = false;
     }
 
     // Update is called once per frame
     void Update () {
         bombTimer -= Time.deltaTime;
 
-        if (bombTimer <= 0f && !sound)
+        if (bombTimer <= 0f && !audioPlaying)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius / 2, enemyLayers);
 
@@ -45,7 +45,7 @@ public class BabyBomb : Bomb {
 
                 Destroy(hitCollider.gameObject);
             }
-            sound = true;
+            audioPlaying = true;
             sprite.enabled = false;
             areaSprite.enabled = false;
             audioSource.Play();

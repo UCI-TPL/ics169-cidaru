@@ -6,13 +6,19 @@ public class StasisController : MonoBehaviour {
     public enum Stasis
     {
         Normal,
-        Burned
+        Burned,
+        Stun
     }
 
-    private float setStasisTickTimer;
+    // BURN VARIABLES
+    private float setBurnTickTimer;
+    private float burnTickTimer;
+    private int burnTickAmount;
 
-    private float stasisTickTimer;
-    private int tickAmount;
+    // STUN VARIABLES
+    private float setStunTimer;
+    private float stunTimer;
+
     private List<Stasis> currentStasis = new List<Stasis>();
 
     private Health hp;
@@ -30,20 +36,31 @@ public class StasisController : MonoBehaviour {
     void Update () {
 		if (currentStasis.Contains(Stasis.Burned))
         {
-            if (tickAmount != 0)
+            if (burnTickAmount != 0)
             {
-                stasisTickTimer -= Time.deltaTime;
+                burnTickTimer -= Time.deltaTime;
 
-                if (stasisTickTimer <= 0f)
+                if (burnTickTimer <= 0f)
                 {
                     hp.TakeDamage(1);
-                    stasisTickTimer = setStasisTickTimer;
-                    tickAmount--;
+                    burnTickTimer = setBurnTickTimer;
+                    burnTickAmount--;
                 }
             } else
             {
                 currentStasis.Remove(Stasis.Burned);
-                sprite.color = Color.white;
+                sprite.color -= Color.red;
+            }
+        }
+
+        if (currentStasis.Contains(Stasis.Stun))
+        {
+            stunTimer -= Time.deltaTime;
+
+            if (stunTimer <= 0f)
+            {
+                currentStasis.Remove(Stasis.Stun);
+                sprite.color -= Color.yellow;
             }
         }
 	}
@@ -52,13 +69,30 @@ public class StasisController : MonoBehaviour {
     {
         if (!currentStasis.Contains(Stasis.Burned))
         {
-            setStasisTickTimer = stt;
-            stasisTickTimer = stt;
+            setBurnTickTimer = stt;
+            burnTickTimer = stt;
             currentStasis.Add(Stasis.Burned);
+
+            sprite.color += Color.red;
         }
 
-        tickAmount = tAmt;
+        burnTickAmount = tAmt;
+    }
 
-        sprite.color += Color.red;
+    public void startStun(float st) // st = stunTimer
+    {
+        if (!currentStasis.Contains(Stasis.Stun))
+        {
+            setStunTimer = st;
+            stunTimer = st;
+            currentStasis.Add(Stasis.Stun);
+
+            sprite.color += Color.yellow;
+        }
+    }
+
+    public bool stunned()
+    {
+        return currentStasis.Contains(Stasis.Stun);
     }
 }

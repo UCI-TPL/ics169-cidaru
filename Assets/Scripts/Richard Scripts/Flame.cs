@@ -7,7 +7,6 @@ public class Flame : Projectile {
 
     public int tickAmount;
     public float burnTimer;
-    public StasisController.Stasis stasisEffect;
 
     private float flameLengthTimer;
 

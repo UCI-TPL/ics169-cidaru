@@ -48,7 +48,7 @@ public class GunController : MonoBehaviour {
 
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
         gunSFX = gun.GetComponent<AudioSource>();
-        currentGun = GunTypes.Normal;
+        currentGun = GunTypes.Thunder;
 
         currentAmmo = setMaxAmmo;
         reloading = false;
@@ -86,6 +86,9 @@ public class GunController : MonoBehaviour {
             } else if (currentGun == GunTypes.Fire)
             {
                 FlameShoot();
+            } else if (currentGun == GunTypes.Thunder)
+            {
+                ElectricShoot();
             }
             
             if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())//manaController.getCurrentMana() > vortexManaCost)

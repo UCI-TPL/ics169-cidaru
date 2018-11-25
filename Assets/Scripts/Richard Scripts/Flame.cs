@@ -40,7 +40,7 @@ public class Flame : Projectile {
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<StasisController>().setStasisProperties(stasisEffect, burnTimer, tickAmount);
+            collision.GetComponent<StasisController>().startBurn(burnTimer, tickAmount);
         } else if (collision.tag == "Obstacle")
         {
             Destroy(gameObject);

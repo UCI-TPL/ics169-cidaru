@@ -10,9 +10,11 @@ public class PlayerHealth : Health {
     */
 
     public Slider healthBar;
-    public Slider armorBar;
+    public Slider shieldBar;
 
-    public int armor;
+    public int maxShield = 5;
+
+    public int shield;
 
     private PlayerController player;
 
@@ -28,6 +30,10 @@ public class PlayerHealth : Health {
         healthBar.maxValue = startingHealth;
         healthBar.value = startingHealth;
 
+        shieldBar.maxValue = maxShield;
+        shieldBar.value = 0;
+        shield = 0;
+
         invincible = false;
     }
 
@@ -35,13 +41,13 @@ public class PlayerHealth : Health {
     {
         if (!invincible)
         {
-            if (armor < amount)
+            if (shield < amount)
             {
-                amount -= armor;
-                armor = 0;
+                amount -= shield;
+                shield = 0;
             } else
             {
-                armor -= amount;
+                shield -= amount;
                 amount = 0;
             }
 
@@ -71,7 +77,10 @@ public class PlayerHealth : Health {
 
     public void AddArmor(int amount)
     {
-        armor += amount;
+        if (shield + amount >= maxShield)
+            shield = maxShield;
+        else
+            shield += amount;
 
         updateArmorBar();
     }
@@ -91,7 +100,7 @@ public class PlayerHealth : Health {
 
     private void updateArmorBar()
     {
-        armorBar.value = armor;
+        shieldBar.value = shield;
     }
 
     public bool isInvincible()

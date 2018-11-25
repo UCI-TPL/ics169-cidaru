@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Chest : MonoBehaviour {
+
     private bool opened;
 
-    private void Awake()
+    public virtual void Awake()
     {
         opened = false;
     }
@@ -19,7 +20,7 @@ public class Chest : MonoBehaviour {
         }
     }
 
-    private void giveAward(GameObject player)
+    public virtual void giveAward(GameObject player)
     {
         int rand = Random.Range(0, 3);
 
@@ -31,7 +32,5 @@ public class Chest : MonoBehaviour {
             player.GetComponent<BombController>().slowBomb.increaseMaxCharge();
         else if (rand == 3)
             player.GetComponent<GunController>().vortex.increaseMaxCharge();
-
-        print("mah dood");
     }
 }

@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour {
             if (Input.GetKey(KeyCode.Tab))
             {
                 map.SetActive(true);
-                print("yo");
             }
 
             if (Input.GetKeyUp(KeyCode.Tab))

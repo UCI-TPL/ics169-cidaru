@@ -19,6 +19,7 @@ public class GunController : MonoBehaviour {
 
     public SpriteRenderer gunSprite;
     public Transform gunPoint;
+    public float intialGunPointX;
 
     public int setMaxAmmo = 10;
     public float reloadTime = 3;
@@ -54,6 +55,7 @@ public class GunController : MonoBehaviour {
 
         initAbilityCharges();
 
+        intialGunPointX = gunPoint.localPosition.x;
     }
 
     // Update is called once per frame
@@ -111,10 +113,12 @@ public class GunController : MonoBehaviour {
             if (gun.rotation.eulerAngles.z > 180)
             {
                 gunSprite.flipY = true;
+                gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
             }
             else if (gun.rotation.eulerAngles.z < 180)
             {
                 gunSprite.flipY = false;
+                gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
             }
         }
     }

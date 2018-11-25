@@ -13,7 +13,7 @@ public class StasisController : MonoBehaviour {
 
     private float stasisTickTimer;
     private int tickAmount;
-    private List<Stasis> currentStasis;
+    private List<Stasis> currentStasis = new List<Stasis>();
 
     private Health hp;
 

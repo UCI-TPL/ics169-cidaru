@@ -45,7 +45,9 @@ GameObject:
   - component: {fileID: 114535855920386582}
   - component: {fileID: 114882582479683330}
   - component: {fileID: 114842247401857972}
+  - component: {fileID: 114158586271971448}
   - component: {fileID: 95939814352382874}
+  - component: {fileID: 114856195582425714}
   m_Layer: 12
   m_Name: Tasmanian Enemy
   m_TagString: Enemy
@@ -89,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1400548801164078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.69, y: -1.9032719, z: 0}
+  m_LocalPosition: {x: 3.2654915, y: 0.71947265, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4735146817757104}
@@ -213,6 +215,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114158586271971448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400548801164078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7caf4b0567fe7b54c9768dbca8f5bcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114209995051989146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,6 +289,19 @@ MonoBehaviour:
   weapon: {fileID: 1026239751656366}
   whirlwindLimit: 5
   tasmanian: 1
+--- !u!114 &114856195582425714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1400548801164078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759660f46d9c80f41af69630682a3d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 1347093599493600, guid: 9052feb30ca8bf34f8462d1d1919df30, type: 2}
+  probability: 100
 --- !u!114 &114882582479683330
 MonoBehaviour:
   m_ObjectHideFlags: 1

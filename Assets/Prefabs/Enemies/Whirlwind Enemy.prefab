@@ -62,6 +62,7 @@ GameObject:
   - component: {fileID: 114449949451354938}
   - component: {fileID: 114269547096637942}
   - component: {fileID: 114518146656583420}
+  - component: {fileID: 114849040481960048}
   - component: {fileID: 95310589123570554}
   m_Layer: 12
   m_Name: Whirlwind Enemy
@@ -293,6 +294,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   currentHealth: 0
+--- !u!114 &114849040481960048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961794851364124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7caf4b0567fe7b54c9768dbca8f5bcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114980915944090140
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -19,11 +19,13 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth health;
     private float invincibilityTimer;
 	private Animator anim;
+    private Rigidbody2D rb2d;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-		anim = this.GetComponent<Animator> ();
+		anim = this.GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -97,7 +99,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(x, y, 0);
         movement = movement.normalized * currentSpeed * Time.deltaTime;
-        gameObject.transform.Translate(movement);
+        rb2d.MovePosition(transform.position + movement);
+        //gameObject.transform.Translate(movement);
     }
 
     public void startInvincibility()

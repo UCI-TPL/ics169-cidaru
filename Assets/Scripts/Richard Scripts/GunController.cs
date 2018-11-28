@@ -15,11 +15,16 @@ public class GunController : MonoBehaviour {
     public GameObject bullet;
     public GameObject flame;
     public GameObject electric;
+
+    public Weapon normalGun;
+    public Weapon flamethrower;
+    public Weapon stunGun;
+
     public Ability vortex;
 
     public SpriteRenderer gunSprite;
     public Transform gunPoint;
-    public float intialGunPointX;
+    private float intialGunPointX;
 
     public int setMaxAmmo = 10;
     public float reloadTime = 3;
@@ -39,12 +44,11 @@ public class GunController : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        ammoUI = GameObject.Find("Ammo Panel").GetComponent<AmmoUI>();
+        //ammoUI = GameObject.Find("Ammo Panel").GetComponent<AmmoUI>();
         reloadBarUI = GameObject.Find("Reload Bar");
         reloadSlider = reloadBarUI.GetComponent<Slider>();
 
-        reloadSlider.maxValue = reloadTime;
-        reloadBarUI.SetActive(false);
+        //reloadSlider.maxValue = reloadTime;
 
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
         gunSFX = gun.GetComponent<AudioSource>();
@@ -54,6 +58,10 @@ public class GunController : MonoBehaviour {
         reloading = false;
 
         initAbilityCharges();
+        initWeapons();
+        reloadBarUI.SetActive(false);
+
+        getCurrentWeapon().ActivateWeapon();
 
         intialGunPointX = gunPoint.localPosition.x;
     }
@@ -64,19 +72,32 @@ public class GunController : MonoBehaviour {
         {
             FaceMouse();
 
-            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
-                currentGun = nextWeapon();
-            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
-                currentGun = previousWeapon();
-
-            if ((Input.GetKeyDown(KeyCode.R) && currentGun == GunTypes.Normal && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && !reloading)
             {
-                StartCoroutine(Reload());
+                getCurrentWeapon().DeactiveWeapon();
+                currentGun = nextWeapon();
+                getCurrentWeapon().ActivateWeapon();
+            }
+            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0 && !reloading)
+            {
+                getCurrentWeapon().DeactiveWeapon();
+                currentGun = previousWeapon();
+                getCurrentWeapon().ActivateWeapon();
+            }
+
+            if ((Input.GetKeyDown(KeyCode.R) && getCurrentWeapon().CheckReloadable() && !reloading) || (getCurrentWeapon().CheckAutoReload() && !reloading))
+            {
+                reloading = true;
+                getCurrentWeapon().Reload(this);
+                //StartCoroutine(Reload());
             }
 
             if (reloading)
             {
                 reloadSlider.value = reloadSlider.value - Time.deltaTime;
+
+                if (reloadSlider.value <= 0)
+                    reloading = false;
             }
 
             // Player Shoot Code
@@ -91,10 +112,8 @@ public class GunController : MonoBehaviour {
                 ElectricShoot();
             }
             
-            if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())//manaController.getCurrentMana() > vortexManaCost)
+            if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())
             {
-                //manaController.useMana(vortexManaCost);
-
                 vortex.PutOnCooldown();
 
                 GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
@@ -143,19 +162,14 @@ public class GunController : MonoBehaviour {
         reloading = false;
     }
 
-    public string getCurrentAmmoState()
-    {
-        if (reloading)
-        {
-            return "Reloading";
-        } else
-        {
-            return "" + currentAmmo;
-        }
-    }
-
     private void NormalShoot()
     {
+        if (Input.GetMouseButtonDown(0) && normalGun.CheckClip() && !reloading)
+        {
+            normalGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
+        }
+
+        /*
         if (Input.GetMouseButtonDown(0) && currentAmmo > 0 && !reloading)
         {
             ammoUI.updateAmmo();
@@ -164,28 +178,40 @@ public class GunController : MonoBehaviour {
             gunSFX.Play();
             GameObject newBullet = Instantiate(bullet, gunPoint.position, gun.rotation);
             newBullet.tag = "Player Bullet";
-        }
+        }*/
     }
 
     private void FlameShoot()
     {
+        if (Input.GetMouseButton(0) && flamethrower.CheckClip() && !reloading)
+        {
+            flamethrower.Shoot(gunPoint.position, gun.rotation, gunSFX);
+        }
+
+        /*
         if (Input.GetMouseButton(0))
         {
             GameObject newFlame = Instantiate(flame, gunPoint.position, gun.rotation);
             newFlame.tag = "Player Bullet";
-        }
+        }*/
     }
 
     private void ElectricShoot()
     {
+        if (Input.GetMouseButtonDown(0) && stunGun.CheckClip() && !reloading)
+        {
+            stunGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
+        }
+
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             GameObject newElect = Instantiate(electric, gunPoint.position, gun.rotation);
             newElect.tag = "Player Bullet";
-        }
+        }*/
     }
 
-    public GunTypes nextWeapon()
+    private GunTypes nextWeapon()
     {
         switch (currentGun)
         {
@@ -200,7 +226,7 @@ public class GunController : MonoBehaviour {
         }
     }
 
-    public GunTypes previousWeapon()
+    private GunTypes previousWeapon()
     {
         switch (currentGun)
         {
@@ -212,11 +238,33 @@ public class GunController : MonoBehaviour {
                 return GunTypes.Fire;
             default:
                 return GunTypes.Normal;
+        }
+    }
+
+    private Weapon getCurrentWeapon()
+    {
+        switch (currentGun)
+        {
+            case GunTypes.Normal:
+                return normalGun;
+            case GunTypes.Fire:
+                return flamethrower;
+            case GunTypes.Thunder:
+                return stunGun;
+            default:
+                return normalGun;
         }
     }
 
     private void initAbilityCharges()
     {
         vortex.initAbility();
+    }
+
+    private void initWeapons()
+    {
+        normalGun.intializeWeapon();
+        flamethrower.intializeWeapon();
+        stunGun.intializeWeapon();
     }
 }

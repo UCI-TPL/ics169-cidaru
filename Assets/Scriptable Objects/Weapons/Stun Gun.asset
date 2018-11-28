@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd515c7460a64594b9d76d464e40ba17, type: 3}
+  m_Name: Stun Gun
+  m_EditorClassIdentifier: 
+  weaponName: Stun Gun
+  weaponDescription: Zappity Zap Zap
+  weaponBullet: {fileID: 1408986520318600, guid: 5a4cf3675343ba8468e8133d2f9bd108,
+    type: 2}
+  setMaxClipAmmo: 6
+  reloadTime: 1
+  reloadUIName: Reload Bar
+  usesBullets: 1
+  ammoUIName: Electric Ammo Panel
+  sfx: {fileID: 8300000, guid: 19a464df3e05efd47854119f799f91e7, type: 3}
+  currentClipAmmo: 0
+  currentTotalAmmo: 0

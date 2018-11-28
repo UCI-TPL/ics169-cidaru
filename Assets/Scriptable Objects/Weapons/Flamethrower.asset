@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd515c7460a64594b9d76d464e40ba17, type: 3}
+  m_Name: Flamethrower
+  m_EditorClassIdentifier: 
+  weaponName: Flamethrower
+  weaponDescription: Burn Baby Burn
+  weaponBullet: {fileID: 1696281229995658, guid: e81f95421993ffe469b16698d097c208,
+    type: 2}
+  setMaxClipAmmo: 100
+  reloadTime: 1
+  reloadUIName: Reload Bar
+  usesBullets: 0
+  ammoUIName: Fire Ammo UI
+  sfx: {fileID: 8300000, guid: d4f226fc1a0c8a8499e658b9f809ad97, type: 3}
+  currentClipAmmo: 0
+  currentTotalAmmo: 0

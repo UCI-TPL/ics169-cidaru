@@ -18,7 +18,7 @@ public class ElectricField : MonoBehaviour {
 
         foreach (Collider2D hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject.tag.Contains("Enemy"))
+            if (hitCollider.gameObject.tag == "Enemy")
             {
                 if (!hitCollider.GetComponent<StasisController>().stunned())
                 {

@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114239725798728344}
   m_Layer: 12
   m_Name: Turret - Basic
-  m_TagString: Enemy
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 114515711325072268}
   m_Layer: 12
   m_Name: Turret - Basic (1)
-  m_TagString: Enemy
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1203,6 +1203,9 @@ MonoBehaviour:
   - {fileID: 1645212401047898}
   - {fileID: 1894301265478520}
   - {fileID: 1559491575699828}
+  turrets:
+  - {fileID: 1691295349181078}
+  - {fileID: 1098224618752210}
   doorColliders:
   - {fileID: 1014002138533928}
 --- !u!114 &114239725798728344

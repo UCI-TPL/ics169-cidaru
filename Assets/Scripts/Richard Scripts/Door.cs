@@ -5,10 +5,12 @@ using UnityEngine;
 public class Door : MonoBehaviour {
     public List<GameObject> enemySpawners;
 
+    public List<GameObject> turrets;
+
     public List<GameObject> doorColliders;
 
     private bool active;
-    private List<GameObject> enemies;
+    private List<GameObject> enemies = new List<GameObject>();
 
     private SpriteRenderer roomSprite;
 
@@ -19,6 +21,11 @@ public class Door : MonoBehaviour {
         foreach (GameObject enemy in enemySpawners)
         {
             enemy.SetActive(false);
+        }
+
+        foreach (GameObject turret in turrets)
+        {
+            turret.SetActive(false);
         }
 
         foreach (GameObject dc in doorColliders)
@@ -46,6 +53,8 @@ public class Door : MonoBehaviour {
             {
                 roomSprite.enabled = true;
             }
+
+            checkTurrets();
 
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
@@ -93,6 +102,24 @@ public class Door : MonoBehaviour {
         foreach (GameObject dc in doorColliders)
         {
             dc.SetActive(false);
+        }
+    }
+
+    public void checkTurrets()
+    {
+        List<GameObject> globalTurrets = new List<GameObject>();
+        globalTurrets.AddRange(GameObject.FindGameObjectsWithTag("Turret"));
+        
+
+        foreach (GameObject globalTurret in globalTurrets)
+        {
+            if (!turrets.Contains(globalTurret))
+                globalTurret.SetActive(false);
+        }
+
+        foreach (GameObject turret in turrets)
+        {
+            turret.SetActive(true);
         }
     }
 }

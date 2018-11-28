@@ -27,6 +27,6 @@ public class Weapon : ScriptableObject
 
     public bool CheckClip()
     {
-        return (currentClipAmmo < setMaxClipAmmo && currentTotalAmmo > 0)
+        return (currentClipAmmo < setMaxClipAmmo && currentTotalAmmo > 0);
     }
 }

@@ -64,8 +64,6 @@ public class GunController : MonoBehaviour {
         {
             FaceMouse();
 
-            print(Input.GetAxisRaw("Mouse ScrollWheel"));
-
             if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
                 currentGun = nextWeapon();
             else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)

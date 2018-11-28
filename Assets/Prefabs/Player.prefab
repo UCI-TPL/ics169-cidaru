@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 114839942819917348}
   - component: {fileID: 114889018061775954}
   - component: {fileID: 114490281219575948}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -380,7 +380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 3.5
-  setSpeedUpTimer: 0.1
+  setSpeedUpTimer: 0.15
+  setCooldownTimer: 0.5
+  cooldownUI: {fileID: 0}
 --- !u!114 &114649309819767184
 MonoBehaviour:
   m_ObjectHideFlags: 1

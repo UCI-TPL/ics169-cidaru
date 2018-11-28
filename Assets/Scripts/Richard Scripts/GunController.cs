@@ -64,10 +64,12 @@ public class GunController : MonoBehaviour {
         {
             FaceMouse();
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                //changeGun();
-            }
+            print(Input.GetAxisRaw("Mouse ScrollWheel"));
+
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
+                currentGun = nextWeapon();
+            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
+                currentGun = previousWeapon();
 
             if ((Input.GetKeyDown(KeyCode.R) && currentGun == GunTypes.Normal && currentAmmo != setMaxAmmo && !reloading) || (currentAmmo == 0 && !reloading))
             {
@@ -185,14 +187,33 @@ public class GunController : MonoBehaviour {
         }
     }
 
-    private void changeGun()
+    public GunTypes nextWeapon()
     {
-        if (currentGun == GunTypes.Normal)
+        switch (currentGun)
         {
-            currentGun = GunTypes.Fire;
-        } else if (currentGun == GunTypes.Fire)
+            case GunTypes.Normal:
+                return GunTypes.Fire;
+            case GunTypes.Fire:
+                return GunTypes.Thunder;
+            case GunTypes.Thunder:
+                return GunTypes.Normal;
+            default:
+                return GunTypes.Normal;
+        }
+    }
+
+    public GunTypes previousWeapon()
+    {
+        switch (currentGun)
         {
-            currentGun = GunTypes.Normal;
+            case GunTypes.Normal:
+                return GunTypes.Thunder;
+            case GunTypes.Fire:
+                return GunTypes.Normal;
+            case GunTypes.Thunder:
+                return GunTypes.Fire;
+            default:
+                return GunTypes.Normal;
         }
     }
 

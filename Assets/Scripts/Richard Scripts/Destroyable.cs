@@ -33,7 +33,7 @@ public class Destroyable : MonoBehaviour {
 	void Update () {
 		if (hp.dead())
         {
-            Destroy(gameObject);
+            Death();
         }
 
         if (currentState == DestroyableRotatingState.Succing)
@@ -83,5 +83,10 @@ public class Destroyable : MonoBehaviour {
         transform.rotation = Quaternion.identity;
 
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public virtual void Death()
+    {
+        Destroy(gameObject);
     }
 }

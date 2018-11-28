@@ -6,18 +6,32 @@ public class Chest : MonoBehaviour {
 
     private bool opened;
 
+    private bool nextTo;
+    private GameObject player;
+
     public virtual void Awake()
     {
         opened = false;
+        nextTo = false;
+        player = GameObject.Find("Player");
+    }
+
+    public void Update()
+    {
+        if (nextTo && Input.GetKeyDown(KeyCode.E))
+        {
+            giveAward(player);
+            opened = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && Input.GetKeyDown(KeyCode.E) && !opened)
-        {
-            opened = true;
-            giveAward(collision.gameObject);
-        }
+
+        if (collision.tag == "Player" && !opened)
+            nextTo = true;
+        else
+            nextTo = false;
     }
 
     public virtual void giveAward(GameObject player)

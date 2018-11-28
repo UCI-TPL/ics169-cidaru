@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4533932721395510}
   - component: {fileID: 114373828707280442}
   m_Layer: 0
-  m_Name: Ranged Spawner (3)
+  m_Name: Ranged Spawner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -91,6 +91,22 @@ GameObject:
   - component: {fileID: 114735293194195624}
   m_Layer: 0
   m_Name: Ranged Spawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1169897295758536
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4421370368039342}
+  - component: {fileID: 114306772486743146}
+  m_Layer: 0
+  m_Name: Ranged Spawner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -376,6 +392,7 @@ Transform:
   - {fileID: 4545545861587170}
   - {fileID: 4998693332254762}
   - {fileID: 4586547506960040}
+  - {fileID: 4421370368039342}
   - {fileID: 4533932721395510}
   m_Father: {fileID: 4953439184601070}
   m_RootOrder: 5
@@ -392,6 +409,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4287553642663416}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4421370368039342
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169897295758536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4287553642663416}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4515372586904406
 Transform:
@@ -412,12 +442,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1083484735030522}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4287553642663416}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4545545861587170
 Transform:
@@ -1255,9 +1285,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f18a50a31f34fe41b2cba0bf6d6bf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawners: []
+  enemySpawners:
+  - {fileID: 1940008663399994}
+  - {fileID: 1113618245811466}
+  - {fileID: 1169897295758536}
+  - {fileID: 1083484735030522}
   doorColliders:
   - {fileID: 1182660817934272}
+--- !u!114 &114306772486743146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169897295758536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a382a6b82287a243825636834da6281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1078318880203492, guid: 7ada9be20db1c0a4e8be5473a40b599c, type: 2}
 --- !u!114 &114309123722350730
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour {
         // Checks if enemy is dead and destroys them
         if (hp.dead())
         {
-            //GetComponent<DropController>().calculateDrop();
+            GetComponent<DropController>().calculateDrop();
             Destroy(gameObject);
         }
     }

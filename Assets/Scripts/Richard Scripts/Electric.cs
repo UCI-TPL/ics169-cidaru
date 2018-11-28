@@ -42,7 +42,7 @@ public class Electric : Projectile {
         }
         else if (col.tag == "Obstacle" && tag != "Rotating Bullet")
         {
-            GameObject ef = Instantiate(electricField, col.transform.position, Quaternion.identity);
+            GameObject ef = Instantiate(electricField, transform.position, Quaternion.identity);
             ef.GetComponent<ElectricField>().setDamage(dmg);
             ef.GetComponent<ElectricField>().setStunTime(stunTimer);
             Destroy(gameObject);

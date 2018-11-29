@@ -25,6 +25,11 @@ public class Bullet : Projectile {
 
             Instantiate(bulletEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        } else if (col.tag == "Enemy" && tag == "Rotating Bullet") {
+            col.GetComponent<Health>().TakeDamage(dmg);
+
+            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         } else if (col.tag == "Obstacle" && tag != "Rotating Bullet")
         {
             Instantiate(bulletEffect, transform.position, Quaternion.identity);

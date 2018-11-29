@@ -22,11 +22,18 @@ public class GameManager : MonoBehaviour {
 
     public GameObject map;
 
+    public float cameraPanTime = 1f;
+    public float roomStartDelay = 1f;
+
+    [HideInInspector]
+    public bool cameraPanning = false;
+
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
     private Health playerHp;
 
     private Transform minimapPos;
+    private Transform cameraColPos;
 
     private Fader fade;
 
@@ -42,6 +49,7 @@ public class GameManager : MonoBehaviour {
         playerDialogueBubble = GameObject.Find("Player Text Bubble").GetComponent<DialogTextBox>();
 
         minimapPos = GameObject.Find("Minimap Objects").transform;
+        cameraColPos = GameObject.Find("Camera Collider").transform;
 
         fade = GetComponent<Fader>();
 
@@ -81,7 +89,12 @@ public class GameManager : MonoBehaviour {
 
     public void updateMinimapPosition(Vector3 newPos)
     {
-        minimapPos.position = newPos;
+        if (minimapPos.position != newPos)
+        {
+            minimapPos.position = newPos;
+
+            StartCoroutine(PanCamera(newPos));
+        }
     }
 
     public void LoadNextLevel()
@@ -100,6 +113,31 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1;
 
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    IEnumerator PanCamera(Vector3 nextPos)
+    {
+        cameraPanning = true;
+
+        Vector3 currentPos = cameraColPos.position;
+        float t = 0f;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / cameraPanTime;
+
+            cameraColPos.position = Vector3.Lerp(currentPos, nextPos, t);
+
+            yield return null;
+        }
+
+        cameraPanning = false;
+
+        Time.timeScale = 0;
+
+        yield return new WaitForSecondsRealtime(roomStartDelay);
+
+        Time.timeScale = 1;
     }
 
     public bool getDialogue()

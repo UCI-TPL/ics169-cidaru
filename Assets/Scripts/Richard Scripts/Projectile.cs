@@ -82,7 +82,7 @@ public class Projectile : MonoBehaviour {
         else if (currentMovement == ProjectileMovementState.Rotato)
         {
             radius = Vector3.Distance(transform.position, center);
-            if (radius >= 0.5f)
+            if (radius >= 0.3f)
             {
                 radius -= 0.01f;
             }

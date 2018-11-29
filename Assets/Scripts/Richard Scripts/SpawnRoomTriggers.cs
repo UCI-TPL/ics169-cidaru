@@ -8,7 +8,20 @@ public class SpawnRoomTriggers : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
+            disableTurret();
             GameManager.gm.updateMinimapPosition(transform.parent.position);
+        }
+    }
+
+    public void disableTurret()
+    {
+        List<GameObject> globalTurrets = new List<GameObject>();
+        globalTurrets.AddRange(GameObject.FindGameObjectsWithTag("Turret"));
+
+
+        foreach (GameObject globalTurret in globalTurrets)
+        {
+            globalTurret.SetActive(false);
         }
     }
 }

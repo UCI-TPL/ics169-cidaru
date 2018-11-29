@@ -11,6 +11,7 @@ public class Door : MonoBehaviour {
 
     private bool active;
     private List<GameObject> enemies = new List<GameObject>();
+    private bool cleared;
 
     private SpriteRenderer roomSprite;
 
@@ -35,6 +36,8 @@ public class Door : MonoBehaviour {
 
         roomSprite = transform.parent.Find("Minimap Sprite").GetComponent<SpriteRenderer>();
         roomSprite.enabled = false;
+
+        cleared = false;
     }
 
     private void Update()
@@ -54,37 +57,40 @@ public class Door : MonoBehaviour {
                 roomSprite.enabled = true;
             }
 
-            checkTurrets();
+            disableTurrets();
 
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
-            if (!isCleared() && !active)
+            if (!cleared && !active)
             {
-                active = true;
-
-                foreach (GameObject enemy in enemySpawners)
-                {
-                    enemy.SetActive(true);
-                }
-
-                enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-
-                foreach (GameObject dc in doorColliders)
-                {
-                    dc.SetActive(true);
-                }
+                StartCoroutine(SpawnRoom());
             }
         }
     }
 
-    public bool isCleared()
+    IEnumerator SpawnRoom()
     {
-        foreach (GameObject enemySpawner in enemySpawners)
+        while (GameManager.gm.cameraPanning)
+            yield return null;
+
+        active = true;
+
+        foreach (GameObject enemy in enemySpawners)
         {
-            return enemySpawner == null;
+            enemy.SetActive(true);
         }
 
-        return false;
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+
+        foreach (GameObject dc in doorColliders)
+        {
+            dc.SetActive(true);
+        }
+
+        foreach (GameObject turret in turrets)
+        {
+            turret.SetActive(true);
+        }
     }
 
     public void checkRoomCleared()
@@ -98,6 +104,7 @@ public class Door : MonoBehaviour {
         }
 
         active = false;
+        cleared = true;
 
         foreach (GameObject dc in doorColliders)
         {
@@ -105,21 +112,16 @@ public class Door : MonoBehaviour {
         }
     }
 
-    public void checkTurrets()
+    public void disableTurrets()
     {
         List<GameObject> globalTurrets = new List<GameObject>();
         globalTurrets.AddRange(GameObject.FindGameObjectsWithTag("Turret"));
-        
+
 
         foreach (GameObject globalTurret in globalTurrets)
         {
             if (!turrets.Contains(globalTurret))
                 globalTurret.SetActive(false);
-        }
-
-        foreach (GameObject turret in turrets)
-        {
-            turret.SetActive(true);
         }
     }
 }

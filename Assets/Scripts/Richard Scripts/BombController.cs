@@ -13,7 +13,7 @@ public class BombController : MonoBehaviour {
 
     private void Update()
     {
-        if (Time.timeScale != 0)
+        if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && babyBomb.isAbilityReady())
             {

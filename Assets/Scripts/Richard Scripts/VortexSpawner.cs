@@ -36,6 +36,7 @@ public class VortexSpawner : MonoBehaviour {
         // FIX THIS...DETERMINE WHAT WILL POP A VORTEX
         if (col.tag != "Player" && col.tag != "Time Area" && col.tag != "Baby" && col.tag != "Portal" && col.tag != "Minimap" && col.tag != "Spawn Point" && col.tag != "Interactable" && col.tag != "Pet")
         {
+            print(col.tag);
             Instantiate(vortex, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

@@ -14,7 +14,7 @@ public class InteractableObject : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !GameManager.gm.getDialogue())
+        if (Input.GetKeyDown(KeyCode.E) && !GameManager.gm.getDialogue() && nextTo)
         {
             GameManager.gm.startDialogue(textFile);
         }

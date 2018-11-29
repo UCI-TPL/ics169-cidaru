@@ -89,8 +89,10 @@ public class MeleeWeapon : MonoBehaviour {
         currentState = WeaponState.Succing;
         transform.rotation = Quaternion.identity;
 
-        GetComponent<BoxCollider2D>().isTrigger = true;
-        GetComponent<CircleCollider2D>().isTrigger = true;
+        if (GetComponent<BoxCollider2D>())
+            GetComponent<BoxCollider2D>().isTrigger = true;
+        if (GetComponent<CircleCollider2D>())
+         GetComponent<CircleCollider2D>().isTrigger = true;
         gameObject.layer = 11;
     }
 
@@ -100,8 +102,10 @@ public class MeleeWeapon : MonoBehaviour {
 
         transform.rotation = Quaternion.identity;
 
-        GetComponent<BoxCollider2D>().isTrigger = false;
-        GetComponent<CircleCollider2D>().isTrigger = false;
+        if (GetComponent<BoxCollider2D>())
+            GetComponent<BoxCollider2D>().isTrigger = false;
+        if (GetComponent<CircleCollider2D>())
+            GetComponent<CircleCollider2D>().isTrigger = false;
         gameObject.layer = 12;
     }
 

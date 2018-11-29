@@ -26,17 +26,115 @@ public class Weapon : ScriptableObject
     public int currentTotalAmmo;
 
     private Slider reloadSlider;
-    private Coroutine reloadFunction;
     private GameObject ammoUIObject;
     private Slider ammoSlider;
     private AmmoUI ammoUI;
 
-    public void Reload(MonoBehaviour controller)
+    public void ActivateWeapon()
     {
-        reloadFunction = controller.StartCoroutine(StartReload());
+        ammoUIObject.SetActive(true);
     }
 
-    private IEnumerator StartReload()
+    public void DeactiveWeapon()
+    {
+        ammoUIObject.SetActive(false);
+    }
+
+    public void intializeWeapon()
+    {
+        currentClipAmmo = setMaxClipAmmo; // temp
+        currentTotalAmmo = setMaxClipAmmo * 100;
+
+        reloadSlider = GameObject.Find(reloadUIName).GetComponent<Slider>();
+
+        ammoUIObject = GameObject.Find(ammoUIName);
+
+        if (usesBullets)
+        {
+            ammoUI = ammoUIObject.GetComponent<AmmoUI>();
+        }
+        else
+        {
+            ammoSlider = ammoUIObject.GetComponent<Slider>();
+            ammoSlider.maxValue = setMaxClipAmmo;
+            ammoSlider.value = setMaxClipAmmo; // temp
+        }
+
+        reloadSlider.gameObject.SetActive(false);
+        ammoUIObject.SetActive(false);
+    }
+
+    public bool CheckClip()
+    {
+        return currentClipAmmo > 0;
+    }
+
+    public void Shoot(Vector3 pos, Quaternion rot, AudioSource aController)
+    {
+        if (usesBullets)
+            ammoUI.updateAmmo();
+        else
+            ammoSlider.value--;
+
+        currentClipAmmo--;
+
+        aController.clip = sfx;
+
+        aController.Play();
+
+        GameObject newBullet = Instantiate(weaponBullet, pos, rot);
+        newBullet.tag = "Player Bullet";
+    }
+
+    #region Normal Bullet Functions
+    public void StartNormalReload(MonoBehaviour controller)
+    {
+        controller.StartCoroutine(NormalReload());
+    }
+
+    IEnumerator NormalReload()
+    {
+        ammoUI.clearAmmo();
+
+        reloadSlider.gameObject.SetActive(true);
+        ammoUIObject.SetActive(false);
+
+        reloadSlider.maxValue = reloadTime;
+        reloadSlider.value = reloadTime;
+
+        yield return new WaitForSeconds(reloadTime);
+        
+        currentClipAmmo = setMaxClipAmmo;
+
+        reloadSlider.gameObject.SetActive(false);
+        ammoUIObject.SetActive(true);
+        
+        ammoUI.reloadAmmo();
+    }
+
+    public bool CheckNormalReloadable()
+    {
+        return currentClipAmmo < setMaxClipAmmo;
+    }
+
+    public bool CheckNormalAutoReload()
+    {
+        return currentClipAmmo == 0;
+    }
+
+    public bool FinishedReloading()
+    {
+        return currentClipAmmo == setMaxClipAmmo;
+    }
+    #endregion Normal Bullet Functions
+
+    #region Elemental Bullet Functions
+    public void StartReload(MonoBehaviour controller)
+    {
+        controller.StartCoroutine(Reload());
+    }
+
+    private IEnumerator Reload()
     {
         if (usesBullets)
             ammoUI.clearAmmo();
@@ -71,12 +169,6 @@ public class Weapon : ScriptableObject
             ammoSlider.value = ammoSlider.maxValue;
     }
 
-    // FOR NORMAL GUN
-    public void InfiniteReload()
-    {
-        currentClipAmmo = setMaxClipAmmo;
-    }
-
     public bool CheckReloadable()
     {
         return (currentClipAmmo < setMaxClipAmmo && currentTotalAmmo > 0);
@@ -87,63 +179,9 @@ public class Weapon : ScriptableObject
         return currentClipAmmo == 0 && currentTotalAmmo > 0;
     }
 
-    public bool CheckClip()
-    {
-        return currentClipAmmo > 0;
-    }
-
-    public void Shoot(Vector3 pos, Quaternion rot, AudioSource aController)
-    {
-        if (usesBullets)
-            ammoUI.updateAmmo();
-        else
-            ammoSlider.value--;
-
-        currentClipAmmo--;
-
-        aController.clip = sfx;
-        
-        aController.Play();
-
-        GameObject newBullet = Instantiate(weaponBullet, pos, rot);
-        newBullet.tag = "Player Bullet";
-    }
-
     public void AddAmmo(int ammo)
     {
         currentTotalAmmo += ammo;
     }
-
-    public void ActivateWeapon()
-    {
-        ammoUIObject.SetActive(true);
-    }
-
-    public void DeactiveWeapon()
-    {
-        ammoUIObject.SetActive(false);
-    }
-
-    public void intializeWeapon()
-    {
-        currentClipAmmo = setMaxClipAmmo; // temp
-        currentTotalAmmo = setMaxClipAmmo * 100;
-
-        reloadSlider = GameObject.Find(reloadUIName).GetComponent<Slider>();
-
-        ammoUIObject = GameObject.Find(ammoUIName);
-
-        if (usesBullets)
-        {
-            ammoUI = ammoUIObject.GetComponent<AmmoUI>();
-        }
-        else
-        {
-            ammoSlider = ammoUIObject.GetComponent<Slider>();
-            ammoSlider.maxValue = setMaxClipAmmo;
-            ammoSlider.value = setMaxClipAmmo; // temp
-        }
-
-        ammoUIObject.SetActive(false);
-    }
+    #endregion Elemental Bullet Functions
 }

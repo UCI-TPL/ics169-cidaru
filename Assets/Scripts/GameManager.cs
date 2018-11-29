@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
     private Health playerHp;
-    private GunController gun;
+
     private Transform minimapPos;
 
     private Fader fade;
@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour {
 
         player = GameObject.Find("Player");
         playerHp = player.GetComponent<Health>();
-        gun = player.GetComponent<GunController>();
 
         playerDialogueBubble = GameObject.Find("Player Text Bubble").GetComponent<DialogTextBox>();
 

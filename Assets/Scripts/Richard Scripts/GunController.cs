@@ -52,7 +52,7 @@ public class GunController : MonoBehaviour {
 
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
         gunSFX = gun.GetComponent<AudioSource>();
-        currentGun = GunTypes.Thunder;
+        currentGun = GunTypes.Normal;
 
         currentAmmo = setMaxAmmo;
         reloading = false;

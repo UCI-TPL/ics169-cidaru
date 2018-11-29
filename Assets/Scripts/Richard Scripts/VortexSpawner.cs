@@ -34,7 +34,7 @@ public class VortexSpawner : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D col)
     {
         // FIX THIS...DETERMINE WHAT WILL POP A VORTEX
-        if (col.tag != "Player" && col.tag != "Time Area" && col.tag != "Baby" && col.tag != "Portal" && col.tag != "Minimap" && col.tag != "Spawn Point" && col.tag != "Interactable")
+        if (col.tag != "Player" && col.tag != "Time Area" && col.tag != "Baby" && col.tag != "Portal" && col.tag != "Minimap" && col.tag != "Spawn Point" && col.tag != "Interactable" && col.tag != "Pet")
         {
             Instantiate(vortex, transform.position, Quaternion.identity);
             Destroy(gameObject);

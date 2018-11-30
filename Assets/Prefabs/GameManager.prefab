@@ -180,6 +180,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177a9830a1591b34c873362b8f73662c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blrRooms:
+  - {fileID: 1875118270517730, guid: 49cdfee4cd774f34ea8a4142d2722d8d, type: 2}
+  tlbRooms:
+  - {fileID: 1220553095663088, guid: fca7f1e5f16b8d64897bc5c217f39f42, type: 2}
+  tlrRooms:
+  - {fileID: 1112608690973088, guid: aa9f177e21b6ac342a6bb23a7a471952, type: 2}
+  trbRooms:
+  - {fileID: 1607282900879394, guid: d070dcb01dd8e65478d83e66ae50497b, type: 2}
   blRooms:
   - {fileID: 1634888721377920, guid: 3ede6766919e8124e9b82c0b7b5e2764, type: 2}
   brRooms:
@@ -200,7 +208,7 @@ MonoBehaviour:
   - {fileID: 1958166278497664, guid: 7db649801d4d6f94bbd5c6c36f498d2c, type: 2}
   rRooms:
   - {fileID: 1719000230634354, guid: 289217769811a2149ac94880e1bfd72e, type: 2}
-  minRooms: 10
+  minRooms: 20
   maxRooms: 30
   rooms: []
   waitTime: 30
@@ -245,6 +253,9 @@ MonoBehaviour:
   gameOverMenu: {fileID: 0}
   cursor: {fileID: 2800000, guid: 56f9403f4643f89468b3eb93cb3c06a5, type: 3}
   map: {fileID: 0}
+  cameraPanTime: 1
+  roomStartDelay: 1
+  cameraPanning: 0
 --- !u!114 &114631073505308308
 MonoBehaviour:
   m_ObjectHideFlags: 1

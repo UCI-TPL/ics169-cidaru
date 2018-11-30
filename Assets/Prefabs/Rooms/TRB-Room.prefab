@@ -1352,23 +1352,31 @@ CompositeCollider2D:
         Y: 10000000
       - X: 100000000
         Y: 10000000
+    - - X: -20000000
+        Y: -70000000
+      - X: -90000000
+        Y: -70000000
+      - X: -90000000
+        Y: 70000000
+      - X: -14375000
+        Y: 70000000
+      - X: -14375000
+        Y: 90000000
+      - X: -100000000
+        Y: 90000000
+      - X: -100000000
+        Y: -80000000
+      - X: -20000000
+        Y: -80000000
     - - X: 100000000
         Y: -10000000
       - X: 90000000
         Y: -10000000
       - X: 90000000
         Y: -70000000
-      - X: -90000000
+      - X: 20000000
         Y: -70000000
-      - X: -90000000
-        Y: 70000000
-      - X: -14375000
-        Y: 70000000
-      - X: -14375000
-        Y: 90000000
-      - X: -100000000
-        Y: 90000000
-      - X: -100000000
+      - X: 20000000
         Y: -80000000
       - X: 100000000
         Y: -80000000
@@ -1380,15 +1388,19 @@ CompositeCollider2D:
       - {x: 9, y: 7}
       - {x: 9, y: 1}
       - {x: 10, y: 1}
-    - - {x: 10, y: -1}
-      - {x: 9, y: -1}
-      - {x: 9, y: -7}
+    - - {x: -2, y: -7}
       - {x: -9, y: -7}
       - {x: -9, y: 7}
       - {x: -1.4375, y: 7}
       - {x: -1.4375, y: 9}
       - {x: -10, y: 9}
       - {x: -10, y: -8}
+      - {x: -2, y: -8}
+    - - {x: 10, y: -1}
+      - {x: 9, y: -1}
+      - {x: 9, y: -7}
+      - {x: 2, y: -7}
+      - {x: 2, y: -8}
       - {x: 10, y: -8}
   m_VertexDistance: 0.0005
 --- !u!95 &95270408184054076
@@ -1515,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706b445b67fcd054487dc087187acd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 0
+  openingDirection: 1
 --- !u!114 &114576654039915166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2474,42 +2486,6 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: -2, y: -8, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: -1, y: -8, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 0, y: -8, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 1, y: -8, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
   - first: {x: 2, y: -8, z: 0}
     second:
       m_TileIndex: 1
@@ -3144,7 +3120,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: d7ba8338ae60c4a4ea7dbedc27aa1434, type: 2}
-  - m_RefCount: 59
+  - m_RefCount: 55
     m_Data: {fileID: 11400000, guid: d74c15576fcff6d48857cb950f61dffb, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: f329c20d38815204f9f8cc927f41a66b, type: 2}
@@ -3159,7 +3135,7 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: 21300526, guid: 643eb032f60d0474f9158f5b21f530ae, type: 3}
-  - m_RefCount: 59
+  - m_RefCount: 55
     m_Data: {fileID: 21300272, guid: 684dcbf0c0c14404e83e5ac99f5d32b3, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300560, guid: 643eb032f60d0474f9158f5b21f530ae, type: 3}
@@ -3172,7 +3148,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 21300600, guid: 643eb032f60d0474f9158f5b21f530ae, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 82
+  - m_RefCount: 78
     m_Data:
       e00: 1
       e01: 0
@@ -3191,7 +3167,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 82
+  - m_RefCount: 78
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}

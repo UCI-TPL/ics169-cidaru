@@ -4,34 +4,14 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour {
 
-    private bool opened;
-
-    private bool nextTo;
-    private GameObject player;
-
-    public virtual void Awake()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        opened = false;
-        nextTo = false;
-        player = GameObject.Find("Player");
-    }
-
-    public void Update()
-    {
-        if (nextTo && Input.GetKeyDown(KeyCode.E))
+        if (collision.gameObject.tag == "Player")
         {
-            giveAward(player);
-            opened = true;
+            giveAward(collision.gameObject);
+
+            Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-
-        if (collision.tag == "Player" && !opened)
-            nextTo = true;
-        else
-            nextTo = false;
     }
 
     public virtual void giveAward(GameObject player)

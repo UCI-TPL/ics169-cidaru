@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 
     private Fader fade;
 
-    private bool playerDialogue;
+    private bool playerTalking;
 
     private void Awake()
     {
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
         Cursor.SetCursor(cursor, new Vector2(512 / 2, 512 / 2), CursorMode.Auto);
 
-        playerDialogue = false;
+        playerTalking = false;
 
         map.SetActive(false);
     }
@@ -139,21 +139,19 @@ public class GameManager : MonoBehaviour {
 
         Time.timeScale = 1;
     }
-
-    public bool getDialogue()
-    {
-        return playerDialogue;
-    }
-
+    
     public void startDialogue(TextAsset txt)
     {
-        playerDialogue = true;
+        if (!playerTalking)
+        {
+            playerTalking = true;
 
-        playerDialogueBubble.startText(txt);
+            playerDialogueBubble.startText(txt);
+        }
     }
 
     public void endDialogue()
     {
-        playerDialogue = false;
+        playerTalking = false;
     }
 }

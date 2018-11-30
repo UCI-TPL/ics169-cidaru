@@ -9,21 +9,12 @@ public class LifeChest : Chest {
     public bool giveHp = true;
     public bool giveArmor = true;
 
-    private PlayerHealth hp;
-
-    public override void Awake()
-    {
-        base.Awake();
-
-        hp = GameObject.Find("Player").GetComponent<PlayerHealth>();
-    }
-
     public override void giveAward(GameObject player)
     {
         if (giveHp)
-            hp.AddArmor(hpAmount);
+            player.GetComponent<PlayerHealth>().Heal(hpAmount);
 
         if (giveArmor)
-            hp.Heal(armorAmount);
+            player.GetComponent<PlayerHealth>().AddArmor(armorAmount);
     }
 }

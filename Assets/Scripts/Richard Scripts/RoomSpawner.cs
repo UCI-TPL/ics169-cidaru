@@ -13,16 +13,14 @@ public class RoomSpawner : MonoBehaviour {
     private int verticalDistance = 16;
     private int horizontalDistance = 20;
 
-    private bool doNothing = false;
-
-    private void Start()
+    private void Awake()
     {
         templates = GameObject.Find("GameManager").GetComponent<RoomTemplates>();
         grid = GameObject.Find("Grid");
 
         spawned = false;
 
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 0.3f);
     }
 
     private void Spawn()
@@ -41,6 +39,8 @@ public class RoomSpawner : MonoBehaviour {
 
             GameObject room = Instantiate(botRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
+
+            botRooms.Clear();
         }
         else if (openingDirection == GameManager.Opening.Top)
         {
@@ -51,6 +51,8 @@ public class RoomSpawner : MonoBehaviour {
 
             GameObject room = Instantiate(topRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
+
+            topRooms.Clear();
         }
         else if (openingDirection == GameManager.Opening.Left)
         {
@@ -61,6 +63,8 @@ public class RoomSpawner : MonoBehaviour {
 
             GameObject room = Instantiate(leftRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
+
+            leftRooms.Clear();
         }
         else if (openingDirection == GameManager.Opening.Right)
         {
@@ -71,6 +75,8 @@ public class RoomSpawner : MonoBehaviour {
 
             GameObject room = Instantiate(rightRooms[rand], transform.position, Quaternion.identity);
             room.transform.parent = grid.transform;
+
+            rightRooms.Clear();
         }
 
         spawned = true;
@@ -91,7 +97,25 @@ public class RoomSpawner : MonoBehaviour {
 
             if (!otherRS.spawned && !spawned)
             {
+                // CHANGE FOR THE FUTRUE
+                
+                GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+                List<RoomSpawner> collidingSpawner = new List<RoomSpawner>();
+
+                foreach (GameObject spawner in spawners)
+                {
+                    if (spawner.transform.position == transform.position)
+                        collidingSpawner.Add(spawner.GetComponent<RoomSpawner>());
+
+                }
+
+                print(collidingSpawner.Count);
+
+                CancelInvoke();
+
                 otherRS.spawned = true;
+                otherRS.CancelInvoke();
 
                 if (spawned)
                     return;
@@ -104,7 +128,9 @@ public class RoomSpawner : MonoBehaviour {
                     rand = Random.Range(0, blRooms.Count);
 
                     GameObject room = Instantiate(blRooms[rand], transform.position, Quaternion.identity);
-                    room.transform.parent = grid.transform;                    
+                    room.transform.parent = grid.transform;
+
+                    blRooms.Clear();
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
@@ -115,6 +141,8 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(brRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
+
+                    brRooms.Clear();
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
@@ -125,6 +153,8 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(tlRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
+
+                    tlRooms.Clear();
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
@@ -135,6 +165,32 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(trRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
+
+                    trRooms.Clear();
+                }
+                else if (checkTB(otherRS.openingDirection))
+                {
+                    List<GameObject> tbRooms = new List<GameObject>();
+                    updateTBRooms(tbRooms);
+
+                    rand = Random.Range(0, tbRooms.Count);
+
+                    GameObject room = Instantiate(tbRooms[rand], transform.position, Quaternion.identity);
+                    room.transform.parent = grid.transform;
+
+                    tbRooms.Clear();
+                }
+                else if (checkLR(otherRS.openingDirection))
+                {
+                    List<GameObject> lrRooms = new List<GameObject>();
+                    updateLRRooms(lrRooms);
+
+                    rand = Random.Range(0, lrRooms.Count);
+
+                    GameObject room = Instantiate(lrRooms[rand], transform.position, Quaternion.identity);
+                    room.transform.parent = grid.transform;
+
+                    lrRooms.Clear();
                 }
             }
 
@@ -164,6 +220,18 @@ public class RoomSpawner : MonoBehaviour {
     {
         return ((openingDirection == GameManager.Opening.Top && dir == GameManager.Opening.Right) ||
             (openingDirection == GameManager.Opening.Right && dir == GameManager.Opening.Top));
+    }
+
+    private bool checkTB(GameManager.Opening dir)
+    {
+        return ((openingDirection == GameManager.Opening.Top && dir == GameManager.Opening.Bottom) ||
+            (openingDirection == GameManager.Opening.Bottom && dir == GameManager.Opening.Top));
+    }
+
+    private bool checkLR(GameManager.Opening dir)
+    {
+        return ((openingDirection == GameManager.Opening.Left && dir == GameManager.Opening.Right) ||
+            (openingDirection == GameManager.Opening.Right && dir == GameManager.Opening.Left));
     }
 
     private bool isTopClear()
@@ -415,6 +483,40 @@ public class RoomSpawner : MonoBehaviour {
                 rooms.Clear();
 
             rooms.AddRange(templates.trRooms);
+        }
+    }
+
+    private void updateTBRooms(List<GameObject> rooms)
+    {
+        if (isLeftClear())
+            rooms.AddRange(templates.tlbRooms);
+
+        if (isRightClear())
+            rooms.AddRange(templates.trbRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.tbRooms);
+        }
+    }
+
+    private void updateLRRooms(List<GameObject> rooms)
+    {
+        if (isTopClear())
+            rooms.AddRange(templates.tlrRooms);
+        
+        if (isBotClear())   
+            rooms.AddRange(templates.blrRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.lrRooms);
         }
     }
 }

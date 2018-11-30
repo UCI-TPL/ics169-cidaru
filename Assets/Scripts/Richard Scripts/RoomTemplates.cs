@@ -20,7 +20,9 @@ public class RoomTemplates : MonoBehaviour {
 
     public int minRooms = 10;
     public int maxRooms = 30;
-    public List<GameObject> rooms;
+
+    [HideInInspector]
+    public List<GameObject> rooms = new List<GameObject>();
 
     public float waitTime;
     public GameObject finalRoomObject;

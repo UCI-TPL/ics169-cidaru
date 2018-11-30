@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomTemplates : MonoBehaviour {
+    public GameObject[] blrRooms;
+    public GameObject[] tlbRooms;
+    public GameObject[] tlrRooms;
+    public GameObject[] trbRooms;
     public GameObject[] blRooms;
     public GameObject[] brRooms;
     public GameObject[] tlRooms;

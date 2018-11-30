@@ -91,11 +91,22 @@ public class RoomSpawner : MonoBehaviour {
             {
                 if (checkBL(otherRS.openingDirection))
                 {
-                    rand = Random.Range(0, templates.blRooms.Length);
+                    if (templates.checkMinRooms())
+                    {
+                        rand = Random.Range(0, templates.blRooms.Length);
 
-                    GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
-                    room.transform.parent = grid.transform;
-                    Destroy(gameObject);
+                        GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
+                        room.transform.parent = grid.transform;
+                        Destroy(gameObject);
+                    } else
+                    {
+                        rand = Random.Range(0, templates.blrRooms.Length);
+
+                        GameObject room = Instantiate(templates.blRooms[rand], transform.position, Quaternion.identity);
+                        room.transform.parent = grid.transform;
+                        Destroy(gameObject);
+                    }
+                    
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
@@ -230,6 +241,15 @@ public class RoomSpawner : MonoBehaviour {
         if (isRightClear())
             rooms.AddRange(templates.brRooms);
 
+        if (isTopClear() && isLeftClear())
+            rooms.AddRange(templates.tlbRooms);
+
+        if (isTopClear() && isRightClear())
+            rooms.AddRange(templates.trbRooms);
+
+        if (isLeftClear() && isRightClear())
+            rooms.AddRange(templates.blrRooms);
+
         if (templates.checkMinRooms() || rooms.Count == 0)
         {
             if (templates.checkMaxRooms())
@@ -249,6 +269,15 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isRightClear())
             rooms.AddRange(templates.trRooms);
+
+        if (isBotClear() && isLeftClear())
+            rooms.AddRange(templates.tlbRooms);
+
+        if (isBotClear() && isRightClear())
+            rooms.AddRange(templates.trbRooms);
+
+        if (isLeftClear() && isRightClear())
+            rooms.AddRange(templates.tlrRooms);
 
         if (templates.checkMinRooms() || rooms.Count == 0)
         {
@@ -270,6 +299,15 @@ public class RoomSpawner : MonoBehaviour {
         if (isRightClear())
             rooms.AddRange(templates.lrRooms);
 
+        if (isTopClear() && isRightClear())
+            rooms.AddRange(templates.tlrRooms);
+
+        if (isBotClear() && isRightClear())
+            rooms.AddRange(templates.blrRooms);
+
+        if (isTopClear() && isBotClear())
+            rooms.AddRange(templates.tlbRooms);
+
         if (templates.checkMinRooms() || rooms.Count == 0)
         {
             if (templates.checkMaxRooms())
@@ -290,6 +328,15 @@ public class RoomSpawner : MonoBehaviour {
         if (isTopClear())
             rooms.AddRange(templates.trRooms);
 
+        if (isTopClear() && isLeftClear())
+            rooms.AddRange(templates.tlrRooms);
+
+        if (isBotClear() && isLeftClear())
+            rooms.AddRange(templates.blrRooms);
+
+        if (isTopClear() && isBotClear())
+            rooms.AddRange(templates.trbRooms);
+
         if (templates.checkMinRooms() || rooms.Count == 0)
         {
             if (templates.checkMaxRooms())
@@ -297,5 +344,44 @@ public class RoomSpawner : MonoBehaviour {
 
             rooms.AddRange(templates.rRooms);
         }
+    }
+
+    private void updateBLRooms(List<GameObject> rooms)
+    {
+        if (isRightClear())
+            rooms.AddRange(templates.blrRooms);
+
+        if (isTopClear())
+            rooms.AddRange(templates.tlbRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.blRooms);
+        }
+    }
+
+    private void updateBRRooms(List<GameObject> rooms)
+    {
+        if (isLeftClear())
+            rooms.AddRange(templates.blrRooms);
+
+        if (isTopClear())
+            rooms.AddRange(templates.trbRooms);
+
+        if (templates.checkMinRooms() || rooms.Count == 0)
+        {
+            if (templates.checkMaxRooms())
+                rooms.Clear();
+
+            rooms.AddRange(templates.brRooms);
+        }
+    }
+
+    private void updateTLRooms(List<GameObject> rooms)
+    {
+
     }
 }

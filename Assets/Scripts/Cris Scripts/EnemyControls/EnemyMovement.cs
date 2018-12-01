@@ -40,7 +40,13 @@ public class EnemyMovement : MonoBehaviour
     private Animator anim;
     private Vector3 startScale;
     private Quaternion startRotation;
-    #endregion 
+    #endregion
+
+    #region Pathfinding Stuff
+    //private NodeManager nodeManager;
+    //public Node currentNode;
+    //public Node nextNode;
+    #endregion
 
     private void Start()
     {
@@ -55,6 +61,10 @@ public class EnemyMovement : MonoBehaviour
 
         charged = false;
         currentTarget = player.transform.position;
+
+        //AStar-based stuff
+        //nodeManager = transform.parent.parent.Find("Nodes").GetComponent<NodeManager>();
+        //currentNode = nodeManager.getNearestNode(this.transform.position);
 
         if (patrolPoints.Length != 0)
             currentPatrolPoint = patrolPoints[currentPatrolIndex];
@@ -91,6 +101,8 @@ public class EnemyMovement : MonoBehaviour
             ChargeBasedMovement();
         else
         {
+            //Debug.Log("Pursuing but like w/o charge");
+            //Debug.Log("Target: " + player.transform.position);
             Move(player.transform.position);
             currentTarget = player.transform.position;
         }
@@ -139,7 +151,21 @@ public class EnemyMovement : MonoBehaviour
     {
         /* Basic movementthe base bones of how the AI moves */
         float step = currentSpeed * Time.deltaTime;
+        //Debug.Log("currentSpeed: " + currentSpeed + " vs step: " + step);
+        //Debug.Log("current pos: " + transform.position + " vs player pos: " + position);
+        //Debug.Log("moveTowards : " + Vector3.MoveTowards(transform.position, position, step));
         transform.position = Vector3.MoveTowards(transform.position, position, step);
+
+        //Vector3 nextPosition = nodeManager.getNextNodePosition(this.transform.position, position);//getNextNode(position);
+        //Debug.Log("Next Node: " + nextPosition);
+        //transform.position = Vector3.MoveTowards(this.transform.position, nextPosition, step);
+
+        //Node nearestPositionNode = nodeManager.getNearestNode(position);
+        //nextNode = nodeManager.getNextNode(currentNode, nearestPositionNode);//getNextNode(position);
+        //Debug.Log("Next Node: " + nextNode);
+        //transform.position = Vector3.MoveTowards(this.transform.position, nextNode.transform.position, step);
+        //if (nextNode.transform.position == this.transform.position)
+        //    currentNode = nextNode;
     }
 
     public IEnumerator Wait(float secs)
@@ -148,7 +174,7 @@ public class EnemyMovement : MonoBehaviour
         //Debug.Log("Waiting...");
         this.transform.Rotate(new Vector3(startRotation.x, startRotation.y, startRotation.z + 20));
         yield return new WaitForSeconds(secs);
-        //Debug.Log("DONE!");
+        //Debug.Log("Done waiting!");
         move = true;
     }
     #endregion

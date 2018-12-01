@@ -11,7 +11,7 @@ public class MeleeEnemy : EnemyAttack {
     
     public GameObject weapon;
     public float whirlwindLimit;
-    public bool tasmanian; //spin like the tasmanian devil/diabolo beserkers
+    public bool tasmanian; //spin like the tasmanian devil/diablo beserkers
 
     private int whirlwindSpeed = 40;
     private float whirlwindTimer;
@@ -101,6 +101,7 @@ public class MeleeEnemy : EnemyAttack {
     {
         weapon.transform.rotation = defaultWeaponRotation;
         transform.rotation = startRotation;
+        
     }
 
     private void makeVulnerable()

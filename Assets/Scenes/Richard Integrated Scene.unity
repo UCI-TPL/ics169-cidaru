@@ -1362,7 +1362,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 369211769}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0, z: -10}
+  m_LocalPosition: {x: -0.00000035762787, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1361485918}
@@ -3572,7 +3572,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 880219160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0, z: -10}
+  m_LocalPosition: {x: -0.00000035762787, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 816228467}
@@ -4357,6 +4357,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114490281219575948, guid: 1420b703e544f9840b110f3bd3ea11de,
+        type: 2}
+      propertyPath: cooldownUI
+      value: 
+      objectReference: {fileID: 539268762}
     - target: {fileID: 114917135925875528, guid: 1420b703e544f9840b110f3bd3ea11de,
         type: 2}
       propertyPath: healthBar
@@ -4367,11 +4372,11 @@ Prefab:
       propertyPath: shieldBar
       value: 
       objectReference: {fileID: 1018966649}
-    - target: {fileID: 114490281219575948, guid: 1420b703e544f9840b110f3bd3ea11de,
+    - target: {fileID: 114830876887764848, guid: 1420b703e544f9840b110f3bd3ea11de,
         type: 2}
-      propertyPath: cooldownUI
-      value: 
-      objectReference: {fileID: 539268762}
+      propertyPath: setSpawnTime
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1420b703e544f9840b110f3bd3ea11de, type: 2}
   m_IsPrefabAsset: 0

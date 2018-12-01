@@ -42,10 +42,13 @@ public class GunController : MonoBehaviour {
     public SpriteRenderer gunSprite;
     public Transform gunPoint;
 
+    public float setFireRate = 0.3f;
+
     private float intialGunPointX;
     
     private Transform gun;
     private AudioSource gunSFX;
+    private float shootTimer;
     private Slider reloadSlider;
     private bool reloading;
     private float reloadTime;
@@ -68,6 +71,8 @@ public class GunController : MonoBehaviour {
 
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
         gunSFX = gun.GetComponent<AudioSource>();
+
+        shootTimer = 0f;
 
         reloadSlider = GameObject.Find("Reload Bar").GetComponent<Slider>();
         reloading = false;
@@ -207,10 +212,15 @@ public class GunController : MonoBehaviour {
 
     private void NormalShoot()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetAxisRaw("Right Trigger") > 0) && normalGun.CheckClip() && !reloading)
+        if ((Input.GetMouseButton(0) || Input.GetAxisRaw("Right Trigger") > 0) && normalGun.CheckClip() && !reloading  && shootTimer <= 0f)
         {
             normalGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
+
+            shootTimer = setFireRate;
         }
+
+        if (shootTimer > 0f)
+            shootTimer -= Time.deltaTime;
 
         #region Pre-Scriptable Object Shoot
         /*

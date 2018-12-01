@@ -82,8 +82,14 @@ public class PlayerController : MonoBehaviour
     {
         /* Basic free movement */
 
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float x = Input.GetAxisRaw("Keyboard Horizontal");
+        float y = Input.GetAxisRaw("Keyboard Vertical");
+
+        x = Input.GetAxisRaw("Left JS Horizontal");
+        y = Input.GetAxisRaw("Left JS Vertical");
+
+        //print(x);
+        //print(y);
 
 		if (x < 0) {
             sprite.flipX = true;
@@ -98,6 +104,7 @@ public class PlayerController : MonoBehaviour
 		}
 
         Vector3 movement = new Vector3(x, y, 0);
+
         movement = movement.normalized * currentSpeed * Time.deltaTime;
         rb2d.MovePosition(transform.position + movement);
         //gameObject.transform.Translate(movement);

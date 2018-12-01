@@ -15,7 +15,7 @@ public class SelectOnInput : MonoBehaviour {
     }
     
     private void Update() {
-		if (Input.GetAxisRaw("Vertical") != 0 && !buttonSelected)
+		if (Input.GetAxisRaw("Keyboard Vertical") != 0 && !buttonSelected)
         {
             eventSystem.SetSelectedGameObject(selectedObject);
             buttonSelected = true;

@@ -117,9 +117,9 @@ public class GunController : MonoBehaviour {
             //        reloading = false;
             //}
             #endregion Old Elemental Weapon Reload
-
+            
             // Reload
-            if ((Input.GetKeyDown(KeyCode.R) && normalGun.CheckNormalReloadable() && !reloading) || (normalGun.CheckNormalAutoReload() && !reloading))
+            if (((Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("X Button")) && normalGun.CheckNormalReloadable() && !reloading) || (normalGun.CheckNormalAutoReload() && !reloading))
             {
                 normalGun.StartNormalReload(this);
 
@@ -153,7 +153,7 @@ public class GunController : MonoBehaviour {
             }
 
             // Vortex Shoot
-            if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())
+            if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Right Bumper")) && vortex.isAbilityReady())
             {
                 vortex.PutOnCooldown();
 
@@ -207,7 +207,7 @@ public class GunController : MonoBehaviour {
 
     private void NormalShoot()
     {
-        if (Input.GetMouseButtonDown(0) && normalGun.CheckClip() && !reloading)
+        if ((Input.GetMouseButtonDown(0) || Input.GetAxisRaw("Right Trigger") > 0) && normalGun.CheckClip() && !reloading)
         {
             normalGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
         }

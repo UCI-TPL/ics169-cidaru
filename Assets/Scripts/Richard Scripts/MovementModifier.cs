@@ -29,7 +29,7 @@ public class MovementModifier : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.LeftShift) && !speedUp && !cooldown)
+		if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetAxisRaw("Left Trigger") > 0 || Input.GetButton("A Button")) && !speedUp && !cooldown)
             StartSpeedUp();
 
         if (speedUp)

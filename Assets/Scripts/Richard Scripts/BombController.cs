@@ -15,12 +15,12 @@ public class BombController : MonoBehaviour {
     {
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && babyBomb.isAbilityReady())
+            if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper")) && babyBomb.isAbilityReady())
             {
                 babyBomb.PutOnCooldown();
 
                 Instantiate(babyBomb.abilityPrefab, transform.position, Quaternion.identity);
-            } else if (Input.GetKeyDown(KeyCode.E) && slowBomb.isAbilityReady())
+            } else if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && slowBomb.isAbilityReady())
             {
                 slowBomb.PutOnCooldown();
 

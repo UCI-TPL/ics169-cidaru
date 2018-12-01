@@ -75,12 +75,12 @@ public class GameManager : MonoBehaviour {
 
         if (Time.timeScale != 0f)
         {
-            if (Input.GetKey(KeyCode.Tab))
+            if (Input.GetKey(KeyCode.Tab) || Input.GetButton("Back"))
             {
                 map.SetActive(true);
             }
 
-            if (Input.GetKeyUp(KeyCode.Tab))
+            if (Input.GetKeyUp(KeyCode.Tab) || Input.GetButtonUp("Back"))
             {
                 map.SetActive(false);
             }

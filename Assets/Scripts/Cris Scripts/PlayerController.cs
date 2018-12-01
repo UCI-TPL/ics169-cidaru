@@ -85,8 +85,11 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Keyboard Horizontal");
         float y = Input.GetAxisRaw("Keyboard Vertical");
 
-        x = Input.GetAxisRaw("Left JS Horizontal");
-        y = Input.GetAxisRaw("Left JS Vertical");
+        if (x == 0)
+            x = Input.GetAxisRaw("Left JS Horizontal");
+
+        if (y == 0)
+            y = Input.GetAxisRaw("Left JS Vertical");
 
         //print(x);
         //print(y);

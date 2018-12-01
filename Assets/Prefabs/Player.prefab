@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 114839942819917348}
   - component: {fileID: 114889018061775954}
   - component: {fileID: 114490281219575948}
+  - component: {fileID: 114830876887764848}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -394,17 +395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1082f9a7c22a310489763e3ed2bfff13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1696281229995658, guid: 0c83dad9b146dbe4ebc2be957304fac0, type: 2}
-  flame: {fileID: 1696281229995658, guid: e81f95421993ffe469b16698d097c208, type: 2}
-  electric: {fileID: 1408986520318600, guid: 5a4cf3675343ba8468e8133d2f9bd108, type: 2}
   normalGun: {fileID: 11400000, guid: bb20fb1ad55a0944ba3e36029825ef3d, type: 2}
-  flamethrower: {fileID: 11400000, guid: a226e0424e5a5024ba7d3c9b127882a0, type: 2}
-  stunGun: {fileID: 11400000, guid: 318285b0abdcc0746bc25f5a38cfbcc5, type: 2}
   vortex: {fileID: 11400000, guid: 790a9a35f571e084e8e65c232a70e696, type: 2}
   gunSprite: {fileID: 212524024538758684}
   gunPoint: {fileID: 4998787749327776}
-  setMaxAmmo: 6
-  reloadTime: 1
+  setFireRate: 0.3
 --- !u!114 &114793766150521610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,6 +413,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setDelayTimer: 0.01
   setVisibleTimer: 2
+--- !u!114 &114830876887764848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113635209509042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f45cf8f4ef206c4f81dd9428fd36d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  echoObject: {fileID: 1909405154701354, guid: f8c0208c3098e2a449f680e9f291dbee, type: 2}
+  setSpawnTime: 0.5
 --- !u!114 &114839942819917348
 MonoBehaviour:
   m_ObjectHideFlags: 1

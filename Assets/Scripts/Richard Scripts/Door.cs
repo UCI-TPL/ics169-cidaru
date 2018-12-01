@@ -61,10 +61,21 @@ public class Door : MonoBehaviour {
 
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
-            if (!cleared && !active)
-            {
+            StartCoroutine(StartRoom());
+
+            if (checkEnemiesAvaliable() && !cleared && !active)
                 StartCoroutine(SpawnRoom());
-            }
+        }
+    }
+
+    IEnumerator StartRoom()
+    {
+        while (GameManager.gm.cameraPanning)
+            yield return null;
+
+        foreach (GameObject turret in turrets)
+        {
+            turret.SetActive(true);
         }
     }
 
@@ -86,11 +97,11 @@ public class Door : MonoBehaviour {
         {
             dc.SetActive(true);
         }
+    }
 
-        foreach (GameObject turret in turrets)
-        {
-            turret.SetActive(true);
-        }
+    public bool checkEnemiesAvaliable()
+    {
+        return enemySpawners.Count != 0;
     }
 
     public void checkRoomCleared()

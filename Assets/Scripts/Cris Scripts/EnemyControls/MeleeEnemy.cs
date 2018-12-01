@@ -104,7 +104,7 @@ public class MeleeEnemy : EnemyAttack {
         
     }
 
-    private void makeVulnerable()
+    public void makeVulnerable()
     {
         resetRotations();
         hp.setInvincible(false);

@@ -121,6 +121,7 @@ public class Enemy : MonoBehaviour {
         {
             MeleeEnemy attack = (MeleeEnemy) attackStyle;
             attack.weapon.GetComponent<MeleeWeapon>().startVortex(c);
+            attack.makeVulnerable();
         }
 
         attackStyle.enabled = false;

@@ -95,7 +95,7 @@ public class MeleeWeapon : MonoBehaviour {
         if (GetComponent<BoxCollider2D>())
             GetComponent<BoxCollider2D>().isTrigger = true;
         if (GetComponent<CircleCollider2D>())
-         GetComponent<CircleCollider2D>().isTrigger = true;
+            GetComponent<CircleCollider2D>().isTrigger = true;
         gameObject.layer = 11;
 
         deflection = false;

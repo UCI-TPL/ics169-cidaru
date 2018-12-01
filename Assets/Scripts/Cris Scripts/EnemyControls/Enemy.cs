@@ -54,7 +54,9 @@ public class Enemy : MonoBehaviour {
         if (raycastEnabled)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(player.transform.position, transform.position));
-            if (hit && (hit.collider.tag == "Enemy Weapon" || hit.collider.tag == "Enemy" || hit.collider.tag == "Pet"))
+            if (hit && (hit.collider.tag == "Enemy Weapon"))
+                hit = Physics2D.Raycast(hit.collider.transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position));
+            if (hit.collider.tag == "Enemy" || hit.collider.tag == "Pet")
                 hit = Physics2D.Raycast(hit.collider.transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position));
 
             //Debug.DrawLine(transform.position, player.transform.position, Color.red);
@@ -120,6 +122,8 @@ public class Enemy : MonoBehaviour {
             MeleeEnemy attack = (MeleeEnemy) attackStyle;
             attack.weapon.GetComponent<MeleeWeapon>().startVortex(c);
         }
+
+        attackStyle.enabled = false;
     }
 
     public void endVortex()
@@ -139,6 +143,8 @@ public class Enemy : MonoBehaviour {
             MeleeEnemy attack = (MeleeEnemy)attackStyle;
             attack.weapon.GetComponent<MeleeWeapon>().endVortex();
         }
+
+        attackStyle.enabled = true;
     }
 
     private void checkDeath()

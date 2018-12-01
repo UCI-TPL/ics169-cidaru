@@ -10,6 +10,8 @@ public class MeleeWeapon : MonoBehaviour {
     public int dmg = 1;
     public bool deflection;
 
+    private bool startDeflection;
+
     public enum WeaponState
     {
         Normal,
@@ -27,6 +29,7 @@ public class MeleeWeapon : MonoBehaviour {
     {
         currentState = WeaponState.Normal;
         radius = 0f;
+        startDeflection = deflection;
     }
 
     public void Update()
@@ -94,6 +97,8 @@ public class MeleeWeapon : MonoBehaviour {
         if (GetComponent<CircleCollider2D>())
          GetComponent<CircleCollider2D>().isTrigger = true;
         gameObject.layer = 11;
+
+        deflection = false;
     }
 
     public void endVortex()
@@ -107,6 +112,8 @@ public class MeleeWeapon : MonoBehaviour {
         if (GetComponent<CircleCollider2D>())
             GetComponent<CircleCollider2D>().isTrigger = false;
         gameObject.layer = 12;
+
+        deflection = startDeflection;
     }
 
 }

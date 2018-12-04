@@ -17,12 +17,14 @@ public class PlayerHealth : Health {
     public int shield;
 
     private PlayerController player;
+    private CameraShake shake;
 
     public override void Awake()
     {
         base.Awake();
 
         player = GetComponent<PlayerController>();
+        shake = GetComponent<CameraShake>();
     }
 
     private void Start()
@@ -55,6 +57,8 @@ public class PlayerHealth : Health {
             invincible = true;
             player.startInvincibility();
         }
+
+        shake.startShake();
 
         updateHealthBar();
         updateArmorBar();

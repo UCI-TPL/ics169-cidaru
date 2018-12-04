@@ -89,7 +89,9 @@ public class GunController : MonoBehaviour {
     void Update () {
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
         {
-            FaceMouse();
+            //FaceMouse();
+
+            FaceStick();
 
             #region Old Elemental Weapon Switch
             //if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && !reloading)
@@ -158,12 +160,20 @@ public class GunController : MonoBehaviour {
             }
 
             // Vortex Shoot
-            if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Right Bumper")) && vortex.isAbilityReady())
+            if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())
             {
                 vortex.PutOnCooldown();
 
                 GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
-                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition), false);
+            }
+
+            if (Input.GetButtonDown("Right Bumper") && vortex.isAbilityReady())
+            {
+                vortex.PutOnCooldown();
+
+                GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
+                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
             }
         }
 	}
@@ -188,6 +198,17 @@ public class GunController : MonoBehaviour {
                 gunSprite.flipY = false;
                 gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
             }
+        }
+    }
+
+    private void FaceStick()
+    {
+        float aimAngle = Mathf.Atan2(Input.GetAxisRaw("Right JS Horizontal"), Input.GetAxisRaw("Right JS Vertical")) * Mathf.Rad2Deg;
+
+        if (Input.GetAxisRaw("Right JS Horizontal") != 0 && Input.GetAxisRaw("Right JS Vertical") != 0)
+        {
+            gun.rotation = Quaternion.AngleAxis(aimAngle, Vector3.forward);
+
         }
     }
 

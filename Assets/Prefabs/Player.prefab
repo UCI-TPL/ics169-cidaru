@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 4256080994620168}
   - component: {fileID: 212004522973993172}
   - component: {fileID: 50612324897174930}
-  - component: {fileID: 61804934446899936}
   - component: {fileID: 95555907304261316}
   - component: {fileID: 114122663472953520}
   - component: {fileID: 114917135925875528}
@@ -49,6 +48,7 @@ GameObject:
   - component: {fileID: 114490281219575948}
   - component: {fileID: 114830876887764848}
   - component: {fileID: 114504779377889206}
+  - component: {fileID: 60051206154157618}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -128,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1113635209509042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.13, y: 7.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515939022308886}
@@ -197,8 +197,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61804934446899936
-BoxCollider2D:
+--- !u!60 &60051206154157618
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -209,7 +209,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006135285, y: -0.15098274}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -219,9 +219,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6947185, y: 1.225024}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.12077209, y: -0.5895219}
+      - {x: 0.20297417, y: 0.17132092}
+      - {x: 0.16390058, y: 0.25305653}
+      - {x: -0.021042012, y: 0.24665499}
+      - {x: -0.160811, y: 0.19988918}
+      - {x: -0.2693956, y: 0.10027504}
+      - {x: -0.31584364, y: -0.57680225}
+      - {x: -0.13554713, y: -0.75631475}
 --- !u!82 &82055570072030030
 AudioSource:
   m_ObjectHideFlags: 1
@@ -367,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df3384280b36e34d9a33dfafd92dfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalSpeed: 5
+  originalSpeed: 6
   setInvincibilityTimer: 2
   currentSpeed: 0
 --- !u!114 &114490281219575948

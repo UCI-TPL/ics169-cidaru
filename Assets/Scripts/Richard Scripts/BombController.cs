@@ -15,7 +15,7 @@ public class BombController : MonoBehaviour {
     {
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
         {
-            if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper")) && babyBomb.isAbilityReady())
+            if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Y Button")) && babyBomb.isAbilityReady())
             {
                 babyBomb.PutOnCooldown();
 

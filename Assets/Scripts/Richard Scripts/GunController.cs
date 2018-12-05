@@ -83,15 +83,19 @@ public class GunController : MonoBehaviour {
         normalGun.ActivateWeapon();
         
         intialGunPointX = gunPoint.localPosition.x;
+
+        if (!PlayerPrefs.HasKey("Mouse"))
+            PlayerPrefs.SetInt("Mouse", 1);
     }
 
     // Update is called once per frame
     void Update () {
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
         {
-            //FaceMouse();
-
-            FaceStick();
+            if (PlayerPrefs.GetInt("Mouse") == 0)
+                FaceMouse();
+            else
+                FaceStick();
 
             #region Old Elemental Weapon Switch
             //if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && !reloading)
@@ -209,6 +213,16 @@ public class GunController : MonoBehaviour {
         {
             gun.rotation = Quaternion.AngleAxis(aimAngle, Vector3.forward);
 
+            if (gun.rotation.eulerAngles.z > 180)
+            {
+                gunSprite.flipY = true;
+                gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
+            }
+            else if (gun.rotation.eulerAngles.z < 180)
+            {
+                gunSprite.flipY = false;
+                gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
+            }
         }
     }
 

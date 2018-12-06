@@ -93,9 +93,9 @@ public class GunController : MonoBehaviour {
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
         {
             if (PlayerPrefs.GetInt("Mouse") == 0)
-                FaceMouse();
-            else
                 FaceStick();
+            else
+                FaceMouse();
 
             #region Old Elemental Weapon Switch
             //if (Input.GetAxisRaw("Mouse ScrollWheel") > 0 && !reloading)

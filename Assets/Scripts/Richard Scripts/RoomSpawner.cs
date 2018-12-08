@@ -10,8 +10,8 @@ public class RoomSpawner : MonoBehaviour {
     private int rand;
     private bool spawned;
 
-    private int verticalDistance = 16;
-    private int horizontalDistance = 20;
+    private int verticalDistance = 19;
+    private int horizontalDistance = 23;
 
     private void Awake()
     {

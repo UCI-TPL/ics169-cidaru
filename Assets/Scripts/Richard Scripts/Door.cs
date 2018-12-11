@@ -12,6 +12,7 @@ public class Door : MonoBehaviour {
     private bool active;
     private List<GameObject> enemies = new List<GameObject>();
     private bool cleared;
+    private bool triggered;
 
     private SpriteRenderer roomSprite;
 
@@ -38,6 +39,7 @@ public class Door : MonoBehaviour {
         roomSprite.enabled = false;
 
         cleared = false;
+        triggered = false;
     }
 
     private void Update()
@@ -45,6 +47,16 @@ public class Door : MonoBehaviour {
         if (active)
         {
             checkRoomCleared();
+        }
+
+        if (triggered && !GameManager.gm.cameraPanning)
+        {
+            StartRoom();
+
+            if (checkEnemiesAvaliable() && !cleared && !active)
+                SpawnRoom();
+
+            triggered = false;
         }
     }
 
@@ -61,29 +73,20 @@ public class Door : MonoBehaviour {
 
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
-            StartCoroutine(StartRoom());
-
-            if (checkEnemiesAvaliable() && !cleared && !active)
-                StartCoroutine(SpawnRoom());
+            triggered = true;
         }
     }
 
-    IEnumerator StartRoom()
+    public void StartRoom()
     {
-        while (GameManager.gm.cameraPanning)
-            yield return null;
-
         foreach (GameObject turret in turrets)
         {
             turret.SetActive(true);
         }
     }
 
-    IEnumerator SpawnRoom()
+    public void SpawnRoom()
     {
-        while (GameManager.gm.cameraPanning)
-            yield return null;
-
         active = true;
 
         foreach (GameObject enemy in enemySpawners)

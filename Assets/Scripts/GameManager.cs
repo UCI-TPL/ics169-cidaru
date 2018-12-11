@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager gm;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour {
 
     [HideInInspector]
     public bool cameraPanning = false;
+
+    public CinemachineConfiner confiner;
 
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
@@ -118,7 +121,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator PanCamera(Vector3 nextPos)
     {
         cameraPanning = true;
-
+        
         Vector3 currentPos = cameraColPos.position;
         float t = 0f;
 
@@ -127,19 +130,20 @@ public class GameManager : MonoBehaviour {
             t += Time.deltaTime / cameraPanTime;
 
             cameraColPos.position = Vector3.Lerp(currentPos, nextPos, t);
+            confiner.InvalidatePathCache();
 
             yield return null;
         }
 
         cameraPanning = false;
-
+        /*
         Time.timeScale = 0;
 
         yield return new WaitForSecondsRealtime(roomStartDelay);
 
-        Time.timeScale = 1;
+        Time.timeScale = 1;*/
     }
-    
+
     public void startDialogue(TextAsset txt)
     {
         if (!playerTalking)

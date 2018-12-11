@@ -10,7 +10,7 @@ public class Ability : ScriptableObject {
     public string abilityDescription = "Ability Description";
     public GameObject abilityPrefab;
     public string cooldownUIName;
-    public string chargeUIName;
+    //public string chargeUIName;
 
     [Header("Ability Properties")]
     public int setMaxNumberOfCharges = 1;
@@ -28,8 +28,8 @@ public class Ability : ScriptableObject {
     [HideInInspector]
     private Slider cooldownUI;
 
-    [HideInInspector]
-    private Text chargeUI;
+    //[HideInInspector]
+    //private Text chargeUI;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class Ability : ScriptableObject {
     {
         numberOfCharges--;
 
-        chargeUI.text = "" + numberOfCharges;
+        //chargeUI.text = "" + numberOfCharges;
 
         CooldownController.cdInstance.StartCooldown(this);
     }
@@ -55,7 +55,7 @@ public class Ability : ScriptableObject {
     {
         numberOfCharges++;
 
-        chargeUI.text = "" + numberOfCharges;
+        //chargeUI.text = "" + numberOfCharges;
     }
 
     public void updateCooldown()
@@ -72,7 +72,7 @@ public class Ability : ScriptableObject {
 
     private void increaseChargeCD()
     {
-        chargeUI.text = "" + numberOfCharges;
+        //chargeUI.text = "" + numberOfCharges;
 
         CooldownController.cdInstance.StartCooldown(this);
     }
@@ -90,8 +90,8 @@ public class Ability : ScriptableObject {
 
         currentCooldown = setCooldown;
 
-        chargeUI = GameObject.Find(chargeUIName).GetComponent<Text>();
-        chargeUI.text = "" + numberOfCharges;
+        //chargeUI = GameObject.Find(chargeUIName).GetComponent<Text>();
+        //chargeUI.text = "" + numberOfCharges;
 
         cooldownUI = GameObject.Find(cooldownUIName).GetComponent<Slider>();
         cooldownUI.maxValue = setCooldown;

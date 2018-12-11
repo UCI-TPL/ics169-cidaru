@@ -195,7 +195,7 @@ MonoBehaviour:
   tlRooms:
   - {fileID: 1162991911729884, guid: 81109ce06ca2a2b468824b42d5a9d409, type: 2}
   trRooms:
-  - {fileID: 1552814969694164, guid: 7da21198290eeaf4c891904b225859b9, type: 2}
+  - {fileID: 1636853606220536, guid: 7da21198290eeaf4c891904b225859b9, type: 2}
   tbRooms:
   - {fileID: 1175398138428484, guid: b5618a1dca2f57e4dba01dcd55f9065a, type: 2}
   lrRooms:
@@ -208,8 +208,8 @@ MonoBehaviour:
   - {fileID: 1028657195327800, guid: 1a95341fa61e52a488224cc33f46cab1, type: 2}
   rRooms:
   - {fileID: 1611285331870608, guid: 22508c43f7c92dd4eab550153556a12d, type: 2}
-  minRooms: 10
-  maxRooms: 15
+  minRooms: 7
+  maxRooms: 12
   rooms: []
   waitTime: 30
   finalRoomObject: {fileID: 1706879201918360, guid: 557911d839aa4ab48be3a695866ed1cd,
@@ -253,9 +253,10 @@ MonoBehaviour:
   gameOverMenu: {fileID: 0}
   cursor: {fileID: 2800000, guid: 56f9403f4643f89468b3eb93cb3c06a5, type: 3}
   map: {fileID: 0}
-  cameraPanTime: 1
+  cameraPanTime: 0.1
   roomStartDelay: 1
   cameraPanning: 0
+  confiner: {fileID: 0}
 --- !u!114 &114631073505308308
 MonoBehaviour:
   m_ObjectHideFlags: 1

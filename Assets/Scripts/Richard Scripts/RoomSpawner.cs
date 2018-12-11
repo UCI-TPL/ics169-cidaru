@@ -20,7 +20,7 @@ public class RoomSpawner : MonoBehaviour {
 
         spawned = false;
 
-        Invoke("Spawn", 0.3f);
+        Invoke("Spawn", 0.1f);
     }
 
     private void Spawn()
@@ -129,8 +129,6 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(blRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
-
-                    blRooms.Clear();
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
@@ -141,8 +139,6 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(brRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
-
-                    brRooms.Clear();
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
@@ -153,8 +149,6 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(tlRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
-
-                    tlRooms.Clear();
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
@@ -165,8 +159,6 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(trRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
-
-                    trRooms.Clear();
                 }
                 else if (checkTB(otherRS.openingDirection))
                 {
@@ -177,8 +169,6 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(tbRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
-
-                    tbRooms.Clear();
                 }
                 else if (checkLR(otherRS.openingDirection))
                 {
@@ -189,8 +179,6 @@ public class RoomSpawner : MonoBehaviour {
 
                     GameObject room = Instantiate(lrRooms[rand], transform.position, Quaternion.identity);
                     room.transform.parent = grid.transform;
-
-                    lrRooms.Clear();
                 }
             }
 

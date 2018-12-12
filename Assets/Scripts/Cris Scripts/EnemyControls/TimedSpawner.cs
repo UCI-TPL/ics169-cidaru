@@ -18,6 +18,7 @@ public class TimedSpawner : Spawner {
 
     protected override void SpawnThing()
     {
+        spawning = true;
         for (int i=0; i<spawnNum; i++)
         {
             //Eventually make it so that it just calls SpawnThing from spawner...
@@ -26,5 +27,6 @@ public class TimedSpawner : Spawner {
             spawnCount++;
             Instantiate(thingToSpawn, transform.position, Quaternion.identity);
         }
+        spawning = false;
     }
 }

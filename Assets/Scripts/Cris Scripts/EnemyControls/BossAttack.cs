@@ -27,10 +27,13 @@ public class BossAttack : EnemyAttack {
 
     public override void Attack()
     {
-        if (hp.currentHealth <= phase2Health)
-            Phase2();
-        else if (hp.currentHealth <= (phase1Health))
+        if (hp.currentHealth >= phase2Health && hp.currentHealth <= (phase1Health))
+        {
+            Debug.Log("Phase 1");
             Phase1();
+        }
+        else if (hp.currentHealth <= (phase2Health))
+            Phase2();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -53,7 +56,7 @@ public class BossAttack : EnemyAttack {
     private void Phase1()
     {
         spawner.SetActive(true);
-        //spawner.GetComponent<Spawner>().reset();
+        //GetComponent<Enemy>().movement.move = !spawner.GetComponent<Spawner>().spawning;
     }
 
     private void Phase2()

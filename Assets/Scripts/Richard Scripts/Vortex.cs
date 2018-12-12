@@ -133,7 +133,8 @@ public class Vortex : MonoBehaviour {
 
     public virtual void OnCollisionEnter2D(Collision2D col)
     {
-        if (vortexState == VortexStates.Succ && col.gameObject.tag.Contains("Enemy"))
+        if (vortexState == VortexStates.Succ && col.gameObject.tag.Contains("Enemy")
+            && col.gameObject.GetComponent<Enemy>().vortex)
         {
             col.gameObject.layer = 11;
             col.transform.parent = vortexInside.transform;

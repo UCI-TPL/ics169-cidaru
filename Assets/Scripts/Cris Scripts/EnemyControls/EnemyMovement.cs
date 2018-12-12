@@ -9,7 +9,6 @@ public class EnemyMovement : MonoBehaviour
     #region Basic Movement Vars
     [Header("Basic Movement")]
     public float originalSpeed = 0f;
-    //[HideInInspector]
     public float currentSpeed;
     [HideInInspector]
     public bool move;
@@ -219,5 +218,12 @@ public class EnemyMovement : MonoBehaviour
             if (chargeDistance != 0)
                 this.transform.rotation = startRotation;
         }
+    }
+
+    public void changeBaseSpeed(float effect)
+    {
+        originalSpeed *= effect;
+        currentSpeed *= effect;
+        lastSpeed *= effect;
     }
 }

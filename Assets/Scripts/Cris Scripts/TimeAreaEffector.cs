@@ -71,7 +71,10 @@ public class TimeAreaEffector : MonoBehaviour {
 
         EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
         if (enemyMovement)
-            enemyMovement.currentSpeed *= effect;
+        {
+            //enemyMovement.currentSpeed *= effect;
+            enemyMovement.changeBaseSpeed(effect);
+        }
     }
 
     private void changeProjectileTime(GameObject projectile, float effect)

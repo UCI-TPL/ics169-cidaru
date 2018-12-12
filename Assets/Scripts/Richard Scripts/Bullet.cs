@@ -15,10 +15,19 @@ public class Bullet : Projectile {
             Destroy(gameObject);
         } else if ((col.tag == "Enemy" || col.tag == "Enemy Boss") && tag == "Player Bullet")
         {
-            col.GetComponent<Health>().TakeDamage(dmg);
+            if (col.GetComponent<Health>().getInvincible())
+            {
+                /// This is the part to take out if we just want the sword to reflect
+                /// and not the guys
+                reflect();
+            }
+            else
+            {
+                col.GetComponent<Health>().TakeDamage(dmg);
 
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+                Instantiate(bulletEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         } else if ((col.tag == "Player" || col.tag == "Enemy") && tag == "Vortex Projectile")
         {
             col.GetComponent<Health>().TakeDamage(dmg);
@@ -41,5 +50,10 @@ public class Bullet : Projectile {
             Instantiate(bulletEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+
+    public void reflect()
+    {
+        transform.up = Vector2.Perpendicular(transform.up);//Vector3.Reflect(transform.up, Vector2.Perpendicular(transform.position));
     }
 }

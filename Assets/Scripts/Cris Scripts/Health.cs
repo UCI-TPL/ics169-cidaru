@@ -47,4 +47,9 @@ public class Health : MonoBehaviour {
         invincible = invin;
     }
 
+    public bool getInvincible()
+    {
+        return invincible;
+    }
+
 }

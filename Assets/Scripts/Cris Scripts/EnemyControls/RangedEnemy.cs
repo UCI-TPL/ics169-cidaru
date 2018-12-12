@@ -14,7 +14,7 @@ public class RangedEnemy : EnemyAttack {
 
     private void Awake()
     {
-        fireTimer = 0f;
+        fireTimer = setFireTimer;
     }
 
     public override void Attack()

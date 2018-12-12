@@ -39,6 +39,8 @@ public class BabyBomb : Bomb {
                     continue;
                 if (hitCollider.gameObject.tag.Contains("Weapon"))
                     continue;
+                if (hitCollider.gameObject.tag.Contains("Turret"))
+                    continue;
 
                 Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
 

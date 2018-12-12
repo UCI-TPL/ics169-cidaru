@@ -56,7 +56,7 @@ public class VortexSpawner : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D col)
     {
         // FIX THIS...DETERMINE WHAT WILL POP A VORTEX
-        if (col.tag == "Obstacle" || col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Vortex")
+        if (col.tag == "Obstacle" || col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Vortex" || col.tag == "Turret")
         {
             Instantiate(vortex, transform.position, Quaternion.identity);
             Destroy(gameObject);

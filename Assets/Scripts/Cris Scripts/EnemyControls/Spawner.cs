@@ -14,9 +14,9 @@ public class Spawner : MonoBehaviour
     //public float percentHealthSpawn; //The amount of health it gets down to before it starts spawning
     //public Health hp;
 
-    private float totalTimer;
-    private float timer;
-    private float spawnCount;
+    protected float totalTimer;
+    protected float timer;
+    protected float spawnCount;
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class Spawner : MonoBehaviour
         checkLimit(); //Destroys gameObject if at or over limit
     }
 
-    private void SpawnThing()
+    protected virtual void SpawnThing()
     {
         if (spawnCount >= spawnLimit)
             return;

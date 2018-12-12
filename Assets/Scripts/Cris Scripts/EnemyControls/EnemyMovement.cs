@@ -76,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
         if (!move)
             return;
 
-        //Debug.Log(GetComponent<Enemy>().aggressing);
+        Debug.Log(GetComponent<Enemy>().aggressing);
         if (GetComponent<Enemy>().aggressing)
             Pursue();
         else if (patrolPoints.Length != 0)
@@ -151,10 +151,8 @@ public class EnemyMovement : MonoBehaviour
     {
         /* Basic movementthe base bones of how the AI moves */
         float step = currentSpeed * Time.deltaTime;
-        //Debug.Log("currentSpeed: " + currentSpeed + " vs step: " + step);
-        //Debug.Log("current pos: " + transform.position + " vs player pos: " + position);
-        //Debug.Log("moveTowards : " + Vector3.MoveTowards(transform.position, position, step));
-        transform.position = Vector3.MoveTowards(transform.position, position, step);
+        //transform.position = Vector3.MoveTowards(transform.position, position, step);
+        GetComponent<Rigidbody2D>().MovePosition(Vector2.MoveTowards(transform.position, position, step));
 
         //Vector3 nextPosition = nodeManager.getNextNodePosition(this.transform.position, position);//getNextNode(position);
         //Debug.Log("Next Node: " + nextPosition);

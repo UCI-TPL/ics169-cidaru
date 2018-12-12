@@ -9,27 +9,28 @@ public class BossAttack : EnemyAttack {
      */
 
     public int dmg = 3;
+    public float phase1Percent = (float) 0.75; //the percent of health before the boss enters phase1
+    public float phase2Percent = (float) 0.25; //the percent of health before the boss enters phase2
+
     public GameObject spawner;
-    public float percentHealth = (float) 0.25; //the percents of health dropped before the boss will activate the spawner
 
     private Health hp;
-    private int spawnBasedHealth;
+    private int phase1Health;
+    private int phase2Health;
 
     private void Start()
     {
         hp = GetComponent<Health>();
-        spawnBasedHealth = hp.startingHealth;
+        phase1Health = (int) (phase1Percent * hp.startingHealth);
+        phase2Health = (int) (phase2Percent * hp.startingHealth);
     }
 
     public override void Attack()
     {
-        Debug.Log(spawnBasedHealth - (percentHealth * spawnBasedHealth));
-        if (hp.currentHealth <= (spawnBasedHealth - (percentHealth * spawnBasedHealth)))
-        {
-            spawner.SetActive(true);
-            spawner.GetComponent<Spawner>().reset();
-            spawnBasedHealth = spawnBasedHealth - (int) (percentHealth * spawnBasedHealth);
-        }
+        if (hp.currentHealth <= phase2Health)
+            Phase2();
+        else if (hp.currentHealth <= (phase1Health))
+            Phase1();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -38,14 +39,25 @@ public class BossAttack : EnemyAttack {
         {
             collision.collider.GetComponent<Health>().TakeDamage(dmg);
         }
-        if (collision.collider.tag == "Vortex" && isCharging()) //Eats vortex while charging
-        {
-            Destroy(collision.gameObject);
-        }
+        //if (collision.collider.tag == "Vortex" && isCharging()) //Eats vortex while charging
+        //{
+        //    Destroy(collision.gameObject);
+        //}
     }
 
     private bool isCharging()
     {
         return GetComponent<EnemyMovement>().originalSpeed < GetComponent<EnemyMovement>().currentSpeed;
+    }
+
+    private void Phase1()
+    {
+        spawner.SetActive(true);
+        //spawner.GetComponent<Spawner>().reset();
+    }
+
+    private void Phase2()
+    {
+        ///TODO: implement lol
     }
 }

@@ -51,6 +51,8 @@ public class Vortex : MonoBehaviour {
         {
             p.gameObject.transform.parent = null;
             p.gameObject.tag = "Vortex Projectile";
+            if (p.gameObject.GetComponent<TrailRenderer>())
+                p.gameObject.GetComponent<TrailRenderer>().startColor = Color.red;
 
             p.endVortex();
         }

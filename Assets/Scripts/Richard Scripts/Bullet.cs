@@ -54,6 +54,12 @@ public class Bullet : Projectile {
 
     public void reflect()
     {
-        transform.up = Vector2.Perpendicular(transform.up);//Vector3.Reflect(transform.up, Vector2.Perpendicular(transform.position));
+        if (tag == "Player Bullet")
+        {
+            tag = "Enemy Bullet";
+            GetComponent<TrailRenderer>().startColor = Color.red;
+        }
+        //transform.up = Vector2.Perpendicular(transform.up);//Vector3.Reflect(transform.up, Vector2.Perpendicular(transform.position));
+        transform.up *= -1;
     }
 }

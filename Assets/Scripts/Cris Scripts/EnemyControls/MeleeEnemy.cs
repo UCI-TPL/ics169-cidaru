@@ -88,7 +88,7 @@ public class MeleeEnemy : EnemyAttack {
     private void colorGuardTwirl()
     {
         //Appearance/Animation for the type of spin
-        weapon.transform.Rotate(new Vector3(0, 0, whirlwindSpeed));
+        weapon.transform.Rotate(new Vector3(0, 0, -whirlwindSpeed));
     }
 
     private void tasSpin()

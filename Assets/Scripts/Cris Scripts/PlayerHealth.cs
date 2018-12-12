@@ -107,6 +107,11 @@ public class PlayerHealth : Health {
         shieldBar.value = shield;
     }
 
+    public bool isMaxHealth()
+    {
+        return currentHealth == startingHealth;
+    }
+
     public bool isInvincible()
     {
         return invincible;

@@ -9,7 +9,7 @@ public class HealthDrop : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
-            if (collision.GetComponent<PlayerHealth>().isMaxHealth())
+            if (!collision.GetComponent<PlayerHealth>().isMaxHealth())
             {
                 collision.GetComponent<PlayerHealth>().Heal(healthRestore);
                 Destroy(gameObject);

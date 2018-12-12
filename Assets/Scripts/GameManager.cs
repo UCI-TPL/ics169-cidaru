@@ -136,12 +136,12 @@ public class GameManager : MonoBehaviour {
         }
 
         cameraPanning = false;
-        /*
+        
         Time.timeScale = 0;
 
         yield return new WaitForSecondsRealtime(roomStartDelay);
 
-        Time.timeScale = 1;*/
+        Time.timeScale = 1;
     }
 
     public void startDialogue(TextAsset txt)

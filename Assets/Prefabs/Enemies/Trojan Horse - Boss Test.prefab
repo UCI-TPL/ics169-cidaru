@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 50319007179060598}
   - component: {fileID: 114982989142717036}
   - component: {fileID: 114690955102077628}
+  - component: {fileID: 114950268367083412}
   m_Layer: 0
   m_Name: Trojan Horse - Boss Test
   m_TagString: Enemy
@@ -75,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4525004768800694}
-  - component: {fileID: 114803266478613108}
+  - component: {fileID: 114166296340177256}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -90,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214733998205538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: 5.32, z: 0}
+  m_LocalPosition: {x: -5.840392, y: 1.0578454, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4525004768800694}
@@ -212,7 +213,7 @@ MonoBehaviour:
   attackStyle: {fileID: 114982989142717036}
   movement: {fileID: 114183308005173796}
   aggroRange: 200
-  raycastEnabled: 1
+  raycastEnabled: 0
   aggressing: 0
   babyBomb: 0
   speedBubbles: 1
@@ -232,6 +233,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 50
   currentHealth: 0
+--- !u!114 &114166296340177256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823084294765170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f00a2397856e74eb09acd8f6e7ece3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingToSpawn: {fileID: 1078318880203492, guid: 7ada9be20db1c0a4e8be5473a40b599c,
+    type: 2}
+  spawnDelay: 0
+  timeInterval: 5
+  spawnLimit: 10
+  destroyAfterSpawn: 0
+  spawnNum: 2
 --- !u!114 &114183308005173796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,23 +283,18 @@ MonoBehaviour:
   rotationSpeed: 100
   leftWheel: {fileID: 1472372595434962}
   rightWheel: {fileID: 1037545487335296}
---- !u!114 &114803266478613108
+--- !u!114 &114950268367083412
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1823084294765170}
+  m_GameObject: {fileID: 1214733998205538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3a7b0029c86f242924a738e1eb57a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 016b6ba746ceae04d814551be65a1320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingToSpawn: {fileID: 1078318880203492, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-    type: 2}
-  spawnDelay: 0
-  timeInterval: 0.1
-  spawnLimit: 2
-  destroyAfterSpawn: 0
+  hpSlider: {fileID: 0}
 --- !u!114 &114982989142717036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,8 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 3
+  phase1Percent: 0.75
+  phase2Percent: 0.25
   spawner: {fileID: 1823084294765170}
-  percentHealth: 0.25
 --- !u!212 &212190447323499946
 SpriteRenderer:
   m_ObjectHideFlags: 1

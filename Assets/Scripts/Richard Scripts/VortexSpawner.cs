@@ -26,6 +26,12 @@ public class VortexSpawner : MonoBehaviour {
         {
             MouseMovement();
         }
+
+        if (Input.GetButtonDown("Right Bumper") || Input.GetMouseButtonDown(1))
+        {
+            Instantiate(vortex, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     public void setLocation(Vector3 loc, bool contSpawn)

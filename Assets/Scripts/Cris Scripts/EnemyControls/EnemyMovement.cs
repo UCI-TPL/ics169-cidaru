@@ -112,7 +112,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (playerCloserThan(chargeDistance) && !charged)
         {
-            Charge(currentTarget);
+            Vector3 dir = Vector3.Normalize((transform.position - currentTarget));
+            Charge(currentTarget + dir*10);
+            Debug.DrawLine(transform.position, currentTarget + dir * 3, Color.red);
         }
         else
         {

@@ -31,6 +31,7 @@ public class Spawner : MonoBehaviour
         if (totalTimer < spawnDelay)
         {
             totalTimer += Time.deltaTime;
+            timer += Time.deltaTime;
             return;
         }
 

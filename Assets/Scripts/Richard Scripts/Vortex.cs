@@ -30,7 +30,7 @@ public class Vortex : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetButtonDown("Right Bumper") || Input.GetMouseButtonDown(1))
         {
             Blow();
         }

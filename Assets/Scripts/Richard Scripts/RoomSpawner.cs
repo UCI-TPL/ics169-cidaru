@@ -91,6 +91,13 @@ public class RoomSpawner : MonoBehaviour {
             return;
         }
 
+        if (isDestroyerThere())
+        {
+            Destroy(gameObject);
+            spawned = true;
+            return;
+        }
+
         if (other.CompareTag("Spawn Point"))
         {
             RoomSpawner otherRS = other.GetComponent<RoomSpawner>();
@@ -220,6 +227,21 @@ public class RoomSpawner : MonoBehaviour {
     {
         return ((openingDirection == GameManager.Opening.Left && dir == GameManager.Opening.Right) ||
             (openingDirection == GameManager.Opening.Right && dir == GameManager.Opening.Left));
+    }
+
+    private bool isDestroyerThere()
+    {
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool isTopClear()

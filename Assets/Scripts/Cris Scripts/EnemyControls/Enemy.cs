@@ -45,6 +45,8 @@ public class Enemy : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+        checkDeath();
+
         if (currentState != EnemyState.Normal)
             return;
 
@@ -75,7 +77,6 @@ public class Enemy : MonoBehaviour {
         {
             attackStyle.Attack();
         }
-        checkDeath();
     }
 
     public void Update()

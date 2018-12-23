@@ -45,7 +45,8 @@ public class GunController : MonoBehaviour {
     public float setFireRate = 0.3f;
 
     private float intialGunPointX;
-    
+
+    private SpriteRenderer playerSprite;
     private Transform gun;
     private AudioSource gunSFX;
     private float shootTimer;
@@ -68,6 +69,8 @@ public class GunController : MonoBehaviour {
         //currentGun = GunTypes.Normal; Old Elemental Init
         //getCurrentWeapon().ActivateWeapon();
         #endregion Old Elemental Weapon Init
+
+        playerSprite = GameObject.Find("Player").GetComponent<SpriteRenderer>();
 
         gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
         gunSFX = gun.GetComponent<AudioSource>();
@@ -189,11 +192,13 @@ public class GunController : MonoBehaviour {
             {
                 gunSprite.flipY = true;
                 gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
+                playerSprite.flipX = false;
             }
             else if (gun.rotation.eulerAngles.z < 180)
             {
                 gunSprite.flipY = false;
                 gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
+                playerSprite.flipX = true;
             }
         }
     }
@@ -210,11 +215,13 @@ public class GunController : MonoBehaviour {
             {
                 gunSprite.flipY = true;
                 gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
+                playerSprite.flipX = false;
             }
             else if (gun.rotation.eulerAngles.z < 180)
             {
                 gunSprite.flipY = false;
                 gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
+                playerSprite.flipX = true;
             }
         }
     }

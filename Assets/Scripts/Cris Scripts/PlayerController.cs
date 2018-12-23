@@ -94,11 +94,12 @@ public class PlayerController : MonoBehaviour
         //print(x);
         //print(y);
 
+        /*
 		if (x < 0) {
             sprite.flipX = true;
 		} else if (x > 0) {
             sprite.flipX = false;
-		}   
+		}*/   
 
 		if (x != 0 || y != 0) {
 			anim.SetBool ("moving", true);

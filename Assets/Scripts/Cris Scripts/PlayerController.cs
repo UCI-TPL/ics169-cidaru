@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!health.dead() && !GameManager.gm.cameraPanning)
+        if (!health.dead() && !GameManager.gm.cameraPanning && !GameManager.gm.spawningRooms)
             Move();
 
         /* USING GAMESTATE MANAGER TO CONTROL THIS

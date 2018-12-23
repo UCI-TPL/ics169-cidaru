@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour {
 
     public CinemachineConfiner confiner;
 
+    public GameObject proceduralUI;
+
+    [HideInInspector]
+    public bool spawningRooms = true;
+
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
     private Health playerHp;
@@ -61,12 +66,39 @@ public class GameManager : MonoBehaviour {
         playerTalking = false;
 
         map.SetActive(false);
+
+        spawningRooms = true;
+
+        proceduralUI.SetActive(true);
     }
 
     void Start () {
     }
 
     void Update() {
+        if (!spawningRooms)
+        {
+            gameplayLoop();
+        } else
+        {
+            spawnRoomLoop();
+        }
+        
+    }
+
+    private void spawnRoomLoop()
+    {
+        GameObject[] sp = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        if (sp.Length == 0)
+        {
+            spawningRooms = false;
+            proceduralUI.SetActive(false);
+        }
+    }
+
+    private void gameplayLoop()
+    {
         if (playerHp.dead() && !gameOverMenu.activeSelf)
         {
             Time.timeScale = 0f;

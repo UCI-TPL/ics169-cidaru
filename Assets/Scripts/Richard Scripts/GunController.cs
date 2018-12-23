@@ -90,7 +90,7 @@ public class GunController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Time.timeScale != 0 && !GameManager.gm.cameraPanning)
+        if (Time.timeScale != 0 && !GameManager.gm.cameraPanning && !GameManager.gm.spawningRooms)
         {
             if (PlayerPrefs.GetInt("Mouse") == 0)
                 FaceStick();

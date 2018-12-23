@@ -24,18 +24,12 @@ public class RoomTemplates : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> rooms = new List<GameObject>();
 
-    public float waitTime;
     public GameObject finalRoomObject;
     private bool spawned = false;
 
     private void Update()
     {
-        if (waitTime > 0)
-        {
-            waitTime -= Time.deltaTime;
-        }
-
-        if (waitTime <= 0 && !spawned)
+        if (!GameManager.gm.spawningRooms && !spawned)
         {
             Instantiate(finalRoomObject, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
             spawned = true;

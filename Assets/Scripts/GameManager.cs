@@ -119,6 +119,9 @@ public class GameManager : MonoBehaviour {
             {
                 map.SetActive(false);
             }
+        } else
+        {
+            map.SetActive(false);
         }
     }
 

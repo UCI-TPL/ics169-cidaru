@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour {
     
     public GameObject gameOverMenu;
 
-    public Texture2D cursor;
-
     public GameObject map;
 
     public float cameraPanTime = 1f;
@@ -61,7 +59,10 @@ public class GameManager : MonoBehaviour {
 
         fade = GetComponent<Fader>();
 
-        Cursor.SetCursor(cursor, new Vector2(512 / 2, 512 / 2), CursorMode.Auto);
+        Cursor.visible = false;
+
+        if (PlayerPrefs.GetInt("Mouse") != 0)
+            Cursor.visible = true;
 
         playerTalking = false;
 
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour {
         {
             Time.timeScale = 0f;
 
+            Cursor.visible = true;
             gameOverMenu.SetActive(true);
 
             GetComponent<PauseController>().enabled = false;

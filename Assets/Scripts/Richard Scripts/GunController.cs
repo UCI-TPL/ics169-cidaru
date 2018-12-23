@@ -86,6 +86,7 @@ public class GunController : MonoBehaviour {
 
         if (!PlayerPrefs.HasKey("Mouse"))
             PlayerPrefs.SetInt("Mouse", 1);
+
     }
 
     // Update is called once per frame

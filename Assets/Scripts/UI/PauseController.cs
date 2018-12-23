@@ -34,6 +34,8 @@ public class PauseController : MonoBehaviour {
 
     public void Pause()
     {
+        Cursor.visible = true;
+
         paused = true;
 
         pauseMenu.SetActive(true);
@@ -43,6 +45,9 @@ public class PauseController : MonoBehaviour {
 
     public void Resume()
     {
+        if (PlayerPrefs.GetInt("Mouse") == 0)
+            Cursor.visible = false;
+
         paused = false;
 
         pauseMenu.SetActive(false);

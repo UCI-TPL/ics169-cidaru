@@ -9,23 +9,15 @@ public class VortexSpawner : MonoBehaviour {
 
     private Vector3 location;
     private Rigidbody2D rb2d;
-    private bool controllerSpawned;
 
 	// Use this for initialization
 	void Awake () {
-        controllerSpawned = false;
         rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update () {
-        if (controllerSpawned)
-        {
-            ControllerMovement();
-        } else
-        {
-            MouseMovement();
-        }
+        Move();
 
         if (Input.GetButtonDown("Right Bumper") || Input.GetMouseButtonDown(1))
         {
@@ -34,12 +26,12 @@ public class VortexSpawner : MonoBehaviour {
         }
     }
 
-    public void setLocation(Vector3 loc, bool contSpawn)
+    public void setLocation(Vector3 loc)
     {
         location = new Vector3(loc.x, loc.y, 0);
-        controllerSpawned = contSpawn;
     }
 
+    /*
     private void MouseMovement()
     {
         float step = movementSpeed * Time.deltaTime;
@@ -51,9 +43,9 @@ public class VortexSpawner : MonoBehaviour {
             Instantiate(vortex, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-    }
+    }*/
 
-    private void ControllerMovement()
+    private void Move()
     {
         Vector2 move = transform.up * movementSpeed * Time.deltaTime;
         rb2d.MovePosition(rb2d.position + move);

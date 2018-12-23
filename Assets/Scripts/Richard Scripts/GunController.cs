@@ -164,20 +164,12 @@ public class GunController : MonoBehaviour {
             }
 
             // Vortex Shoot
-            if (Input.GetMouseButtonDown(1) && vortex.isAbilityReady())
+            if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Right Bumper")) && vortex.isAbilityReady())
             {
                 vortex.PutOnCooldown();
 
                 GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
-                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition), false);
-            }
-
-            if (Input.GetButtonDown("Right Bumper") && vortex.isAbilityReady())
-            {
-                vortex.PutOnCooldown();
-
-                GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
-                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
+                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
         }
 	}

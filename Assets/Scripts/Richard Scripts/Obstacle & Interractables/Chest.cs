@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour {
 
+    // On player collision, gives player respective award
+    // Destroys chest afterwards
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -14,6 +16,8 @@ public class Chest : MonoBehaviour {
         }
     }
 
+    // Increases the number of charges to a random ability
+    // OUTDATED, concept remains but giving charge is no longer used
     public virtual void giveAward(GameObject player)
     {
         int rand = Random.Range(0, 2);

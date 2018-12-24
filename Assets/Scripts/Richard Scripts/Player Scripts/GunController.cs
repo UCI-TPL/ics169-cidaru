@@ -34,23 +34,40 @@ public class GunController : MonoBehaviour {
 
     #endregion Pre-Scriptable Object Variables
 
-
+    // Current weapon being used
     public Weapon normalGun;
 
+    // Vortex ability
     public Ability vortex;
 
+    // Sprite of gun to flipped
     public SpriteRenderer gunSprite;
+
+    // Area to spawn bullets
     public Transform gunPoint;
 
+    // Fire rate of weapon
     public float setFireRate = 0.3f;
 
+    // Initial gun position to determine proper gun point flip on certain mouse angles
     private float intialGunPointX;
 
+    // Players sprite to flip in accordance to gun position
     private SpriteRenderer playerSprite;
+
+    // Current position of the gun
     private Transform gun;
+
+    // Gun Audio
     private AudioSource gunSFX;
+
+    // Shooting timer based on fire rate
     private float shootTimer;
+
+    // Reload UI
     private Slider reloadSlider;
+
+    // Reloading values
     private bool reloading;
     private float reloadTime;
 
@@ -70,16 +87,23 @@ public class GunController : MonoBehaviour {
         //getCurrentWeapon().ActivateWeapon();
         #endregion Old Elemental Weapon Init
 
+        // Finds the player's sprite
         playerSprite = GameObject.Find("Player").GetComponent<SpriteRenderer>();
 
-        gun = transform.GetChild(0); // Grabs first child object and grabs the position (In this case the gun)
+        // Grabs first child object and grabs the position (In this case the gun)
+        gun = transform.GetChild(0);
+
+        // Grabs the audio source
         gunSFX = gun.GetComponent<AudioSource>();
 
+        // Sets initial fire delay
         shootTimer = 0f;
 
+        // Reloading UI
         reloadSlider = GameObject.Find("Reload Bar").GetComponent<Slider>();
         reloading = false;
 
+        // Initializes all abilities and weapons
         initAbilityCharges();
         initWeapons();
 
@@ -87,6 +111,7 @@ public class GunController : MonoBehaviour {
         
         intialGunPointX = gunPoint.localPosition.x;
 
+        // Sets default control to mouse if none are set
         if (!PlayerPrefs.HasKey("Mouse"))
             PlayerPrefs.SetInt("Mouse", 1);
 
@@ -96,6 +121,7 @@ public class GunController : MonoBehaviour {
     void Update () {
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning && !GameManager.gm.spawningRooms)
         {
+            // Aim in accordance to controller or mouse based on preference set
             if (PlayerPrefs.GetInt("Mouse") == 0)
                 FaceStick();
             else
@@ -136,8 +162,10 @@ public class GunController : MonoBehaviour {
             // Reload
             if (((Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("X Button")) && normalGun.CheckNormalReloadable() && !reloading) || (normalGun.CheckNormalAutoReload() && !reloading))
             {
+                // Start reload if avaliable
                 normalGun.StartNormalReload(this);
 
+                // Set and start reload values
                 reloading = true;
                 reloadTime = normalGun.reloadTime;
             }
@@ -156,13 +184,17 @@ public class GunController : MonoBehaviour {
             //}
             #endregion Old Elemental Weapon Shoot Conditions
 
+            // Normal weapon shooting
             NormalShoot();
 
+            // Function to run while reloading
             if (reloading)
             {
+                // Countdowns reload and updates UI slider
                 reloadTime -= Time.deltaTime;
                 reloadSlider.value = reloadTime;
 
+                // Ends reload if timer is complete
                 if (normalGun.FinishedReloading())
                     reloading = false;
             }
@@ -181,13 +213,17 @@ public class GunController : MonoBehaviour {
     // Takes mouse position and points gun towards that area
     private void FaceMouse()
     {
+        // Position of the mouse
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        // Box in which the mouse is not tracked to prevent gun glitching out
         if (gunPoint.position.x - 0.8f >= mousePos.x || gunPoint.position.x + 0.8f <= mousePos.x ||
             gunPoint.position.y - 0.8f >= mousePos.y || gunPoint.position.y + 0.8f <= mousePos.y)
         {
+            // Rotates gun to look at where the mouse is
             gun.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - gunPoint.position);
 
+            // Flips gun and player in accordance to where it is pointing to
             if (gun.rotation.eulerAngles.z > 180)
             {
                 gunSprite.flipY = true;
@@ -205,12 +241,15 @@ public class GunController : MonoBehaviour {
 
     private void FaceStick()
     {
+        // Angle of the right joystick
         float aimAngle = Mathf.Atan2(Input.GetAxisRaw("Right JS Horizontal"), Input.GetAxisRaw("Right JS Vertical")) * Mathf.Rad2Deg;
 
         if (Input.GetAxisRaw("Right JS Horizontal") != 0 && Input.GetAxisRaw("Right JS Vertical") != 0)
         {
+            // Rotates gun to look at where the right joystick is
             gun.rotation = Quaternion.AngleAxis(aimAngle, Vector3.forward);
 
+            // Flips gun and player in accordance to where it is pointing to
             if (gun.rotation.eulerAngles.z > 180)
             {
                 gunSprite.flipY = true;
@@ -249,11 +288,14 @@ public class GunController : MonoBehaviour {
     {
         if ((Input.GetMouseButton(0) || Input.GetAxisRaw("Right Trigger") > 0) && normalGun.CheckClip() && !reloading  && shootTimer <= 0f)
         {
+            // Fires gun if button is pressed and firing is avaliable
             normalGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
 
+            // Sets fire rate timer
             shootTimer = setFireRate;
         }
 
+        // If fire rate timer is not ready, countdown it
         if (shootTimer > 0f)
             shootTimer -= Time.deltaTime;
 
@@ -348,11 +390,13 @@ public class GunController : MonoBehaviour {
     //}
     #endregion Old Elemental Weapon Functions
 
+    // Initializes the abilities values (vortex)
     private void initAbilityCharges()
     {
         vortex.initAbility();
     }
 
+    // Initializes the weapons values
     private void initWeapons()
     {
         normalGun.intializeWeapon();

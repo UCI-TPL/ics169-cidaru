@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour {
 
     public virtual void Update()
     {
+        #region Old Rotato
         /*
         // Center then Rotato
         if (currentMovement == BulletMovementState.Normal)
@@ -57,6 +58,7 @@ public class Projectile : MonoBehaviour {
             rb2d.MoveRotation(rb2d.rotation + rotationSpeed * Time.deltaTime);
             rb2d.MovePosition(center + radius * new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180), Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180)));
         }*/
+        #endregion Old Rotato
 
         // Rotato into distance
         if (currentMovement == ProjectileMovementState.Normal)

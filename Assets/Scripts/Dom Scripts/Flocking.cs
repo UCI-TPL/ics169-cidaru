@@ -2,22 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyMovement))]
 public class Flocking : MonoBehaviour {
 	private List<GameObject> enemies = new List<GameObject>();
 	private Rigidbody2D rb;
 	public Collider2D flockingRange;
-	// Use this for initialization
+    float speed;
+    Transform target;
+    EnemyMovement mover;
+
+
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+        enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        speed = Random.Range(3, 5);
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        mover = GetComponent<EnemyMovement>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 separation = Separate();
-		Vector3 newVel = rb.velocity;
-		newVel.x += separation.x;
-		newVel.y += separation.y;
-		rb.velocity = newVel;
+        mover.Move(target.position);
 	}
 	
 	public Vector3 Separate(){

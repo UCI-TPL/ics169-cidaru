@@ -148,7 +148,7 @@ public class EnemyMovement : MonoBehaviour
     #endregion
 
     #region Basic Movement
-    private void Move(Vector3 position)
+    public void Move(Vector3 position)
     {
         /* Basic movementthe base bones of how the AI moves */
         float step = currentSpeed * Time.deltaTime;

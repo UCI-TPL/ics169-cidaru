@@ -23,13 +23,14 @@ public class Flocking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
-        if (Random.Range(0, 6) < 1)
+        if (Random.Range(0, 5) < 1)
             Flock();
 
-	}
+        float step = speed * Time.deltaTime;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        transform.position = this.transform.position;
+    }
 	
     void Flock()
     {
@@ -47,7 +48,7 @@ public class Flocking : MonoBehaviour {
                 centerV += go.transform.position;
                 flockCount++;
 
-                if (dist < 0.5f)
+                if (dist < 1f)
                     avoidV = avoidV + (this.transform.position - go.transform.position);
             }
         }
@@ -62,7 +63,6 @@ public class Flocking : MonoBehaviour {
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
                 transform.rotation = Quaternion.Slerp(transform.rotation, q, rotSpeed * Time.deltaTime);
-
             }
         }
         

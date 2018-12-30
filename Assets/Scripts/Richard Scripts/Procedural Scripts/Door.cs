@@ -3,135 +3,160 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour {
+
+    // List of enemy spawners within the room
     public List<GameObject> enemySpawners;
 
+    // List of turrets within the room
     public List<GameObject> turrets;
 
+    // List of door colliders blocking the room
     public List<GameObject> doorColliders;
 
+    // Check if room is active (enemies spawned and doors closed)
     private bool active;
+
+    // List of enemies after being spawned
     private List<GameObject> enemies = new List<GameObject>();
+
+    // Check if the room has been cleared (enemies killed)
     private bool cleared;
+
+    // Check if the room has been triggered
     private bool triggered;
 
+    // Room sprite to be represented in the map
     private SpriteRenderer roomSprite;
 
     public void Awake()
     {
+        // Initially set the room to not be active
         active = false;
 
+        // Set all enemy spawners to not be active
         foreach (GameObject enemy in enemySpawners)
-        {
             enemy.SetActive(false);
-        }
 
+        // Set all turrets to not be active
         foreach (GameObject turret in turrets)
-        {
             turret.SetActive(false);
-        }
 
+        // Set all door colliders to not be active
         foreach (GameObject dc in doorColliders)
-        {
             dc.SetActive(false);
-        }
 
+        // Initialize the sprite render of the minimap sprite
         roomSprite = transform.parent.Find("Minimap Sprite").GetComponent<SpriteRenderer>();
+
+        // Disable the minimap sprite
         roomSprite.enabled = false;
 
+        // Set room cleared and trigger to false
         cleared = false;
         triggered = false;
     }
 
     private void Update()
     {
+        // If the room is currently active, check when it is cleared
         if (active)
-        {
             checkRoomCleared();
-        }
 
+        // When the room has been triggered and the camera is not panning, start the room
         if (triggered && !GameManager.gm.cameraPanning)
         {
+            // Function to start the room
             StartRoom();
 
+            // If the room is not cleared yet spawn everything within room
             if (checkEnemiesAvaliable() && !cleared && !active)
                 SpawnRoom();
 
+            // Disable trigger
             triggered = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // When player enters into room
         if (collision.tag == "Player")
         {
+            // If the room sprite has not been revealed yet, then reveal it on minimap
             if (roomSprite.enabled == false)
-            {
                 roomSprite.enabled = true;
-            }
 
+            // Disables all turrets on the map
             disableTurrets();
 
+            // Updates the current player sprite on the minimap
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
+            // Enables trigger
             triggered = true;
         }
     }
 
+    // Function to start the room when player enters
     public void StartRoom()
     {
+        // Spawns all the turrets within the room
         foreach (GameObject turret in turrets)
-        {
             turret.SetActive(true);
-        }
     }
 
+    // Function to spawn enemies within the room when player enters for first time
     public void SpawnRoom()
     {
+        // Sets the room to be active
         active = true;
 
+        // Enables all the enemy spawners within the room
         foreach (GameObject enemy in enemySpawners)
-        {
             enemy.SetActive(true);
-        }
 
+        // Finds all the enemies spawned
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
+        // Enables all the doors within the room
         foreach (GameObject dc in doorColliders)
-        {
             dc.SetActive(true);
-        }
     }
 
+    // Check if the enemy spawners have not spawned yet
     public bool checkEnemiesAvaliable()
     {
         return enemySpawners.Count != 0;
     }
 
+    // Check if the enemies have been cleared
     public void checkRoomCleared()
     {
+        // Checks if the enemies spawned have been killed
         foreach (GameObject enemy in enemies)
         {
+            // If not cleared, return
             if (enemy != null)
-            {
                 return;
-            }
         }
 
+        // Set active to false and clear to true
         active = false;
         cleared = true;
 
+        // Disable all doors after clearing
         foreach (GameObject dc in doorColliders)
-        {
             dc.SetActive(false);
-        }
     }
 
+    // Disable all turrets not in the room
     public void disableTurrets()
     {
+        // Find all turrets on the map
         List<GameObject> globalTurrets = new List<GameObject>();
         globalTurrets.AddRange(GameObject.FindGameObjectsWithTag("Turret"));
 
-
+        // Disables all turrets not in the current room
         foreach (GameObject globalTurret in globalTurrets)
         {
             if (!turrets.Contains(globalTurret))

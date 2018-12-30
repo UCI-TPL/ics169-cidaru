@@ -93,6 +93,11 @@ public class GameManager : MonoBehaviour {
 
         if (sp.Length == 0)
         {
+            GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+            foreach (GameObject destroyer in destroyers)
+                Destroy(destroyer);
+
             spawningRooms = false;
             proceduralUI.SetActive(false);
         }

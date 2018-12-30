@@ -205,7 +205,6 @@ public class GunController : MonoBehaviour {
                 vortex.PutOnCooldown();
 
                 GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
-                newVortex.GetComponent<VortexSpawner>().setLocation(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
         }
 	}

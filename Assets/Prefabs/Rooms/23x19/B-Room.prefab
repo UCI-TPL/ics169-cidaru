@@ -1158,6 +1158,9 @@ MonoBehaviour:
   turrets: []
   doorColliders:
   - {fileID: 1864320201618914}
+  singleRoomTrigger: 1
+  doubleLRTrigger: 0
+  doubleRLTrigger: 0
 --- !u!114 &114472180834317494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1204,7 +1207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290407285aef494e91ab173ff8a04b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFile: {fileID: 4900000, guid: dc960aab2115df1429818dfc2aeb8e51, type: 3}
+  textFiles:
+  - {fileID: 4900000, guid: dc960aab2115df1429818dfc2aeb8e51, type: 3}
 --- !u!114 &114866346452695898
 MonoBehaviour:
   m_ObjectHideFlags: 1

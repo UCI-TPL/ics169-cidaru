@@ -93,7 +93,7 @@ public class Door : MonoBehaviour {
             // Disables all turrets on the map
             disableTurrets();
 
-            // Updates the current player sprite on the minimap
+            // Updates the current player sprite on the minimap and pans camera
             if (doubleLRTrigger)
                 GameManager.gm.updateDoubleMinimapPosition(transform.parent.position + new Vector3(11, 0, 0));
             else if (doubleRLTrigger)

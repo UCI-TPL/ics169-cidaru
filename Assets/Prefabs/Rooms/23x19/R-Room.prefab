@@ -961,7 +961,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7290407285aef494e91ab173ff8a04b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFile: {fileID: 4900000, guid: dc960aab2115df1429818dfc2aeb8e51, type: 3}
+  textFiles:
+  - {fileID: 4900000, guid: dc960aab2115df1429818dfc2aeb8e51, type: 3}
 --- !u!114 &114322551330148950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -999,6 +1000,9 @@ MonoBehaviour:
   turrets: []
   doorColliders:
   - {fileID: 1162353838665178}
+  singleRoomTrigger: 1
+  doubleLRTrigger: 0
+  doubleRLTrigger: 0
 --- !u!212 &212082436725555036
 SpriteRenderer:
   m_ObjectHideFlags: 1

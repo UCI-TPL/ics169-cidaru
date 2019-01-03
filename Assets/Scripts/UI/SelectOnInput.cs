@@ -9,13 +9,13 @@ public class SelectOnInput : MonoBehaviour {
     private EventSystem eventSystem;
     private bool buttonSelected;
 
-    private void Awake()
+    private void Start()
     {
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
     }
     
     private void Update() {
-		if (Input.GetAxisRaw("Keyboard Vertical") != 0 && !buttonSelected)
+		if ((Input.GetAxisRaw("Vertical") != 0) && !buttonSelected)
         {
             eventSystem.SetSelectedGameObject(selectedObject);
             buttonSelected = true;

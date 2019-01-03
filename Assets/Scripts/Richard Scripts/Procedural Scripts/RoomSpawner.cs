@@ -117,8 +117,6 @@ public class RoomSpawner : MonoBehaviour {
 
                 }
 
-                print(collidingSpawner.Count);
-
                 CancelInvoke();
 
                 otherRS.spawned = true;
@@ -129,6 +127,7 @@ public class RoomSpawner : MonoBehaviour {
 
                 if (checkBL(otherRS.openingDirection))
                 {
+                    // Bottom and Left Room Connected
                     List<GameObject> blRooms = new List<GameObject>();
                     updateBLRooms(blRooms);
 
@@ -139,6 +138,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkBR(otherRS.openingDirection))
                 {
+                    // Bottom and Right Room Connected
                     List<GameObject> brRooms = new List<GameObject>();
                     updateBRRooms(brRooms);
 
@@ -149,6 +149,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTL(otherRS.openingDirection))
                 {
+                    // Top and Left Room Connected
                     List<GameObject> tlRooms = new List<GameObject>();
                     updateTLRooms(tlRooms);
 
@@ -159,6 +160,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTR(otherRS.openingDirection))
                 {
+                    // Top and Right Room Connected
                     List<GameObject> trRooms = new List<GameObject>();
                     updateTRRooms(trRooms);
 
@@ -169,6 +171,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkTB(otherRS.openingDirection))
                 {
+                    // Top and Bottom Room Connected
                     List<GameObject> tbRooms = new List<GameObject>();
                     updateTBRooms(tbRooms);
 
@@ -179,6 +182,7 @@ public class RoomSpawner : MonoBehaviour {
                 }
                 else if (checkLR(otherRS.openingDirection))
                 {
+                    // Left and Right Room Connected
                     List<GameObject> lrRooms = new List<GameObject>();
                     updateLRRooms(lrRooms);
 
@@ -193,6 +197,8 @@ public class RoomSpawner : MonoBehaviour {
         }
     }
 
+    // Checks which two directions are being connected for two rooms
+    #region Two Direction Check
     private bool checkBL(GameManager.Opening dir)
     {
         return ((openingDirection == GameManager.Opening.Bottom && dir == GameManager.Opening.Left) ||
@@ -228,7 +234,10 @@ public class RoomSpawner : MonoBehaviour {
         return ((openingDirection == GameManager.Opening.Left && dir == GameManager.Opening.Right) ||
             (openingDirection == GameManager.Opening.Right && dir == GameManager.Opening.Left));
     }
+    #endregion Two Direction Check
 
+    // Checks if the area is clear in a single direction (up, down, left, right)
+    #region Single Direction Check
     private bool isDestroyerThere()
     {
         GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
@@ -236,9 +245,7 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position)
-            {
                 return true;
-            }
         }
 
         return false;
@@ -253,9 +260,7 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position + (verticalDistance * Vector3.up))
-            {
                 return false;
-            }
         }
 
         return true;
@@ -270,9 +275,7 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position + (-verticalDistance * Vector3.up))
-            {
                 return false;
-            }
         }
 
         return true;
@@ -287,9 +290,7 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position + (horizontalDistance * Vector3.left))
-            {
                 return false;
-            }
         }
 
         return true;
@@ -304,14 +305,77 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position + (-horizontalDistance * Vector3.left))
-            {
                 return false;
-            }
+        }
+
+        return true;
+    }
+    #endregion Single Direction Check
+
+    // Checks if the area is clear double of a single direction
+    #region Double Single Direction Check
+
+    private bool isDoubleLeftClear()
+    {
+        //return Physics2D.OverlapCircle(transform.position + (horizontalDistance * Vector3.left), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (horizontalDistance * Vector3.left * 2))
+                return false;
+        }
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (horizontalDistance * Vector3.left * 2) + (verticalDistance * Vector3.up))
+                return false;
+
+            if (sp.transform.position == transform.position + (horizontalDistance * Vector3.left * 2) + (-verticalDistance * Vector3.up))
+                return false;
+
+            if (sp.transform.position == transform.position + (horizontalDistance * Vector3.left * 3))
+                return false;
         }
 
         return true;
     }
 
+    private bool isDoubleRightClear()
+    {
+        //return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (-horizontalDistance * Vector3.left * 2))
+                return false;
+        }
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (-horizontalDistance * Vector3.left * 2) + (verticalDistance * Vector3.up))
+                return false;
+
+            if (sp.transform.position == transform.position + (-horizontalDistance * Vector3.left * 2) + (-verticalDistance * Vector3.up))
+                return false;
+
+            if (sp.transform.position == transform.position + (-horizontalDistance * Vector3.left * 3))
+                return false;
+        }
+
+        return true;
+    }
+    #endregion Double Single Direction Check
+
+    // Updates the possible rooms that are necessary that can be produced from a single opening
+    #region Update Single Direction Room Listing
     private void updateBotList(List<GameObject> rooms)
     {
         if (isTopClear())
@@ -381,6 +445,9 @@ public class RoomSpawner : MonoBehaviour {
         if (isRightClear())
             rooms.AddRange(templates.lrRooms);
 
+        if (isRightClear() && isDoubleRightClear())
+            rooms.AddRange(templates.doubleLRRooms);
+
         if (isTopClear() && isRightClear())
             rooms.AddRange(templates.tlrRooms);
 
@@ -407,6 +474,9 @@ public class RoomSpawner : MonoBehaviour {
         if (isLeftClear())
             rooms.AddRange(templates.lrRooms);
 
+        if (isLeftClear() && isDoubleLeftClear())
+            rooms.AddRange(templates.doubleRLRooms);
+
         if (isTopClear())
             rooms.AddRange(templates.trRooms);
 
@@ -427,7 +497,10 @@ public class RoomSpawner : MonoBehaviour {
             rooms.AddRange(templates.rRooms);
         }
     }
+    #endregion Update Single Direction Room Listing
 
+    // Updates the possible rooms that are necessary that can be produced from a double opening
+    #region Update Double Direction Room Listing
     private void updateBLRooms(List<GameObject> rooms)
     {
         if (isRightClear())
@@ -529,4 +602,5 @@ public class RoomSpawner : MonoBehaviour {
             rooms.AddRange(templates.lrRooms);
         }
     }
+    #endregion Update Double Direction Room Listing
 }

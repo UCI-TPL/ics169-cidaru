@@ -136,6 +136,20 @@ public class GameManager : MonoBehaviour {
     {
         if (minimapPos.position != newPos)
         {
+            cameraColPos.localScale = Vector3.one;
+
+            minimapPos.position = newPos;
+
+            StartCoroutine(PanCamera(newPos));
+        }
+    }
+
+    public void updateDoubleMinimapPosition(Vector3 newPos)
+    {
+        if (minimapPos.position != newPos)
+        {
+            cameraColPos.localScale = new Vector3(2, 1, 1);
+
             minimapPos.position = newPos;
 
             StartCoroutine(PanCamera(newPos));

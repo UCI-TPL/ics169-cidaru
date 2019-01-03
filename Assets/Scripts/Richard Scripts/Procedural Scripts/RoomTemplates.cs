@@ -18,6 +18,9 @@ public class RoomTemplates : MonoBehaviour {
     public GameObject[] lRooms;
     public GameObject[] rRooms;
 
+    public GameObject[] doubleLRRooms;
+    public GameObject[] doubleRLRooms;
+
     public int minRooms = 10;
     public int maxRooms = 30;
 

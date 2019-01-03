@@ -13,6 +13,10 @@ public class Door : MonoBehaviour {
     // List of door colliders blocking the room
     public List<GameObject> doorColliders;
 
+    public bool singleRoomTrigger = true;
+    public bool doubleLRTrigger = false;
+    public bool doubleRLTrigger = false;
+
     // Check if room is active (enemies spawned and doors closed)
     private bool active;
 
@@ -90,7 +94,12 @@ public class Door : MonoBehaviour {
             disableTurrets();
 
             // Updates the current player sprite on the minimap
-            GameManager.gm.updateMinimapPosition(transform.parent.position);
+            if (doubleLRTrigger)
+                GameManager.gm.updateDoubleMinimapPosition(transform.parent.position + new Vector3(11, 0, 0));
+            else if (doubleRLTrigger)
+                GameManager.gm.updateDoubleMinimapPosition(transform.parent.position + new Vector3(-12, 0, 0));
+            else
+                GameManager.gm.updateMinimapPosition(transform.parent.position);
 
             // Enables trigger
             triggered = true;

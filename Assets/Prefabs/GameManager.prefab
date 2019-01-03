@@ -208,10 +208,13 @@ MonoBehaviour:
   - {fileID: 1028657195327800, guid: 1a95341fa61e52a488224cc33f46cab1, type: 2}
   rRooms:
   - {fileID: 1611285331870608, guid: 22508c43f7c92dd4eab550153556a12d, type: 2}
+  doubleLRRooms:
+  - {fileID: 1055171755559920, guid: 796d101e08c5dd844a75c319e391008e, type: 2}
+  doubleRLRooms:
+  - {fileID: 1611222900579732, guid: 98cef48b491190546a80b2218fd478dd, type: 2}
   minRooms: 7
   maxRooms: 12
   rooms: []
-  waitTime: 30
   finalRoomObject: {fileID: 1706879201918360, guid: 557911d839aa4ab48be3a695866ed1cd,
     type: 2}
 --- !u!114 &114362678605636900
@@ -251,12 +254,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverMenu: {fileID: 0}
-  cursor: {fileID: 2800000, guid: 56f9403f4643f89468b3eb93cb3c06a5, type: 3}
   map: {fileID: 0}
   cameraPanTime: 0.1
-  roomStartDelay: 0.4
+  roomStartDelay: 0.5
   cameraPanning: 0
   confiner: {fileID: 0}
+  proceduralUI: {fileID: 0}
+  spawningRooms: 1
 --- !u!114 &114631073505308308
 MonoBehaviour:
   m_ObjectHideFlags: 1

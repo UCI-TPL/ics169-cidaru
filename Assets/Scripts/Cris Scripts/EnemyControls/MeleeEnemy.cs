@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemy : EnemyAttack {
-    /* Defines the attack behavior for Melee Enemies 
+    /* Defines the ATTACK behavior for Melee Enemies 
      * Standard Melee Enemies attack using their weapons, 
      * so this just serves for clarity in how they attack.
      * However, it also allows for the "whirlwind" ability.

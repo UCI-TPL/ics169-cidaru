@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedEnemy : EnemyAttack {
-    /* Defines the attack behavior for Ranged Enemies 
+    /* Defines the ATTACK behavior for Ranged Enemies 
      Adapted from Richard's EnemyController script 
      */
 

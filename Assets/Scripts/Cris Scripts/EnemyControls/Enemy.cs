@@ -12,28 +12,27 @@ public class Enemy : MonoBehaviour {
     }
 
     [Header("Attributes")]
-    public EnemyAttack attackStyle;
-    public EnemyMovement movement;
-    public int aggroRange;
-    public bool raycastEnabled;
+    public EnemyAttack attackStyle; // The script that dictates the enemy's attack patterns
+    public EnemyMovement movement; // The script that dictates the enemy's movement
     [HideInInspector]
-    public bool aggressing = false;
+    public bool aggressing; // whether or not the enemy is going after the player
 
-    protected GameObject player;
+    private GameObject player; 
     private Health hp;
 
-    [Header("Affected By")]
+    [Header("Affected By")] // All powers this enemy can be affected by
     public bool babyBomb;
     public bool speedBubbles;
     public bool vortex;
 
-    //[Header("Vortex Stuff")]
+    [Header("Vortex Stuff")] // Stuff used for vortex-specific effects
     public float rotationSpeed = 200f;
+    public float radius = 0f;
 
     private Rigidbody2D rb2d;
     private EnemyState currentState = EnemyState.Normal;
     private Vector3 center;
-    public float radius = 0f;
+
 
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -42,72 +41,82 @@ public class Enemy : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         currentState = EnemyState.Normal;
         radius = 0f;
+        aggressing = false;
 	}
 	
 	void FixedUpdate () {
-        checkDeath();
+        checkDeath(); // Make sure they're not dead before doing other stuff
 
-        if (currentState != EnemyState.Normal)
-            return;
-
-        aggressing = true;
-        rb2d.velocity = new Vector2(0, 0);
-
-        if (raycastEnabled)
+        /// Do things based on what the currentState is
+        switch (currentState)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(player.transform.position, transform.position));
-            if (hit && (hit.collider.tag == "Enemy Weapon"))
-                hit = Physics2D.Raycast(hit.collider.transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position));
-            if (hit.collider.tag == "Enemy" || hit.collider.tag == "Pet")
-                hit = Physics2D.Raycast(hit.collider.transform.position, player.transform.position - transform.position, Vector2.Distance(player.transform.position, transform.position));
-
-            //Debug.DrawLine(transform.position, player.transform.position, Color.red);
-            //Debug.DrawLine(transform.position, (Vector3)hit.point);
-
-
-            if (hit.collider == null)
-                aggressing = false;
-            else
-                aggressing = hit.collider.tag == "Player";
-        }
-
-        aggressing = aggressing && Vector3.Distance(player.transform.position, transform.position) <= aggroRange && currentState == EnemyState.Normal;
-
-        if (aggressing)
-        {
-            attackStyle.Attack();
+            case EnemyState.Normal:
+                handleNormal();
+                break;
+            case EnemyState.Rotato:
+                handleRotato();
+                break;
+            case EnemyState.Succing:
+                handleSucc();
+                break;
+            default:
+                handleNormal();
+                break;
         }
     }
 
-    public void Update()
+    private void handleNormal()
     {
-        if (currentState == EnemyState.Succing)
+        /// Normal enemy behavior
+        rb2d.velocity = new Vector2(0, 0); //bc movement isn't based on velocity... yet.
+
+        if (!aggressing)
         {
-            rb2d.freezeRotation = false;
-            Vector2 difference = transform.position - center;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position,
+                player.transform.position - transform.position,
+                Vector3.Distance(player.transform.position, transform.position),
+                LayerMask.GetMask("Default")); //Only checks on the layer with colliders/obstacles
 
-            float angle = Vector2.Angle(Vector2.right, difference);
-
-            if (transform.position.y - center.y < 0)
-            {
-                angle = -angle;
-            }
-
-            transform.eulerAngles = new Vector3(0, 0, angle);
-
-            currentState = EnemyState.Rotato;
-        } else if (currentState == EnemyState.Rotato)
-        {
-            radius = Vector3.Distance(transform.position, center);
-            if (radius >= 0.03f)
-            {
-                radius -= 0.01f;
-            }
-
-            rb2d.MoveRotation(rb2d.rotation + rotationSpeed * Time.deltaTime);
-
-            rb2d.MovePosition(center + radius * new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180), Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180)));
+            //Debug.DrawLine(transform.position, (Vector3)hit.point);
+            aggressing = hit.collider == null; // if nothing was hit, then the path to the player is obstacle-free
         }
+        else
+        {
+            attackStyle.Attack();
+            movement.Move();
+        }
+    }
+
+    private void handleSucc()
+    {
+        /// The stuff that needs to happen when the state is Succ
+        rb2d.freezeRotation = false;
+        Vector2 difference = transform.position - center;
+
+        float angle = Vector2.Angle(Vector2.right, difference);
+
+        if (transform.position.y - center.y < 0)
+        {
+            angle = -angle;
+        }
+
+        transform.eulerAngles = new Vector3(0, 0, angle);
+
+        currentState = EnemyState.Rotato;
+    }
+
+    private void handleRotato()
+    {
+        /// The stuff that needs to happen when the state is Rotato
+        radius = Vector3.Distance(transform.position, center);
+        if (radius >= 0.03f)
+        {
+            radius -= 0.01f;
+        }
+
+        rb2d.MoveRotation(rb2d.rotation + rotationSpeed * Time.deltaTime);
+
+        rb2d.MovePosition(center + radius * new Vector3(Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.PI / 180), Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.PI / 180)));
     }
 
     public void startVortex(Vector3 c)

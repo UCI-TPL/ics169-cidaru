@@ -39,9 +39,7 @@ public class ChargeMovement : EnemyMovement {
     {
         if (distFromPlayer() <= chargeDistance && !charged)
         {
-            Vector3 dir = Vector3.Normalize((transform.position - currentTarget));
-            Charge(currentTarget + dir * 10);
-            Debug.DrawLine(transform.position, currentTarget + dir * 3, Color.red);
+            Charge();
         }
         else
         {
@@ -60,10 +58,10 @@ public class ChargeMovement : EnemyMovement {
         }
     }
 
-    private void Charge(Vector3 position)
+    private void Charge()
     {
-        currentTarget = player.transform.position;
-        StartCoroutine(Wait(chargeTime));
+        seekTarget();
+        StartCoroutine(Charging(chargeTime));
         currentSpeed += (currentSpeed * chargePower);
         MoveTo(currentTarget);
         charged = true;
@@ -81,5 +79,21 @@ public class ChargeMovement : EnemyMovement {
             transform.Rotate(new Vector3(startRotation.x, startRotation.y, startRotation.z + 20));
         if (move && chargeDistance != 0)
             transform.rotation = startRotation;
+    }
+
+    public IEnumerator Charging(float secs)
+    {
+        move = false;
+        yield return new WaitForSeconds(secs);
+        seekTarget(); //Resets target to adjust for player's position upon charge start
+        move = true;
+    }
+
+    private void seekTarget()
+    {
+        // Finds the player and pinpoints the target beyond the player depending on the charge power
+        Vector3 dir = Vector3.Normalize((transform.position - player.transform.position));
+        currentTarget = player.transform.position + dir * -(chargePower + 1);
+        Debug.DrawLine(transform.position, currentTarget, Color.red);
     }
 }

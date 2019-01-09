@@ -92,8 +92,8 @@ public class Flocking : MonoBehaviour {
             Debug.Log(hit.collider.tag);
             if (hit && hit.collider.gameObject.tag == "FlockAvoid")
             {
-                avoidance.x = (newDirection * transform.up).x - hit.collider.transform.position.x;
-                avoidance.y = (newDirection * transform.up).y - hit.collider.transform.position.y;
+                avoidance.x = (newDirection * transform.right).x - hit.collider.transform.position.x;
+                avoidance.y = (newDirection * transform.right).y - hit.collider.transform.position.y;
 
                 avoidance.Normalize();
                 Debug.Log("Hit = " + hit.collider.tag);

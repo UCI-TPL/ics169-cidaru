@@ -42,7 +42,10 @@ public class Enemy : MonoBehaviour {
         currentState = EnemyState.Normal;
         radius = 0f;
         aggressing = false;
-	}
+
+        attackStyle = GetComponent<EnemyAttack>();
+        movement = GetComponent<EnemyMovement>();
+    }
 	
 	void FixedUpdate () {
         checkDeath(); // Make sure they're not dead before doing other stuff

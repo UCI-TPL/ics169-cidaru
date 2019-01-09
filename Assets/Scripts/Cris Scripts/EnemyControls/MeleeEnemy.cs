@@ -12,6 +12,8 @@ public class MeleeEnemy : EnemyAttack {
     public GameObject weapon;
     public float whirlwindLimit;
     public bool tasmanian; //spin like the tasmanian devil/diablo beserkers
+    [HideInInspector]
+    public bool spinning; //whether or not the enemy is currently spinning
 
     private int whirlwindSpeed = 40;
     private float whirlwindTimer;
@@ -60,11 +62,13 @@ public class MeleeEnemy : EnemyAttack {
 
         if (whirlwindTimer >= whirlwindLimit)
         {
+            spinning = false;
             makeVulnerable();
             restTimer += Time.deltaTime;
         }
         else
         {
+            spinning = true;
             animate();
             hp.setInvincible(true);
             weapon.GetComponent<MeleeWeapon>().deflection = deflect;

@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour {
         else
         {
             attackStyle.Attack();
-            movement.Move();
+            movement.Move(aggressing);
         }
     }
 

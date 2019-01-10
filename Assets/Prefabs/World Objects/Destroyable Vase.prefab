@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4938353795346720}
   - component: {fileID: 212758903483374502}
   - component: {fileID: 50226168360629140}
-  - component: {fileID: 61684739755252682}
   - component: {fileID: 114668072665400048}
   - component: {fileID: 114832229650295012}
+  - component: {fileID: 61258051454079448}
   m_Layer: 14
   m_Name: Destroyable Vase
   m_TagString: Destroyable
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146428215023036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.86, y: 1.01, z: 0}
+  m_LocalPosition: {x: -5.23, y: 3.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &61684739755252682
+--- !u!61 &61258051454079448
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,18 +76,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020176768, y: 0.020176888}
+  m_Offset: {x: 0, y: -0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1933334, y: 1.5066667}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85705256, y: 1.4663129}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &114668072665400048
 MonoBehaviour:
@@ -147,9 +147,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -633514475
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5bd425205c6a4894485b171df2aea9c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 049458590af11274c9ef6e594b3a83df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour {
 
     private bool playerTalking;
 
+    private ControlsUIText controlsUIText;
+
     private void Awake()
     {
         gm = this;
@@ -63,6 +65,13 @@ public class GameManager : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("Mouse") != 0)
             Cursor.visible = true;
+
+        controlsUIText = GetComponent<ControlsUIText>();
+
+        if (PlayerPrefs.GetInt("Mouse") != 0)
+            controlsUIText.keyboardText();
+        else
+            controlsUIText.controllerText();
 
         playerTalking = false;
 

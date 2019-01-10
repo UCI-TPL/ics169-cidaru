@@ -3193,7 +3193,7 @@ GameObject:
   - component: {fileID: 396890095}
   - component: {fileID: 396890094}
   m_Layer: 5
-  m_Name: Sprint
+  m_Name: Sprint Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3249,7 +3249,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0
-  m_Text: LShift
+  m_Text: LT/A
 --- !u!222 &396890095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4304,7 +4304,7 @@ GameObject:
   - component: {fileID: 612557619}
   - component: {fileID: 612557618}
   m_Layer: 5
-  m_Name: Vortex
+  m_Name: Vortex Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4360,7 +4360,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0
-  m_Text: RMouse
+  m_Text: RB
 --- !u!222 &612557619
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4806,7 +4806,7 @@ GameObject:
   - component: {fileID: 718384345}
   - component: {fileID: 718384344}
   m_Layer: 5
-  m_Name: Baby
+  m_Name: Baby Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4862,7 +4862,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0
-  m_Text: '     Q       '
+  m_Text: 'Y  '
 --- !u!222 &718384345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6560,7 +6560,7 @@ GameObject:
   - component: {fileID: 1281414400}
   - component: {fileID: 1281414399}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Map Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7186,7 +7186,7 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114631073505308308, guid: 700837840e0bb91419e2c60a7cb75c05,
     type: 2}
-  m_PrefabInternal: {fileID: 1683273095}
+  m_PrefabInternal: {fileID: 1973402861}
   m_Script: {fileID: 11500000, guid: 3f989d4bcc1e4e243b851fa19ec67f50, type: 3}
 --- !u!1 &1503725021
 GameObject:
@@ -8108,73 +8108,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1657223623}
   m_CullTransparentMesh: 0
---- !u!1001 &1683273095
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 2}
-      propertyPath: gameOverMenu
-      value: 
-      objectReference: {fileID: 508850690}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 2}
-      propertyPath: map
-      value: 
-      objectReference: {fileID: 1196561505}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 2}
-      propertyPath: confiner
-      value: 
-      objectReference: {fileID: 2022817245}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 2}
-      propertyPath: proceduralUI
-      value: 
-      objectReference: {fileID: 1271597739}
-    - target: {fileID: 114631073505308308, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 2}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1979635755}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1694738741
 GameObject:
   m_ObjectHideFlags: 0
@@ -8255,7 +8188,7 @@ GameObject:
   - component: {fileID: 1698742954}
   - component: {fileID: 1698742953}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Map Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8716,6 +8649,98 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &1973402861
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 508850690}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1196561505}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: confiner
+      value: 
+      objectReference: {fileID: 2022817245}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: proceduralUI
+      value: 
+      objectReference: {fileID: 1271597739}
+    - target: {fileID: 114631073505308308, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1979635755}
+    - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: babyText
+      value: 
+      objectReference: {fileID: 718384344}
+    - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: slowText
+      value: 
+      objectReference: {fileID: 2016382086}
+    - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: vortexText
+      value: 
+      objectReference: {fileID: 612557618}
+    - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: sprintText
+      value: 
+      objectReference: {fileID: 396890094}
+    - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 2}
+      propertyPath: mapText
+      value: 
+      objectReference: {fileID: 1698742953}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 700837840e0bb91419e2c60a7cb75c05, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1979635755
 GameObject:
   m_ObjectHideFlags: 0
@@ -8812,7 +8837,7 @@ GameObject:
   - component: {fileID: 2016382087}
   - component: {fileID: 2016382086}
   m_Layer: 5
-  m_Name: Slow
+  m_Name: Slow Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8868,7 +8893,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0
-  m_Text: E
+  m_Text: B
 --- !u!222 &2016382087
 CanvasRenderer:
   m_ObjectHideFlags: 0

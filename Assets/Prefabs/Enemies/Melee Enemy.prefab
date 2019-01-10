@@ -75,14 +75,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713807193727730}
-  m_LocalRotation: {x: -0, y: -0, z: -0.033538006, w: 0.99943745}
-  m_LocalPosition: {x: 0.52, y: -0.15, z: 0.36816406}
+  m_LocalRotation: {x: -0, y: -0, z: -0.31039307, w: 0.9506083}
+  m_LocalPosition: {x: 0.477, y: -0.076, z: 0.36816406}
   m_LocalScale: {x: -0.7568, y: 0.7568, z: 0.7568}
   m_Children:
   - {fileID: 4438457024843850}
   m_Father: {fileID: 4756578941844502}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.844}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -36.166}
 --- !u!4 &4438457024843850
 Transform:
   m_ObjectHideFlags: 1
@@ -103,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1185563679627766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.9214826, y: -1.5366733, z: 0}
+  m_LocalPosition: {x: -0.5420494, y: -1.9750826, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4227454923606904}
@@ -146,14 +146,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.3125, y: 0.9375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.3, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &61739163956916910
 BoxCollider2D:
@@ -194,6 +194,7 @@ MonoBehaviour:
   weapon: {fileID: 1713807193727730}
   whirlwindLimit: 0
   tasmanian: 0
+  spinning: 0
 --- !u!114 &114463990485402902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,9 +225,6 @@ MonoBehaviour:
   currentSpeed: 0
   move: 0
   patrolPoints: []
-  chargeDistance: 4
-  chargeTime: 0.5
-  chargePower: 1
 --- !u!114 &114741346345128994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,7 +362,7 @@ SpriteRenderer:
   m_SortingLayerID: -1799833889
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300552, guid: 643eb032f60d0474f9158f5b21f530ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8302d2332c8e3944db3090f18b0df5fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -373,7 +371,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!331 &331546432283682930
 SpriteMask:

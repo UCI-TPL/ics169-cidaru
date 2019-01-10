@@ -13,7 +13,10 @@ public class ControlSetup : MonoBehaviour {
             PlayerPrefs.SetInt("Mouse", 1);
         }
 
-        controls.isOn = false;
+        if (PlayerPrefs.GetInt("Mouse") != 0)
+            controls.isOn = false;
+        else
+            controls.isOn = true;
 	}
 	
 	public void SavePref()

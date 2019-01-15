@@ -38,10 +38,6 @@ public class MeleeEnemy : EnemyAttack {
 
     private void Update()
     {
-        if (!GetComponent<Enemy>().aggressing)
-        {
-            resetRotations();
-        }
     }
 
     public override void Attack()

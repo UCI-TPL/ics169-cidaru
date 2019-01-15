@@ -58,7 +58,6 @@ public class EnemyMovement : MonoBehaviour
     {
         /// How the enemy specifically moves, considering everything
         /// Called in the Enemy script
-        updateAnimations();
         if (!move)
             return;
 
@@ -92,6 +91,8 @@ public class EnemyMovement : MonoBehaviour
         /* Basic movement. The bare bones of how the AI moves */
         float step = currentSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, position, step);
+
+        updateAnimations();
     }
 
     protected virtual void updateAnimations()

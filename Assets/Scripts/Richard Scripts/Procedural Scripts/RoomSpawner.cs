@@ -372,6 +372,64 @@ public class RoomSpawner : MonoBehaviour {
 
         return true;
     }
+
+    private bool isDoubleTopClear()
+    {
+        //return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (verticalDistance * Vector3.up * 2))
+                return false;
+        }
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (verticalDistance * Vector3.up * 2) + (horizontalDistance * Vector3.left))
+                return false;
+
+            if (sp.transform.position == transform.position + (verticalDistance * Vector3.up * 2) + (-horizontalDistance * Vector3.left))
+                return false;
+
+            if (sp.transform.position == transform.position + (verticalDistance * Vector3.up * 3))
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool isDoubleBotClear()
+    {
+        //return Physics2D.OverlapCircle(transform.position + (-horizontalDistance * Vector3.left), 1) == null;
+
+        GameObject[] destroyers = GameObject.FindGameObjectsWithTag("Destroyer");
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject d in destroyers)
+        {
+            if (d.transform.position == transform.position + (-verticalDistance * Vector3.up * 2))
+                return false;
+        }
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (-verticalDistance * Vector3.up * 2) + (horizontalDistance * Vector3.left))
+                return false;
+
+            if (sp.transform.position == transform.position + (-verticalDistance * Vector3.up * 2) + (-horizontalDistance * Vector3.left))
+                return false;
+
+            if (sp.transform.position == transform.position + (-verticalDistance * Vector3.up * 3))
+                return false;
+        }
+
+        return true;
+    }
     #endregion Double Single Direction Check
 
     // Updates the possible rooms that are necessary that can be produced from a single opening
@@ -386,6 +444,9 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isRightClear())
             rooms.AddRange(templates.brRooms);
+
+        if (isTopClear() && isDoubleTopClear())
+            rooms.AddRange(templates.doubleBTRooms);
 
         if (isTopClear() && isLeftClear())
             rooms.AddRange(templates.tlbRooms);
@@ -415,6 +476,9 @@ public class RoomSpawner : MonoBehaviour {
 
         if (isRightClear())
             rooms.AddRange(templates.trRooms);
+
+        if (isBotClear() && isDoubleBotClear())
+            rooms.AddRange(templates.doubleTBRooms);
 
         if (isBotClear() && isLeftClear())
             rooms.AddRange(templates.tlbRooms);

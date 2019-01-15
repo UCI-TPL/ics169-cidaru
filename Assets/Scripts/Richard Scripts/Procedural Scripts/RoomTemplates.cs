@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomTemplates : MonoBehaviour {
+
+    [Header("Three Way Single Room")]
     public GameObject[] blrRooms;
     public GameObject[] tlbRooms;
     public GameObject[] tlrRooms;
     public GameObject[] trbRooms;
+
+    [Header("Two Way Single Room")]
     public GameObject[] blRooms;
     public GameObject[] brRooms;
     public GameObject[] tlRooms;
@@ -18,8 +22,11 @@ public class RoomTemplates : MonoBehaviour {
     public GameObject[] lRooms;
     public GameObject[] rRooms;
 
+    [Header("Two Way Double Room")]
     public GameObject[] doubleLRRooms;
     public GameObject[] doubleRLRooms;
+    public GameObject[] doubleTBRooms;
+    public GameObject[] doubleBTRooms;
 
     public int minRooms = 10;
     public int maxRooms = 30;

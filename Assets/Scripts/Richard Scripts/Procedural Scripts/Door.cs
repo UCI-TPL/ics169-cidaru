@@ -16,6 +16,8 @@ public class Door : MonoBehaviour {
     public bool singleRoomTrigger = true;
     public bool doubleLRTrigger = false;
     public bool doubleRLTrigger = false;
+    public bool doubleTBTrigger = false;
+    public bool doubleBTTrigger = false;
 
     // Check if room is active (enemies spawned and doors closed)
     private bool active;
@@ -95,9 +97,13 @@ public class Door : MonoBehaviour {
 
             // Updates the current player sprite on the minimap and pans camera
             if (doubleLRTrigger)
-                GameManager.gm.updateDoubleMinimapPosition(transform.parent.position + new Vector3(11, 0, 0));
+                GameManager.gm.updateDoubleLRMinimapPosition(transform.parent.position + new Vector3(11, 0, 0));
             else if (doubleRLTrigger)
-                GameManager.gm.updateDoubleMinimapPosition(transform.parent.position + new Vector3(-12, 0, 0));
+                GameManager.gm.updateDoubleLRMinimapPosition(transform.parent.position + new Vector3(-12, 0, 0));
+            else if (doubleTBTrigger)
+                GameManager.gm.updateDoubleTBMinimapPosition(transform.parent.position + new Vector3(0, -10, 0));
+            else if (doubleBTTrigger)
+                GameManager.gm.updateDoubleTBMinimapPosition(transform.parent.position + new Vector3(0, 9, 0));
             else
                 GameManager.gm.updateMinimapPosition(transform.parent.position);
 

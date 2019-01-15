@@ -153,11 +153,23 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void updateDoubleMinimapPosition(Vector3 newPos)
+    public void updateDoubleLRMinimapPosition(Vector3 newPos)
     {
         if (minimapPos.position != newPos)
         {
             cameraColPos.localScale = new Vector3(2, 1, 1);
+
+            minimapPos.position = newPos;
+
+            StartCoroutine(PanCamera(newPos));
+        }
+    }
+
+    public void updateDoubleTBMinimapPosition(Vector3 newPos)
+    {
+        if (minimapPos.position != newPos)
+        {
+            cameraColPos.localScale = new Vector3(1, 2, 1);
 
             minimapPos.position = newPos;
 

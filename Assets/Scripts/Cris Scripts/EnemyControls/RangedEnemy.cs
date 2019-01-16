@@ -9,6 +9,8 @@ public class RangedEnemy : EnemyAttack {
 
     public float setFireTimer;
     public GameObject bullet;
+    public GameObject weapon;
+    //public Animator weaponAnim;
 
     private float fireTimer;
 
@@ -25,11 +27,15 @@ public class RangedEnemy : EnemyAttack {
     private void Shoot()
     {
         fireTimer -= Time.deltaTime;
+        weapon.GetComponent<Animator>().SetBool("Shooting", true);
+
+        //weapon.transform.rotation = Quaternion.LookRotation(weapon.transform.forward, weapon.transform.position - player.transform.position);
 
         // Timer to fire bullets on set intervals
         if (fireTimer <= 0f)
         {
-            GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
+            weapon.GetComponent<Animator>().SetBool("Shooting", false);
+            GameObject newBullet = Instantiate(bullet, weapon.transform.position, Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
 
             newBullet.tag = "Enemy Bullet";
 

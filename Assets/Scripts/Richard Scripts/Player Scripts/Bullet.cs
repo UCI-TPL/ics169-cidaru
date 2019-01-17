@@ -6,7 +6,8 @@ using UnityEngine;
 public class Bullet : Projectile {
 
     // Effects to be created after bullet is destroyed
-    public GameObject bulletEffect;
+    public GameObject bulletCharacterEffect;
+    public GameObject bulletObstacleEffect;
 
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -16,7 +17,7 @@ public class Bullet : Projectile {
             col.GetComponent<Health>().TakeDamage(dmg);
 
             // Creates effect and destroy object
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Instantiate(bulletCharacterEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else if ((col.tag == "Enemy" || col.tag == "Enemy Boss") && tag == "Player Bullet") // Player bullet hits enemy/boss
         {
@@ -32,7 +33,7 @@ public class Bullet : Projectile {
                 col.GetComponent<Health>().TakeDamage(dmg);
 
                 // Creates effect and destroy object
-                Instantiate(bulletEffect, transform.position, Quaternion.identity);
+                Instantiate(bulletCharacterEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         } else if ((col.tag == "Player" || col.tag == "Enemy") && tag == "Vortex Projectile") // Vortex bullet hits player or enemy
@@ -41,19 +42,19 @@ public class Bullet : Projectile {
             col.GetComponent<Health>().TakeDamage(dmg);
 
             // Creates effect and destroy object
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Instantiate(bulletCharacterEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else if (col.tag == "Enemy" && tag == "Rotating Bullet") { // Rotating bullet hits enemy
             // Deals damage to enemy
             col.GetComponent<Health>().TakeDamage(dmg);
 
             // Creates effect and destroy object
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Instantiate(bulletCharacterEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else if (col.tag == "Obstacle" && tag != "Rotating Bullet") // Rotating bullet hits obstacle
         {
             // Creates effect and destroy object
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Instantiate(bulletObstacleEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         } else if (col.tag == "Destroyable") // Any bullet hits a destroyable object
         {
@@ -61,7 +62,7 @@ public class Bullet : Projectile {
             col.GetComponent<Health>().TakeDamage(dmg);
 
             // Creates effect and destroy object
-            Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Instantiate(bulletObstacleEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

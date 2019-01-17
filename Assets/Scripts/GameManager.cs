@@ -176,13 +176,27 @@ public class GameManager : MonoBehaviour {
         templates.copyRespawners = new List<RespawnRoom>(templates.nextInLineRespawners);
         templates.nextInLineRespawners.Clear();
 
+        // Reset Positions
         player.transform.position = Vector3.zero;
         cameraColPos.localScale = Vector3.one;
         cameraColPos.position = Vector3.zero;
         minimapPos.position = Vector3.zero;
         Camera.main.transform.position = new Vector3(0, 0, -10);
 
+        // Reset Values
         playerHp.MaxHeal();
+        player.GetComponent<GunController>().respawnReload();
+        player.GetComponent<CooldownController>().resetCooldowns();
+
+        // Reset Babies & Hp Pot
+        GameObject[] babies = GameObject.FindGameObjectsWithTag("Baby");
+        GameObject[] hpPots = GameObject.FindGameObjectsWithTag("Hp Pot");
+
+        foreach (GameObject baby in babies)
+            Destroy(baby);
+
+        foreach (GameObject hpPot in hpPots)
+            Destroy(hpPot);
 
         glitchEff.enabled = false;
 

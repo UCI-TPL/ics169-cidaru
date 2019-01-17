@@ -91,6 +91,13 @@ public class Ability : ScriptableObject {
         cooldownUI.value = setCooldown - currentCooldown;
     }
 
+    public void finishCooldown()
+    {
+        currentCooldown = 0;
+
+        cooldownUI.value = setCooldown - currentCooldown;
+    }
+
     // Start cooldown if max charges increased
     private void increaseChargeCD()
     {

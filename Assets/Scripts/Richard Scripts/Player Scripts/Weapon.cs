@@ -151,6 +151,15 @@ public class Weapon : ScriptableObject
         ammoUI.reloadAmmo();
     }
 
+    public void InstantReload()
+    {
+        ammoUI.clearAmmo();
+
+        currentClipAmmo = setMaxClipAmmo;
+
+        ammoUI.reloadAmmo();
+    }
+
     // Checks if the normal weapon can be reloaded
     public bool CheckNormalReloadable()
     {

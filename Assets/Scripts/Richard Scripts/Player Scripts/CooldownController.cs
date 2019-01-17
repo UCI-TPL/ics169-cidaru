@@ -10,6 +10,8 @@ public class CooldownController : MonoBehaviour {
     // List of abilities that are currently on cooldown
     private List<Ability> abilitiesOnCooldown = new List<Ability>();
 
+    private bool resetting;
+
     private void Awake()
     {
         // Sets this controller to be current cooldown controller
@@ -18,28 +20,53 @@ public class CooldownController : MonoBehaviour {
             cdInstance = this;
         else if (cdInstance != this)
             Destroy(this);
+
+        resetting = false;
     }
 
     private void Update()
     {
-        // Loops through each abiltiy and calculates cooldown
-        foreach (Ability ability in abilitiesOnCooldown)
+        if (Time.timeScale != 0f)
         {
-            // Decreases cooldown and updates UI for ability
-            ability.updateCooldown();
-            
-            // If cooldown is over, add a charge
-            if (ability.currentCooldown <= 0f)
+            // Loops through each abiltiy and calculates cooldown
+            foreach (Ability ability in abilitiesOnCooldown.ToArray())
             {
-                ability.increaseCharge();
+                if (resetting)
+                {
+                    resetting = false;
+                    return;
+                }
 
-                // If max charges remove from list
-                // Else reset cooldown
-                if (ability.numberOfCharges == ability.maxNumberOfCharges)
-                    abilitiesOnCooldown.Remove(ability);
-                else
-                    ability.currentCooldown = ability.setCooldown;
+                // Decreases cooldown and updates UI for ability
+                ability.updateCooldown();
+
+                // If cooldown is over, add a charge
+                if (ability.currentCooldown <= 0f)
+                {
+                    ability.increaseCharge();
+
+                    // If max charges remove from list
+                    // Else reset cooldown
+                    if (ability.numberOfCharges == ability.maxNumberOfCharges)
+                        abilitiesOnCooldown.Remove(ability);
+                    else
+                        ability.currentCooldown = ability.setCooldown;
+                }
             }
+        }
+    }
+
+    public void resetCooldowns()
+    {
+        foreach (Ability ability in abilitiesOnCooldown.ToArray())
+        {
+            resetting = true;
+
+            ability.finishCooldown();
+
+            ability.increaseCharge();
+
+            abilitiesOnCooldown.Remove(ability);
         }
     }
 

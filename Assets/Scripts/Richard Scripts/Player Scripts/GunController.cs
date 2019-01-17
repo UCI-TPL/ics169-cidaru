@@ -283,6 +283,11 @@ public class GunController : MonoBehaviour {
     //}
     #endregion Pre-Scriptable Object Reload
 
+    public void respawnReload()
+    {
+        normalGun.InstantReload();
+    }
+
     private void NormalShoot()
     {
         if ((Input.GetMouseButton(0) || Input.GetAxisRaw("Right Trigger") > 0) && normalGun.CheckClip() && !reloading  && shootTimer <= 0f)

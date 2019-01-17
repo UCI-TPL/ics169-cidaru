@@ -1695,6 +1695,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1654810300}
     m_Modifications:
+    - target: {fileID: 1835844077984150, guid: 9ab3edc789bcc0b499487a0cd2efc9a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 66359091198238486, guid: 9ab3edc789bcc0b499487a0cd2efc9a1,
         type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
@@ -1714,6 +1718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.size
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 66359091198238486, guid: 9ab3edc789bcc0b499487a0cd2efc9a1,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66359091198238486, guid: 9ab3edc789bcc0b499487a0cd2efc9a1,
         type: 3}
@@ -7269,6 +7278,11 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1979635755}
+    - target: {fileID: 114631073505308308, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1979635755}
     - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7301,36 +7315,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114631073505308308, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1979635755}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: gameOverMenu
-      value: 
-      objectReference: {fileID: 508850690}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: map
-      value: 
-      objectReference: {fileID: 1196561505}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: confiner
-      value: 
-      objectReference: {fileID: 2022817245}
-    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: proceduralUI
-      value: 
-      objectReference: {fileID: 1271597739}
-    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b1658f522a4e3e84899c3d43499671e5, type: 3}
     - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
         type: 3}
       propertyPath: sprintText
@@ -7376,6 +7360,31 @@ PrefabInstance:
       propertyPath: proceduralUI
       value: 
       objectReference: {fileID: 1271597739}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 508850690}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1196561505}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: confiner
+      value: 
+      objectReference: {fileID: 2022817245}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: proceduralUI
+      value: 
+      objectReference: {fileID: 1271597739}
+    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b1658f522a4e3e84899c3d43499671e5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
 --- !u!1 &1979635755
@@ -7804,7 +7813,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cooldownUI
       value: 
-      objectReference: {fileID: 2022817246}
+      objectReference: {fileID: 226669534}
     - target: {fileID: 114917135925875528, guid: 1420b703e544f9840b110f3bd3ea11de,
         type: 3}
       propertyPath: healthBar
@@ -7819,7 +7828,7 @@ PrefabInstance:
         type: 3}
       propertyPath: virtualCamera
       value: 
-      objectReference: {fileID: 226669534}
+      objectReference: {fileID: 2022817246}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1420b703e544f9840b110f3bd3ea11de, type: 3}
 --- !u!1 &2106103654

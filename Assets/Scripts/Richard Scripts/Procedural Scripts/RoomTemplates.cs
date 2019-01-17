@@ -34,6 +34,15 @@ public class RoomTemplates : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> rooms = new List<GameObject>();
 
+    //[HideInInspector]
+    public List<RespawnRoom> respawners = new List<RespawnRoom>();
+
+    //[HideInInspector]
+    public List<RespawnRoom> copyRespawners = new List<RespawnRoom>();
+
+    //[HideInInspector]
+    public List<RespawnRoom> nextInLineRespawners = new List<RespawnRoom>();
+
     public GameObject finalRoomObject;
     private bool spawned = false;
 

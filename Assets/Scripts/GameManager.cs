@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
     public float cameraPanTime = 1f;
     public float roomStartDelay = 1f;
 
+    public float respawnTime = 2f;
+
     [HideInInspector]
     public bool cameraPanning = false;
 
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour {
 
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
-    private Health playerHp;
+    private PlayerHealth playerHp;
 
     private Transform minimapPos;
     private Transform cameraColPos;
@@ -47,12 +49,18 @@ public class GameManager : MonoBehaviour {
 
     private ControlsUIText controlsUIText;
 
+    private GlitchEffect glitchEff;
+
+    private RoomTemplates templates;
+
+    private bool respawning;
+
     private void Awake()
     {
         gm = this;
 
         player = GameObject.Find("Player");
-        playerHp = player.GetComponent<Health>();
+        playerHp = player.GetComponent<PlayerHealth>();
 
         playerDialogueBubble = GameObject.Find("Player Text Bubble").GetComponent<DialogTextBox>();
 
@@ -80,6 +88,13 @@ public class GameManager : MonoBehaviour {
         spawningRooms = true;
 
         proceduralUI.SetActive(true);
+
+        glitchEff = Camera.main.GetComponent<GlitchEffect>();
+        glitchEff.enabled = false;
+
+        templates = GameManager.gm.GetComponent<RoomTemplates>();
+
+        respawning = false;
     }
 
     void Start () {
@@ -87,12 +102,9 @@ public class GameManager : MonoBehaviour {
 
     void Update() {
         if (!spawningRooms)
-        {
             gameplayLoop();
-        } else
-        {
+        else
             spawnRoomLoop();
-        }
         
     }
 
@@ -114,31 +126,69 @@ public class GameManager : MonoBehaviour {
 
     private void gameplayLoop()
     {
-        if (playerHp.dead() && !gameOverMenu.activeSelf)
+        if (playerHp.dead() && !respawning)
         {
             Time.timeScale = 0f;
 
             Cursor.visible = true;
-            gameOverMenu.SetActive(true);
-
+            //gameOverMenu.SetActive(true);
+            
             GetComponent<PauseController>().enabled = false;
+
+            StartCoroutine(RespawnMap());
         }
 
         if (Time.timeScale != 0f)
         {
-            if (Input.GetKey(KeyCode.Tab) || Input.GetButton("Back"))
-            {
+            if (Input.GetKey(KeyCode.Tab))
                 map.SetActive(true);
-            }
 
-            if (Input.GetKeyUp(KeyCode.Tab) || Input.GetButtonUp("Back"))
-            {
+            if (Input.GetKeyUp(KeyCode.Tab))
                 map.SetActive(false);
-            }
+
+            if (Input.GetButtonDown("Back") && !map.activeSelf)
+                map.SetActive(true);
+            else if (Input.GetButtonDown("Back") && map.activeSelf)
+                map.SetActive(false);
+
         } else
         {
             map.SetActive(false);
         }
+    }
+
+    IEnumerator RespawnMap()
+    {
+        respawning = true;
+
+        glitchEff.enabled = true;
+
+        yield return new WaitForSecondsRealtime(respawnTime);
+
+        foreach (RespawnRoom respawner in templates.respawners)
+        {
+            respawner.Respawn();
+        }
+
+        templates.respawners = new List<RespawnRoom>(templates.copyRespawners);
+        templates.copyRespawners.Clear();
+
+        templates.copyRespawners = new List<RespawnRoom>(templates.nextInLineRespawners);
+        templates.nextInLineRespawners.Clear();
+
+        player.transform.position = Vector3.zero;
+        cameraColPos.localScale = Vector3.one;
+        cameraColPos.position = Vector3.zero;
+        minimapPos.position = Vector3.zero;
+        Camera.main.transform.position = new Vector3(0, 0, -10);
+
+        playerHp.MaxHeal();
+
+        glitchEff.enabled = false;
+
+        Time.timeScale = 1;
+
+        respawning = false;
     }
 
     public void updateMinimapPosition(Vector3 newPos)

@@ -20,9 +20,5 @@ public class LifeChest : Chest {
         // Heals player's health if checked
         if (giveHp)
             player.GetComponent<PlayerHealth>().Heal(hpAmount);
-
-        // Provides player with armor if checked
-        if (giveArmor)
-            player.GetComponent<PlayerHealth>().AddArmor(armorAmount);
     }
 }

@@ -10,11 +10,6 @@ public class PlayerHealth : Health {
     */
 
     public Slider healthBar;
-    public Slider shieldBar;
-
-    public int maxShield = 5;
-
-    public int shield;
 
     private PlayerController player;
     private CameraShake shake;
@@ -32,10 +27,6 @@ public class PlayerHealth : Health {
         healthBar.maxValue = startingHealth;
         healthBar.value = startingHealth;
 
-        shieldBar.maxValue = maxShield;
-        shieldBar.value = 0;
-        shield = 0;
-
         invincible = false;
     }
 
@@ -43,16 +34,6 @@ public class PlayerHealth : Health {
     {
         if (!invincible)
         {
-            if (shield < amount)
-            {
-                amount -= shield;
-                shield = 0;
-            } else
-            {
-                shield -= amount;
-                amount = 0;
-            }
-
             currentHealth -= amount;
             invincible = true;
             player.startInvincibility();
@@ -61,7 +42,6 @@ public class PlayerHealth : Health {
         shake.startShake();
 
         updateHealthBar();
-        updateArmorBar();
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -79,14 +59,14 @@ public class PlayerHealth : Health {
         updateHealthBar();
     }
 
-    public void AddArmor(int amount)
+    public void MaxHeal()
     {
-        if (shield + amount >= maxShield)
-            shield = maxShield;
-        else
-            shield += amount;
+        currentHealth = startingHealth;
 
-        updateArmorBar();
+        if (isDead)
+            isDead = false;
+
+        updateHealthBar();
     }
 
     public void Reset()
@@ -100,11 +80,6 @@ public class PlayerHealth : Health {
     {
         healthBar.value = currentHealth;
         //Debug.Log("updated health bar");
-    }
-
-    private void updateArmorBar()
-    {
-        shieldBar.value = shield;
     }
 
     public bool isMaxHealth()

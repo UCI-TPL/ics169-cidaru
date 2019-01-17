@@ -18,7 +18,6 @@ public class PauseController : MonoBehaviour {
         }
 
         glitchEff = Camera.main.GetComponent<GlitchEffect>();
-        glitchEff.enabled = false;
 
         paused = false;
     }

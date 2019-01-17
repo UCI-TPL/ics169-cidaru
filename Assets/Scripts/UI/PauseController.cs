@@ -5,7 +5,8 @@ using UnityEngine;
 public class PauseController : MonoBehaviour {
     public GameObject pauseMenu;
     public List<GameObject> menus;
-    
+
+    private GlitchEffect glitchEff;
     private bool paused;
 
     void Start()
@@ -16,6 +17,9 @@ public class PauseController : MonoBehaviour {
             menu.SetActive(false);
         }
 
+        glitchEff = Camera.main.GetComponent<GlitchEffect>();
+        glitchEff.enabled = false;
+
         paused = false;
     }
 
@@ -23,12 +27,9 @@ public class PauseController : MonoBehaviour {
 	    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
         {
             if (!paused)
-            {
                 Pause();
-            } else
-            {
+            else
                 Resume();
-            }
         }
 	}
 
@@ -37,6 +38,8 @@ public class PauseController : MonoBehaviour {
         Cursor.visible = true;
 
         paused = true;
+
+        glitchEff.enabled = true;
 
         pauseMenu.SetActive(true);
 
@@ -49,6 +52,8 @@ public class PauseController : MonoBehaviour {
             Cursor.visible = false;
 
         paused = false;
+
+        glitchEff.enabled = false;
 
         pauseMenu.SetActive(false);
         foreach (GameObject menu in menus)

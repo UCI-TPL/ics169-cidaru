@@ -4541,9 +4541,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displacementMap: {fileID: 0}
   Shader: {fileID: 4800000, guid: 377319199ba486249ab64a954b0f2065, type: 3}
-  intensity: 0.8
-  flipIntensity: 0.5
-  colorIntensity: 0.5
+  intensity: 0.3
+  flipIntensity: 0.4
+  colorIntensity: 1
 --- !u!1 &1027706417
 GameObject:
   m_ObjectHideFlags: 0
@@ -7264,6 +7264,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114631073505308308, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1979635755}
     - target: {fileID: 4560867641833878, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7351,6 +7356,26 @@ PrefabInstance:
       propertyPath: mapText
       value: 
       objectReference: {fileID: 1698742953}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: gameOverMenu
+      value: 
+      objectReference: {fileID: 508850690}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1196561505}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: confiner
+      value: 
+      objectReference: {fileID: 2022817245}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: proceduralUI
+      value: 
+      objectReference: {fileID: 1271597739}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
 --- !u!1 &1979635755
@@ -7363,7 +7388,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1979635756}
   - component: {fileID: 1979635759}
-  - component: {fileID: 1979635758}
   - component: {fileID: 1979635757}
   m_Layer: 5
   m_Name: Pause Menu
@@ -7407,35 +7431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObject: {fileID: 497693937}
---- !u!114 &1979635758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979635755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.24647617, a: 0.5882353}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
 --- !u!222 &1979635759
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7805,9 +7800,9 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114504779377889206, guid: 1420b703e544f9840b110f3bd3ea11de,
+    - target: {fileID: 114490281219575948, guid: 1420b703e544f9840b110f3bd3ea11de,
         type: 3}
-      propertyPath: virtualCamera
+      propertyPath: cooldownUI
       value: 
       objectReference: {fileID: 2022817246}
     - target: {fileID: 114917135925875528, guid: 1420b703e544f9840b110f3bd3ea11de,
@@ -7820,9 +7815,9 @@ PrefabInstance:
       propertyPath: shieldBar
       value: 
       objectReference: {fileID: 87751971}
-    - target: {fileID: 114490281219575948, guid: 1420b703e544f9840b110f3bd3ea11de,
+    - target: {fileID: 114504779377889206, guid: 1420b703e544f9840b110f3bd3ea11de,
         type: 3}
-      propertyPath: cooldownUI
+      propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 226669534}
     m_RemovedComponents: []

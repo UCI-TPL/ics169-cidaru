@@ -36,14 +36,6 @@ public class MeleeEnemy : EnemyAttack {
         }
     }
 
-    private void Update()
-    {
-        if (!GetComponent<Enemy>().aggressing)
-        {
-            resetRotations();
-        }
-    }
-
     public override void Attack()
     {
         if (whirlwindLimit == 0) //No whirlwind, no worries
@@ -103,9 +95,14 @@ public class MeleeEnemy : EnemyAttack {
 
     private void resetRotations()
     {
-        weapon.transform.rotation = defaultWeaponRotation;
+        //Reset weapon's rotations based on the enemy's sprite direction
+        if (transform.localScale.x == -1)
+            weapon.transform.rotation = Quaternion.Inverse(defaultWeaponRotation);//defaultWeaponRotation;
+        else
+            weapon.transform.rotation = defaultWeaponRotation;
+
+        //Reset enemy's rotations (mainly for tasSpin)
         transform.rotation = startRotation;
-        
     }
 
     public void makeVulnerable()

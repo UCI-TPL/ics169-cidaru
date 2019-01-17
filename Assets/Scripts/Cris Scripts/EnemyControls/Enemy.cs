@@ -81,13 +81,14 @@ public class Enemy : MonoBehaviour {
                 LayerMask.GetMask("Default")); //Only checks on the layer with colliders/obstacles
 
             //Debug.DrawLine(transform.position, (Vector3)hit.point);
-            aggressing = hit.collider == null; // if nothing was hit, then the path to the player is obstacle-free
+            aggressing = hit.collider == null || hp.currentHealth < hp.startingHealth; // if nothing was hit, then the path to the player is obstacle-free. Or check if the enemy was damaged by player
         }
         else
         {
             attackStyle.Attack();
-            movement.Move(aggressing);
         }
+
+        movement.Move(aggressing);
     }
 
     private void handleSucc()

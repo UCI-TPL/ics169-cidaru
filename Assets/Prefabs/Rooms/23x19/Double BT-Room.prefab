@@ -9508,7 +9508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e332d1586006ca34fb1a666b8e8dc0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 1487039178326622, guid: 08ce2fc344f91cd439a77a388065df52, type: 3}
+  isCopyRoom: 0
+  copyRoom: {fileID: 0}
 --- !u!1 &1501045695428562
 GameObject:
   m_ObjectHideFlags: 0
@@ -12744,10 +12745,7 @@ MonoBehaviour:
   - {fileID: 1291299492402614}
   - {fileID: 1318685947351084}
   - {fileID: 1107188213232784}
-  turrets:
-  - {fileID: 1360773770532776}
-  - {fileID: 1466624167732352}
-  - {fileID: 1316326873126772}
+  turrets: []
   doorColliders:
   - {fileID: 7465652129444952457}
   - {fileID: 1876234976800233081}

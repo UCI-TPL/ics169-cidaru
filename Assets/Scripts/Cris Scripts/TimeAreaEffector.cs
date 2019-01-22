@@ -67,12 +67,11 @@ public class TimeAreaEffector : MonoBehaviour {
     {
         RangedEnemy enemyAttack = enemy.GetComponent<RangedEnemy>();
         if (enemyAttack)
-            enemyAttack.setFireTimer *= effect;
+            enemyAttack.setFireTimer *= (1/effect); //To increase the speed, set the fire timer lower
 
         EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
         if (enemyMovement)
         {
-            //enemyMovement.currentSpeed *= effect;
             enemyMovement.changeBaseSpeed(effect);
         }
     }

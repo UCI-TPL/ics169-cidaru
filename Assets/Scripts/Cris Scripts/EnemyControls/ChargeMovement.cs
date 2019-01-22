@@ -28,6 +28,22 @@ public class ChargeMovement : EnemyMovement {
             resetRotations(); //Resets (rotation-based) animations
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag.Contains("Enemy")){
+            //StartCoroutine(Wait(.3f));
+            //currentSpeed = originalSpeed;
+            //charged = false;
+            base.MoveAwayFrom(collision.transform.position);
+        }
+        if (collision.transform.tag.Contains("Player"))
+        {
+            StartCoroutine(Wait(.3f));
+            currentSpeed = originalSpeed;
+            charged = false;
+        }
+    }
+
     protected override void setStartVars()
     {
         base.setStartVars();

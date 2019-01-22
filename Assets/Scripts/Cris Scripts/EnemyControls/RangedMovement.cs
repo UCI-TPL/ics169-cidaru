@@ -16,12 +16,6 @@ public class RangedMovement : EnemyMovement {
         if (distFromPlayer() > minDistToPlayer + margin)
             base.Move(aggressing);
         else if (distFromPlayer() < minDistToPlayer - margin)
-            MoveAwayFrom(player.transform.position);
-    }
-
-    private void MoveAwayFrom(Vector3 position)
-    {
-        float step = currentSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, position, -step);
+            base.MoveAwayFrom(player.transform.position);
     }
 }

@@ -124,6 +124,12 @@ public class EnemyMovement : MonoBehaviour
         currentSpeed *= effect;
     }
 
+    protected void MoveAwayFrom(Vector3 position)
+    {
+        float step = currentSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, position, -step);
+    }
+
     #region Helper Functions
 
     public IEnumerator Wait(float secs)

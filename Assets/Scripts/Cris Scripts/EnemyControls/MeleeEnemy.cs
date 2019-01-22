@@ -20,7 +20,6 @@ public class MeleeEnemy : EnemyAttack {
     private float restTimer;
     private bool deflect;
 
-    private Quaternion defaultWeaponRotation;
     private Health hp;
     private Quaternion startRotation;
 
@@ -31,7 +30,6 @@ public class MeleeEnemy : EnemyAttack {
         whirlwindTimer = 0;
         restTimer = 0;
         if (weapon){
-            defaultWeaponRotation = weapon.transform.rotation;
             deflect = weapon.GetComponent<MeleeWeapon>().deflection;
         }
     }
@@ -96,10 +94,7 @@ public class MeleeEnemy : EnemyAttack {
     private void resetRotations()
     {
         //Reset weapon's rotations based on the enemy's sprite direction
-        if (transform.localScale.x == -1)
-            weapon.transform.rotation = Quaternion.Inverse(defaultWeaponRotation);//defaultWeaponRotation;
-        else
-            weapon.transform.rotation = defaultWeaponRotation;
+        weapon.GetComponent<MeleeWeapon>().resetRotations();
 
         //Reset enemy's rotations (mainly for tasSpin)
         transform.rotation = startRotation;

@@ -11,6 +11,7 @@ public class MeleeWeapon : MonoBehaviour {
     public bool deflection;
 
     private bool startDeflection;
+    private Quaternion startRotation;
 
     public enum WeaponState
     {
@@ -30,6 +31,7 @@ public class MeleeWeapon : MonoBehaviour {
         currentState = WeaponState.Normal;
         radius = 0f;
         startDeflection = deflection;
+        startRotation = transform.rotation;
     }
 
     public void Update()
@@ -113,6 +115,14 @@ public class MeleeWeapon : MonoBehaviour {
         gameObject.layer = 12;
 
         deflection = startDeflection;
+    }
+
+    public void resetRotations()
+    {
+        if (GetComponentInParent<Enemy>().transform.localScale.x == -1)
+            transform.rotation = Quaternion.Inverse(startRotation);
+        else
+            transform.rotation = startRotation;
     }
 
 }

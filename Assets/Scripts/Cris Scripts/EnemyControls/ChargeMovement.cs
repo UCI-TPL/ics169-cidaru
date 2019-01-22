@@ -13,6 +13,18 @@ public class ChargeMovement : EnemyMovement {
     private bool charged; //Whether or not the enemy has just charged
     #endregion
 
+    private void FixedUpdate()
+    {
+        updateAnimations();
+        if (charged && !move)
+        {
+            seekTarget();
+            chargeAnimations();
+        }
+        else if (!charged)
+            resetRotations(); //Resets (rotation-based) animations
+    }
+
     protected override void setStartVars()
     {
         base.setStartVars();
@@ -75,15 +87,40 @@ public class ChargeMovement : EnemyMovement {
 
     private void chargeAnimations()
     {
-        if (transform.rotation == startRotation)
-            transform.Rotate(new Vector3(startRotation.x, startRotation.y, startRotation.z + 20));
-        if (move && chargeDistance != 0)
-            transform.rotation = startRotation;
+        if (tag.Contains("Enemy Boss")){
+            //Horse "Animations"
+            float newZrotation = startRotation.z;
+            if (currentTarget.x < transform.position.x)
+                newZrotation -= 1;
+            else
+                newZrotation += 1;
+            transform.Rotate(new Vector3(startRotation.x, startRotation.y, newZrotation));
+        }
+    }
+
+    private void chargeWeaponAnimations()
+    {
+        MeleeWeapon weapon = GetComponentInChildren<MeleeWeapon>();
+        if (!weapon)
+            return;
+
+        weapon.transform.Rotate(new Vector3(weapon.transform.rotation.x,
+                                            weapon.transform.rotation.y,
+                                            -80));
+    }
+
+    private void resetRotations()
+    {
+        transform.rotation = startRotation;
+        MeleeWeapon weapon = GetComponentInChildren<MeleeWeapon>();
+        if (weapon)
+            weapon.resetRotations();
     }
 
     public IEnumerator Charging(float secs)
     {
         move = false;
+        chargeWeaponAnimations();
         yield return new WaitForSeconds(secs);
         seekTarget(); //Resets target to adjust for player's position upon charge start
         move = true;

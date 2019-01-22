@@ -9,6 +9,7 @@ public class ChargeMovement : EnemyMovement {
     public float chargeDistance = 0f; //The closest the player needs to be for charge
     public float chargeTime = 0f; //The time takes to charge (how long it waits)
     public float chargePower = 0f; //The percent speed/power is increased
+    public bool weaponFollowsPlayer;
 
     private bool charged; //Whether or not the enemy has just charged
     #endregion
@@ -20,6 +21,8 @@ public class ChargeMovement : EnemyMovement {
         {
             seekTarget();
             chargeAnimations();
+            if (weaponFollowsPlayer)
+                chargeWeaponAnimations();
         }
         else if (!charged)
             resetRotations(); //Resets (rotation-based) animations
@@ -87,7 +90,8 @@ public class ChargeMovement : EnemyMovement {
 
     private void chargeAnimations()
     {
-        if (tag.Contains("Enemy Boss")){
+        if (tag.Contains("Enemy Boss"))
+        {
             //Horse "Animations"
             float newZrotation = startRotation.z;
             if (currentTarget.x < transform.position.x)
@@ -103,10 +107,21 @@ public class ChargeMovement : EnemyMovement {
         MeleeWeapon weapon = GetComponentInChildren<MeleeWeapon>();
         if (!weapon)
             return;
-
-        weapon.transform.Rotate(new Vector3(weapon.transform.rotation.x,
-                                            weapon.transform.rotation.y,
-                                            -80));
+        
+        if (weaponFollowsPlayer)
+        {
+            //Makes the weapon follow the player
+            Vector3 newUp = new Vector3(weapon.transform.position.x - player.transform.position.x,
+                                weapon.transform.position.y - player.transform.position.y);
+            weapon.transform.rotation = Quaternion.LookRotation(Vector3.forward, -newUp);
+        }
+        else
+        {
+            ////Turns the weapon parallel to the "ground"
+            weapon.transform.Rotate(new Vector3(weapon.transform.rotation.x,
+                                                weapon.transform.rotation.y,
+                                                -80));
+        }
     }
 
     private void resetRotations()

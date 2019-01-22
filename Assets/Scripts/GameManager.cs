@@ -188,15 +188,11 @@ public class GameManager : MonoBehaviour {
         player.GetComponent<GunController>().respawnReload();
         player.GetComponent<CooldownController>().resetCooldowns();
 
-        // Reset Babies & Hp Pot
-        GameObject[] babies = GameObject.FindGameObjectsWithTag("Baby");
-        GameObject[] hpPots = GameObject.FindGameObjectsWithTag("Hp Pot");
+        // Reset Map
+        DestroyOnRestart[] restartObjects = GameObject.FindObjectsOfType<DestroyOnRestart>();
 
-        foreach (GameObject baby in babies)
-            Destroy(baby);
-
-        foreach (GameObject hpPot in hpPots)
-            Destroy(hpPot);
+        foreach (DestroyOnRestart restartObject in restartObjects)
+            restartObject.DestroyObject();
 
         glitchEff.enabled = false;
 

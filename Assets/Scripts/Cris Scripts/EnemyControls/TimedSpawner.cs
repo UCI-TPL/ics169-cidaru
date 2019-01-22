@@ -6,16 +6,6 @@ public class TimedSpawner : Spawner {
 
     public int spawnNum; //Number of thing to spawn in one go
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     protected override void SpawnThing()
     {
         spawning = true;

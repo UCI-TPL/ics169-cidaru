@@ -28,10 +28,10 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (totalTimer < spawnDelay)
+        if (totalTimer <= spawnDelay)
         {
             totalTimer += Time.deltaTime;
-            timer += Time.deltaTime;
+            timer = timeInterval;
             return;
         }
 

@@ -39,10 +39,6 @@ public class Vortex : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        // When Right Bumper or Right Mouse Click are pressed while vortex is active then explode
-        if (Input.GetButtonDown("Right Bumper") || Input.GetMouseButtonDown(1))
-            Blow();
-
         // Countdown the vortex timer
         vortexTimer -= Time.deltaTime;
 

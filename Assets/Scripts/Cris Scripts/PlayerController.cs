@@ -21,11 +21,13 @@ public class PlayerController : MonoBehaviour
 	private Animator anim;
     private Rigidbody2D rb2d;
 
+
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
 		anim = this.GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+
     }
 
     private void Start()

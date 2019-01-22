@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour {
         templates.nextInLineRespawners.Clear();
 
         // Reset Positions
-        player.transform.position = Vector3.zero;
+        player.transform.position = new Vector3(0.25f, 0.25f);
         cameraColPos.localScale = Vector3.one;
         cameraColPos.position = Vector3.zero;
         minimapPos.position = Vector3.zero;

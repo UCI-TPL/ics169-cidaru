@@ -44,9 +44,11 @@ public class PlayerController : MonoBehaviour
         if (health.dead())
         {
             invincibilityTimer = 0f;
-            sprite.enabled = false;
+            //sprite.enabled = false;
+            anim.SetBool("dead", true);
         } else
         {
+            anim.SetBool("dead", false);
             // If timer is not over perform blinking effect else reenable sprite and vulnerability
             if (invincibilityTimer > 0f)
             {
@@ -70,14 +72,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!health.dead() && !GameManager.gm.cameraPanning && !GameManager.gm.spawningRooms)
             Move();
-
-        /* USING GAMESTATE MANAGER TO CONTROL THIS
-        #region Reset Health (When Dead)
-        else
-        {
-            gameOverPanel.SetActive(true);
-        }
-        #endregion*/
     }
 
     void Move()

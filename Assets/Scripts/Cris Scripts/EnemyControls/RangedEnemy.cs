@@ -35,7 +35,10 @@ public class RangedEnemy : EnemyAttack {
         Vector3 newUp = new Vector3(weapon.transform.position.x - player.transform.position.x,
                                     weapon.transform.position.y - player.transform.position.y);
         weapon.transform.rotation = Quaternion.LookRotation(Vector3.forward, newUp);
-        weapon.transform.Rotate(new Vector3(0, 0, 90));
+        if (weapon.name.Equals("Bow"))
+            weapon.transform.Rotate(new Vector3(0, 0, 90));
+        else if (weapon.name.Equals("Crossbow"))
+            weapon.transform.Rotate(new Vector3(0, 0, -90));
 
         // Timer to fire bullets on set intervals
         if (fireTimer <= 0f)

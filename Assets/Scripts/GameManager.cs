@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public bool spawningRooms = true;
 
+    public GameObject cmCamera;
+
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
     private PlayerHealth playerHp;
@@ -181,7 +183,7 @@ public class GameManager : MonoBehaviour {
         cameraColPos.localScale = Vector3.one;
         cameraColPos.position = Vector3.zero;
         minimapPos.position = Vector3.zero;
-        Camera.main.transform.position = new Vector3(0, 0, -10);
+        cmCamera.transform.position = new Vector3(0.25f, 0.25f, -10);
 
         // Reset Values
         playerHp.MaxHeal();

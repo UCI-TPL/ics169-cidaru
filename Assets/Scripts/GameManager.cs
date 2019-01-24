@@ -246,6 +246,12 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex)); // ADD ONE FOR NEXT LEVEL CURRENTLY LOOPING
     }
 
+    public void LoadBossLevel()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
     IEnumerator FadeWait(int sceneIndex)
     {
         float fadeTime = fade.BeginSceneFade(1);

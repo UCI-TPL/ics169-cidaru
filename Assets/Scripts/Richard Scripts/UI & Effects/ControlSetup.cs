@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ControlSetup : MonoBehaviour {
+
     public Toggle controls;
 
 	// Use this for initialization
@@ -12,6 +13,8 @@ public class ControlSetup : MonoBehaviour {
         {
             PlayerPrefs.SetInt("Mouse", 1);
         }
+
+        PlayerPrefs.SetInt("Level", 1);
 
         if (PlayerPrefs.GetInt("Mouse") != 0)
             controls.isOn = false;

@@ -27,7 +27,12 @@ public class NextLevel : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && active)
         {
-            GameManager.gm.LoadNextLevel();
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+
+            if (PlayerPrefs.GetInt("Level") == 3)
+                GameManager.gm.LoadBossLevel();
+            else
+                GameManager.gm.LoadNextLevel();
         }
     }
 }

@@ -46,9 +46,13 @@ public class PlayerController : MonoBehaviour
             invincibilityTimer = 0f;
             //sprite.enabled = false;
             anim.SetBool("dead", true);
+            GetComponent<SpriteRenderer>().sortingLayerName = "DrawOver";
+            GetComponentsInChildren<SpriteRenderer>()[1].enabled = false; //hides the gun while dying
         } else
         {
             anim.SetBool("dead", false);
+            GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+            GetComponentsInChildren<SpriteRenderer>()[1].enabled = true; //shows the gun
             // If timer is not over perform blinking effect else reenable sprite and vulnerability
             if (invincibilityTimer > 0f)
             {

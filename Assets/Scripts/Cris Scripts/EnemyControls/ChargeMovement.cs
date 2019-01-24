@@ -31,12 +31,15 @@ public class ChargeMovement : EnemyMovement {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag.Contains("Enemy")){
-            //StartCoroutine(Wait(.3f));
-            //currentSpeed = originalSpeed;
-            //charged = false;
             base.MoveAwayFrom(collision.transform.position);
         }
         if (collision.transform.tag.Contains("Player"))
+        {
+            StartCoroutine(Wait(.3f));
+            currentSpeed = originalSpeed;
+            charged = false;
+        }
+        if (collision.transform.tag.Contains("Obstacle"))
         {
             StartCoroutine(Wait(.3f));
             currentSpeed = originalSpeed;
@@ -161,7 +164,11 @@ public class ChargeMovement : EnemyMovement {
     {
         // Finds the player and pinpoints the target beyond the player depending on the charge power
         Vector3 dir = Vector3.Normalize((transform.position - player.transform.position));
-        currentTarget = player.transform.position + dir * -(chargePower + 1);
+        currentTarget = player.transform.position + dir * - (chargePower + 1);
+        //RaycastHit[] hit = Physics.RaycastAll(transform.position, currentTarget);
+        //if (hit.Length > 0 && !hit[0].transform.tag.Contains("Player"))
+        //    Debug.Log()
+
         Debug.DrawLine(transform.position, currentTarget, Color.red);
     }
 }

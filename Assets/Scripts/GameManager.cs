@@ -204,6 +204,8 @@ public class GameManager : MonoBehaviour {
 
         Time.timeScale = 1;
 
+        GetComponent<PauseController>().enabled = true;
+
         respawning = false;
     }
 

@@ -138,7 +138,10 @@ public class GameManager : MonoBehaviour {
             
             GetComponent<PauseController>().enabled = false;
 
-            StartCoroutine(RespawnMap());
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+                StartCoroutine(RespawnMap());
+            else if (SceneManager.GetActiveScene().buildIndex == 2)
+                LoadBossLevel();
         }
 
         if (Time.timeScale != 0f)

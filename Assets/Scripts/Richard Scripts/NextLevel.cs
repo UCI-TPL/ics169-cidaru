@@ -14,6 +14,7 @@ public class NextLevel : MonoBehaviour {
     public void Activate()
     {
         active = true;
+        GetComponent<Animator>().SetBool("open", true);
     }
 
     public bool isActive()

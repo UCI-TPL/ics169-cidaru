@@ -107,17 +107,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b91b8cff6459a641ba1fb314b9813e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverMenu: {fileID: 9053264276981142760, guid: 23cd7f2c9faf89b4c85adef8c91539ba,
-    type: 3}
-  map: {fileID: 2747991567138332473, guid: 7f4e02beefaf640488d9f46186d830cf, type: 3}
+  gameOverMenu: {fileID: 0}
+  map: {fileID: 0}
   cameraPanTime: 0.1
   roomStartDelay: 0.5
   respawnTime: 2
   cameraPanning: 0
-  confiner: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1, type: 3}
-  proceduralUI: {fileID: 118259410139030331, guid: c6eb644debd54ef43a448e5870656400,
-    type: 3}
+  confiner: {fileID: 0}
+  proceduralUI: {fileID: 0}
   spawningRooms: 1
+  cmCamera: {fileID: 0}
 --- !u!114 &114754815866935822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,14 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df667f01caf73ca4191d1b5e4e9cc637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprintText: {fileID: 1395704525858699741, guid: 9765046c01def824eb62bf5b42e843a2,
-    type: 3}
-  babyText: {fileID: 11680994331514780, guid: 1f21fc551dd0c434594658dbc1329065, type: 3}
-  slowText: {fileID: 1848630928741086212, guid: ede11d8a07216824daa856625d62eb33,
-    type: 3}
-  vortexText: {fileID: 3311561855007937759, guid: eaf5948002d7a6145a1709caa7e0e287,
-    type: 3}
-  mapText: {fileID: 6034338735244386236, guid: 8633d8278b9e0f04daebdffea05f6493, type: 3}
+  sprintText: {fileID: 0}
+  babyText: {fileID: 0}
+  slowText: {fileID: 0}
+  vortexText: {fileID: 0}
+  mapText: {fileID: 0}
 --- !u!114 &114631073505308308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f989d4bcc1e4e243b851fa19ec67f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 67869575403717599, guid: cfeffeadcd1bf1641a85f185a2513d89, type: 3}
-  menus: []
+  pauseMenu: {fileID: 0}
+  menus:
+  - {fileID: 0}
 --- !u!114 &114124410891964584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,21 +189,33 @@ MonoBehaviour:
   - {fileID: 1028657195327800, guid: 1a95341fa61e52a488224cc33f46cab1, type: 3}
   rRooms:
   - {fileID: 1611285331870608, guid: 22508c43f7c92dd4eab550153556a12d, type: 3}
-  doubleLRRooms:
-  - {fileID: 1055171755559920, guid: 796d101e08c5dd844a75c319e391008e, type: 3}
-  doubleRLRooms:
-  - {fileID: 1611222900579732, guid: 98cef48b491190546a80b2218fd478dd, type: 3}
-  doubleTBRooms:
-  - {fileID: 1977297266445412, guid: efcf0216e216dc8468e129d1351ca94a, type: 3}
-  doubleBTRooms:
-  - {fileID: 1487039178326622, guid: 08ce2fc344f91cd439a77a388065df52, type: 3}
-  minRooms: 7
-  maxRooms: 12
+  doubleLRRooms: []
+  doubleRLRooms: []
+  doubleTBRooms: []
+  doubleBTRooms: []
+  minRooms: 4
+  maxRooms: 8
   rooms: []
+  roomType: []
   respawners: []
-  newRespawners: []
-  finalRoomObject: {fileID: 1706879201918360, guid: 557911d839aa4ab48be3a695866ed1cd,
-    type: 3}
+  copyRespawners: []
+  nextInLineRespawners: []
+  portalTRooms:
+  - {fileID: 5864470556595864012, guid: 14be8cef78debf444ad14d479b2cd5b4, type: 3}
+  portalBRooms:
+  - {fileID: 6674440628976797709, guid: 3a17c42e4c7420644a583b3ae9beee24, type: 3}
+  portalLRooms:
+  - {fileID: 7851381042501646356, guid: 187ec4d963db24a4386c657992530e51, type: 3}
+  portalRRooms:
+  - {fileID: 3307570818387633807, guid: 31ec95c5537a20647ba0d49652d568ad, type: 3}
+  portalTLRooms:
+  - {fileID: 6580832008616294503, guid: 21738770881cc0d43beaf1d4f174b618, type: 3}
+  portalBRRooms:
+  - {fileID: 7784734371478095959, guid: 0050495929df4df45b984103ed174206, type: 3}
+  portalTRRooms:
+  - {fileID: 6968949277356694023, guid: 30301779e5518c845a7d529286deec69, type: 3}
+  portalBLRooms:
+  - {fileID: 6855556768183400292, guid: 9a83e053a4730584db16fe11550da46a, type: 3}
 --- !u!82 &82484933184400486
 AudioSource:
   m_ObjectHideFlags: 0

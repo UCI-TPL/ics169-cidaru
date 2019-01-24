@@ -6262,11 +6262,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawners: []
-  turrets:
-  - {fileID: 0}
+  turrets: []
   doorColliders:
   - {fileID: 9051521586121785024}
   - {fileID: 2043528936276447917}
+  portalRoom: 1
+  portal: {fileID: 7684886384804680211}
   singleRoomTrigger: 1
   doubleLRTrigger: 0
   doubleRLTrigger: 0
@@ -6532,6 +6533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675b27641d43dfa44b1ac96f27c17e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomType: 6
 --- !u!114 &251524103523546577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8030,3 +8032,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7727701487828956431}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7684886384804680211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114979212301543196, guid: 557911d839aa4ab48be3a695866ed1cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7727701487828956431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f153bd00d46d1b4d987eceaa4ced569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

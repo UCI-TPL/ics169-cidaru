@@ -4330,6 +4330,8 @@ MonoBehaviour:
   doorColliders:
   - {fileID: 822371319632079854}
   - {fileID: 300009366485035595}
+  portalRoom: 0
+  portal: {fileID: 0}
   singleRoomTrigger: 1
   doubleLRTrigger: 0
   doubleRLTrigger: 0
@@ -6843,6 +6845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675b27641d43dfa44b1ac96f27c17e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomType: 7
 --- !u!114 &7472279365163440522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8872,6 +8875,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4574166498512608}
     m_Modifications:
+    - target: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
+      propertyPath: m_Name
+      value: Bot Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4478752097066022, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -8916,10 +8923,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
-      propertyPath: m_Name
-      value: Bot Door
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
 --- !u!4 &297274137498300077 stripped
@@ -8941,6 +8944,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4574166498512608}
     m_Modifications:
+    - target: {fileID: 1663449589085528, guid: 321297408f207454293e0d90604a6e6a, type: 3}
+      propertyPath: m_Name
+      value: Left Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4306969677241886, guid: 321297408f207454293e0d90604a6e6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.25
@@ -8984,10 +8991,6 @@ PrefabInstance:
     - target: {fileID: 4306969677241886, guid: 321297408f207454293e0d90604a6e6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1663449589085528, guid: 321297408f207454293e0d90604a6e6a, type: 3}
-      propertyPath: m_Name
-      value: Left Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321297408f207454293e0d90604a6e6a, type: 3}

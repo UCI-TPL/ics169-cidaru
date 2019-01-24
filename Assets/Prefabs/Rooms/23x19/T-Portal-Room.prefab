@@ -3178,6 +3178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675b27641d43dfa44b1ac96f27c17e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomType: 0
 --- !u!114 &206832089031696150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7571,6 +7572,8 @@ MonoBehaviour:
   turrets: []
   doorColliders:
   - {fileID: 1635982766017859600}
+  portalRoom: 1
+  portal: {fileID: 835076592691229544}
   singleRoomTrigger: 1
   doubleLRTrigger: 0
   doubleRLTrigger: 0
@@ -7744,3 +7747,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 724715878990681204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &835076592691229544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114979212301543196, guid: 557911d839aa4ab48be3a695866ed1cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 724715878990681204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f153bd00d46d1b4d987eceaa4ced569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

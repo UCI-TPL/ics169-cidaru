@@ -13,6 +13,11 @@ public class Door : MonoBehaviour {
     // List of door colliders blocking the room
     public List<GameObject> doorColliders;
 
+    [Header("Portal Room Properties")]
+    public bool portalRoom = false;
+    public NextLevel portal;
+
+    [Header("Room Trigger Type")]
     public bool singleRoomTrigger = true;
     public bool doubleLRTrigger = false;
     public bool doubleRLTrigger = false;
@@ -158,6 +163,9 @@ public class Door : MonoBehaviour {
         // Set active to false and clear to true
         active = false;
         cleared = true;
+
+        if (portalRoom)
+            portal.Activate();
 
         // Disable all doors after clearing
         foreach (GameObject dc in doorColliders)

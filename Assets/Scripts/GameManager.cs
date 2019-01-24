@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour {
             if (SceneManager.GetActiveScene().buildIndex == 1)
                 StartCoroutine(RespawnMap());
             else if (SceneManager.GetActiveScene().buildIndex == 2)
-                LoadBossLevel();
+                LoadNextLevel();
         }
 
         if (Time.timeScale != 0f)

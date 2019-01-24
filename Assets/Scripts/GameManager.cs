@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour {
+
     public static GameManager gm;
 
     public enum Opening

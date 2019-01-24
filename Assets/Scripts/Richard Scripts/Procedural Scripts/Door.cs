@@ -73,6 +73,9 @@ public class Door : MonoBehaviour {
         if (active)
             checkRoomCleared();
 
+        if (cleared && portalRoom && !portal.isActive())
+            portal.Activate();
+
         // When the room has been triggered and the camera is not panning, start the room
         if (triggered && !GameManager.gm.cameraPanning)
         {
@@ -82,6 +85,8 @@ public class Door : MonoBehaviour {
             // If the room is not cleared yet spawn everything within room
             if (checkEnemiesAvaliable() && !cleared && !active)
                 SpawnRoom();
+            else
+                cleared = true;
 
             // Disable trigger
             triggered = false;
@@ -164,7 +169,7 @@ public class Door : MonoBehaviour {
         active = false;
         cleared = true;
 
-        if (portalRoom)
+        if (portalRoom && !portal.isActive())
             portal.Activate();
 
         // Disable all doors after clearing

@@ -16,6 +16,11 @@ public class NextLevel : MonoBehaviour {
         active = true;
     }
 
+    public bool isActive()
+    {
+        return active;
+    }
+
     // Final "portal" detection
     // If player enters the portal, next level is loaded
     private void OnCollisionEnter2D(Collision2D collision)

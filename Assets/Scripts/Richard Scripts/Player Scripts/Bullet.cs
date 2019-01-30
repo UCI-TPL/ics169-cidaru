@@ -64,6 +64,11 @@ public class Bullet : Projectile {
             // Creates effect and destroy object
             Instantiate(bulletObstacleEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        } else if (col.tag == "EnemyBulletPassThrough" && tag == "Player Bullet")
+        {
+            // Creates effect and destroy object
+            Instantiate(bulletObstacleEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 

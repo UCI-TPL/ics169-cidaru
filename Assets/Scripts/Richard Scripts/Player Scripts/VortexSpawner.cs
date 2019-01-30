@@ -63,7 +63,7 @@ public class VortexSpawner : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D col)
     {
         // Pops the vortex when it collides with the appropriate object
-        if (col.tag == "Obstacle" || col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Vortex" || col.tag == "Turret")
+        if (col.tag == "Obstacle" || col.tag == "Enemy" || col.tag == "Destroyable" || col.tag == "Vortex" || col.tag == "Turret" || col.tag == "EnemyBulletPassThrough")
         {
             // Spawns the vortex in the spawner location
             Instantiate(vortex, transform.position, Quaternion.identity);

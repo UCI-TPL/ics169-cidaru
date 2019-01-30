@@ -51,6 +51,8 @@ public class TimeAreaEffector : MonoBehaviour {
             changeProjectileTime(other, effect);
         else if (other.tag.Equals("Vortex"))
             changeVortexTime(other, effect);
+        else if (other.tag.Equals("Turret"))
+            changeTurretTime(other, effect);
     }
 
     #region Changing Times of Important Objects
@@ -86,6 +88,13 @@ public class TimeAreaEffector : MonoBehaviour {
     {
         VortexSpawner vortexController = vortex.GetComponent<VortexSpawner>();
         vortexController.movementSpeed *= effect;
+    }
+
+    private void changeTurretTime(GameObject turret, float effect)
+    {
+        Turret turretController = turret.GetComponent<Turret>();
+        turretController.rotationSpeed = Mathf.FloorToInt(turretController.rotationSpeed * effect);
+        turretController.setFireTimer *= (1 / effect);
     }
     #endregion
 }

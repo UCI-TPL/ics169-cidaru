@@ -24,7 +24,7 @@ public class MeleeWeapon : MonoBehaviour {
 
     private WeaponState currentState;
     private Vector3 center;
-    public float radius = 0f;
+    private float radius = 0f;
 
     public virtual void Awake()
     {
@@ -84,6 +84,7 @@ public class MeleeWeapon : MonoBehaviour {
         if (collision.tag == "Player Bullet" && tag == "Enemy Weapon" && deflection)
         {
             collision.GetComponent<Bullet>().reflect();
+            GetComponent<AudioSource>().Play();
         }
     }
 

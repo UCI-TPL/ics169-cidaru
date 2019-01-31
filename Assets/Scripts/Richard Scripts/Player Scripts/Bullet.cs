@@ -26,6 +26,7 @@ public class Bullet : Projectile {
                 /// This is the part to take out if we just want the sword to reflect
                 /// and not the guys
                 reflect();
+                GetComponent<AudioSource>().Play();
             }
             else
             {

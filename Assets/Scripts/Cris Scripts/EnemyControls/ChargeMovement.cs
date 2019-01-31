@@ -25,7 +25,12 @@ public class ChargeMovement : EnemyMovement {
                 chargeWeaponAnimations();
         }
         else if (!charged)
-            resetRotations(); //Resets (rotation-based) animations
+        {
+            Debug.Log(anim.GetBool("chargedRun") + " and not charged");
+            anim.SetBool("chargedRun", false);
+            Debug.Log(anim.GetBool("chargedRun"));
+            resetRotations(); //Resets (rotation-based) animations}
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -105,6 +110,7 @@ public class ChargeMovement : EnemyMovement {
     protected override void updateAnimations()
     {
         base.updateAnimations();
+        anim.SetBool("charging", charged);
     }
 
     private void chargeAnimations()
@@ -118,6 +124,10 @@ public class ChargeMovement : EnemyMovement {
             else
                 newZrotation += 1;
             transform.Rotate(new Vector3(startRotation.x, startRotation.y, newZrotation));
+        }
+        if (anim)
+        {
+            anim.SetBool("chargedRun", false);
         }
     }
 
@@ -158,6 +168,7 @@ public class ChargeMovement : EnemyMovement {
         yield return new WaitForSeconds(secs);
         seekTarget(); //Resets target to adjust for player's position upon charge start
         move = true;
+        anim.SetBool("chargedRun", true);
     }
 
     private void seekTarget()

@@ -8,6 +8,28 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour {
 
+    public enum TutorialStates
+    {
+        ShootMoveRoomStart,
+        ShootMoveRoom,
+        ShootMoveRoomEnd,
+        ShootMoveRoomPost,
+        SlowRoomStart,
+        SlowRoom,
+        SlowRoomEnd,
+        SlowRoomPost,
+        VortexRoomStart,
+        VortexRoom,
+        VortexRoomEnd,
+        VortexRoomPost,
+        BabyRoomStart,
+        BabyRoom,
+        BabyRoomEnd,
+        BabyRoomPost,
+        PortalRoom,
+        PortalRoomPost
+    }
+
     public static GameManager gm;
 
     public enum Opening
@@ -18,7 +40,7 @@ public class GameManager : MonoBehaviour {
         Right
     }
     
-    public GameObject gameOverMenu;
+    //public GameObject gameOverMenu;
 
     public GameObject map;
 
@@ -38,6 +60,42 @@ public class GameManager : MonoBehaviour {
     public bool spawningRooms = true;
 
     public GameObject cmCamera;
+
+    [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
+    public bool isTutorial = false;
+
+    [Header("Dialogue Box Objects")]
+    public GameObject dialogBox;
+    public GameObject avatarImage;
+    public TutorialDialogBox dialogText;
+
+    [Header("UI Objects (To Disable)")]
+    public GameObject skillIcons;
+    public GameObject ammoUI;
+    public GameObject reloadUI;
+    public GameObject hpUI;
+
+    [Header("Room Conditions")]
+    public List<GameObject> destroyableVases = new List<GameObject>();
+    public GameObject trappedTrojan;
+    public GameObject hogTiedTrojan;
+
+    [Header("Room Doors")]
+    public GameObject shootMoveRoomDoor;
+    public List<GameObject> vortexRoomDoors;
+    public List<GameObject> babyRoomDoors;
+
+    [Header("Cutscene Text Files")]
+    public TextAsset[] moveShootTextFiles;
+    public TextAsset[] slowTextFiles;
+    public TextAsset[] vortexTextFiles;
+    public TextAsset[] babyTextFiles;
+    public TextAsset[] portalTextFiles;
+
+    private bool textActive;
+
+    private TutorialStates currentState;
+
 
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
@@ -88,28 +146,47 @@ public class GameManager : MonoBehaviour {
 
         map.SetActive(false);
 
-        spawningRooms = true;
-
-        proceduralUI.SetActive(true);
-
         glitchEff = Camera.main.GetComponent<GlitchEffect>();
         glitchEff.enabled = false;
-
-        templates = GameManager.gm.GetComponent<RoomTemplates>();
-
+        
         respawning = false;
+
+        if (isTutorial)
+        {
+            spawningRooms = false;
+
+            textActive = false;
+
+            currentState = TutorialStates.ShootMoveRoomStart;
+
+
+            dialogBox.SetActive(false);
+            avatarImage.SetActive(false);
+        } else
+        {
+            spawningRooms = true;
+            proceduralUI.SetActive(true);
+
+            templates = GameManager.gm.GetComponent<RoomTemplates>();
+        }
     }
 
     void Start () {
     }
 
     void Update() {
+        if (isTutorial)
+        {
+            tutorialLoop();
+            return;
+        }
+
         if (!spawningRooms)
             gameplayLoop();
         else
             spawnRoomLoop();
         
-    }
+    }    
 
     private void spawnRoomLoop()
     {
@@ -309,4 +386,208 @@ public class GameManager : MonoBehaviour {
     {
         playerTalking = false;
     }
+
+    #region Tutorial Functions
+    private void tutorialLoop()
+    {
+        if (currentState == TutorialStates.ShootMoveRoomStart && !textActive)
+        {
+            startTutorialDialogue(moveShootTextFiles[0]);
+        }
+        else if (currentState == TutorialStates.ShootMoveRoom)
+        {
+            checkVaseRoomCleared();
+        }
+        else if (currentState == TutorialStates.ShootMoveRoomEnd && !textActive)
+        {
+            startTutorialDialogue(moveShootTextFiles[1]);
+        }
+        else if (currentState == TutorialStates.ShootMoveRoomPost)
+        {
+            // SKIP ACTION
+        }
+        else if (currentState == TutorialStates.SlowRoomStart && !textActive)
+        {
+            startTutorialDialogue(slowTextFiles[0]);
+        }
+        else if (currentState == TutorialStates.SlowRoom)
+        {
+            // SKIP ACTION
+        }
+        else if (currentState == TutorialStates.SlowRoomEnd && !textActive)
+        {
+            startTutorialDialogue(slowTextFiles[1]);
+        }
+        else if (currentState == TutorialStates.SlowRoomPost)
+        {
+            // SKIP ACTION
+        }
+        else if (currentState == TutorialStates.VortexRoomStart && !textActive)
+        {
+            startTutorialDialogue(vortexTextFiles[0]);
+        }
+        else if (currentState == TutorialStates.VortexRoom)
+        {
+            checkVortexRoomCleared();
+        }
+        else if (currentState == TutorialStates.VortexRoomEnd && !textActive)
+        {
+            startTutorialDialogue(vortexTextFiles[1]);
+        }
+        else if (currentState == TutorialStates.VortexRoomPost)
+        {
+            // SKIP ACTION
+        }
+        else if (currentState == TutorialStates.BabyRoomStart && !textActive)
+        {
+            startTutorialDialogue(babyTextFiles[0]);
+        }
+        else if (currentState == TutorialStates.BabyRoom)
+        {
+            checkBabyRoomCleared();
+        }
+        else if (currentState == TutorialStates.BabyRoomEnd && !textActive)
+        {
+            startTutorialDialogue(babyTextFiles[1]);
+        }
+        else if (currentState == TutorialStates.BabyRoomPost)
+        {
+            // SKIP ACTION
+        }
+        else if (currentState == TutorialStates.PortalRoom && !textActive)
+        {
+            startTutorialDialogue(portalTextFiles[0]);
+        }
+        else
+        {
+            // SKIP ACTION
+        }
+
+        if (Time.timeScale != 0f)
+        {
+            if (Input.GetKey(KeyCode.Tab))
+                map.SetActive(true);
+
+            if (Input.GetKeyUp(KeyCode.Tab))
+                map.SetActive(false);
+
+            if (Input.GetButtonDown("Back") && !map.activeSelf)
+                map.SetActive(true);
+            else if (Input.GetButtonDown("Back") && map.activeSelf)
+                map.SetActive(false);
+
+        }
+        else
+        {
+            map.SetActive(false);
+        }
+    }
+    
+    // Check if the vases have been cleared
+    public void checkVaseRoomCleared()
+    {
+        foreach (GameObject destroyableVase in destroyableVases)
+        {
+            // If not cleared, return
+            if (destroyableVase != null)
+                return;
+        }
+
+        // Disable all doors after clearing
+        shootMoveRoomDoor.SetActive(false);
+
+        NextState();
+    }
+
+    public void checkVortexRoomCleared()
+    {
+        if (trappedTrojan != null)
+            return;
+
+        foreach (GameObject dc in vortexRoomDoors)
+            dc.SetActive(false);
+
+        NextState();
+    }
+
+    public void checkBabyRoomCleared()
+    {
+        if (hogTiedTrojan != null)
+            return;
+
+        foreach (GameObject dc in babyRoomDoors)
+            dc.SetActive(false);
+
+        NextState();
+    }
+
+    public void startTutorialDialogue(TextAsset text)
+    {
+        Time.timeScale = 0;
+
+        dialogBox.SetActive(true);
+        avatarImage.SetActive(true);
+
+        dialogText.startText(text);
+
+        skillIcons.SetActive(false);
+        ammoUI.SetActive(false);
+        hpUI.SetActive(false);
+
+        textActive = true;
+    }
+
+    public void endTutorialDialogue()
+    {
+        Time.timeScale = 1;
+
+        dialogBox.SetActive(false);
+        avatarImage.SetActive(false);
+
+        skillIcons.SetActive(true);
+        ammoUI.SetActive(true);
+        hpUI.SetActive(true);
+
+        NextState();
+        textActive = false;
+    }
+
+    private void NextState()
+    {
+        if (currentState == TutorialStates.ShootMoveRoomStart)
+            currentState = TutorialStates.ShootMoveRoom;
+        else if (currentState == TutorialStates.ShootMoveRoom)
+            currentState = TutorialStates.ShootMoveRoomEnd;
+        else if (currentState == TutorialStates.ShootMoveRoomEnd)
+            currentState = TutorialStates.ShootMoveRoomPost;
+        else if (currentState == TutorialStates.ShootMoveRoomPost)
+            currentState = TutorialStates.SlowRoomStart;
+        else if (currentState == TutorialStates.SlowRoomStart)
+            currentState = TutorialStates.SlowRoom;
+        else if (currentState == TutorialStates.SlowRoom)
+            currentState = TutorialStates.SlowRoomEnd;
+        else if (currentState == TutorialStates.SlowRoomEnd)
+            currentState = TutorialStates.SlowRoomPost;
+        else if (currentState == TutorialStates.SlowRoomPost)
+            currentState = TutorialStates.VortexRoomStart;
+        else if (currentState == TutorialStates.VortexRoomStart)
+            currentState = TutorialStates.VortexRoom;
+        else if (currentState == TutorialStates.VortexRoom)
+            currentState = TutorialStates.VortexRoomEnd;
+        else if (currentState == TutorialStates.VortexRoomEnd)
+            currentState = TutorialStates.VortexRoomPost;
+        else if (currentState == TutorialStates.VortexRoomPost)
+            currentState = TutorialStates.BabyRoomStart;
+        else if (currentState == TutorialStates.BabyRoomStart)
+            currentState = TutorialStates.BabyRoom;
+        else if (currentState == TutorialStates.BabyRoom)
+            currentState = TutorialStates.BabyRoomEnd;
+        else if (currentState == TutorialStates.BabyRoomEnd)
+            currentState = TutorialStates.BabyRoomPost;
+        else if (currentState == TutorialStates.BabyRoomPost)
+            currentState = TutorialStates.PortalRoom;
+        else
+            currentState = TutorialStates.PortalRoomPost;
+    }
+    #endregion Tutorial Functions
 }

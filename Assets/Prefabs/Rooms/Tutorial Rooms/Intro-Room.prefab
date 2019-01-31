@@ -293,7 +293,7 @@ Transform:
   - {fileID: 1778109266885968401}
   - {fileID: 1778109267568557279}
   m_Father: {fileID: 7044703110816167303}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7049655159582034093
 GameObject:
@@ -3693,8 +3693,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7044703110816167303}
-  - component: {fileID: 6936815094928084285}
-  - component: {fileID: 3632882417570748451}
   m_Layer: 0
   m_Name: Intro-Room
   m_TagString: Untagged
@@ -3717,38 +3715,10 @@ Transform:
   - {fileID: 7044282869532300171}
   - {fileID: 7044326139700398931}
   - {fileID: 7044509707752527887}
-  - {fileID: 7051992552698796969}
   - {fileID: 7044610413808214709}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6936815094928084285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049979606670083833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 675b27641d43dfa44b1ac96f27c17e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomType: 0
---- !u!114 &3632882417570748451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049979606670083833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e332d1586006ca34fb1a666b8e8dc0a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCopyRoom: 0
-  copyRoom: {fileID: 0}
 --- !u!1 &7049983034634352555
 GameObject:
   m_ObjectHideFlags: 0
@@ -8019,98 +7989,6 @@ Transform:
   m_Father: {fileID: 7044703110816167303}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7050182937449719923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7051992552698796969}
-  - component: {fileID: 7016666863143966721}
-  - component: {fileID: 6991871713281445337}
-  - component: {fileID: 6936756267913161331}
-  m_Layer: 0
-  m_Name: Destroyer
-  m_TagString: Destroyer
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7051992552698796969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7050182937449719923}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7044703110816167303}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &7016666863143966721
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7050182937449719923}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &6991871713281445337
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7050182937449719923}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &6936756267913161331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7050182937449719923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9d1e1d6ae5577438ac32f348d6ccca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7050227015401159789
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,7 +7998,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7044326139700398931}
-  - component: {fileID: 6937041696031831567}
   - component: {fileID: 6992280921941749943}
   m_Layer: 0
   m_Name: Door Triggers
@@ -8143,29 +8020,6 @@ Transform:
   m_Father: {fileID: 7044703110816167303}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6937041696031831567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7050227015401159789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f18a50a31f34fe41b2cba0bf6d6bf17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpawners: []
-  turrets: []
-  doorColliders:
-  - {fileID: 2738305497950328613}
-  portalRoom: 0
-  portal: {fileID: 0}
-  singleRoomTrigger: 1
-  doubleLRTrigger: 0
-  doubleRLTrigger: 0
-  doubleTBTrigger: 0
-  doubleBTTrigger: 0
 --- !u!61 &6992280921941749943
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8278,10 +8132,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7044610413808214709}
     m_Modifications:
-    - target: {fileID: 1146428215023036, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
-      propertyPath: m_Name
-      value: Destroyable Vase 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4938353795346720, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -8325,6 +8175,10 @@ PrefabInstance:
     - target: {fileID: 4938353795346720, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146428215023036, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
+      propertyPath: m_Name
+      value: Destroyable Vase 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}

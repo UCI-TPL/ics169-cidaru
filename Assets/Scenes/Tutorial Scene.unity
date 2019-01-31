@@ -10792,6 +10792,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300114, guid: c8b0ee03400e6a542b431740c402a809,
         type: 3}
+    - target: {fileID: 437359235798581631, guid: 4a52b6e1bc99b804691d80148ae7104c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644799354065429742, guid: 4a52b6e1bc99b804691d80148ae7104c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a52b6e1bc99b804691d80148ae7104c, type: 3}
 --- !u!4 &1213946784 stripped
@@ -19029,7 +19039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 1196561505}
-  cameraPanTime: 1
+  cameraPanTime: 0.1
   roomStartDelay: 1
   respawnTime: 2
   cameraPanning: 0
@@ -19060,7 +19070,7 @@ MonoBehaviour:
   - {fileID: 934097378}
   moveShootTextFiles:
   - {fileID: 4900000, guid: f864cbf8d99f60c43906bcc32736e5cd, type: 3}
-  - {fileID: 4900000, guid: ee36eca660342a04e9a35a0ec516c8af, type: 3}
+  - {fileID: 4900000, guid: 9e40a1625c41e5642ac8cadcd7ee23c1, type: 3}
   slowTextFiles:
   - {fileID: 4900000, guid: 9632d0add3963c14cb8821b54849740a, type: 3}
   - {fileID: 4900000, guid: 9ca4577069b235e43b7185d355e224da, type: 3}
@@ -19071,6 +19081,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 22163409cf44d524cb70502180608c1e, type: 3}
   - {fileID: 4900000, guid: 5aca89d47d16d5f4c9f6571396b493ef, type: 3}
   portalTextFiles: []
+  currentState: 0
 --- !u!4 &4011435035848033
 Transform:
   m_ObjectHideFlags: 0

@@ -20,11 +20,6 @@ public class TutorialDialogBox : MonoBehaviour
         delayTimer = setDelayTimer;
         dialogBox = GetComponent<Text>();
         dialogCoroutineStarted = false;
-    }
-
-    // Use this for initialization
-    void Start()
-    {
         dialogBox.text = "";
     }
 
@@ -51,14 +46,13 @@ public class TutorialDialogBox : MonoBehaviour
         }
 
 
-        if (currentLine >= fileLines.Length)
+        if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")))
             GameManager.gm.endTutorialDialogue();
     }
 
     public void startText(TextAsset txt)
     {
         textFile = txt;
-
         
         fileLines = (textFile.text.Split('\n'));
 
@@ -77,5 +71,8 @@ public class TutorialDialogBox : MonoBehaviour
             dialogBox.text += fileLines[currentLine][i];
             yield return new WaitForSecondsRealtime(delayTimer);
         }
+
+        currentLine++;
+        dialogCoroutineStarted = false;
     }
 }

@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 
     private bool textActive;
 
-    private TutorialStates currentState;
+    public TutorialStates currentState;
 
 
     private GameObject player;
@@ -370,6 +370,9 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSecondsRealtime(roomStartDelay);
 
         Time.timeScale = 1;
+
+        if (isTutorial)
+            NextState();
     }
 
     public void startDialogue(TextAsset txt)
@@ -532,6 +535,7 @@ public class GameManager : MonoBehaviour {
 
         skillIcons.SetActive(false);
         ammoUI.SetActive(false);
+        reloadUI.SetActive(false);
         hpUI.SetActive(false);
 
         textActive = true;
@@ -552,8 +556,9 @@ public class GameManager : MonoBehaviour {
         textActive = false;
     }
 
-    private void NextState()
+    public void NextState()
     {
+        print("stuff");
         if (currentState == TutorialStates.ShootMoveRoomStart)
             currentState = TutorialStates.ShootMoveRoom;
         else if (currentState == TutorialStates.ShootMoveRoom)

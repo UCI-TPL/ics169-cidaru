@@ -5,9 +5,8 @@ using UnityEngine;
 public class TutorialTrigger : MonoBehaviour
 {
     public GameObject[] doors;
-    
-    // Update is called once per frame
-    void Update()
+
+    void Awake()
     {
         foreach (GameObject door in doors)
             door.SetActive(false);

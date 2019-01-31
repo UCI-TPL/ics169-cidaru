@@ -56,6 +56,9 @@ public class BabyBomb : Bomb {
                 if (hitCollider.gameObject.tag.Contains("Turret"))
                     continue;
 
+                if (hitCollider.gameObject.tag == "Tutorial")
+                    hitCollider.GetComponent<TutorialTrojan>().babyTutorialTree();
+
                 Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
 
                 Destroy(hitCollider.gameObject);

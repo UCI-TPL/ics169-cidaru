@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour {
 
     public void updateMinimapPosition(Vector3 newPos)
     {
-        if (minimapPos.position != newPos)
+        if (minimapPos.position != newPos || isTutorial)
         {
             cameraColPos.localScale = Vector3.one;
 
@@ -355,7 +355,7 @@ public class GameManager : MonoBehaviour {
 
         while (t < 1)
         {
-            t += Time.deltaTime / cameraPanTime;
+            t += Time.unscaledDeltaTime / cameraPanTime;
 
             cameraColPos.position = Vector3.Lerp(currentPos, nextPos, t);
             confiner.InvalidatePathCache();
@@ -558,7 +558,6 @@ public class GameManager : MonoBehaviour {
 
     public void NextState()
     {
-        print("stuff");
         if (currentState == TutorialStates.ShootMoveRoomStart)
             currentState = TutorialStates.ShootMoveRoom;
         else if (currentState == TutorialStates.ShootMoveRoom)

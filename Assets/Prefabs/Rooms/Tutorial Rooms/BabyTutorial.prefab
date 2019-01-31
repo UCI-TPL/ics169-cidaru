@@ -10,9 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 394054182}
   - component: {fileID: 394054181}
-  m_Layer: 0
+  - component: {fileID: 1791397086494742984}
+  - component: {fileID: 5757522739898972640}
+  - component: {fileID: 939196647608376301}
+  m_Layer: 19
   m_Name: trojan_rope
-  m_TagString: Untagged
+  m_TagString: Tutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +82,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1791397086494742984
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394054180}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &5757522739898972640
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394054180}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019253045, y: -0.07871604}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 1.45}
+    newSize: {x: 0.75, y: 1.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1591551, y: 1.5696912}
+  m_EdgeRadius: 0
+--- !u!114 &939196647608376301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394054180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5372b1336b78de9448982f1050f4d7c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTree: {fileID: 7309594692738251031}
+  sprout: {fileID: 16353763576339923, guid: c8106d47d24bf5d4e9afa03c2ebf74f7, type: 3}
 --- !u!1 &349277627727995846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4745,10 +4809,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387082152541993601}
-  - component: {fileID: 4335133603962087675}
   - component: {fileID: 4334822090005226203}
+  - component: {fileID: 5776010895956859681}
   m_Layer: 0
-  m_Name: Door Triggers
+  m_Name: Entry Trigger
   m_TagString: Door Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,32 +4832,6 @@ Transform:
   m_Father: {fileID: 4394804949923658085}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4335133603962087675
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4392170029484473665}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 7.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4, y: 1}
-  m_EdgeRadius: 0
 --- !u!61 &4334822090005226203
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4820,6 +4858,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5776010895956859681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4392170029484473665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5965ff0d4ed5ad140aa105bd17b7eaba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doors:
+  - {fileID: 349277627727995846}
+  - {fileID: 3485153330178655831}
 --- !u!1 &4392180644694259739
 GameObject:
   m_ObjectHideFlags: 0
@@ -7870,6 +7923,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394703039902517363}
     m_Modifications:
+    - target: {fileID: 1146428215023036, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
+      propertyPath: m_Name
+      value: Destroyable Vase 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4938353795346720, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.5
@@ -7913,10 +7970,6 @@ PrefabInstance:
     - target: {fileID: 4938353795346720, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1146428215023036, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}
-      propertyPath: m_Name
-      value: Destroyable Vase 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8befbbf32ffcd84459e9f08b6d025bb5, type: 3}

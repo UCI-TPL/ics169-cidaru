@@ -6,7 +6,6 @@ public class PauseController : MonoBehaviour {
     public GameObject pauseMenu;
     public List<GameObject> menus;
 
-    private GlitchEffect glitchEff;
     private bool paused;
 
     void Start()
@@ -16,8 +15,6 @@ public class PauseController : MonoBehaviour {
         {
             menu.SetActive(false);
         }
-
-        glitchEff = Camera.main.GetComponent<GlitchEffect>();
 
         paused = false;
     }
@@ -38,8 +35,6 @@ public class PauseController : MonoBehaviour {
 
         paused = true;
 
-        glitchEff.enabled = true;
-
         pauseMenu.SetActive(true);
 
         Time.timeScale = 0;
@@ -51,8 +46,6 @@ public class PauseController : MonoBehaviour {
             Cursor.visible = false;
 
         paused = false;
-
-        glitchEff.enabled = false;
 
         pauseMenu.SetActive(false);
         foreach (GameObject menu in menus)

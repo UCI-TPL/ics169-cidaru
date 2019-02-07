@@ -15,6 +15,7 @@ public class MovementModifier : MonoBehaviour {
     public float setCooldownTimer = 0.5f;
 
     // Cooldown UI of speed buff
+    [HideInInspector]
     public Slider cooldownUI;
 
     // Player movement controller to modify
@@ -34,6 +35,8 @@ public class MovementModifier : MonoBehaviour {
         player = GetComponent<PlayerController>();
         speedUp = false;
         speedUpTimer = setSpeedUpTimer;
+
+        cooldownUI = GameObject.Find("Sprint CD").GetComponent<Slider>();
 
         cooldownUI.maxValue = setCooldownTimer;
         cooldownUI.value = setCooldownTimer;

@@ -9,6 +9,7 @@ public class PlayerHealth : Health {
     https://unity3d.com/learn/tutorials/projects/survival-shooter/player-health
     */
 
+    [HideInInspector]
     public Slider healthBar;
 
     private PlayerController player;
@@ -18,6 +19,7 @@ public class PlayerHealth : Health {
     {
         base.Awake();
 
+        healthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
         player = GetComponent<PlayerController>();
         shake = GetComponent<CameraShake>();
     }

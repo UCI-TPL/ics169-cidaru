@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour {
         Left,
         Right
     }
-    
-    //public GameObject gameOverMenu;
 
     public GameObject map;
 
@@ -61,13 +59,10 @@ public class GameManager : MonoBehaviour {
 
     public GameObject cmCamera;
 
-    [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
-    public bool isTutorial = false;
-
     [Header("Dialogue Box Objects")]
     public GameObject dialogBox;
     public GameObject avatarImage;
-    public TutorialDialogBox dialogText;
+    public DialogTextBox dialogText;
 
     [Header("UI Objects (To Disable)")]
     public GameObject skillIcons;
@@ -75,6 +70,9 @@ public class GameManager : MonoBehaviour {
     public GameObject reloadUI;
     public GameObject hpUI;
 
+    [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
+    public bool isTutorial = false;
+    
     [Header("Room Conditions")]
     public List<GameObject> destroyableVases = new List<GameObject>();
     public GameObject trappedTrojan;
@@ -92,11 +90,16 @@ public class GameManager : MonoBehaviour {
     public TextAsset[] babyTextFiles;
     public TextAsset[] portalTextFiles;
 
+    [Header("Individual Skill CD")]
+    public GameObject slowCD;
+    public GameObject babyCD;
+    public GameObject vortexCD;
+
     private bool textActive;
-
+    
+    [HideInInspector]
     public TutorialStates currentState;
-
-
+    
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
     private PlayerHealth playerHp;
@@ -123,8 +126,6 @@ public class GameManager : MonoBehaviour {
         player = GameObject.Find("Player");
         playerHp = player.GetComponent<PlayerHealth>();
 
-        playerDialogueBubble = GameObject.Find("Player Text Bubble").GetComponent<DialogTextBox>();
-
         minimapPos = GameObject.Find("Minimap Objects").transform;
         cameraColPos = GameObject.Find("Camera Collider").transform;
 
@@ -134,6 +135,7 @@ public class GameManager : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("Mouse") != 0)
             Cursor.visible = true;
+
         /*
         controlsUIText = GetComponent<ControlsUIText>();
 
@@ -141,7 +143,8 @@ public class GameManager : MonoBehaviour {
             controlsUIText.keyboardText();
         else
             controlsUIText.controllerText();
-            */
+        */
+
         playerTalking = false;
 
         map.SetActive(false);
@@ -151,27 +154,23 @@ public class GameManager : MonoBehaviour {
         
         respawning = false;
 
+        dialogBox.SetActive(false);
+        avatarImage.SetActive(false);
+
         if (isTutorial)
         {
             spawningRooms = false;
 
             textActive = false;
 
-            currentState = TutorialStates.ShootMoveRoomStart;
-
-
-            dialogBox.SetActive(false);
-            avatarImage.SetActive(false);
+            currentState = TutorialStates.ShootMoveRoomStart;            
         } else
         {
             spawningRooms = true;
             proceduralUI.SetActive(true);
 
-            templates = GameManager.gm.GetComponent<RoomTemplates>();
+            templates = GetComponent<RoomTemplates>();
         }
-    }
-
-    void Start () {
     }
 
     void Update() {
@@ -211,14 +210,13 @@ public class GameManager : MonoBehaviour {
             Time.timeScale = 0f;
 
             Cursor.visible = true;
-            //gameOverMenu.SetActive(true);
             
             GetComponent<PauseController>().enabled = false;
 
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
                 StartCoroutine(RespawnMap());
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
-                LoadNextLevel();
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
+                ReloadLevel();
         }
 
         if (Time.timeScale != 0f)
@@ -325,7 +323,13 @@ public class GameManager : MonoBehaviour {
     public void LoadNextLevel()
     {
         Time.timeScale = 0;
-        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex)); // ADD ONE FOR NEXT LEVEL CURRENTLY LOOPING
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    public void ReloadLevel()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadBossLevel()
@@ -375,21 +379,6 @@ public class GameManager : MonoBehaviour {
             NextState();
     }
 
-    public void startDialogue(TextAsset txt)
-    {
-        if (!playerTalking)
-        {
-            playerTalking = true;
-
-            playerDialogueBubble.startText(txt);
-        }
-    }
-
-    public void endDialogue()
-    {
-        playerTalking = false;
-    }
-
     #region Tutorial Functions
     private void tutorialLoop()
     {
@@ -399,6 +388,10 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.ShootMoveRoom)
         {
+            slowCD.SetActive(false);
+            babyCD.SetActive(false);
+            vortexCD.SetActive(false);
+
             checkVaseRoomCleared();
         }
         else if (currentState == TutorialStates.ShootMoveRoomEnd && !textActive)
@@ -415,7 +408,7 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.SlowRoom)
         {
-            // SKIP ACTION
+            slowCD.SetActive(true);
         }
         else if (currentState == TutorialStates.SlowRoomEnd && !textActive)
         {
@@ -431,6 +424,9 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.VortexRoom)
         {
+            slowCD.SetActive(false);
+            vortexCD.SetActive(true);
+
             checkVortexRoomCleared();
         }
         else if (currentState == TutorialStates.VortexRoomEnd && !textActive)
@@ -447,6 +443,9 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.BabyRoom)
         {
+            vortexCD.SetActive(false);
+            babyCD.SetActive(true);
+
             checkBabyRoomCleared();
         }
         else if (currentState == TutorialStates.BabyRoomEnd && !textActive)
@@ -461,9 +460,11 @@ public class GameManager : MonoBehaviour {
         {
             startTutorialDialogue(portalTextFiles[0]);
         }
-        else
+        else if (currentState == TutorialStates.PortalRoomPost)
         {
-            // SKIP ACTION
+            vortexCD.SetActive(true);
+            babyCD.SetActive(true);
+            slowCD.SetActive(true);
         }
 
         if (Time.timeScale != 0f)
@@ -522,6 +523,33 @@ public class GameManager : MonoBehaviour {
             dc.SetActive(false);
 
         NextState();
+    }
+
+    public void startDialogue(TextAsset text)
+    {
+        Time.timeScale = 0;
+
+        dialogBox.SetActive(true);
+        avatarImage.SetActive(true);
+
+        dialogText.startText(text);
+
+        skillIcons.SetActive(false);
+        ammoUI.SetActive(false);
+        reloadUI.SetActive(false);
+        hpUI.SetActive(false);
+    }
+
+    public void endDialogue()
+    {
+        Time.timeScale = 1;
+
+        dialogBox.SetActive(false);
+        avatarImage.SetActive(false);
+
+        skillIcons.SetActive(true);
+        ammoUI.SetActive(true);
+        hpUI.SetActive(true);
     }
 
     public void startTutorialDialogue(TextAsset text)

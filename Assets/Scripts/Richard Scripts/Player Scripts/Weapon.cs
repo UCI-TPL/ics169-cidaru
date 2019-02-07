@@ -104,6 +104,8 @@ public class Weapon : ScriptableObject
         // Sets the weapon sound effect
         aController.clip = sfx;
 
+        aController.pitch = Random.Range(0.8f, 1.2f);
+
         // Plays the weapon sound effect
         aController.Play();
 

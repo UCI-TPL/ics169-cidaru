@@ -175,6 +175,8 @@ public class Door : MonoBehaviour {
         // Disable all doors after clearing
         foreach (GameObject dc in doorColliders)
             dc.SetActive(false);
+
+        GetComponent<AudioSource>().Play();
     }
 
     // Disable all turrets not in the room

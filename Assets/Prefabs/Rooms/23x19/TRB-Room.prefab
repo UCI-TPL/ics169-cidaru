@@ -7829,6 +7829,7 @@ GameObject:
   - component: {fileID: 61287294166077038}
   - component: {fileID: 61626366874438676}
   - component: {fileID: 61011120322531150}
+  - component: {fileID: 3691354839192931041}
   m_Layer: 0
   m_Name: Door Triggers
   m_TagString: Door Trigger
@@ -7954,6 +7955,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
+--- !u!82 &3691354839192931041
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802968389266484}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 59ead781b2032d2488416e49a180d057, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1855634769084310
 GameObject:
   m_ObjectHideFlags: 0
@@ -8505,6 +8602,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4140091718008646}
     m_Modifications:
+    - target: {fileID: 1899664499326212, guid: 4d48bcc27ca88f04e9eab3ab542a5d95, type: 3}
+      propertyPath: m_Name
+      value: Right Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4339446812632442, guid: 4d48bcc27ca88f04e9eab3ab542a5d95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.25
@@ -8549,21 +8650,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1899664499326212, guid: 4d48bcc27ca88f04e9eab3ab542a5d95, type: 3}
-      propertyPath: m_Name
-      value: Right Door
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d48bcc27ca88f04e9eab3ab542a5d95, type: 3}
---- !u!1 &963902658386284573 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1899664499326212, guid: 4d48bcc27ca88f04e9eab3ab542a5d95,
-    type: 3}
-  m_PrefabInstance: {fileID: 965678936153910553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &966494173304588387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4339446812632442, guid: 4d48bcc27ca88f04e9eab3ab542a5d95,
+    type: 3}
+  m_PrefabInstance: {fileID: 965678936153910553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &963902658386284573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1899664499326212, guid: 4d48bcc27ca88f04e9eab3ab542a5d95,
     type: 3}
   m_PrefabInstance: {fileID: 965678936153910553}
   m_PrefabAsset: {fileID: 0}
@@ -8710,15 +8807,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
---- !u!1 &3839970941799162919 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3,
-    type: 3}
-  m_PrefabInstance: {fileID: 3841525330975623577}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3845702529719338669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4918098998693684, guid: 89b89322c2df07b438d1e8e1d5b737c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3841525330975623577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3839970941799162919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3,
     type: 3}
   m_PrefabInstance: {fileID: 3841525330975623577}
   m_PrefabAsset: {fileID: 0}
@@ -8729,6 +8826,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4140091718008646}
     m_Modifications:
+    - target: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
+      propertyPath: m_Name
+      value: Bot Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4478752097066022, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -8773,21 +8874,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
-      propertyPath: m_Name
-      value: Bot Door
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
---- !u!1 &4844319220634900487 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4844864266934436039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4842358090782481633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4478752097066022, guid: 9da56031d5bcdc248a80333e9e4e585b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4844864266934436039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4844319220634900487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b,
     type: 3}
   m_PrefabInstance: {fileID: 4844864266934436039}
   m_PrefabAsset: {fileID: 0}

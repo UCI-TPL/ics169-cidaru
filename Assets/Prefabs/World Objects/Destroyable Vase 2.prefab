@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 114668072665400048}
   - component: {fileID: 114832229650295012}
   - component: {fileID: 61258051454079448}
+  - component: {fileID: 1967759979472932213}
   m_Layer: 14
   m_Name: Destroyable Vase 2
   m_TagString: Destroyable
@@ -130,6 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca764774145eaf0498e8b61377b9e7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyedObject: {fileID: 6886938818738851267, guid: aebe319ca28dcc04387d831f363e22a3,
+    type: 3}
   rotationSpeed: 200
 --- !u!61 &61258051454079448
 BoxCollider2D:
@@ -157,3 +160,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4}
   m_EdgeRadius: 0
+--- !u!114 &1967759979472932213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146428215023036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bfc00f6059ea24db2dd68a9060cbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300058, guid: 4bc4b846f36df0d47a94bafde5a3e635, type: 3}
+  - {fileID: 21300000, guid: 049458590af11274c9ef6e594b3a83df, type: 3}

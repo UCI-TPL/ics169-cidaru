@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatueSprite : MonoBehaviour {
+public class SpritePicker : MonoBehaviour {
 
     public Sprite[] sprites;
 

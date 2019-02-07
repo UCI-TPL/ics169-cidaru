@@ -12,6 +12,8 @@ public class Destroyable : MonoBehaviour {
         Rotato
     }
 
+    public GameObject destroyedObject;
+
     // Speed at which the object rotates while in the vortex
     public float rotationSpeed = 200f;
 
@@ -114,6 +116,7 @@ public class Destroyable : MonoBehaviour {
     // Destroys object when called
     public virtual void Death()
     {
+        Instantiate(destroyedObject, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

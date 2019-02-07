@@ -20,7 +20,7 @@ public class TutorialTrigger : MonoBehaviour
         {
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
-            enabled = false;
+            gameObject.SetActive(false);
 
             if (portalTrigger)
                 GameObject.Find("Portal").GetComponent<NextLevel>().Activate();

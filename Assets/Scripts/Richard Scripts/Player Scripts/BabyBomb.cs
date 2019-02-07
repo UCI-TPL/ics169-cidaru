@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BabyBomb : Bomb {
     // Object to change objects into
     public GameObject baby;
-
-    // Area indication of how far the baby bomb will reach
-    public GameObject bombArea;
 
     // Object layers in which the baby bomb will interact with
     public LayerMask enemyLayers;
@@ -15,8 +13,7 @@ public class BabyBomb : Bomb {
     // Radius of the baby bomb
     public float radius;
 
-    // Sprite indicator of how far the baby bomb will reach
-    public SpriteRenderer areaSprite;
+    public Image fillImage;
 
     // Sprite (diaper) of the baby bomb
     private SpriteRenderer sprite;
@@ -29,9 +26,8 @@ public class BabyBomb : Bomb {
 
     public void Start()
     {
-        bombArea.transform.localScale *= radius;
-        audioSource = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         exploded = false;
     }
 
@@ -39,6 +35,7 @@ public class BabyBomb : Bomb {
     void Update () {
         // Countdown the baby bomb
         bombTimer -= Time.deltaTime;
+        fillImage.fillAmount = bombTimer / setBombTimer;
 
         // If not exploded and timer expired, then explode
         if (bombTimer <= 0f && !exploded)
@@ -67,7 +64,6 @@ public class BabyBomb : Bomb {
             // Disables everything and starts audio noise
             exploded = true;
             sprite.enabled = false;
-            areaSprite.enabled = false;
             audioSource.Play();
 
             // Destroy object after specified time

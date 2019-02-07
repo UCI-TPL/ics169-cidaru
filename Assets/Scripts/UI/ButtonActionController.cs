@@ -35,6 +35,25 @@ public class ButtonActionController : MonoBehaviour {
         StartCoroutine(FadeWait(sceneIndex));
     }
 
+    public void LoadContinue()
+    {
+        eventSystem.SetActive(false);
+
+        int currentLevel = PlayerPrefs.GetInt("Level");
+
+        if (currentLevel == 2 || currentLevel == 3)
+            StartCoroutine(FadeWait(2));
+        else if (currentLevel == 4)
+            StartCoroutine(FadeWait(3));
+    }
+
+    public void LoadNewGame()
+    {
+        PlayerPrefs.SetInt("Level", 1);
+        eventSystem.SetActive(false);
+        StartCoroutine(FadeWait(1));
+    }
+
     IEnumerator FadeWait(int sceneIndex)
     {
         float fadeTime = fade.BeginSceneFade(1);

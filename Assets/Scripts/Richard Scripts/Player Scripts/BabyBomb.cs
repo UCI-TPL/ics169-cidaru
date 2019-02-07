@@ -35,7 +35,7 @@ public class BabyBomb : Bomb {
     void Update () {
         // Countdown the baby bomb
         bombTimer -= Time.deltaTime;
-        fillImage.fillAmount = bombTimer / setBombTimer;
+        fillImage.fillAmount = (setBombTimer - bombTimer) / setBombTimer;
 
         // If not exploded and timer expired, then explode
         if (bombTimer <= 0f && !exploded)
@@ -62,6 +62,7 @@ public class BabyBomb : Bomb {
             }
 
             // Disables everything and starts audio noise
+            fillImage.enabled = false;
             exploded = true;
             sprite.enabled = false;
             audioSource.Play();

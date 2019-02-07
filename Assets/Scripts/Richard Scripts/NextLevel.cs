@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NextLevel : MonoBehaviour {
-
     private bool active = false;
+    private AudioSource audioSource;
 
     public void Awake()
     {
         active = false;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Activate()
     {
         active = true;
+        audioSource.Play();
         GetComponent<Animator>().SetBool("open", true);
     }
 

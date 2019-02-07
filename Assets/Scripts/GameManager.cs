@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour {
         Left,
         Right
     }
-    
-    //public GameObject gameOverMenu;
 
     public GameObject map;
 
@@ -92,8 +90,14 @@ public class GameManager : MonoBehaviour {
     public TextAsset[] babyTextFiles;
     public TextAsset[] portalTextFiles;
 
-    private bool textActive;
+    [Header("Individual Skill CD")]
+    public GameObject slowCD;
+    public GameObject babyCD;
+    public GameObject vortexCD;
 
+    private bool textActive;
+    
+    [HideInInspector]
     public TutorialStates currentState;
     
     private GameObject player;
@@ -131,6 +135,7 @@ public class GameManager : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("Mouse") != 0)
             Cursor.visible = true;
+
         /*
         controlsUIText = GetComponent<ControlsUIText>();
 
@@ -138,7 +143,8 @@ public class GameManager : MonoBehaviour {
             controlsUIText.keyboardText();
         else
             controlsUIText.controllerText();
-            */
+        */
+
         playerTalking = false;
 
         map.SetActive(false);
@@ -163,7 +169,7 @@ public class GameManager : MonoBehaviour {
             spawningRooms = true;
             proceduralUI.SetActive(true);
 
-            templates = GameManager.gm.GetComponent<RoomTemplates>();
+            templates = GetComponent<RoomTemplates>();
         }
     }
 
@@ -204,7 +210,6 @@ public class GameManager : MonoBehaviour {
             Time.timeScale = 0f;
 
             Cursor.visible = true;
-            //gameOverMenu.SetActive(true);
             
             GetComponent<PauseController>().enabled = false;
 
@@ -383,6 +388,10 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.ShootMoveRoom)
         {
+            slowCD.SetActive(false);
+            babyCD.SetActive(false);
+            vortexCD.SetActive(false);
+
             checkVaseRoomCleared();
         }
         else if (currentState == TutorialStates.ShootMoveRoomEnd && !textActive)
@@ -399,7 +408,7 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.SlowRoom)
         {
-            // SKIP ACTION
+            slowCD.SetActive(true);
         }
         else if (currentState == TutorialStates.SlowRoomEnd && !textActive)
         {
@@ -415,6 +424,9 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.VortexRoom)
         {
+            slowCD.SetActive(false);
+            vortexCD.SetActive(true);
+
             checkVortexRoomCleared();
         }
         else if (currentState == TutorialStates.VortexRoomEnd && !textActive)
@@ -431,6 +443,9 @@ public class GameManager : MonoBehaviour {
         }
         else if (currentState == TutorialStates.BabyRoom)
         {
+            vortexCD.SetActive(false);
+            babyCD.SetActive(true);
+
             checkBabyRoomCleared();
         }
         else if (currentState == TutorialStates.BabyRoomEnd && !textActive)
@@ -445,9 +460,11 @@ public class GameManager : MonoBehaviour {
         {
             startTutorialDialogue(portalTextFiles[0]);
         }
-        else
+        else if (currentState == TutorialStates.PortalRoomPost)
         {
-            // SKIP ACTION
+            vortexCD.SetActive(true);
+            babyCD.SetActive(true);
+            slowCD.SetActive(true);
         }
 
         if (Time.timeScale != 0f)

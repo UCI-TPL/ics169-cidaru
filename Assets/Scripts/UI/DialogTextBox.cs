@@ -19,13 +19,7 @@ public class DialogTextBox : MonoBehaviour {
         delayTimer = setDelayTimer;
         dialogBox = GetComponent<Text>();
         dialogCoroutineStarted = false;
-        dialogBox.text = "";
     }
-
-    // Use this for initialization
-    void Start () {
-        dialogBox.text = "";
-	}
 
     private void Update()
     {

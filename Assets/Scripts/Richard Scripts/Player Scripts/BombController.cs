@@ -18,20 +18,55 @@ public class BombController : MonoBehaviour {
         // If not in pause state, allow player to use ability
         if (Time.timeScale != 0 && !GameManager.gm.cameraPanning && !GameManager.gm.spawningRooms)
         {
-            if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Y Button")) && babyBomb.isAbilityReady())
+            if (GameManager.gm.isTutorial)
             {
-                // Creates baby bomb if avaliable and button is pressed
-                babyBomb.PutOnCooldown();
+                if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Y Button")) && babyBomb.isAbilityReady() && CheckBabysTutorialCondition())
+                {
+                    // Creates baby bomb if avaliable and button is pressed
+                    babyBomb.PutOnCooldown();
 
-                Instantiate(babyBomb.abilityPrefab, transform.position, Quaternion.identity);
-            } else if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && slowBomb.isAbilityReady())
+                    Instantiate(babyBomb.abilityPrefab, transform.position, Quaternion.identity);
+                }
+                else if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && slowBomb.isAbilityReady() && CheckSlowTutorialCondition())
+                {
+                    // Creates slow bomb if avaliable and button is pressed
+                    slowBomb.PutOnCooldown();
+
+                    Instantiate(slowBomb.abilityPrefab, transform.position, Quaternion.identity);
+                }
+            }
+            else
             {
-                // Creates slow bomb if avaliable and button is pressed
-                slowBomb.PutOnCooldown();
+                if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Y Button")) && babyBomb.isAbilityReady())
+                {
+                    // Creates baby bomb if avaliable and button is pressed
+                    babyBomb.PutOnCooldown();
 
-                Instantiate(slowBomb.abilityPrefab, transform.position, Quaternion.identity);
+                    Instantiate(babyBomb.abilityPrefab, transform.position, Quaternion.identity);
+                }
+                else if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("B Button")) && slowBomb.isAbilityReady())
+                {
+                    // Creates slow bomb if avaliable and button is pressed
+                    slowBomb.PutOnCooldown();
+
+                    Instantiate(slowBomb.abilityPrefab, transform.position, Quaternion.identity);
+                }
             }
         }
+    }
+
+    private bool CheckSlowTutorialCondition()
+    {
+        return (GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.SlowRoom ||
+            GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomPost ||
+            GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
+    }
+
+    private bool CheckBabysTutorialCondition()
+    {
+        return (GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoom ||
+            GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPost ||
+            GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
     }
 
     // Initialize all the values of the ability

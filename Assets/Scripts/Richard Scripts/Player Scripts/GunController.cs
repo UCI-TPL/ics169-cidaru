@@ -200,14 +200,32 @@ public class GunController : MonoBehaviour {
             }
 
             // Vortex Shoot
-            if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Right Bumper")) && vortex.isAbilityReady())
+            if (GameManager.gm.isTutorial)
             {
-                vortex.PutOnCooldown();
+                if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Right Bumper")) && vortex.isAbilityReady() && CheckVortexTutorialCondition())
+                {
+                    vortex.PutOnCooldown();
 
-                GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
+                    GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
+                }
+            } else
+            {
+                if ((Input.GetMouseButtonDown(1) || Input.GetButtonDown("Right Bumper")) && vortex.isAbilityReady())
+                {
+                    vortex.PutOnCooldown();
+
+                    GameObject newVortex = Instantiate(vortex.abilityPrefab, gunPoint.position, gun.rotation);
+                }
             }
         }
 	}
+
+    private bool CheckVortexTutorialCondition()
+    {
+        return (GameManager.gm.currentState == GameManager.TutorialStates.VortexRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.VortexRoom ||
+            GameManager.gm.currentState == GameManager.TutorialStates.VortexRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.VortexRoomPost ||
+            GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
+    }
 
     // Takes mouse position and points gun towards that area
     private void FaceMouse()

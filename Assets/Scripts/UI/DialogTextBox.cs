@@ -48,7 +48,6 @@ public class DialogTextBox : MonoBehaviour {
             }
         }
 
-
         if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && GameManager.gm.isTutorial)
             GameManager.gm.endTutorialDialogue();
         else if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && !GameManager.gm.isTutorial)

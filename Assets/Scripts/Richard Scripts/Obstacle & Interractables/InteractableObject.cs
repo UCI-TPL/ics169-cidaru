@@ -7,21 +7,32 @@ public class InteractableObject : MonoBehaviour {
     // Dialogue file to be read
     public TextAsset[] textFiles;
 
-    private bool triggered = false;
+    private bool playerInRange = false;
 
     private void Awake()
     {
-        triggered = false;
+        playerInRange = false;
+    }
+
+    private void Update()
+    {
+        if (Time.timeScale != 0 && Input.GetButtonDown("A Button") && playerInRange)
+        {
+            int textIndex = Random.Range(0, textFiles.Length);
+            GameManager.gm.startDialogue(textFiles[textIndex]);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // On player enterance, start the dialogue from the file set
-        if (collision.tag == "Player" && !triggered)
-        {
-            int textIndex = Random.Range(0, textFiles.Length);
-            GameManager.gm.startDialogue(textFiles[textIndex]);
-            triggered = true;
-        }
+        if (collision.tag == "Player")
+            playerInRange = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            playerInRange = false;
     }
 }

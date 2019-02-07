@@ -6,6 +6,8 @@ public class TutorialTrigger : MonoBehaviour
 {
     public GameObject[] doors;
 
+    public bool portalTrigger = false;
+
     void Awake()
     {
         foreach (GameObject door in doors)
@@ -19,6 +21,9 @@ public class TutorialTrigger : MonoBehaviour
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
             enabled = false;
+
+            if (portalTrigger)
+                GameObject.Find("Portal").GetComponent<NextLevel>().Activate();
 
             foreach (GameObject door in doors)
             {

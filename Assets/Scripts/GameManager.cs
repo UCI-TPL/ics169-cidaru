@@ -61,13 +61,10 @@ public class GameManager : MonoBehaviour {
 
     public GameObject cmCamera;
 
-    [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
-    public bool isTutorial = false;
-
     [Header("Dialogue Box Objects")]
     public GameObject dialogBox;
     public GameObject avatarImage;
-    public TutorialDialogBox dialogText;
+    public DialogTextBox dialogText;
 
     [Header("UI Objects (To Disable)")]
     public GameObject skillIcons;
@@ -75,6 +72,9 @@ public class GameManager : MonoBehaviour {
     public GameObject reloadUI;
     public GameObject hpUI;
 
+    [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
+    public bool isTutorial = false;
+    
     [Header("Room Conditions")]
     public List<GameObject> destroyableVases = new List<GameObject>();
     public GameObject trappedTrojan;
@@ -95,8 +95,7 @@ public class GameManager : MonoBehaviour {
     private bool textActive;
 
     public TutorialStates currentState;
-
-
+    
     private GameObject player;
     private DialogTextBox playerDialogueBubble;
     private PlayerHealth playerHp;
@@ -122,8 +121,6 @@ public class GameManager : MonoBehaviour {
 
         player = GameObject.Find("Player");
         playerHp = player.GetComponent<PlayerHealth>();
-
-        playerDialogueBubble = GameObject.Find("Player Text Bubble").GetComponent<DialogTextBox>();
 
         minimapPos = GameObject.Find("Minimap Objects").transform;
         cameraColPos = GameObject.Find("Camera Collider").transform;
@@ -151,17 +148,16 @@ public class GameManager : MonoBehaviour {
         
         respawning = false;
 
+        dialogBox.SetActive(false);
+        avatarImage.SetActive(false);
+
         if (isTutorial)
         {
             spawningRooms = false;
 
             textActive = false;
 
-            currentState = TutorialStates.ShootMoveRoomStart;
-
-
-            dialogBox.SetActive(false);
-            avatarImage.SetActive(false);
+            currentState = TutorialStates.ShootMoveRoomStart;            
         } else
         {
             spawningRooms = true;
@@ -169,9 +165,6 @@ public class GameManager : MonoBehaviour {
 
             templates = GameManager.gm.GetComponent<RoomTemplates>();
         }
-    }
-
-    void Start () {
     }
 
     void Update() {
@@ -215,10 +208,10 @@ public class GameManager : MonoBehaviour {
             
             GetComponent<PauseController>().enabled = false;
 
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
                 StartCoroutine(RespawnMap());
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
-                LoadNextLevel();
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
+                ReloadLevel();
         }
 
         if (Time.timeScale != 0f)
@@ -325,7 +318,13 @@ public class GameManager : MonoBehaviour {
     public void LoadNextLevel()
     {
         Time.timeScale = 0;
-        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex)); // ADD ONE FOR NEXT LEVEL CURRENTLY LOOPING
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    public void ReloadLevel()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void LoadBossLevel()
@@ -373,21 +372,6 @@ public class GameManager : MonoBehaviour {
 
         if (isTutorial)
             NextState();
-    }
-
-    public void startDialogue(TextAsset txt)
-    {
-        if (!playerTalking)
-        {
-            playerTalking = true;
-
-            playerDialogueBubble.startText(txt);
-        }
-    }
-
-    public void endDialogue()
-    {
-        playerTalking = false;
     }
 
     #region Tutorial Functions
@@ -522,6 +506,33 @@ public class GameManager : MonoBehaviour {
             dc.SetActive(false);
 
         NextState();
+    }
+
+    public void startDialogue(TextAsset text)
+    {
+        Time.timeScale = 0;
+
+        dialogBox.SetActive(true);
+        avatarImage.SetActive(true);
+
+        dialogText.startText(text);
+
+        skillIcons.SetActive(false);
+        ammoUI.SetActive(false);
+        reloadUI.SetActive(false);
+        hpUI.SetActive(false);
+    }
+
+    public void endDialogue()
+    {
+        Time.timeScale = 1;
+
+        dialogBox.SetActive(false);
+        avatarImage.SetActive(false);
+
+        skillIcons.SetActive(true);
+        ammoUI.SetActive(true);
+        hpUI.SetActive(true);
     }
 
     public void startTutorialDialogue(TextAsset text)

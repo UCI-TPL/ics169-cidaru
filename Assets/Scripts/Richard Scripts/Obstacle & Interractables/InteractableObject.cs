@@ -20,7 +20,7 @@ public class InteractableObject : MonoBehaviour {
         if (collision.tag == "Player" && !triggered)
         {
             int textIndex = Random.Range(0, textFiles.Length);
-            GameManager.gm.startTutorialDialogue(textFiles[textIndex]);
+            GameManager.gm.startDialogue(textFiles[textIndex]);
             triggered = true;
         }
     }

@@ -5,34 +5,67 @@ using UnityEngine.UI;
 
 public class DialogTextBox : MonoBehaviour {
     public float setDelayTimer;
-    public float setVisibleTimer;
 
     private TextAsset textFile;
     private Text dialogBox;
     private string[] fileLines;
     private int currentLine;
     private float delayTimer;
-    private float visibleTimer;
+    private bool dialogCoroutineStarted;
+    private Coroutine textTyping;
 
     private void Awake()
     {
         delayTimer = setDelayTimer;
-        visibleTimer = setVisibleTimer;
         dialogBox = GetComponent<Text>();
+        dialogCoroutineStarted = false;
+        dialogBox.text = "";
     }
 
     // Use this for initialization
     void Start () {
         dialogBox.text = "";
 	}
-	
+
+    private void Update()
+    {
+        if (dialogCoroutineStarted)
+        {
+            if (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button"))
+            {
+                StopCoroutine(textTyping);
+                dialogBox.text = fileLines[currentLine];
+                dialogCoroutineStarted = false;
+                currentLine++;
+            }
+        }
+        else
+        {
+            if ((Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && currentLine < fileLines.Length)
+            {
+                textTyping = StartCoroutine(TextTyping());
+                dialogCoroutineStarted = true;
+            }
+        }
+
+
+        if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && GameManager.gm.isTutorial)
+            GameManager.gm.endTutorialDialogue();
+        else if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && !GameManager.gm.isTutorial)
+            GameManager.gm.endDialogue();
+    }
+
     public void startText(TextAsset txt)
     {
         textFile = txt;
 
         fileLines = (textFile.text.Split('\n'));
 
-        StartCoroutine(TextTyping());
+        currentLine = 0;
+
+        dialogCoroutineStarted = true;
+
+        textTyping = StartCoroutine(TextTyping());
     }
 
     IEnumerator TextTyping()
@@ -41,12 +74,10 @@ public class DialogTextBox : MonoBehaviour {
         for (int i = 0; i < fileLines[currentLine].Length; i++)
         {
             dialogBox.text += fileLines[currentLine][i];
-            yield return new WaitForSeconds(delayTimer);
+            yield return new WaitForSecondsRealtime(delayTimer);
         }
 
-        yield return new WaitForSeconds(visibleTimer);
-        dialogBox.text = "";
-
-        GameManager.gm.endDialogue();
+        currentLine++;
+        dialogCoroutineStarted = false;
     }
 }

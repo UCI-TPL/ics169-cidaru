@@ -30,7 +30,6 @@ public class ChargeMovement : EnemyMovement {
     private void FixedUpdate()
     {
         updateAnimations();
-        Debug.Log("Charged: " + charged + "\ncanMove: " + canMove);
 
         if (charged && !canMove)
         {
@@ -43,7 +42,6 @@ public class ChargeMovement : EnemyMovement {
         if (!charged && !canMove)
         {
             movableTarget.transform.position = player.transform.position;
-            Debug.Log("Resting...");
             anim.SetBool("chargedRun", false);
             resetRotations(); //Resets (rotation-based) animations
         }
@@ -80,9 +78,6 @@ public class ChargeMovement : EnemyMovement {
     #region Charging
     private void ChargeBasedMovement()
     {
-        //updateAnimations();
-        Debug.Log(movableTarget.transform.position +" "+player.transform.position);
-
         if (!charged)
         {
             if (distFromPlayer() <= chargeDistance)
@@ -93,7 +88,6 @@ public class ChargeMovement : EnemyMovement {
         }
         else //charged == true
         {
-            Debug.Log(chargedTarget);
             movableTarget.transform.position = chargedTarget;
             if ((int)distFromTarget(target.position) == 0)
             {
@@ -173,12 +167,10 @@ public class ChargeMovement : EnemyMovement {
     public IEnumerator Charging(float secs)
     {
         canMove = false;
-        Debug.Log("Charging...");
         chargeWeaponAnimations();
         yield return new WaitForSeconds(secs);
         chargedTarget = seekTarget(); //Resets target to adjust for player's position upon charge start
         anim.SetBool("chargedRun", true);
-        Debug.Log("Charge!!!");
         canMove = true;
     }
 

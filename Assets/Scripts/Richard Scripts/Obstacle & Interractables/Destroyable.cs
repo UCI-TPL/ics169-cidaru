@@ -17,6 +17,8 @@ public class Destroyable : MonoBehaviour {
     // Speed at which the object rotates while in the vortex
     public float rotationSpeed = 200f;
 
+    public bool isVase = false;
+
     // Center of vortex in which the object rotates around
     protected Vector3 center;
 
@@ -116,7 +118,11 @@ public class Destroyable : MonoBehaviour {
     // Destroys object when called
     public virtual void Death()
     {
-        Instantiate(destroyedObject, transform.position, Quaternion.identity);
+        GameObject rubble = Instantiate(destroyedObject, transform.position, Quaternion.identity);
+
+        if (isVase)
+            rubble.GetComponent<SpritePicker>().pickVaseRubbleSprite(GetComponent<SpriteRenderer>().sprite);
+
         Destroy(gameObject);
     }
 }

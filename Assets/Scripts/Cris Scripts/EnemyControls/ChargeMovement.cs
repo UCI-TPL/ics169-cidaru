@@ -42,7 +42,8 @@ public class ChargeMovement : EnemyMovement {
         if (!charged && !canMove)
         {
             movableTarget.transform.position = player.transform.position;
-            anim.SetBool("chargedRun", false);
+            if (anim)
+                anim.SetBool("chargedRun", false);
             resetRotations(); //Resets (rotation-based) animations
         }
     }
@@ -113,7 +114,8 @@ public class ChargeMovement : EnemyMovement {
     protected override void updateAnimations()
     {
         base.updateAnimations();  
-        anim.SetBool("charging", charged);
+        if (anim)
+            anim.SetBool("charging", charged);
     }
 
     private void chargeAnimations()
@@ -170,7 +172,8 @@ public class ChargeMovement : EnemyMovement {
         chargeWeaponAnimations();
         yield return new WaitForSeconds(secs);
         chargedTarget = seekTarget(); //Resets target to adjust for player's position upon charge start
-        anim.SetBool("chargedRun", true);
+        if (anim)
+            anim.SetBool("chargedRun", true);
         canMove = true;
     }
 

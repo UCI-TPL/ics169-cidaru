@@ -4,17 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Enemy))]
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : AILerp
 {
     #region Basic Movement Vars
-    [Header("Basic Movement")]
-    public float originalSpeed = 0f;
-    public float currentSpeed;
+    //[Header("Basic Movement")]
     [HideInInspector]
-    public bool move; //Whether or not the enemy should be moving
+    public float originalSpeed = 0f;
 
     protected GameObject player;
-    protected Vector3 currentTarget; //The position of the target the enemy is moving towards. Usually player but not always
+    //protected Vector3 currentTarget; //The position of the target the enemy is moving towards. Usually player but not always
     #endregion
 
     #region Patrol Vars
@@ -31,8 +29,9 @@ public class EnemyMovement : MonoBehaviour
     protected Quaternion startRotation;
     #endregion
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         setStartVars();
     }
 
@@ -44,21 +43,28 @@ public class EnemyMovement : MonoBehaviour
         startRotation = transform.rotation;
 
         ///Starting Speeds
-        currentSpeed = originalSpeed;
+        originalSpeed = speed;
 
         ///Starting Misc Variables
-        move = true;
+        canMove = true;
         player = GameObject.Find("Player");
 
         if (patrolPoints.Length != 0)
+        {
             currentPatrolPoint = patrolPoints[currentPatrolIndex];
+            target = currentPatrolPoint;
+        }
+        else
+        {
+            target = player.transform;
+        }
     }
 
     public virtual void Move(bool aggressing)
     {
         /// How the enemy specifically moves, considering everything
         /// Called in the Enemy script
-        if (!move)
+        if (!canMove)
             return;
 
         if (aggressing)
@@ -71,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
     {
         ///Moves enemy towards player. This is the most base version
         MoveTo(player.transform.position);
-        currentTarget = player.transform.position;
+        target = player.transform;
     }
 
     protected virtual void Patrol()
@@ -81,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
         {
             currentPatrolIndex = (currentPatrolIndex + 1) % (patrolPoints.Length);
             currentPatrolPoint = patrolPoints[currentPatrolIndex];
-            currentTarget = currentPatrolPoint.position;
+            target = currentPatrolPoint;
         }
         MoveTo(currentPatrolPoint.position);
     }
@@ -89,8 +95,8 @@ public class EnemyMovement : MonoBehaviour
     protected void MoveTo(Vector3 position)
     {
         /* Basic movement. The bare bones of how the AI moves */
-        float step = currentSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, position, step);
+        //float step = currentSpeed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, position, step);
 
         updateAnimations();
     }
@@ -99,15 +105,15 @@ public class EnemyMovement : MonoBehaviour
     {
         ///Updates visuals and animations
         if (anim)
-            anim.SetBool("walking", move);
+            anim.SetBool("walking", canMove);
 
-        if (currentTarget.x < transform.position.x)
+        if (target.position.x < transform.position.x)
             this.transform.localScale = new Vector3(-1.0f * startScale.x, transform.localScale.y);
         else
             this.transform.localScale = new Vector3(1.0f * startScale.x, transform.localScale.y);
 
         //Reseting rotations
-        if (move)
+        if (canMove)
         {
             if (this.tag.Contains("Boss"))
             {
@@ -121,12 +127,12 @@ public class EnemyMovement : MonoBehaviour
         ///Changes the speed by multiplying the speeds by the effect
         ///Used for the various speed-affecting powers
         originalSpeed *= effect;
-        currentSpeed *= effect;
+        speed *= effect;
     }
 
     protected void MoveAwayFrom(Vector3 position)
     {
-        float step = currentSpeed * Time.deltaTime;
+        float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, position, -step);
     }
 
@@ -134,9 +140,9 @@ public class EnemyMovement : MonoBehaviour
 
     public IEnumerator Wait(float secs)
     {
-        move = false;
+        canMove = false;
         yield return new WaitForSeconds(secs);
-        move = true;
+        canMove = true;
     }
 
     protected float distFromPlayer()

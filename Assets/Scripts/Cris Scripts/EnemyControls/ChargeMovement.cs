@@ -6,30 +6,46 @@ public class ChargeMovement : EnemyMovement {
 
     #region Charge Vars
     [Header("Charging")]
+    public GameObject movableTarget;
     public float chargeDistance = 0f; //The closest the player needs to be for charge
     public float chargeTime = 0f; //The time takes to charge (how long it waits)
-    public float chargePower = 0f; //The percent speed/power is increased
+    public float chargePower = 0f; //The speed/power increase multiplier
     public bool weaponFollowsPlayer;
 
     private bool charged; //Whether or not the enemy has just charged
+    private Vector3 chargedTarget;
     #endregion
+
+    protected override void setStartVars()
+    {
+        base.setStartVars();
+        charged = false;
+        movableTarget.transform.position = player.transform.position;
+        if (target == player.transform)
+        {
+            target = movableTarget.transform;
+        }
+    }
 
     private void FixedUpdate()
     {
         updateAnimations();
-        if (charged && !move)
+        Debug.Log("Charged: " + charged + "\ncanMove: " + canMove);
+
+        if (charged && !canMove)
         {
             seekTarget();
             chargeAnimations();
             if (weaponFollowsPlayer)
                 chargeWeaponAnimations();
+            movableTarget.transform.position = player.transform.position;
         }
-        else if (!charged)
+        if (!charged && !canMove)
         {
-            Debug.Log(anim.GetBool("chargedRun") + " and not charged");
+            movableTarget.transform.position = player.transform.position;
+            Debug.Log("Resting...");
             anim.SetBool("chargedRun", false);
-            Debug.Log(anim.GetBool("chargedRun"));
-            resetRotations(); //Resets (rotation-based) animations}
+            resetRotations(); //Resets (rotation-based) animations
         }
     }
 
@@ -41,28 +57,14 @@ public class ChargeMovement : EnemyMovement {
         if (collision.transform.tag.Contains("Player"))
         {
             StartCoroutine(Wait(.3f));
-            currentSpeed = originalSpeed;
+            speed = originalSpeed;
             charged = false;
         }
-        if (collision.transform.tag.Contains("Obstacle"))
-        {
-            StartCoroutine(Wait(.3f));
-            currentSpeed = originalSpeed;
-            charged = false;
-        }
-    }
-
-    protected override void setStartVars()
-    {
-        base.setStartVars();
-        charged = false;
-        currentTarget = player.transform.position;
     }
 
     protected override void Patrol()
     {
         base.Patrol();
-        currentTarget = base.currentPatrolPoint.position;
     }
 
     protected override void Pursue()
@@ -70,46 +72,53 @@ public class ChargeMovement : EnemyMovement {
         if (chargeTime != 0)
             ChargeBasedMovement();
         else
+        {
             base.Pursue();
+        }
     }
 
     #region Charging
     private void ChargeBasedMovement()
     {
-        if (distFromPlayer() <= chargeDistance && !charged)
+        //updateAnimations();
+        Debug.Log(movableTarget.transform.position +" "+player.transform.position);
+
+        if (!charged)
         {
-            Charge();
-        }
-        else
-        {
-            if ((int)distFromTarget(currentTarget) == 0)
+            if (distFromPlayer() <= chargeDistance)
             {
-                if (charged)
-                {
-                    StartCoroutine(Wait(.5f));
-                    currentSpeed = originalSpeed;
-                    charged = false;
-                }
-                else
-                    currentTarget = player.transform.position;
+                Charge();
             }
-            MoveTo(currentTarget);
+            movableTarget.transform.position = player.transform.position;
         }
+        else //charged == true
+        {
+            Debug.Log(chargedTarget);
+            movableTarget.transform.position = chargedTarget;
+            if ((int)distFromTarget(target.position) == 0)
+            {
+                StartCoroutine(Wait(.5f));
+                speed = originalSpeed;
+                charged = false;
+            }
+        }
+        MoveTo(target.position);
+        updateAnimations();
     }
 
     private void Charge()
     {
-        seekTarget();
+        chargedTarget = seekTarget();
         StartCoroutine(Charging(chargeTime));
-        currentSpeed += (currentSpeed * chargePower);
-        MoveTo(currentTarget);
+        speed += (speed * chargePower);
+        MoveTo(target.position);
         charged = true;
     }
     #endregion
 
     protected override void updateAnimations()
     {
-        base.updateAnimations();
+        base.updateAnimations();  
         anim.SetBool("charging", charged);
     }
 
@@ -119,7 +128,7 @@ public class ChargeMovement : EnemyMovement {
         {
             //Horse "Animations"
             float newZrotation = startRotation.z;
-            if (currentTarget.x < transform.position.x)
+            if (movableTarget.transform.position.x < transform.position.x)
                 newZrotation -= 1;
             else
                 newZrotation += 1;
@@ -163,23 +172,22 @@ public class ChargeMovement : EnemyMovement {
 
     public IEnumerator Charging(float secs)
     {
-        move = false;
+        canMove = false;
+        Debug.Log("Charging...");
         chargeWeaponAnimations();
         yield return new WaitForSeconds(secs);
-        seekTarget(); //Resets target to adjust for player's position upon charge start
-        move = true;
+        chargedTarget = seekTarget(); //Resets target to adjust for player's position upon charge start
         anim.SetBool("chargedRun", true);
+        Debug.Log("Charge!!!");
+        canMove = true;
     }
 
-    private void seekTarget()
+    private Vector3 seekTarget()
     {
-        // Finds the player and pinpoints the target beyond the player depending on the charge power
+        //// Finds the player and pinpoints the target beyond the player depending on the charge power
         Vector3 dir = Vector3.Normalize((transform.position - player.transform.position));
-        currentTarget = player.transform.position + dir * - (chargePower + 1);
-        //RaycastHit[] hit = Physics.RaycastAll(transform.position, currentTarget);
-        //if (hit.Length > 0 && !hit[0].transform.tag.Contains("Player"))
-        //    Debug.Log()
-
-        Debug.DrawLine(transform.position, currentTarget, Color.red);
+        Vector3 aquiredTarget = player.transform.position + dir * (-chargePower); //targeting a distance beyond the player
+        Debug.DrawLine(transform.position, aquiredTarget, Color.red);
+        return aquiredTarget;
     }
 }

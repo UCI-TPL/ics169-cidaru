@@ -216,6 +216,7 @@ public class RoomTemplates : MonoBehaviour {
             }
 
             spawned = true;
+            AstarPath.active.Scan();
         }
     }
 

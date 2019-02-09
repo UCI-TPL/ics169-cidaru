@@ -7,6 +7,8 @@ Shader "Unlit/DistortUnlit"
 		_MainTex("Texture", 2D) = "white" {}
 		_DisplaceTex("Displacement Texture", 2D) = "white" {}
 		_Magnitude("Magnitude", Range(0,0.1)) = 1
+		_Color("Tint", Color) = (1,1,1,1)
+		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 		SubShader
 		{
@@ -48,6 +50,7 @@ Shader "Unlit/DistortUnlit"
 					v2f o;
 					o.vertex = UnityObjectToClipPos(v.vertex);
 					o.uv = v.uv;
+
 					return o;
 				}
 

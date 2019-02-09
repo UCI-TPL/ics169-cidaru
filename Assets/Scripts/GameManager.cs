@@ -66,8 +66,6 @@ public class GameManager : MonoBehaviour {
 
     [Header("UI Objects (To Disable)")]
     public GameObject skillIcons;
-    public GameObject ammoUI;
-    public GameObject reloadUI;
     public GameObject hpUI;
 
     [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
@@ -535,8 +533,6 @@ public class GameManager : MonoBehaviour {
         dialogText.startText(text);
 
         skillIcons.SetActive(false);
-        ammoUI.SetActive(false);
-        reloadUI.SetActive(false);
         hpUI.SetActive(false);
     }
 
@@ -548,7 +544,6 @@ public class GameManager : MonoBehaviour {
         avatarImage.SetActive(false);
 
         skillIcons.SetActive(true);
-        ammoUI.SetActive(true);
         hpUI.SetActive(true);
     }
 
@@ -562,8 +557,6 @@ public class GameManager : MonoBehaviour {
         dialogText.startText(text);
 
         skillIcons.SetActive(false);
-        ammoUI.SetActive(false);
-        reloadUI.SetActive(false);
         hpUI.SetActive(false);
 
         textActive = true;
@@ -577,7 +570,6 @@ public class GameManager : MonoBehaviour {
         avatarImage.SetActive(false);
 
         skillIcons.SetActive(true);
-        ammoUI.SetActive(true);
         hpUI.SetActive(true);
 
         NextState();

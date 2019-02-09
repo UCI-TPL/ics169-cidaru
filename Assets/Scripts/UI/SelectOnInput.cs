@@ -22,7 +22,7 @@ public class SelectOnInput : MonoBehaviour {
         }
 	}
 
-    private void OnDisable()
+    public void ResetButtonSelected()
     {
         buttonSelected = false;
     }

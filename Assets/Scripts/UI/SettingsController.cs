@@ -10,7 +10,7 @@ public class SettingsController : MonoBehaviour {
     public Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
     public Dropdown graphicsDropdown;
-    public Slider masterVolumeSlider;
+    //public Slider masterVolumeSlider;
 
     private Resolution[] resolutions;
 
@@ -49,6 +49,7 @@ public class SettingsController : MonoBehaviour {
         graphicsDropdown.RefreshShownValue();
 
         // Sets master volume current value
+        /*
         float volume;
         bool check = audioMixer.GetFloat("masterVolume", out volume);
 
@@ -59,10 +60,12 @@ public class SettingsController : MonoBehaviour {
         {
             masterVolumeSlider.value = 0;
         }
+        */
     }
 
     private void Update()
     {
+        /*
         // Sets master volume current value
         float volume;
         bool check = audioMixer.GetFloat("masterVolume", out volume);
@@ -75,6 +78,7 @@ public class SettingsController : MonoBehaviour {
         {
             masterVolumeSlider.value = 0;
         }
+        */
     }
 
     public void SetResolution(int resolutionIndex)
@@ -101,13 +105,18 @@ public class SettingsController : MonoBehaviour {
         PlayerPrefs.SetFloat("masterVol", volume);
     }
 
-    public void SetMusicVolume(float volume)
+    public void SetBGMVolume(float volume)
     {
-        audioMixer.SetFloat("musicVolume", volume);
+        audioMixer.SetFloat("bgmVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("sfxVolume", volume);
+    }
+
+    public void CloseSettingMenu()
+    {
+        gameObject.SetActive(false);
     }
 }

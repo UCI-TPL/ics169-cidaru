@@ -20,9 +20,9 @@ public class ControlSetup : MonoBehaviour {
             controls.isOn = true;
 	}
 	
-	public void SavePref()
+	public void SavePref(bool isController)
     {
-        if (controls.isOn)
+        if (isController)
             PlayerPrefs.SetInt("Mouse", 0);
         else
             PlayerPrefs.SetInt("Mouse", 1);

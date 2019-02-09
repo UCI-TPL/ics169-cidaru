@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8894198818559106778}
   - component: {fileID: 114690955102077628}
   - component: {fileID: 114950268367083412}
+  - component: {fileID: 5218251359011694472}
   m_Layer: 0
   m_Name: Trojan Horse - Boss Test
   m_TagString: Enemy Boss
@@ -118,6 +119,7 @@ Transform:
   - {fileID: 4525004768800694}
   - {fileID: 4996186292507716}
   - {fileID: 4595926378826706}
+  - {fileID: 8142151931268202987}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -278,13 +280,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d864dab6fe17b4ebdb0f797353d03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repathRate: 0.5
+  target: {fileID: 0}
+  canSearch: 1
+  canMove: 1
+  speed: 3
+  enableRotation: 0
+  rotationIn2D: 0
+  rotationSpeed: 10
+  interpolatePathSwitches: 1
+  switchPathInterpolationSpeed: 5
   originalSpeed: 5
-  currentSpeed: 0
-  move: 0
   patrolPoints: []
+  movableTarget: {fileID: 2911169910290309831}
   chargeDistance: 10
   chargeTime: 0.5
-  chargePower: 1
+  chargePower: 2
+  weaponFollowsPlayer: 0
 --- !u!114 &114690955102077628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +325,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
+--- !u!114 &5218251359011694472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214733998205538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  traversableTagsCompatibility:
+    tagsChange: -1
+    tagsSet: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1472372595434962
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,3 +483,33 @@ MonoBehaviour:
   destroyAfterSpawn: 0
   spawning: 0
   spawnNum: 2
+--- !u!1 &2911169910290309831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8142151931268202987}
+  m_Layer: 0
+  m_Name: Movable Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8142151931268202987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911169910290309831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4268232838673262}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

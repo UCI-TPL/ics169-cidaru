@@ -50,7 +50,7 @@ public class BossAttack : EnemyAttack {
 
     private bool isCharging()
     {
-        return GetComponent<EnemyMovement>().originalSpeed < GetComponent<EnemyMovement>().currentSpeed;
+        return GetComponent<EnemyMovement>().originalSpeed < GetComponent<EnemyMovement>().speed;
     }
 
     private void Phase1()

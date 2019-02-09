@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 58952771945965240}
   - component: {fileID: 114916800619184676}
   - component: {fileID: 8310767835535277105}
+  - component: {fileID: 5037844691434792319}
   m_Layer: 0
   m_Name: Time Area
   m_TagString: Time Area
@@ -51,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bd76d2f5b5ceb014e8f03c9d5a5164dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,11 +69,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -629970025
-  m_SortingLayer: 2
+  m_SortingLayerID: 520625559
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 81153f7810bf8064799a6fe0c915bee0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -209,6 +210,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5037844691434792319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345180173962906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436ded832f9d8ca418b8135549fa7ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectMaterial: {fileID: 2100000, guid: bd76d2f5b5ceb014e8f03c9d5a5164dd, type: 2}
 --- !u!1 &1442114024526916
 GameObject:
   m_ObjectHideFlags: 0

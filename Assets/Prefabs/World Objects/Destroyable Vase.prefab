@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: -633514475
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300062, guid: 4bc4b846f36df0d47a94bafde5a3e635, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 049458590af11274c9ef6e594b3a83df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 0.9375, y: 1.375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -131,9 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca764774145eaf0498e8b61377b9e7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyedObject: {fileID: 6886938818738851267, guid: aebe319ca28dcc04387d831f363e22a3,
+  destroyedObject: {fileID: 2752146793962112502, guid: fcb91179bc69b134fb2c966ddf55e71e,
     type: 3}
   rotationSpeed: 200
+  isVase: 1
 --- !u!61 &61258051454079448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,7 +153,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.9375, y: 1.375}
-    newSize: {x: 5.12, y: 5.12}
+    newSize: {x: 0.9375, y: 1.375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -173,5 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300058, guid: 4bc4b846f36df0d47a94bafde5a3e635, type: 3}
+  - {fileID: 21300000, guid: d234cbec9eb351b459a912fd835b1806, type: 3}
   - {fileID: 21300000, guid: 049458590af11274c9ef6e594b3a83df, type: 3}
+  randomizeInitial: 1

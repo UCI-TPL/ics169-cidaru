@@ -45,7 +45,7 @@ public class TimeAreaEffector : MonoBehaviour {
     {
         if (other.tag.Equals("Player"))
             changePlayerTime(other, effect);
-        else if (other.tag.Contains("Enemy") && !other.tag.Contains("Bullet") && other.GetComponent<Enemy>().speedBubbles)
+        else if ((other.tag.Equals("Enemy") || other.tag.Equals("Enemy Boss")) && !other.tag.Contains("Bullet") && other.GetComponent<Enemy>().speedBubbles)
             changeEnemyTime(other, effect);
         else if (other.tag.Contains("Bullet") || other.tag.Contains("Projectile"))
             changeProjectileTime(other, effect);

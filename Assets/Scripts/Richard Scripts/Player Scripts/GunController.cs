@@ -33,9 +33,8 @@ public class GunController : MonoBehaviour {
     //private AmmoUI ammoUI;
 
     #endregion Pre-Scriptable Object Variables
-
-    // Current weapon being used
-    public Weapon normalGun;
+        
+    public GameObject bullet;
 
     // Vortex ability
     public Ability vortex;
@@ -64,12 +63,19 @@ public class GunController : MonoBehaviour {
     // Shooting timer based on fire rate
     private float shootTimer;
 
+
+    #region Pre Reload Removal
+    // Current weapon being used
+    //public Weapon normalGun;
+    
     // Reload UI
-    private Slider reloadSlider;
+    //private Slider reloadSlider;
+
 
     // Reloading values
-    private bool reloading;
-    private float reloadTime;
+    //private bool reloading;
+    //private float reloadTime;
+    #endregion Pre Reload Removal
 
     // Use this for initialization
     void Awake () {
@@ -99,16 +105,20 @@ public class GunController : MonoBehaviour {
         // Sets initial fire delay
         shootTimer = 0f;
 
-        // Reloading UI
-        reloadSlider = GameObject.Find("Reload Bar").GetComponent<Slider>();
-        reloading = false;
+        
 
         // Initializes all abilities and weapons
         initAbilityCharges();
-        initWeapons();
 
-        normalGun.ActivateWeapon();
-        
+        #region Pre Reload Removal
+        // Reloading UI
+        //reloadSlider = GameObject.Find("Reload Bar").GetComponent<Slider>();
+        //reloading = false;
+        //initWeapons();
+
+        //normalGun.ActivateWeapon();
+        #endregion Pre Reload Removal
+
         intialGunPointX = gunPoint.localPosition.x;
 
         // Sets default control to mouse if none are set
@@ -158,7 +168,9 @@ public class GunController : MonoBehaviour {
             //        reloading = false;
             //}
             #endregion Old Elemental Weapon Reload
-            
+
+            #region Pre Reload Removal
+            /*
             // Reload
             if (((Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("X Button")) && normalGun.CheckNormalReloadable() && !reloading) || (normalGun.CheckNormalAutoReload() && !reloading))
             {
@@ -169,6 +181,8 @@ public class GunController : MonoBehaviour {
                 reloading = true;
                 reloadTime = normalGun.reloadTime;
             }
+            */
+            #endregion Pre Reload Removal
 
             #region Old Elemental Weapon Shoot Conditions
             // Player Shoot Code
@@ -187,6 +201,8 @@ public class GunController : MonoBehaviour {
             // Normal weapon shooting
             NormalShoot();
 
+            #region Old Reload Timer
+            /*
             // Function to run while reloading
             if (reloading)
             {
@@ -198,6 +214,8 @@ public class GunController : MonoBehaviour {
                 if (normalGun.FinishedReloading())
                     reloading = false;
             }
+            */
+            #endregion Old Reload Timer
 
             // Vortex Shoot
             if (GameManager.gm.isTutorial)
@@ -301,17 +319,28 @@ public class GunController : MonoBehaviour {
     //}
     #endregion Pre-Scriptable Object Reload
 
+    #region Old Reload Function
+    /*
     public void respawnReload()
     {
         normalGun.InstantReload();
     }
+    */
+    #endregion Old Reload Function
 
     private void NormalShoot()
     {
-        if ((Input.GetMouseButton(0) || Input.GetAxisRaw("Right Trigger") > 0) && normalGun.CheckClip() && !reloading  && shootTimer <= 0f)
+        if ((Input.GetMouseButton(0) || Input.GetAxisRaw("Right Trigger") > 0) && shootTimer <= 0f) // && normalGun.CheckClip() )
         {
+            #region Pre Reload Removal
             // Fires gun if button is pressed and firing is avaliable
-            normalGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
+            //normalGun.Shoot(gunPoint.position, gun.rotation, gunSFX);
+            #endregion Pre Reload Removal
+
+            Instantiate(bullet, gunPoint.position, gun.rotation);
+
+            gunSFX.pitch = Random.Range(0.8f, 1.2f);
+            gunSFX.Play();
 
             // Sets fire rate timer
             shootTimer = setFireRate;
@@ -418,6 +447,8 @@ public class GunController : MonoBehaviour {
         vortex.initAbility();
     }
 
+    #region Pre Reload Removal
+    /*
     // Initializes the weapons values
     private void initWeapons()
     {
@@ -428,4 +459,6 @@ public class GunController : MonoBehaviour {
         //stunGun.intializeWeapon();
         #endregion Old Elemental Weapon
     }
+    */
+    #endregion Pre Reload Removal
 }

@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour {
 
         // Reset Values
         playerHp.MaxHeal();
-        player.GetComponent<GunController>().respawnReload();
+        //player.GetComponent<GunController>().respawnReload(); Pre Reload Removal
         player.GetComponent<CooldownController>().resetCooldowns();
 
         // Reset Map

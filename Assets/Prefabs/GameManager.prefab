@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b91b8cff6459a641ba1fb314b9813e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverMenu: {fileID: 0}
   map: {fileID: 0}
   cameraPanTime: 0.1
   roomStartDelay: 0.5
@@ -117,6 +116,27 @@ MonoBehaviour:
   proceduralUI: {fileID: 0}
   spawningRooms: 1
   cmCamera: {fileID: 0}
+  dialogBox: {fileID: 0}
+  avatarImage: {fileID: 0}
+  dialogText: {fileID: 0}
+  skillIcons: {fileID: 0}
+  hpUI: {fileID: 0}
+  isTutorial: 0
+  destroyableVases: []
+  trappedTrojan: {fileID: 0}
+  hogTiedTrojan: {fileID: 0}
+  shootMoveRoomDoor: {fileID: 0}
+  vortexRoomDoors: []
+  babyRoomDoors: []
+  moveShootTextFiles: []
+  slowTextFiles: []
+  vortexTextFiles: []
+  babyTextFiles: []
+  portalTextFiles: []
+  slowCD: {fileID: 0}
+  babyCD: {fileID: 0}
+  vortexCD: {fileID: 0}
+  currentState: 0
 --- !u!114 &114754815866935822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +245,8 @@ AudioSource:
   m_GameObject: {fileID: 1099862756406228}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243212564901597044, guid: 08ac97678dd97c54c8c3e8c5120a6dec,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b1658f522a4e3e84899c3d43499671e5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2

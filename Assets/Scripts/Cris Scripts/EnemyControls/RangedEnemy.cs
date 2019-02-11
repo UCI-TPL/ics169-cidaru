@@ -39,6 +39,8 @@ public class RangedEnemy : EnemyAttack {
             weapon.transform.Rotate(new Vector3(0, 0, 90));
         else if (weapon.name.Equals("Crossbow"))
             weapon.transform.Rotate(new Vector3(0, 0, -90));
+        else if (weapon.name.Equals("Gun"))
+            weapon.transform.Rotate(new Vector3(0, 0, -90));
 
         // Timer to fire bullets on set intervals
         if (fireTimer <= 0f)

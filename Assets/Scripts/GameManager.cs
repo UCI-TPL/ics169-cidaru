@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
     public DialogTextBox dialogText;
 
     [Header("UI Objects (To Disable)")]
-    public GameObject skillIcons;
+    public GameObject uiIcons;
     public GameObject hpUI;
 
     [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
@@ -129,10 +129,10 @@ public class GameManager : MonoBehaviour {
 
         fade = GetComponent<Fader>();
 
-        Cursor.visible = false;
-
         if (PlayerPrefs.GetInt("Mouse") != 0)
             Cursor.visible = true;
+        else
+            Cursor.visible = false;
 
         /*
         controlsUIText = GetComponent<ControlsUIText>();
@@ -555,7 +555,7 @@ public class GameManager : MonoBehaviour {
 
         dialogText.startText(text);
 
-        skillIcons.SetActive(false);
+        uiIcons.SetActive(false);
         hpUI.SetActive(false);
     }
 
@@ -566,7 +566,7 @@ public class GameManager : MonoBehaviour {
         dialogBox.SetActive(false);
         avatarImage.SetActive(false);
 
-        skillIcons.SetActive(true);
+        uiIcons.SetActive(true);
         hpUI.SetActive(true);
     }
 
@@ -579,7 +579,7 @@ public class GameManager : MonoBehaviour {
 
         dialogText.startText(text);
 
-        skillIcons.SetActive(false);
+        uiIcons.SetActive(false);
         hpUI.SetActive(false);
 
         textActive = true;
@@ -592,7 +592,7 @@ public class GameManager : MonoBehaviour {
         dialogBox.SetActive(false);
         avatarImage.SetActive(false);
 
-        skillIcons.SetActive(true);
+        uiIcons.SetActive(true);
         hpUI.SetActive(true);
 
         NextState();

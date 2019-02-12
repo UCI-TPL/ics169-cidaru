@@ -749,6 +749,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1294693697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8237130394765272006, guid: 7a5c5a87146d7dd45887252db36b430b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1552041007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1310662109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,12 +1467,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1552041007}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1552041012 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8237130395465324110, guid: 7a5c5a87146d7dd45887252db36b430b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1552041007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1552041015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8237130394860316183, guid: 7a5c5a87146d7dd45887252db36b430b,
@@ -1939,7 +1939,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skillIcons
       value: 
-      objectReference: {fileID: 1552041012}
+      objectReference: {fileID: 1294693697}
     - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
         type: 3}
       propertyPath: ammoUI
@@ -1970,6 +1970,11 @@ PrefabInstance:
       propertyPath: dialogText
       value: 
       objectReference: {fileID: 1552041010}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: uiIcons
+      value: 
+      objectReference: {fileID: 1294693697}
     - target: {fileID: 114124410891964584, guid: 700837840e0bb91419e2c60a7cb75c05,
         type: 3}
       propertyPath: doubleLRRooms.Array.size

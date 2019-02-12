@@ -45,6 +45,8 @@ public class GunController : MonoBehaviour {
     // Area to spawn bullets
     public Transform gunPoint;
 
+    public Texture2D mouseCursor;
+
     // Fire rate of weapon
     public float setFireRate = 0.3f;
 
@@ -105,8 +107,6 @@ public class GunController : MonoBehaviour {
         // Sets initial fire delay
         shootTimer = 0f;
 
-        
-
         // Initializes all abilities and weapons
         initAbilityCharges();
 
@@ -118,6 +118,16 @@ public class GunController : MonoBehaviour {
 
         //normalGun.ActivateWeapon();
         #endregion Pre Reload Removal
+
+        if (PlayerPrefs.GetInt("Mouse") != 0)
+        {
+            gunPoint.GetChild(0).gameObject.SetActive(false);
+            Cursor.SetCursor(mouseCursor, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            gunPoint.GetChild(0).gameObject.SetActive(true);
+        }
 
         intialGunPointX = gunPoint.localPosition.x;
 
@@ -262,14 +272,16 @@ public class GunController : MonoBehaviour {
             if (gun.rotation.eulerAngles.z > 180)
             {
                 gunSprite.flipY = true;
-                gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
+                gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = false;
+                Cursor.SetCursor(mouseCursor, new Vector2(0.25f, 0.25f), CursorMode.Auto);
             }
             else if (gun.rotation.eulerAngles.z < 180)
             {
                 gunSprite.flipY = false;
-                gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
+                gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = true;
+                Cursor.SetCursor(mouseCursor, new Vector2(-0.25f, -0.25f), CursorMode.Auto);
             }
         }
     }
@@ -288,13 +300,13 @@ public class GunController : MonoBehaviour {
             if (gun.rotation.eulerAngles.z > 180)
             {
                 gunSprite.flipY = true;
-                gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
+                gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = false;
             }
             else if (gun.rotation.eulerAngles.z < 180)
             {
                 gunSprite.flipY = false;
-                gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
+                gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = true;
             }
         }

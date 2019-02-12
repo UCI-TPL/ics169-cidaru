@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DialogTextBox : MonoBehaviour {
     public float setDelayTimer;
+    public Animator avatarImage;
 
     private TextAsset textFile;
     private Text dialogBox;
@@ -63,6 +64,8 @@ public class DialogTextBox : MonoBehaviour {
 
     IEnumerator TextTyping()
     {
+        avatarImage.SetBool("talking", true);
+
         dialogBox.text = "";
         for (int i = 0; i < fileLines[currentLine].Length; i++)
         {
@@ -72,5 +75,7 @@ public class DialogTextBox : MonoBehaviour {
 
         currentLine++;
         dialogCoroutineStarted = false;
+        avatarImage.SetBool("talking", false);
+
     }
 }

@@ -8375,6 +8375,7 @@ GameObject:
   - component: {fileID: 8237130395105536579}
   - component: {fileID: 8237130395105536581}
   - component: {fileID: 8237130395105536580}
+  - component: {fileID: 4076497647001232263}
   m_Layer: 5
   m_Name: Avatar Image
   m_TagString: Untagged
@@ -8438,6 +8439,25 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!95 &4076497647001232263
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237130395105536578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65a4447ed8340e54cb992baf8556d346, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8237130395136626423
 GameObject:
   m_ObjectHideFlags: 0
@@ -10578,6 +10598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setDelayTimer: 0.0001
+  avatarImage: {fileID: 4076497647001232263}
 --- !u!1 &8237130395587990489
 GameObject:
   m_ObjectHideFlags: 0

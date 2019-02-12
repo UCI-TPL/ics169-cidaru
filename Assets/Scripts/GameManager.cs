@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour {
             if (SceneManager.GetActiveScene().buildIndex == 2)
                 StartCoroutine(RespawnMap());
             else if (SceneManager.GetActiveScene().buildIndex == 3)
-                ReloadLevel();
+                StartCoroutine(DeathReloadLevel());
         }
 
         if (Time.timeScale != 0f)
@@ -324,9 +324,21 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    IEnumerator DeathReloadLevel()
+    {
+        respawning = true;
+
+        glitchEff.enabled = true;
+
+        yield return new WaitForSecondsRealtime(respawnTime);
+
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex));
+    }
+
     public void ReloadLevel()
     {
         Time.timeScale = 0;
+
         StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex));
     }
 
@@ -380,90 +392,17 @@ public class GameManager : MonoBehaviour {
     #region Tutorial Functions
     private void tutorialLoop()
     {
-        if (currentState == TutorialStates.ShootMoveRoomStart && !textActive)
+        if (playerHp.dead() && !respawning)
         {
-            startTutorialDialogue(moveShootTextFiles[0]);
-        }
-        else if (currentState == TutorialStates.ShootMoveRoom)
-        {
-            slowCD.SetActive(false);
-            babyCD.SetActive(false);
-            vortexCD.SetActive(false);
+            Time.timeScale = 0f;
 
-            checkVaseRoomCleared();
-        }
-        else if (currentState == TutorialStates.ShootMoveRoomEnd && !textActive)
-        {
-            startTutorialDialogue(moveShootTextFiles[1]);
-        }
-        else if (currentState == TutorialStates.ShootMoveRoomPost)
-        {
-            // SKIP ACTION
-        }
-        else if (currentState == TutorialStates.SlowRoomStart && !textActive)
-        {
-            startTutorialDialogue(slowTextFiles[0]);
-        }
-        else if (currentState == TutorialStates.SlowRoom)
-        {
-            slowCD.SetActive(true);
-        }
-        else if (currentState == TutorialStates.SlowRoomEnd && !textActive)
-        {
-            startTutorialDialogue(slowTextFiles[1]);
-        }
-        else if (currentState == TutorialStates.SlowRoomPost)
-        {
-            // SKIP ACTION
-        }
-        else if (currentState == TutorialStates.VortexRoomStart && !textActive)
-        {
-            startTutorialDialogue(vortexTextFiles[0]);
-        }
-        else if (currentState == TutorialStates.VortexRoom)
-        {
-            slowCD.SetActive(false);
-            vortexCD.SetActive(true);
+            Cursor.visible = true;
 
-            checkVortexRoomCleared();
-        }
-        else if (currentState == TutorialStates.VortexRoomEnd && !textActive)
-        {
-            startTutorialDialogue(vortexTextFiles[1]);
-        }
-        else if (currentState == TutorialStates.VortexRoomPost)
-        {
-            // SKIP ACTION
-        }
-        else if (currentState == TutorialStates.BabyRoomStart && !textActive)
-        {
-            startTutorialDialogue(babyTextFiles[0]);
-        }
-        else if (currentState == TutorialStates.BabyRoom)
-        {
-            vortexCD.SetActive(false);
-            babyCD.SetActive(true);
+            GetComponent<PauseController>().enabled = false;
 
-            checkBabyRoomCleared();
-        }
-        else if (currentState == TutorialStates.BabyRoomEnd && !textActive)
-        {
-            startTutorialDialogue(babyTextFiles[1]);
-        }
-        else if (currentState == TutorialStates.BabyRoomPost)
-        {
-            // SKIP ACTION
-        }
-        else if (currentState == TutorialStates.PortalRoom && !textActive)
-        {
-            startTutorialDialogue(portalTextFiles[0]);
-        }
-        else if (currentState == TutorialStates.PortalRoomPost)
-        {
-            vortexCD.SetActive(true);
-            babyCD.SetActive(true);
-            slowCD.SetActive(true);
-        }
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+                StartCoroutine(DeathReloadLevel());
+        }        
 
         if (Time.timeScale != 0f)
         {
@@ -478,6 +417,90 @@ public class GameManager : MonoBehaviour {
             else if (Input.GetButtonDown("Back") && map.activeSelf)
                 map.SetActive(false);
 
+            if (currentState == TutorialStates.ShootMoveRoomStart && !textActive)
+            {
+                startTutorialDialogue(moveShootTextFiles[0]);
+            }
+            else if (currentState == TutorialStates.ShootMoveRoom)
+            {
+                slowCD.SetActive(false);
+                babyCD.SetActive(false);
+                vortexCD.SetActive(false);
+
+                checkVaseRoomCleared();
+            }
+            else if (currentState == TutorialStates.ShootMoveRoomEnd && !textActive)
+            {
+                startTutorialDialogue(moveShootTextFiles[1]);
+            }
+            else if (currentState == TutorialStates.ShootMoveRoomPost)
+            {
+                // SKIP ACTION
+            }
+            else if (currentState == TutorialStates.SlowRoomStart && !textActive)
+            {
+                startTutorialDialogue(slowTextFiles[0]);
+            }
+            else if (currentState == TutorialStates.SlowRoom)
+            {
+                slowCD.SetActive(true);
+            }
+            else if (currentState == TutorialStates.SlowRoomEnd && !textActive)
+            {
+                startTutorialDialogue(slowTextFiles[1]);
+            }
+            else if (currentState == TutorialStates.SlowRoomPost)
+            {
+                // SKIP ACTION
+            }
+            else if (currentState == TutorialStates.VortexRoomStart && !textActive)
+            {
+                startTutorialDialogue(vortexTextFiles[0]);
+            }
+            else if (currentState == TutorialStates.VortexRoom)
+            {
+                slowCD.SetActive(false);
+                vortexCD.SetActive(true);
+
+                checkVortexRoomCleared();
+            }
+            else if (currentState == TutorialStates.VortexRoomEnd && !textActive)
+            {
+                startTutorialDialogue(vortexTextFiles[1]);
+            }
+            else if (currentState == TutorialStates.VortexRoomPost)
+            {
+                // SKIP ACTION
+            }
+            else if (currentState == TutorialStates.BabyRoomStart && !textActive)
+            {
+                startTutorialDialogue(babyTextFiles[0]);
+            }
+            else if (currentState == TutorialStates.BabyRoom)
+            {
+                vortexCD.SetActive(false);
+                babyCD.SetActive(true);
+
+                checkBabyRoomCleared();
+            }
+            else if (currentState == TutorialStates.BabyRoomEnd && !textActive)
+            {
+                startTutorialDialogue(babyTextFiles[1]);
+            }
+            else if (currentState == TutorialStates.BabyRoomPost)
+            {
+                // SKIP ACTION
+            }
+            else if (currentState == TutorialStates.PortalRoom && !textActive)
+            {
+                startTutorialDialogue(portalTextFiles[0]);
+            }
+            else if (currentState == TutorialStates.PortalRoomPost)
+            {
+                vortexCD.SetActive(true);
+                babyCD.SetActive(true);
+                slowCD.SetActive(true);
+            }
         }
         else
         {

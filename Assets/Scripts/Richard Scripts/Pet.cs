@@ -14,10 +14,14 @@ public class Pet : MonoBehaviour {
     // Movement speed of pet
     private float movementSpeed;
 
+    // For animations and stuff
+    private Animator anim;
+
 	// Use this for initialization
 	void Start () {
         // Finds player to follow
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -27,7 +31,14 @@ public class Pet : MonoBehaviour {
 
         // Move towards the player if distance is not close enough
         if (Vector3.Distance(transform.position, player.transform.position) > minDist)
+        {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+            anim.SetBool("walking", true);
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+        }
 
         // Teleports to the player if past the max distance from player
         if (Vector3.Distance(transform.position, player.transform.position) > maxDist)

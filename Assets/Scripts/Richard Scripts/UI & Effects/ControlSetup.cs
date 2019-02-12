@@ -8,7 +8,7 @@ public class ControlSetup : MonoBehaviour {
     public Toggle controls;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (!PlayerPrefs.HasKey("Mouse"))
         {
             PlayerPrefs.SetInt("Mouse", 1);

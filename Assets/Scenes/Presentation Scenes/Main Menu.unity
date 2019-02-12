@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: 217499357}
   - component: {fileID: 217499359}
   - component: {fileID: 217499360}
+  - component: {fileID: 217499361}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -802,6 +803,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: 1009209661}
+--- !u!114 &217499361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217499356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5203dce84938c409b26468a73b678e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continueButton: {fileID: 712827482}
 --- !u!1 &221532958
 GameObject:
   m_ObjectHideFlags: 0
@@ -8273,6 +8287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObject: {fileID: 712827479}
+  isTitleScreen: 1
+  alternateSelect: {fileID: 1857264279}
+  continueButton: {fileID: 712827482}
 --- !u!114 &1904973082
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -129,6 +129,7 @@ public class ChargeMovement : EnemyMovement {
             else
                 newZrotation += 1;
             transform.Rotate(new Vector3(startRotation.x, startRotation.y, newZrotation));
+            GetComponent<HorseWheels>().Charge(chargeTime);
         }
         if (anim)
         {

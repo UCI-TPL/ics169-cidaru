@@ -186,4 +186,13 @@ public class ChargeMovement : EnemyMovement {
         Debug.DrawLine(transform.position, aquiredTarget, Color.red);
         return aquiredTarget;
     }
+
+    public void cancelCharge()
+    {
+        /// Resets variables so that when called it sets the enemy
+        /// to its original, uncharged state
+        charged = false;
+        canMove = true;
+        movableTarget.transform.position = player.transform.position;
+    }
 }

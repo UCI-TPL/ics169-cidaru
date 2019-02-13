@@ -145,6 +145,11 @@ public class Enemy : MonoBehaviour {
     {
         currentState = EnemyState.Normal;
 
+        if (typeof(ChargeMovement) == movement.GetType())
+        {
+            ChargeMovement move = (ChargeMovement)movement;
+            move.cancelCharge();
+        }
         movement.enabled = true;
 
         gameObject.layer = 12;

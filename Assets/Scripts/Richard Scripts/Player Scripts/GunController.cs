@@ -274,15 +274,15 @@ public class GunController : MonoBehaviour {
                 gunSprite.flipY = true;
                 gunPoint.localPosition = new Vector3(intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = false;
-                Cursor.SetCursor(mouseCursor, new Vector2(0.25f, 0.25f), CursorMode.Auto);
             }
             else if (gun.rotation.eulerAngles.z < 180)
             {
                 gunSprite.flipY = false;
                 gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = true;
-                Cursor.SetCursor(mouseCursor, new Vector2(-0.25f, -0.25f), CursorMode.Auto);
             }
+            Cursor.SetCursor(mouseCursor, new Vector2(mouseCursor.width / 2, mouseCursor.height / 2), CursorMode.Auto);
+            
         }
     }
 

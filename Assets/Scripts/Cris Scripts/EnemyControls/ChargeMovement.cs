@@ -129,6 +129,7 @@ public class ChargeMovement : EnemyMovement {
             else
                 newZrotation += 1;
             transform.Rotate(new Vector3(startRotation.x, startRotation.y, newZrotation));
+            GetComponent<HorseWheels>().Charge(chargeTime);
         }
         if (anim)
         {
@@ -184,5 +185,14 @@ public class ChargeMovement : EnemyMovement {
         Vector3 aquiredTarget = player.transform.position + dir * (-chargePower); //targeting a distance beyond the player
         Debug.DrawLine(transform.position, aquiredTarget, Color.red);
         return aquiredTarget;
+    }
+
+    public void cancelCharge()
+    {
+        /// Resets variables so that when called it sets the enemy
+        /// to its original, uncharged state
+        charged = false;
+        canMove = true;
+        movableTarget.transform.position = player.transform.position;
     }
 }

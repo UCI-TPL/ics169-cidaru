@@ -71,6 +71,7 @@ public class Enemy : MonoBehaviour {
     private void handleNormal()
     {
         /// Normal enemy behavior
+
         rb2d.velocity = new Vector2(0, 0); //bc movement isn't based on velocity... yet.
 
         if (!aggressing)
@@ -85,10 +86,12 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
-            attackStyle.Attack();
+            if (attackStyle)
+                attackStyle.Attack();
         }
 
-        movement.Move(aggressing);
+        if (movement)
+            movement.Move(aggressing);
     }
 
     private void handleSucc()
@@ -129,7 +132,8 @@ public class Enemy : MonoBehaviour {
         currentState = EnemyState.Succing;
         transform.rotation = Quaternion.identity;
 
-        movement.enabled = false;
+        if (movement)
+            movement.enabled = false;
 
         if (typeof(MeleeEnemy) == attackStyle.GetType())
         {
@@ -145,6 +149,11 @@ public class Enemy : MonoBehaviour {
     {
         currentState = EnemyState.Normal;
 
+        if (typeof(ChargeMovement) == movement.GetType())
+        {
+            ChargeMovement move = (ChargeMovement)movement;
+            move.cancelCharge();
+        }
         movement.enabled = true;
 
         gameObject.layer = 12;

@@ -12,11 +12,8 @@ GameObject:
   - component: {fileID: 212960945339742138}
   - component: {fileID: 50428161074493396}
   - component: {fileID: 61779659788379880}
-  - component: {fileID: 114473433071247642}
+  - component: {fileID: 317958694465833634}
   - component: {fileID: 114749011592658674}
-  - component: {fileID: 114223833199384134}
-  - component: {fileID: 114634519379323382}
-  - component: {fileID: 114324485094669838}
   - component: {fileID: 95185790251459284}
   - component: {fileID: 4773437552438711100}
   - component: {fileID: 6934740164231113643}
@@ -136,7 +133,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.8}
   m_EdgeRadius: 0
---- !u!114 &114473433071247642
+--- !u!114 &317958694465833634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,11 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6609b624b8e1c448a00bcf0cff368bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackStyle: {fileID: 114223833199384134}
-  movement: {fileID: 114634519379323382}
+  attackStyle: {fileID: 0}
+  movement: {fileID: 0}
   aggressing: 0
-  babyBomb: 1
-  speedBubbles: 1
+  babyBomb: 0
+  speedBubbles: 0
   vortex: 1
   rotationSpeed: 200
   radius: 0
@@ -171,59 +168,6 @@ MonoBehaviour:
   startingHealth: 1
   audioClips: {fileID: 11400000, guid: 8c2505ddd89e2874f9c314425ba69ce3, type: 2}
   currentHealth: 0
---- !u!114 &114223833199384134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576994936458772}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bafc18275b3c8439f2aee96a455e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setFireTimer: 2
-  bullet: {fileID: 1696281229995658, guid: d4bddd46493fa0e43b0d0d10c5281cb0, type: 3}
-  weapon: {fileID: 0}
---- !u!114 &114634519379323382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576994936458772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4755f49893832c644824d14a8143ae27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  repathRate: 0.5
-  target: {fileID: 0}
-  canSearch: 1
-  canMove: 1
-  speed: 3
-  enableRotation: 1
-  rotationIn2D: 0
-  rotationSpeed: 10
-  interpolatePathSwitches: 1
-  switchPathInterpolationSpeed: 5
-  originalSpeed: 0
-  patrolPoints: []
---- !u!114 &114324485094669838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576994936458772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 759660f46d9c80f41af69630682a3d0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drop: {fileID: 1347093599493600, guid: 9052feb30ca8bf34f8462d1d1919df30, type: 3}
-  probability: 100
 --- !u!95 &95185790251459284
 Animator:
   serializedVersion: 3

@@ -122,7 +122,7 @@ public class GunController : MonoBehaviour {
         if (PlayerPrefs.GetInt("Mouse") != 0)
         {
             gunPoint.GetChild(0).gameObject.SetActive(false);
-            Cursor.SetCursor(mouseCursor, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(mouseCursor, new Vector2(mouseCursor.width / 2, mouseCursor.height / 2), CursorMode.Auto);
         }
         else
         {
@@ -281,7 +281,6 @@ public class GunController : MonoBehaviour {
                 gunPoint.localPosition = new Vector3(-intialGunPointX, gunPoint.localPosition.y);
                 playerSprite.flipX = true;
             }
-            Cursor.SetCursor(mouseCursor, new Vector2(mouseCursor.width / 2, mouseCursor.height / 2), CursorMode.Auto);
             
         }
     }

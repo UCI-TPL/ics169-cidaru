@@ -17,11 +17,14 @@ public class Pet : MonoBehaviour {
     // For animations and stuff
     private Animator anim;
 
+    private SpriteRenderer sr;
+
 	// Use this for initialization
 	void Start () {
         // Finds player to follow
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -33,6 +36,12 @@ public class Pet : MonoBehaviour {
         if (Vector3.Distance(transform.position, player.transform.position) > minDist)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+
+            if (transform.position.x < player.transform.position.x)
+                sr.flipX = false;
+            else
+                sr.flipX = true;
+
             anim.SetBool("walking", true);
         }
         else

@@ -20,7 +20,7 @@ public class BombController : MonoBehaviour {
         {
             if (GameManager.gm.isTutorial)
             {
-                if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Y Button")) && babyBomb.isAbilityReady() && CheckBabysTutorialCondition())
+                if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("X Button")) && babyBomb.isAbilityReady() && CheckBabysTutorialCondition())
                 {
                     // Creates baby bomb if avaliable and button is pressed
                     babyBomb.PutOnCooldown();
@@ -37,7 +37,7 @@ public class BombController : MonoBehaviour {
             }
             else
             {
-                if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("Y Button")) && babyBomb.isAbilityReady())
+                if ((Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Left Bumper") || Input.GetButtonDown("X Button")) && babyBomb.isAbilityReady())
                 {
                     // Creates baby bomb if avaliable and button is pressed
                     babyBomb.PutOnCooldown();

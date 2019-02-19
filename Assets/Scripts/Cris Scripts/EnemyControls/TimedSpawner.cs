@@ -1,22 +1,23 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TimedSpawner : Spawner {
 
     public int spawnNum; //Number of thing to spawn in one go
+    public float prebirthWaitTime = 1f;
+    public float postbirthWaitTime = 0f;
 
-    protected override void SpawnThing()
+    protected override IEnumerator SpawnThing()
     {
         spawning = true;
-        for (int i=0; i<spawnNum; i++)
+        yield return new WaitForSeconds(prebirthWaitTime);
+        for (int i = 0; i < spawnNum; i++)
         {
-            //Eventually make it so that it just calls SpawnThing from spawner...
-            if (this.spawnCount >= spawnLimit)
-                return;
             spawnCount++;
             Instantiate(thingToSpawn, transform.position, Quaternion.identity);
         }
+        yield return new WaitForSeconds(postbirthWaitTime);
         spawning = false;
     }
 }

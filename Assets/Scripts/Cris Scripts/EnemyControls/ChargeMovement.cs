@@ -48,14 +48,19 @@ public class ChargeMovement : EnemyMovement {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag.Contains("Enemy")){
-            base.MoveAwayFrom(collision.transform.position);
-        }
+        base.OnCollisionEnter2D(collision);
         if (collision.transform.tag.Contains("Player"))
         {
             StartCoroutine(Wait(.3f));
+            speed = originalSpeed;
+            charged = false;
+        }
+        if (collision.transform.tag.Contains("Obstacle"))
+        {
+            Debug.Log("hellooo");
+            MoveAwayFrom(target.position);
             speed = originalSpeed;
             charged = false;
         }

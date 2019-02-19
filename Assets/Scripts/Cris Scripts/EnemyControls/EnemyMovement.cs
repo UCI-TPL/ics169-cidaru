@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -33,6 +33,43 @@ public class EnemyMovement : AILerp
     {
         base.Start();
         setStartVars();
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag.Contains("Enemy"))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position,
+                    player.transform.position - transform.position,
+                    Vector3.Distance(player.transform.position, transform.position));
+            //Debug.DrawLine(transform.position, hit.point);
+            //Debug.Log(hit.transform.tag);
+            canMove = !hit.transform.tag.Contains("Enemy");
+            MoveAwayFrom(collision.transform.position);
+        }
+    }
+
+    //private void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    Debug.Log("Hello?");
+    //    if (collision.transform.tag.Contains("Enemy"))
+    //    {
+    //        RaycastHit2D hit = Physics2D.Raycast(transform.position,
+    //                player.transform.position - transform.position,
+    //                Vector3.Distance(player.transform.position, transform.position));
+    //        //Debug.DrawLine(transform.position, hit.point);
+    //        //Debug.Log(hit.transform.tag);
+    //        //canMove = !hit.transform.tag.Contains("Enemy");
+    //        //MoveAwayFrom(collision.transform.position);
+    //        if (hit.transform.tag.Contains("Enemy"))
+    //            MoveAwayFrom(collision.GetContact(0).point);
+    //    }
+    //}
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag.Contains("Enemy"))
+            canMove = true;
     }
 
     protected virtual void setStartVars()

@@ -38,20 +38,20 @@ public class Spawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= timeInterval)
         {
-            SpawnThing();
+            if (spawnCount < spawnLimit)
+                StartCoroutine(SpawnThing());
             timer = 0;
         }
 
         checkLimit(); //Destroys gameObject if at or over limit
     }
 
-    protected virtual void SpawnThing()
+    protected virtual IEnumerator SpawnThing()
     {
         spawning = true;
-        if (spawnCount >= spawnLimit)
-            return;
         spawnCount++;
         Instantiate(thingToSpawn, transform.position, Quaternion.identity);
+        yield return new WaitForSecondsRealtime(0);
         spawning = false;
     }
 
@@ -66,5 +66,10 @@ public class Spawner : MonoBehaviour
         totalTimer = 0;
         timer = timeInterval;
         spawnCount = 0;
+    }
+
+    public float getTimer()
+    {
+        return timer;
     }
 }

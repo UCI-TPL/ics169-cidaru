@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +18,14 @@ public class BossAttack : EnemyAttack {
     private int phase1Health;
     private int phase2Health;
 
+    private float originalChargeDist;
+
     private void Start()
     {
         hp = GetComponent<Health>();
         phase1Health = (int) (phase1Percent * hp.startingHealth);
         phase2Health = (int) (phase2Percent * hp.startingHealth);
+        originalChargeDist = GetComponent<ChargeMovement>().chargeDistance;
     }
 
     public override void Attack()
@@ -42,10 +45,6 @@ public class BossAttack : EnemyAttack {
         {
             collision.collider.GetComponent<Health>().TakeDamage(dmg);
         }
-        //if (collision.collider.tag == "Vortex" && isCharging()) //Eats vortex while charging
-        //{
-        //    Destroy(collision.gameObject);
-        //}
     }
 
     private bool isCharging()
@@ -55,12 +54,23 @@ public class BossAttack : EnemyAttack {
 
     private void Phase1()
     {
-        spawner.SetActive(true);
-        //GetComponent<Enemy>().movement.move = !spawner.GetComponent<Spawner>().spawning;
+        GetComponent<ChargeMovement>().chargeDistance = originalChargeDist * 0.75f;
+        Debug.Log(isCharging());
+        if (!isCharging())
+        {
+            spawner.SetActive(true);
+            GetComponent<Enemy>().movement.enabled = !spawner.GetComponent<Spawner>().spawning;
+        }
+        else
+        {
+            spawner.SetActive(false);
+            GetComponent<Enemy>().movement.enabled = true;
+        }
     }
 
     private void Phase2()
     {
         ///TODO: implement lol
+        Phase1();
     }
 }

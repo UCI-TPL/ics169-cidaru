@@ -13,19 +13,27 @@ public class BossAttack : EnemyAttack {
     public float phase2Percent = (float) 0.25; //the percent of health before the boss enters phase2
 
     public GameObject spawner;
+    public int numChargesBeforeBirth;
 
     private Health hp;
     private int phase1Health;
     private int phase2Health;
 
     private float originalChargeDist;
+    private ChargeMovement chargeMove;
 
     private void Start()
     {
         hp = GetComponent<Health>();
         phase1Health = (int) (phase1Percent * hp.startingHealth);
         phase2Health = (int) (phase2Percent * hp.startingHealth);
+    }
+
+    private void Awake()
+    {
         originalChargeDist = GetComponent<ChargeMovement>().chargeDistance;
+        chargeMove = (ChargeMovement)GetComponent<Enemy>().movement;
+        spawner.GetComponent<Spawner>().setContinuousSpawn(false);
     }
 
     public override void Attack()
@@ -54,16 +62,18 @@ public class BossAttack : EnemyAttack {
 
     private void Phase1()
     {
-        GetComponent<ChargeMovement>().chargeDistance = originalChargeDist * 0.75f;
-        Debug.Log(isCharging());
-        if (!isCharging())
+        //GetComponent<ChargeMovement>().chargeDistance = originalChargeDist * 0.75f;
+        spawner.GetComponent<Spawner>().setContinuousSpawn(false);
+
+        if (chargeMove.getNumTimesCharged() >= numChargesBeforeBirth+1)
         {
+            GetComponent<Enemy>().movement.enabled = false;
             spawner.SetActive(true);
-            GetComponent<Enemy>().movement.enabled = !spawner.GetComponent<Spawner>().spawning;
+            spawner.GetComponent<Spawner>().Spawn();
+            chargeMove.resetNumTimesCharged();
         }
-        else
+        else if (chargeMove.getNumTimesCharged() == 0 && !spawner.GetComponent<Spawner>().spawning)
         {
-            spawner.SetActive(false);
             GetComponent<Enemy>().movement.enabled = true;
         }
     }

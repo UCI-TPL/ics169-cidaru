@@ -13,6 +13,7 @@ public class ChargeMovement : EnemyMovement {
     public bool weaponFollowsPlayer;
 
     private bool charged; //Whether or not the enemy has just charged
+    private int numTimesCharged;
     private Vector3 chargedTarget;
     #endregion
 
@@ -20,6 +21,7 @@ public class ChargeMovement : EnemyMovement {
     {
         base.setStartVars();
         charged = false;
+        numTimesCharged = 0;
         movableTarget.transform.position = player.transform.position;
         if (target == player.transform)
         {
@@ -59,7 +61,6 @@ public class ChargeMovement : EnemyMovement {
         }
         if (collision.transform.tag.Contains("Obstacle"))
         {
-            Debug.Log("hellooo");
             MoveAwayFrom(target.position);
             speed = originalSpeed;
             charged = false;
@@ -113,6 +114,7 @@ public class ChargeMovement : EnemyMovement {
         speed += (speed * chargePower);
         MoveTo(target.position);
         charged = true;
+        numTimesCharged++;
     }
     #endregion
 
@@ -199,5 +201,15 @@ public class ChargeMovement : EnemyMovement {
         charged = false;
         canMove = true;
         movableTarget.transform.position = player.transform.position;
+    }
+
+    public int getNumTimesCharged()
+    {
+        return numTimesCharged;
+    }
+
+    public void resetNumTimesCharged()
+    {
+        numTimesCharged = 0;
     }
 }

@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     protected float totalTimer;
     protected float timer;
     protected float spawnCount;
+    protected bool continuousSpawn;
 
     private void Start()
     {
@@ -23,27 +24,39 @@ public class Spawner : MonoBehaviour
         timer = timeInterval;
         spawnCount = 0;
         spawning = false;
+        continuousSpawn = true;
     }
 
 
     private void FixedUpdate()
     {
-        if (totalTimer <= spawnDelay)
+        if (continuousSpawn)
         {
-            totalTimer += Time.deltaTime;
+            if (totalTimer <= spawnDelay)
+            {
+                totalTimer += Time.deltaTime;
+                timer = timeInterval;
+                return;
+            }
+
+            timer += Time.deltaTime;
+            if (timer >= timeInterval)
+            {
+                if (spawnCount < spawnLimit)
+                    StartCoroutine(SpawnThing());
+                timer = 0;
+            }
+
+            checkLimit(); //Destroys gameObject if at or over limit
+        }
+    }
+
+    public void Spawn()
+    {
+        if (continuousSpawn)
             timer = timeInterval;
-            return;
-        }
-
-        timer += Time.deltaTime;
-        if (timer >= timeInterval)
-        {
-            if (spawnCount < spawnLimit)
+        else if (spawnCount < spawnLimit)
                 StartCoroutine(SpawnThing());
-            timer = 0;
-        }
-
-        checkLimit(); //Destroys gameObject if at or over limit
     }
 
     protected virtual IEnumerator SpawnThing()
@@ -63,9 +76,19 @@ public class Spawner : MonoBehaviour
 
     public void reset()
     {
+        resetTimer();
+        spawnCount = 0;
+    }
+
+    public void resetTimer()
+    {
         totalTimer = 0;
         timer = timeInterval;
-        spawnCount = 0;
+    }
+
+    public void setContinuousSpawn(bool b)
+    {
+        continuousSpawn = b;
     }
 
     public float getTimer()

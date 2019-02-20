@@ -13,6 +13,8 @@ public class Door : MonoBehaviour {
     // List of door colliders blocking the room
     public List<GameObject> doorColliders;
 
+    public HighlightRoom roomSprite;
+
     [Header("Portal Room Properties")]
     public bool portalRoom = false;
     public NextLevel portal;
@@ -37,7 +39,7 @@ public class Door : MonoBehaviour {
     private bool triggered;
 
     // Room sprite to be represented in the map
-    private SpriteRenderer roomSprite;
+    private SpriteRenderer sr;
 
     public void Awake()
     {
@@ -57,10 +59,10 @@ public class Door : MonoBehaviour {
             dc.SetActive(false);
 
         // Initialize the sprite render of the minimap sprite
-        roomSprite = transform.parent.Find("Minimap Sprite").GetComponent<SpriteRenderer>();
+        sr = transform.parent.Find("Minimap Sprite").GetComponent<SpriteRenderer>();
 
         // Disable the minimap sprite
-        roomSprite.enabled = false;
+        sr.enabled = false;
 
         // Set room cleared and trigger to false
         cleared = false;
@@ -99,8 +101,15 @@ public class Door : MonoBehaviour {
         if (collision.tag == "Player")
         {
             // If the room sprite has not been revealed yet, then reveal it on minimap
-            if (roomSprite.enabled == false)
-                roomSprite.enabled = true;
+            if (sr.enabled == false)
+                sr.enabled = true;
+
+            HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
+
+            foreach (HighlightRoom roomSpriteController in roomSpriteControllers)
+                roomSpriteController.resetRoom();
+
+            roomSprite.highlightRoomSprite();
 
             // Disables all turrets on the map
             disableTurrets();

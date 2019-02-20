@@ -6,6 +6,8 @@ public class TutorialTrigger : MonoBehaviour
 {
     public GameObject[] doors;
 
+    public HighlightRoom roomSprite;
+
     public bool portalTrigger = false;
 
     void Awake()
@@ -21,6 +23,13 @@ public class TutorialTrigger : MonoBehaviour
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
             gameObject.SetActive(false);
+
+            HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
+
+            foreach (HighlightRoom roomSpriteController in roomSpriteControllers)
+                roomSpriteController.resetRoom();
+
+            roomSprite.highlightRoomSprite();
 
             if (portalTrigger)
                 GameObject.Find("Portal").GetComponent<NextLevel>().Activate();

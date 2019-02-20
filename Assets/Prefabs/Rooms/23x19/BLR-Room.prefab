@@ -2693,8 +2693,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874530859709094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1.15, y: 1.27, z: 1}
   m_Children: []
   m_Father: {fileID: 4212134521165624}
   m_RootOrder: 1
@@ -2736,7 +2736,7 @@ SpriteRenderer:
   m_SortingLayerID: 636443757
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c784d66ccaf903e4081a7f6cdf2c553f, type: 3}
+  m_Sprite: {fileID: 21300020, guid: 56563c9163b20854b89df175f9314c12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7306,11 +7306,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4148421953301150}
     m_Modifications:
-    - target: {fileID: 84847744787405011, guid: 70fd4a6235e9ab944a69ad6bd2994453,
-        type: 3}
-      propertyPath: m_Name
-      value: Treefab
-      objectReference: {fileID: 0}
     - target: {fileID: 6298508932883721582, guid: 70fd4a6235e9ab944a69ad6bd2994453,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7365,6 +7360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 84847744787405011, guid: 70fd4a6235e9ab944a69ad6bd2994453,
+        type: 3}
+      propertyPath: m_Name
+      value: Treefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70fd4a6235e9ab944a69ad6bd2994453, type: 3}
@@ -7651,10 +7651,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4148421953301150}
     m_Modifications:
-    - target: {fileID: 1313794117771326, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
-      propertyPath: m_Name
-      value: platform 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4624306063563560, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.5
@@ -7699,6 +7695,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1313794117771326, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
+      propertyPath: m_Name
+      value: platform 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
 --- !u!4 &7810340418314311049 stripped
@@ -7714,11 +7714,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4212134521165624}
     m_Modifications:
-    - target: {fileID: 4289429034756732737, guid: 9eccf8478c951bc45a71083e7784ae77,
-        type: 3}
-      propertyPath: m_Name
-      value: BLR_Walls
-      objectReference: {fileID: 0}
     - target: {fileID: 4289429034756732734, guid: 9eccf8478c951bc45a71083e7784ae77,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7773,6 +7768,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289429034756732737, guid: 9eccf8478c951bc45a71083e7784ae77,
+        type: 3}
+      propertyPath: m_Name
+      value: BLR_Walls
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eccf8478c951bc45a71083e7784ae77, type: 3}

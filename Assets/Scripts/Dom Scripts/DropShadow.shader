@@ -97,7 +97,7 @@
 		ENDCG
 	}
 
-		// draw real sprite
+		/* draw real sprite
 		Pass
 		{
 			CGPROGRAM
@@ -159,5 +159,6 @@
 			}
 			ENDCG
 		}
+		*/
 	}
 }

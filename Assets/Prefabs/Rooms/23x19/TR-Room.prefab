@@ -4253,6 +4253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4531134933880682}
   - component: {fileID: 212403564143196866}
+  - component: {fileID: 3749467673952187253}
   m_Layer: 15
   m_Name: Minimap Sprite
   m_TagString: Untagged
@@ -4322,6 +4323,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3749467673952187253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061675838108556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f0af1ca842f684a8beaa472f07dd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightSprite: {fileID: 21300016, guid: eefdea2616e378e43afc89eb792393cd, type: 3}
 --- !u!1 &1086617773812358
 GameObject:
   m_ObjectHideFlags: 0
@@ -6567,6 +6581,7 @@ MonoBehaviour:
   doorColliders:
   - {fileID: 2102627046246164031}
   - {fileID: 9002533451207625298}
+  roomSprite: {fileID: 3749467673952187253}
   portalRoom: 0
   portal: {fileID: 0}
   singleRoomTrigger: 1
@@ -7752,15 +7767,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
---- !u!4 &9005953865684723928 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4918098998693684, guid: 89b89322c2df07b438d1e8e1d5b737c3,
-    type: 3}
-  m_PrefabInstance: {fileID: 9001265943790757868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9002533451207625298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 9001265943790757868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9005953865684723928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4918098998693684, guid: 89b89322c2df07b438d1e8e1d5b737c3,
     type: 3}
   m_PrefabInstance: {fileID: 9001265943790757868}
   m_PrefabAsset: {fileID: 0}

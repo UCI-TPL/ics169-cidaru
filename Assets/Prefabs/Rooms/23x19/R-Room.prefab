@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4510503445118412}
   - component: {fileID: 212095912772402660}
+  - component: {fileID: 6563657568371647327}
   m_Layer: 15
   m_Name: Minimap Sprite
   m_TagString: Untagged
@@ -79,6 +80,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6563657568371647327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024795882705538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f0af1ca842f684a8beaa472f07dd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightSprite: {fileID: 21300002, guid: eefdea2616e378e43afc89eb792393cd, type: 3}
 --- !u!1 &1216066297297238
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +777,7 @@ MonoBehaviour:
   turrets: []
   doorColliders:
   - {fileID: 4262637799088432555}
+  roomSprite: {fileID: 6563657568371647327}
   portalRoom: 0
   portal: {fileID: 0}
   singleRoomTrigger: 1
@@ -6745,15 +6760,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d48bcc27ca88f04e9eab3ab542a5d95, type: 3}
---- !u!1 &4262637799088432555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1899664499326212, guid: 4d48bcc27ca88f04e9eab3ab542a5d95,
-    type: 3}
-  m_PrefabInstance: {fileID: 4260776618139392175}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4264411276344884693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4339446812632442, guid: 4d48bcc27ca88f04e9eab3ab542a5d95,
+    type: 3}
+  m_PrefabInstance: {fileID: 4260776618139392175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4262637799088432555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1899664499326212, guid: 4d48bcc27ca88f04e9eab3ab542a5d95,
     type: 3}
   m_PrefabInstance: {fileID: 4260776618139392175}
   m_PrefabAsset: {fileID: 0}

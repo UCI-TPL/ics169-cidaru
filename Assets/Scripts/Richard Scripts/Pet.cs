@@ -52,5 +52,14 @@ public class Pet : MonoBehaviour {
         // Teleports to the player if past the max distance from player
         if (Vector3.Distance(transform.position, player.transform.position) > maxDist)
             transform.position = player.transform.position;
+
+        if (!anim.GetBool("walking"))
+        {
+            anim.SetFloat("timeIdle", Time.deltaTime + anim.GetFloat("timeIdle"));
+        }
+        else
+        {
+            anim.SetFloat("timeIdle", 0f);
+        }
     }
 }

@@ -31,7 +31,7 @@ SubShader {
 		#include "UnityCG.cginc"
 		
 		uniform sampler2D _MainTex;
-		uniform sampler2D _DispTex;
+		sampler2D _DispTex;
 		float _Intensity;
 		float _ColorIntensity;
 
@@ -56,12 +56,13 @@ SubShader {
 			return o;
 		}
 		
-		half4 frag (v2f i) : COLOR
+		half4 frag (v2f i) : SV_Target
 		{
-			half4 normal = tex2D (_DispTex, i.uv.xy * scale);
+			float2 distuv = float2(i.uv.x + _Time.x * 2, i.uv.y + _Time.x * 2);
+			float2 normal = tex2D (_DispTex, distuv).xy;
 			
-			i.uv.y -= (1 - (i.uv.y + flip_up)) * step(i.uv.y, flip_up) + (1 - (i.uv.y - flip_down)) * step(flip_down, i.uv.y);
-
+			//i.uv.x -= (1 - (i.uv.y + flip_up)) * step(i.uv.y, flip_up) + (1 - (i.uv.y - flip_down)) * step(flip_down, i.uv.y);
+			normal = ((normal * 2) - 1) * _Intensity;
 			i.uv.xy += (normal.xy - 0.5) * displace * _Intensity;
 			
 			half4 color = tex2D(_MainTex,  i.uv.xy);

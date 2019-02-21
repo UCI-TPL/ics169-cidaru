@@ -12,7 +12,8 @@ TextureImporter:
     21300014: Trojan Tilemap Doors_7
     21300016: Trojan Tilemap Doors_8
     21300018: Trojan Tilemap Doors_9
-    21300020: Trojan Tilemap Doors_10
+    21300020: Column_Top
+    21300022: Column_Bot
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -42,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -103,7 +104,7 @@ TextureImporter:
         width: 41
         height: 170
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -123,7 +124,7 @@ TextureImporter:
         width: 41
         height: 170
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,7 +144,7 @@ TextureImporter:
         width: 170
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,7 +164,7 @@ TextureImporter:
         width: 170
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,7 +184,7 @@ TextureImporter:
         width: 41
         height: 138
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,7 +204,7 @@ TextureImporter:
         width: 41
         height: 138
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,7 +224,7 @@ TextureImporter:
         width: 138
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +244,7 @@ TextureImporter:
         width: 22
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -263,7 +264,7 @@ TextureImporter:
         width: 138
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,7 +284,7 @@ TextureImporter:
         width: 80
         height: 79
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -295,21 +296,41 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trojan Tilemap Doors_10
+      name: Column_Top
       rect:
         serializedVersion: 2
         x: 547
-        y: 12
+        y: 28
         width: 26
-        height: 77
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 61
+      alignment: 9
+      pivot: {x: 0.51083845, y: 0.512063}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: a65baa4a6ac6d5745a72f0991dec72ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Column_Bot
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 12
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.51083845, y: 0.512063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5991cd78e4a76448b5812c29c013f9b
       vertices: []
       indices: 
       edges: []

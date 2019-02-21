@@ -37,7 +37,7 @@ public class Bullet : Projectile {
                 Instantiate(bulletCharacterEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-        } else if ((col.tag == "Player" || col.tag == "Enemy") && tag == "Vortex Projectile") // Vortex bullet hits player or enemy
+        } else if (col.tag == "Enemy" && tag == "Vortex Projectile") // Vortex bullet hits player or enemy
         {
             // Deals damage to player/enemy/boss
             col.GetComponent<Health>().TakeDamage(dmg);

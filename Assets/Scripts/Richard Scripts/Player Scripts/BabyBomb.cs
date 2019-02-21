@@ -7,6 +7,8 @@ public class BabyBomb : Bomb {
     // Object to change objects into
     public GameObject baby;
 
+    public GameObject miniTrojanShooter;
+
     // Object layers in which the baby bomb will interact with
     public LayerMask enemyLayers;
 
@@ -46,7 +48,8 @@ public class BabyBomb : Bomb {
             // Loops through all the objects found and change all the desired ones into babies
             foreach (Collider2D hitCollider in hitColliders)
             {
-                if (hitCollider.gameObject.tag.Contains("Enemy") && hitCollider.gameObject.GetComponent<Enemy>() && !hitCollider.gameObject.GetComponent<Enemy>().babyBomb)
+                if (hitCollider.gameObject.tag.Contains("Enemy") && hitCollider.gameObject.GetComponent<Enemy>() &&
+                    !hitCollider.gameObject.GetComponent<Enemy>().babyBomb && !hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
                     continue;
                 if (hitCollider.gameObject.tag.Contains("Weapon"))
                     continue;
@@ -56,7 +59,10 @@ public class BabyBomb : Bomb {
                 if (hitCollider.gameObject.tag == "Tutorial")
                     hitCollider.GetComponent<TutorialTrojan>().babyTutorialTree();
 
-                Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                if (hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
+                    Instantiate(miniTrojanShooter, hitCollider.transform.position, Quaternion.identity);
+                else
+                    Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
 
                 Destroy(hitCollider.gameObject);
             }

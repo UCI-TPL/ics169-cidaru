@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
 
     [Header("Affected By")] // All powers this enemy can be affected by
     public bool babyBomb;
+    public bool bigBabyBomb = false;
     public bool speedBubbles;
     public bool vortex;
 

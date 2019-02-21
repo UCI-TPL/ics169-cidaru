@@ -201,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4201235660254703379}
   - component: {fileID: 718163426563456672}
+  - component: {fileID: 902158119496189163}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -270,3 +271,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &902158119496189163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526049699999077265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c26ff6af8505e4e83ebbb2558df949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentRend: {fileID: 212968863260152898}
+  thisRend: {fileID: 718163426563456672}

@@ -13,11 +13,17 @@ public class ButtonStateController : MonoBehaviour {
     {
         foreach (Button button in buttons)
         {
+            if (button.gameObject.name == "Continue" && CheckLevel())
+                continue;
+
             button.interactable = true;
         }
 
         foreach (EventTrigger eventTrigger in eventTriggers)
         {
+            if (eventTrigger.gameObject.name == "Continue" && CheckLevel())
+                continue;
+
             eventTrigger.enabled = true;
         }
     }
@@ -33,5 +39,15 @@ public class ButtonStateController : MonoBehaviour {
         {
             eventTrigger.enabled = false;
         }
+    }
+
+    private bool CheckLevel()
+    {
+        int currentLevel = PlayerPrefs.GetInt("Level");
+
+        if (currentLevel == 1)
+            return true;
+        else
+            return false;
     }
 }

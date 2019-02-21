@@ -219,10 +219,9 @@ public class GameManager : MonoBehaviour {
 
         if (Time.timeScale != 0f)
         {
-            if (Input.GetKey(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Tab) && !map.activeSelf)
                 map.SetActive(true);
-
-            if (Input.GetKeyUp(KeyCode.Tab))
+            else if (Input.GetKeyDown(KeyCode.Tab) && map.activeSelf)
                 map.SetActive(false);
 
             if (Input.GetButtonDown("Back") && !map.activeSelf)
@@ -230,9 +229,6 @@ public class GameManager : MonoBehaviour {
             else if (Input.GetButtonDown("Back") && map.activeSelf)
                 map.SetActive(false);
 
-        } else
-        {
-            map.SetActive(false);
         }
     }
 
@@ -406,10 +402,9 @@ public class GameManager : MonoBehaviour {
 
         if (Time.timeScale != 0f)
         {
-            if (Input.GetKey(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Tab) && !map.activeSelf)
                 map.SetActive(true);
-
-            if (Input.GetKeyUp(KeyCode.Tab))
+            else if (Input.GetKeyDown(KeyCode.Tab) && map.activeSelf)
                 map.SetActive(false);
 
             if (Input.GetButtonDown("Back") && !map.activeSelf)
@@ -502,10 +497,6 @@ public class GameManager : MonoBehaviour {
                 slowCD.SetActive(true);
             }
         }
-        else
-        {
-            map.SetActive(false);
-        }
     }
     
     // Check if the vases have been cleared
@@ -550,6 +541,8 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 0;
 
+        map.SetActive(false);
+
         dialogBox.SetActive(true);
         avatarImage.SetActive(true);
 
@@ -573,6 +566,8 @@ public class GameManager : MonoBehaviour {
     public void startTutorialDialogue(TextAsset text)
     {
         Time.timeScale = 0;
+
+        map.SetActive(false);
 
         dialogBox.SetActive(true);
         avatarImage.SetActive(true);

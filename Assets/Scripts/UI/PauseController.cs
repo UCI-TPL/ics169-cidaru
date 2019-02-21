@@ -6,6 +6,8 @@ public class PauseController : MonoBehaviour {
     public GameObject pauseMenu;
     public List<GameObject> menus;
 
+    public GameObject map;
+
     private bool paused;
 
     void Start()
@@ -35,6 +37,7 @@ public class PauseController : MonoBehaviour {
 
         paused = true;
 
+        map.SetActive(false);
         pauseMenu.SetActive(true);
 
         Time.timeScale = 0;

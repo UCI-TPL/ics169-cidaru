@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IntroRoomSprite : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         GetComponent<HighlightRoom>().highlightRoomSprite();
     }

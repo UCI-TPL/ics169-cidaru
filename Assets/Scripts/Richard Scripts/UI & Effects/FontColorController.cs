@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FontColorController : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class FontColorController : MonoBehaviour
     public Button optionsButton;
     public Button quitButton;
 
-    public Text continueText;
-    public Text newGameText;
-    public Text optionsText;
-    public Text quitText;
+    public TextMeshProUGUI continueText;
+    public TextMeshProUGUI newGameText;
+    public TextMeshProUGUI optionsText;
+    public TextMeshProUGUI quitText;
 
     public void Update()
     {

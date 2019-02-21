@@ -10,6 +10,9 @@ public class SettingsController : MonoBehaviour {
     public Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
     public Dropdown graphicsDropdown;
+
+    public Slider musicSlider;
+    public Slider sfxSlider;
     //public Slider masterVolumeSlider;
 
     private Resolution[] resolutions;
@@ -48,19 +51,17 @@ public class SettingsController : MonoBehaviour {
         graphicsDropdown.value = QualitySettings.GetQualityLevel();
         graphicsDropdown.RefreshShownValue();
 
-        // Sets master volume current value
-        /*
-        float volume;
-        bool check = audioMixer.GetFloat("masterVolume", out volume);
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+            PlayerPrefs.SetFloat("MusicVolume", 0);
 
-        if (check)
-        {
-            masterVolumeSlider.value = volume;
-        } else
-        {
-            masterVolumeSlider.value = 0;
-        }
-        */
+        if (!PlayerPrefs.HasKey("SFXVolume"))
+            PlayerPrefs.SetFloat("SFXVolume", 0);
+
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        audioMixer.SetFloat("bgmVolume", PlayerPrefs.GetFloat("MusicVolume"));
+
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+        audioMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("SFXVolume"));
     }
 
     private void Update()
@@ -98,6 +99,7 @@ public class SettingsController : MonoBehaviour {
         QualitySettings.SetQualityLevel(graphicIndex);
     }
 
+    // NOT USED RIGHT NOW
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("masterVolume", volume);
@@ -108,11 +110,15 @@ public class SettingsController : MonoBehaviour {
     public void SetBGMVolume(float volume)
     {
         audioMixer.SetFloat("bgmVolume", volume);
+
+        PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("sfxVolume", volume);
+
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     public void CloseSettingMenu()

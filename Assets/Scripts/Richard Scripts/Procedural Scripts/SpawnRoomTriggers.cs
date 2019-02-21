@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnRoomTriggers : MonoBehaviour {
     public HighlightRoom roomSprite;
 
-    private void Awake()
+    private void Start()
     {
         roomSprite.highlightRoomSprite();
     }

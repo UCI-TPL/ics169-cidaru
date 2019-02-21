@@ -179,6 +179,7 @@ MonoBehaviour:
   doors:
   - {fileID: 3644799354065429742}
   - {fileID: 437359235798581631}
+  roomSprite: {fileID: 6762904198409699183}
   portalTrigger: 0
 --- !u!1 &772408985801738177
 GameObject:
@@ -2568,6 +2569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 769564502776607205}
   - component: {fileID: 598134549591486859}
+  - component: {fileID: 6762904198409699183}
   m_Layer: 15
   m_Name: Minimap Sprite
   m_TagString: Untagged
@@ -2637,6 +2639,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6762904198409699183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773149397657259043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f0af1ca842f684a8beaa472f07dd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightSprite: {fileID: 21300008, guid: eefdea2616e378e43afc89eb792393cd, type: 3}
 --- !u!1 &773191356041376949
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,6 +7654,7 @@ MonoBehaviour:
   doors:
   - {fileID: 3644799354065429742}
   - {fileID: 437359235798581631}
+  roomSprite: {fileID: 0}
   portalTrigger: 0
 --- !u!1 &3644799354065429742
 GameObject:

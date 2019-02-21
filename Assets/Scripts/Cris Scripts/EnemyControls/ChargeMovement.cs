@@ -50,9 +50,9 @@ public class ChargeMovement : EnemyMovement {
         }
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
+        //base.OnCollisionEnter2D(collision);
         if (collision.transform.tag.Contains("Player"))
         {
             StartCoroutine(Wait(.3f));
@@ -200,6 +200,7 @@ public class ChargeMovement : EnemyMovement {
         /// to its original, uncharged state
         charged = false;
         canMove = true;
+        speed = originalSpeed;
         movableTarget.transform.position = player.transform.position;
     }
 

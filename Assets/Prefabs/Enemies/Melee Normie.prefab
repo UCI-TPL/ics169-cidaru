@@ -351,6 +351,8 @@ GameObject:
   - component: {fileID: 698204677086939337}
   - component: {fileID: 3577652526493277734}
   - component: {fileID: 3527266209923873934}
+  - component: {fileID: 8363966513362971526}
+  - component: {fileID: 6691440676322106289}
   m_Layer: 12
   m_Name: Melee Normie
   m_TagString: Enemy
@@ -715,3 +717,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8363966513362971526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075758853875717715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efee954c69f0d421086729bb8df1137f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 8120379481945109648
+  points: []
+  convex: 1
+  minBoundsHeight: 1
+  penaltyDelta: 10000
+  modifyWalkability: 0
+  setWalkability: 0
+  applyOnStart: 1
+  applyOnScan: 1
+  useWorldSpace: 0
+  updatePhysics: 1
+  resetPenaltyOnPhysics: 1
+  updateErosion: 1
+  lockToY: 0
+  lockToYValue: 0
+  modifyTag: 1
+  setTag: 1
+--- !u!114 &6691440676322106289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075758853875717715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346d535c7a6fe1f4c87bc435c435a1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

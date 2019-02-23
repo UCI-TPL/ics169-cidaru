@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4335823705704050978}
   - component: {fileID: 7105073895710547569}
   - component: {fileID: 7758359826937005323}
+  - component: {fileID: 8707205707559536965}
+  - component: {fileID: 6935116303227966405}
   m_Layer: 12
   m_Name: Boss Baby
   m_TagString: Enemy
@@ -80,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: -1799833889
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cc90cf019be309640a46a688fd61c61c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cc7912e120db0f439ff22f3d6b3483e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 0.75, y: 1.45}
     newSize: {x: 6, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,6 +156,7 @@ MonoBehaviour:
   movement: {fileID: 114551068416903030}
   aggressing: 0
   babyBomb: 1
+  bigBabyBomb: 0
   speedBubbles: 1
   vortex: 1
   rotationSpeed: 250
@@ -382,6 +385,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8707205707559536965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274074712688448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efee954c69f0d421086729bb8df1137f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 1478815042425656421
+  points: []
+  convex: 1
+  minBoundsHeight: 1
+  penaltyDelta: 10000
+  modifyWalkability: 0
+  setWalkability: 0
+  applyOnStart: 1
+  applyOnScan: 1
+  useWorldSpace: 0
+  updatePhysics: 1
+  resetPenaltyOnPhysics: 1
+  updateErosion: 1
+  lockToY: 0
+  lockToYValue: 0
+  modifyTag: 1
+  setTag: 1
+--- !u!114 &6935116303227966405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274074712688448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346d535c7a6fe1f4c87bc435c435a1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1572363788281802
 GameObject:
   m_ObjectHideFlags: 0

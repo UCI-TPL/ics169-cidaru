@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Pathfinding;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : AILerp
@@ -35,25 +36,11 @@ public class EnemyMovement : AILerp
         setStartVars();
     }
 
-    //protected virtual void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.transform.tag.Contains("Enemy"))
-    //    {
-    //        RaycastHit2D hit = Physics2D.Raycast(transform.position,
-    //                player.transform.position - transform.position,
-    //                Vector3.Distance(player.transform.position, transform.position));
-    //        //Debug.DrawLine(transform.position, hit.point);
-    //        //Debug.Log(hit.transform.tag);
-    //        canMove = !hit.transform.tag.Contains("Enemy");
-    //        MoveAwayFrom(collision.transform.position);
-    //    }
-    //}
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.transform.tag.Contains("Enemy"))
-    //        canMove = true;
-    //}
+    protected override void Update()
+    {
+        GetComponent<GraphUpdateScene>().Apply();
+        base.Update();
+    }
 
     protected virtual void setStartVars()
     {

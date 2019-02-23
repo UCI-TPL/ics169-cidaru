@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 7567093987874858934}
   - component: {fileID: 608986238144712697}
   - component: {fileID: 2313975193004996616}
-  - component: {fileID: 6782873901374779968}
   m_Layer: 12
   m_Name: Ranged Enemy
   m_TagString: Enemy
@@ -398,35 +397,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efee954c69f0d421086729bb8df1137f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: 1478714082020428856
+  uniqueID: 2413722521905532654
   points: []
   convex: 1
   minBoundsHeight: 1
-  penaltyDelta: 0
+  penaltyDelta: 10000
   modifyWalkability: 0
   setWalkability: 1
   applyOnStart: 1
   applyOnScan: 1
   useWorldSpace: 0
   updatePhysics: 1
-  resetPenaltyOnPhysics: 0
+  resetPenaltyOnPhysics: 1
   updateErosion: 1
   lockToY: 0
   lockToYValue: 0
   modifyTag: 1
   setTag: 1
---- !u!114 &6782873901374779968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078318880203492}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346d535c7a6fe1f4c87bc435c435a1b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1871764047904398
 GameObject:
   m_ObjectHideFlags: 0

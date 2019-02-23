@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 1538727974}
   - component: {fileID: 1765983440414217373}
   - component: {fileID: 8766498855185255977}
-  - component: {fileID: 8278034865748002734}
   m_Layer: 12
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -409,31 +408,19 @@ MonoBehaviour:
   points: []
   convex: 1
   minBoundsHeight: 1
-  penaltyDelta: 0
+  penaltyDelta: 10000
   modifyWalkability: 0
   setWalkability: 0
   applyOnStart: 1
   applyOnScan: 1
   useWorldSpace: 0
   updatePhysics: 1
-  resetPenaltyOnPhysics: 0
+  resetPenaltyOnPhysics: 1
   updateErosion: 1
   lockToY: 0
   lockToYValue: 0
   modifyTag: 1
   setTag: 1
---- !u!114 &8278034865748002734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185563679627766}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346d535c7a6fe1f4c87bc435c435a1b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1713807193727730
 GameObject:
   m_ObjectHideFlags: 0

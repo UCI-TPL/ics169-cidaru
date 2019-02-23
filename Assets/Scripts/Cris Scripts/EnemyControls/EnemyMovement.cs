@@ -38,7 +38,8 @@ public class EnemyMovement : AILerp
 
     protected override void Update()
     {
-        GetComponent<GraphUpdateScene>().Apply();
+        if (GetComponent<GraphUpdateScene>())
+            GetComponent<GraphUpdateScene>().Apply();
         base.Update();
     }
 

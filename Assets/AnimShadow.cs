@@ -14,7 +14,13 @@ public class AnimShadow : MonoBehaviour
        // thisRend = GetComponent<SpriteRenderer>();
     }
 
- 
+    private void Awake()
+    {
+        thisRend.sprite = parentRend.sprite;
+        thisRend.flipX = parentRend.flipX;
+    }
+
+
     void Update()
     {
         thisRend.sprite = parentRend.sprite;

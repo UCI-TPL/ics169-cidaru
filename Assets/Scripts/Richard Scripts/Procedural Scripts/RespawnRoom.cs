@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class RespawnRoom : MonoBehaviour
 {
+    public bool roomFound = false;
+
     [HideInInspector]
     public bool isCopyRoom = false;
 
     private GameObject room;
+    
+    [HideInInspector]
     public GameObject copyRoom;
 
     private GameObject grid;
@@ -39,6 +43,8 @@ public class RespawnRoom : MonoBehaviour
             copyRoom.transform.parent = grid.transform;
 
             templates.copyRespawners.Add(copyRoom.GetComponent<RespawnRoom>());
+
+            copyRoom.GetComponent<RespawnRoom>().roomFound = roomFound;
 
             copyRoom.SetActive(false);
 

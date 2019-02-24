@@ -41,6 +41,8 @@ public class Door : MonoBehaviour {
     // Room sprite to be represented in the map
     private SpriteRenderer sr;
 
+    private RespawnRoom roomFoundChecker;
+
     public void Awake()
     {
         // Initially set the room to not be active
@@ -61,8 +63,12 @@ public class Door : MonoBehaviour {
         // Initialize the sprite render of the minimap sprite
         sr = transform.parent.Find("Minimap Sprite").GetComponent<SpriteRenderer>();
 
-        // Disable the minimap sprite
-        sr.enabled = false;
+        roomFoundChecker = transform.parent.GetComponent<RespawnRoom>();
+
+        if (roomFoundChecker.roomFound)
+            sr.enabled = true;
+        else
+            sr.enabled = false;
 
         // Set room cleared and trigger to false
         cleared = false;
@@ -102,7 +108,11 @@ public class Door : MonoBehaviour {
         {
             // If the room sprite has not been revealed yet, then reveal it on minimap
             if (sr.enabled == false)
+            {
+                roomFoundChecker.roomFound = true;
+                roomFoundChecker.copyRoom.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 sr.enabled = true;
+            }
 
             HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
 

@@ -850,8 +850,10 @@ MonoBehaviour:
   - {fileID: 889924887}
   - {fileID: 1003600302}
   - {fileID: 1902867185}
-  bullet: {fileID: 6016123406094753196, guid: fc01f0d34d023a9408743bba524f37ee, type: 3}
+  bullet: {fileID: 6016123406094753196, guid: 18df687ac851386488f2ba3f8a818e3f, type: 3}
   fireRate: 0.15
+  bulletBelt: []
+  amountToPool: 50
 --- !u!212 &146332587
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1441,6 +1443,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 2060673330}
+    - target: {fileID: 261255543026098133, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1501,6 +1508,21 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 525027483}
+    - target: {fileID: 1644335666521011219, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117975711358263055, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451123637336306767, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 921a59ac7b158ed40992f9eee6b97bd1, type: 3}
 --- !u!4 &1081197813 stripped

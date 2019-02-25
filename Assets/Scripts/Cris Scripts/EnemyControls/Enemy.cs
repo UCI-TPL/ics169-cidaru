@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
     [Header("Attributes")]
     public EnemyAttack attackStyle; // The script that dictates the enemy's attack patterns
     public EnemyMovement movement; // The script that dictates the enemy's movement
+    public float aggroRange = 10f; // How close the enemy needs to be before they start aggressing
     [HideInInspector]
     public bool aggressing; // whether or not the enemy is going after the player
 
@@ -83,7 +84,14 @@ public class Enemy : MonoBehaviour {
                 LayerMask.GetMask("Default")); //Only checks on the layer with colliders/obstacles
 
             //Debug.DrawLine(transform.position, (Vector3)hit.point);
-            aggressing = hit.collider == null || hp.currentHealth < hp.startingHealth; // if nothing was hit, then the path to the player is obstacle-free. Or check if the enemy was damaged by player
+            /// Checking aggressig conditions
+            /// Check if the enemy was damaged by player or
+            /// if nothing was hit, then the path to the player is obstacle-free,
+            /// but make sure player's in aggroRange
+            aggressing = hp.currentHealth < hp.startingHealth; 
+            aggressing = aggressing || (hit.collider == null && Vector3.Distance(transform.position, player.transform.position) <= aggroRange);
+            if (!movement.canMove)
+                movement.canMove = aggressing;
         }
         else
         {

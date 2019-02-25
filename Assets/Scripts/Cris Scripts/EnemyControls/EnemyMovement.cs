@@ -54,7 +54,7 @@ public class EnemyMovement : AILerp
         originalSpeed = speed;
 
         ///Starting Misc Variables
-        canMove = true;
+        canMove = patrolPoints.Length != 0;
         player = GameObject.Find("Player");
 
         if (patrolPoints.Length != 0)
@@ -72,13 +72,12 @@ public class EnemyMovement : AILerp
     {
         /// How the enemy specifically moves, considering everything
         /// Called in the Enemy script
-        if (!canMove)
-            return;
-
-        if (aggressing)
-            Pursue();
-        else if (patrolPoints.Length != 0)
+        if (patrolPoints.Length != 0 && !aggressing)
             Patrol();
+        
+        canSearch = canMove;
+        if (canMove && aggressing)
+            Pursue();
     }
 
     protected virtual void Pursue()

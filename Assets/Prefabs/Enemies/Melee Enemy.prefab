@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 7900302354165274017}
   - component: {fileID: 1538727974}
   - component: {fileID: 1765983440414217373}
+  - component: {fileID: 8766498855185255977}
   m_Layer: 12
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -391,6 +392,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8766498855185255977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185563679627766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efee954c69f0d421086729bb8df1137f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueID: 4263612248064777392
+  points: []
+  convex: 1
+  minBoundsHeight: 1
+  penaltyDelta: 10000
+  modifyWalkability: 0
+  setWalkability: 0
+  applyOnStart: 1
+  applyOnScan: 1
+  useWorldSpace: 0
+  updatePhysics: 1
+  resetPenaltyOnPhysics: 1
+  updateErosion: 1
+  lockToY: 0
+  lockToYValue: 0
+  modifyTag: 1
+  setTag: 1
 --- !u!1 &1713807193727730
 GameObject:
   m_ObjectHideFlags: 0

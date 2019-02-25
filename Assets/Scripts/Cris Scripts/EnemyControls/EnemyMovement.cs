@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Pathfinding;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : AILerp
@@ -33,6 +34,13 @@ public class EnemyMovement : AILerp
     {
         base.Start();
         setStartVars();
+    }
+
+    protected override void Update()
+    {
+        if (GetComponent<GraphUpdateScene>())
+            GetComponent<GraphUpdateScene>().Apply();
+        base.Update();
     }
 
     protected virtual void setStartVars()

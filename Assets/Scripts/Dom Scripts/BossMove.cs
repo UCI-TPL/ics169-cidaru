@@ -10,6 +10,8 @@ public class BossMove : MonoBehaviour
     public GameObject[] guns;
     public GameObject bullet;
     public float fireRate = 1.0f;
+    public List<GameObject> bulletBelt;
+    public int amountToPool;
 
 
     private float basex = 0.0f;
@@ -23,6 +25,14 @@ public class BossMove : MonoBehaviour
     {
         basex = transform.localPosition.x;
         basey = transform.localPosition.y;
+
+        bulletBelt = new List<GameObject>();
+        for (int i = 0; i < amountToPool; i++)
+        {
+            GameObject o = (GameObject)Instantiate(bullet);
+            o.SetActive(false);
+            bulletBelt.Add(o);
+        }
     }
 
     void Update()
@@ -44,12 +54,31 @@ public class BossMove : MonoBehaviour
         {
             foreach (GameObject gun in guns)
             {
-                Instantiate(bullet, gun.transform.position, gun.transform.rotation);
+                GameObject newBullet = getBullet();
+                if (newBullet != null)
+                {
+                    newBullet.transform.position = gun.transform.position;
+                    newBullet.transform.rotation = gun.transform.rotation;
+                    newBullet.SetActive(true);
+                }
             }
+
             fire = false;
         }
 
         fireTimer += Time.deltaTime;
         transform.localPosition = position;
+    }
+
+    public GameObject getBullet()
+    {
+        for (int i = 0; i < bulletBelt.Count; i++)
+        {
+            if (!bulletBelt[i].activeInHierarchy)
+            {
+                return bulletBelt[i];
+            }
+        }
+        return null;
     }
 }

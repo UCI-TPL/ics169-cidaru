@@ -135,7 +135,7 @@ public class Projectile : MonoBehaviour {
     }
 
     // Called when the object is invisible to the camera
-    public void OnBecameInvisible()
+    public virtual void OnBecameInvisible()
     {
         // If object is not withing vortex and is off screen, destroy the object
         if (currentMovement == ProjectileMovementState.Normal)

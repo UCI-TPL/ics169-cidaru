@@ -7,11 +7,14 @@ public class InteractableObject : MonoBehaviour {
     // Dialogue file to be read
     public TextAsset[] textFiles;
 
+    public GameObject uiIndicator;
+
     private bool playerInRange = false;
 
     private void Awake()
     {
         playerInRange = false;
+        uiIndicator.SetActive(false);
     }
 
     private void Update()
@@ -27,12 +30,18 @@ public class InteractableObject : MonoBehaviour {
     {
         // On player enterance, start the dialogue from the file set
         if (collision.tag == "Player")
+        {
             playerInRange = true;
+            uiIndicator.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
+        {
             playerInRange = false;
+            uiIndicator.SetActive(false);
+        }
     }
 }

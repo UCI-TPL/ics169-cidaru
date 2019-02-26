@@ -711,6 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e332d1586006ca34fb1a666b8e8dc0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomFound: 0
   isCopyRoom: 0
   copyRoom: {fileID: 0}
 --- !u!1 &1410847240242278
@@ -6953,6 +6954,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Door
       objectReference: {fileID: 0}
+    - target: {fileID: 1663449589085528, guid: 321297408f207454293e0d90604a6e6a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4306969677241886, guid: 321297408f207454293e0d90604a6e6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.25
@@ -7618,6 +7623,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4909871964697092}
     m_Modifications:
+    - target: {fileID: 6441366609704290483, guid: ce6e3bb116ec00a49bd20c4171a6bb27,
+        type: 3}
+      propertyPath: m_Name
+      value: TLB_Walls
+      objectReference: {fileID: 0}
     - target: {fileID: 6441366609704290484, guid: ce6e3bb116ec00a49bd20c4171a6bb27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7673,11 +7683,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6441366609704290483, guid: ce6e3bb116ec00a49bd20c4171a6bb27,
-        type: 3}
-      propertyPath: m_Name
-      value: TLB_Walls
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce6e3bb116ec00a49bd20c4171a6bb27, type: 3}
 --- !u!4 &301161633745255630 stripped
@@ -7696,6 +7701,10 @@ PrefabInstance:
     - target: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
       propertyPath: m_Name
       value: Top Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918098998693684, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7765,6 +7774,10 @@ PrefabInstance:
     - target: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
       propertyPath: m_Name
       value: Bot Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707316526586048, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4478752097066022, guid: 9da56031d5bcdc248a80333e9e4e585b, type: 3}
       propertyPath: m_LocalPosition.x

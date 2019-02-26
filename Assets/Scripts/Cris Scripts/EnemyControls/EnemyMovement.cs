@@ -38,8 +38,10 @@ public class EnemyMovement : AILerp
 
     protected override void Update()
     {
-        if (GetComponent<GraphUpdateScene>())
-            GetComponent<GraphUpdateScene>().Apply();
+        //if (GetComponent<GraphUpdateScene>())
+        //{
+        //    GetComponent<GraphUpdateScene>().Apply();
+        //}
         base.Update();
     }
 
@@ -52,6 +54,13 @@ public class EnemyMovement : AILerp
 
         ///Starting Speeds
         originalSpeed = speed;
+
+        ///AStar penalty stuff
+        if (GetComponent<GraphUpdateScene>())
+        {
+            GetComponent<GraphUpdateScene>().penaltyDelta = 0;
+            GetComponent<GraphUpdateScene>().Apply();
+        }
 
         ///Starting Misc Variables
         canMove = patrolPoints.Length != 0;

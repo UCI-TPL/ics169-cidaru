@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6884432061575950411}
   - component: {fileID: 6884595565466081887}
   - component: {fileID: 6828769451207959395}
+  - component: {fileID: 4289745214796425393}
   m_Layer: 14
   m_Name: Barrel
   m_TagString: Destroyable
@@ -162,6 +163,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &4289745214796425393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780480223130674951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759660f46d9c80f41af69630682a3d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 1347093599493600, guid: 9052feb30ca8bf34f8462d1d1919df30, type: 3}
+  probability: 15
 --- !u!1 &8258726823871857120
 GameObject:
   m_ObjectHideFlags: 0

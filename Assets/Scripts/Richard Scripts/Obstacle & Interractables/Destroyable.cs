@@ -123,6 +123,9 @@ public class Destroyable : MonoBehaviour {
         if (isVase)
             rubble.GetComponent<SpritePicker>().pickVaseRubbleSprite(GetComponent<SpriteRenderer>().sprite);
 
+        if (GetComponent<DropController>())
+            GetComponent<DropController>().calculateDrop();
+
         Destroy(gameObject);
     }
 }

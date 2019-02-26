@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 114832229650295012}
   - component: {fileID: 61258051454079448}
   - component: {fileID: 4096444340010493727}
+  - component: {fileID: 5502004081207366852}
   m_Layer: 14
   m_Name: Destroyable Vase
   m_TagString: Destroyable
@@ -179,6 +180,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d234cbec9eb351b459a912fd835b1806, type: 3}
   - {fileID: 21300000, guid: 049458590af11274c9ef6e594b3a83df, type: 3}
   randomizeInitial: 1
+--- !u!114 &5502004081207366852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146428215023036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759660f46d9c80f41af69630682a3d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 1347093599493600, guid: 9052feb30ca8bf34f8462d1d1919df30, type: 3}
+  probability: 15
 --- !u!1 &5153516371220726977
 GameObject:
   m_ObjectHideFlags: 0

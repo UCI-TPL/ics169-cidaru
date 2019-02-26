@@ -366,8 +366,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7075758853875717715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4059072, y: -1.0733979, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7077974088323855599}
@@ -457,7 +457,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.004082024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -468,7 +468,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1.2}
+  m_Size: {x: 0.7, y: 1.0798366}
   m_EdgeRadius: 0
 --- !u!114 &7179405067963458461
 MonoBehaviour:
@@ -484,6 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackStyle: {fileID: 7179305877586294195}
   movement: {fileID: 7179378352505391221}
+  aggroRange: 10
   aggressing: 0
   babyBomb: 1
   bigBabyBomb: 0

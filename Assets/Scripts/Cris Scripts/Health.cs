@@ -39,7 +39,7 @@ public class Health : MonoBehaviour {
 
             if (gameObject.tag == "Enemy")
             {
-                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.pitch = Random.Range(0.8f, 1f);
                 audioSource.Play();
             }
         }

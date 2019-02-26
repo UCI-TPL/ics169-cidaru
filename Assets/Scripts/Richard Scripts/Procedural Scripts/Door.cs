@@ -110,6 +110,7 @@ public class Door : MonoBehaviour {
             if (sr.enabled == false)
             {
                 roomFoundChecker.roomFound = true;
+                roomFoundChecker.copyRoom.GetComponent<RespawnRoom>().roomFound = true;
                 roomFoundChecker.copyRoom.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 sr.enabled = true;
             }

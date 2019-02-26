@@ -5390,6 +5390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e332d1586006ca34fb1a666b8e8dc0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomFound: 0
   isCopyRoom: 0
   copyRoom: {fileID: 0}
 --- !u!1 &1773988938306522
@@ -6567,6 +6568,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4688900070749704}
     m_Modifications:
+    - target: {fileID: 84847744787405011, guid: 70fd4a6235e9ab944a69ad6bd2994453,
+        type: 3}
+      propertyPath: m_Name
+      value: Treefab
+      objectReference: {fileID: 0}
     - target: {fileID: 6298508932883721582, guid: 70fd4a6235e9ab944a69ad6bd2994453,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6625,12 +6631,22 @@ PrefabInstance:
     - target: {fileID: 6298508932883721582, guid: 70fd4a6235e9ab944a69ad6bd2994453,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 84847744787405011, guid: 70fd4a6235e9ab944a69ad6bd2994453,
+    - target: {fileID: 7542557844647155585, guid: 70fd4a6235e9ab944a69ad6bd2994453,
         type: 3}
-      propertyPath: m_Name
-      value: Treefab
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193591859575831575, guid: 70fd4a6235e9ab944a69ad6bd2994453,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885839723282753352, guid: 70fd4a6235e9ab944a69ad6bd2994453,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70fd4a6235e9ab944a69ad6bd2994453, type: 3}
@@ -7053,12 +7069,17 @@ PrefabInstance:
     - target: {fileID: 212086696716252244, guid: 2d8be9c9a1f598d44804e5242afa2d59,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: 0
+      value: -633514475
       objectReference: {fileID: 0}
     - target: {fileID: 212086696716252244, guid: 2d8be9c9a1f598d44804e5242afa2d59,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651525274151969571, guid: 2d8be9c9a1f598d44804e5242afa2d59,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d8be9c9a1f598d44804e5242afa2d59, type: 3}

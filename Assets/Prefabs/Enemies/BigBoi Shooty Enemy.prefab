@@ -36,8 +36,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094191877903016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4944665767510640}
   - {fileID: 2078403316366189866}
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackStyle: {fileID: 114737049648350362}
   movement: {fileID: 114502483694680630}
+  aggroRange: 10
   aggressing: 0
   babyBomb: 0
   bigBabyBomb: 1

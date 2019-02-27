@@ -62,10 +62,6 @@ public class Vortex : MonoBehaviour {
             // Sets the projectile tag to allow it to damage everything
             p.gameObject.tag = "Vortex Projectile";
 
-            // Sets the trail color to be a new color to represent this
-            if (p.gameObject.GetComponent<TrailRenderer>())
-                p.gameObject.GetComponent<TrailRenderer>().startColor = Color.red;
-
             // Ends the spinning and returns the projectile to moving normally
             p.endVortex();
         }

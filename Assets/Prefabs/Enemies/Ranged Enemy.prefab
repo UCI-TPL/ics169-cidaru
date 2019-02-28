@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 114577012771450244}
   - component: {fileID: 114639768852332036}
   - component: {fileID: 114865693859055728}
-  - component: {fileID: 114921542924382218}
+  - component: {fileID: 782470792297640729}
   - component: {fileID: 114383974918937982}
   - component: {fileID: 95688338355938572}
   - component: {fileID: 4378168113540562759}
@@ -42,6 +42,7 @@ Transform:
   m_Children:
   - {fileID: 4909665498413662}
   - {fileID: 1424643166210600848}
+  - {fileID: 1267487186574517038}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackStyle: {fileID: 114865693859055728}
-  movement: {fileID: 114921542924382218}
+  movement: {fileID: 782470792297640729}
   aggroRange: 10
   aggressing: 0
   deathMaterial: {fileID: 2100000, guid: 3f951a17c72c9cd499de8f391ed10623, type: 2}
@@ -193,7 +194,7 @@ MonoBehaviour:
   setFireTimer: 0.8
   bullet: {fileID: 1696281229995658, guid: d4bddd46493fa0e43b0d0d10c5281cb0, type: 3}
   weapon: {fileID: 1871764047904398}
---- !u!114 &114921542924382218
+--- !u!114 &782470792297640729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +203,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078318880203492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4755f49893832c644824d14a8143ae27, type: 3}
+  m_Script: {fileID: 11500000, guid: 4965c621a0b0f424c838a51a22389a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   repathRate: 0.5
@@ -215,8 +216,10 @@ MonoBehaviour:
   rotationSpeed: 10
   interpolatePathSwitches: 1
   switchPathInterpolationSpeed: 5
-  originalSpeed: 3
+  originalSpeed: 0
   patrolPoints: []
+  minDistToPlayer: 3
+  movableTarget: {fileID: 7920151327779546128}
 --- !u!114 &114383974918937982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efee954c69f0d421086729bb8df1137f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: 2413722521905532654
+  uniqueID: 2507849228527899985
   points: []
   convex: 1
   minBoundsHeight: 1
@@ -609,3 +612,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRend: {fileID: 212133252534528364}
   thisRend: {fileID: 3915091713302841874}
+--- !u!1 &7920151327779546128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1267487186574517038}
+  m_Layer: 12
+  m_Name: Movable Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1267487186574517038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7920151327779546128}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.9650335, y: 3.182434, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4348718783944302}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

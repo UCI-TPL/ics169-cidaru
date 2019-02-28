@@ -9,7 +9,6 @@ public class RangedMovement : EnemyMovement {
     
     [Header("Ranged Movement")]
     public float minDistToPlayer; // This determines how close the enemy can get to the player before it stops
-    public float margin = 0.1f; // Defines the range away from the min that's still allowed
     public GameObject movableTarget;
 
     protected override void setStartVars()
@@ -23,13 +22,7 @@ public class RangedMovement : EnemyMovement {
     }
 
     public override void Move(bool aggressing)
-    {
-        //if (distFromPlayer() > minDistToPlayer + margin)
-        //{
-        //    movableTarget.transform.position = (transform.position - player.transform.position).normalized * minDistToPlayer + player.transform.position;
-        //    target = movableTarget.transform;
-        //}
-        //else if (distFromPlayer() < minDistToPlayer - margin){}     
+    { 
         movableTarget.transform.position = (transform.position - player.transform.position).normalized * minDistToPlayer + player.transform.position;
     }
 }

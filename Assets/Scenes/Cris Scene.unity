@@ -658,10 +658,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged Enemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1078318880203492, guid: 7ada9be20db1c0a4e8be5473a40b599c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4348718783944302, guid: 7ada9be20db1c0a4e8be5473a40b599c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.36
@@ -706,42 +702,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 212133252534528364, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1cc7912e120db0f439ff22f3d6b3483e,
-        type: 3}
-    - target: {fileID: 114577012771450244, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: aggroRange
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114921542924382218, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: patrolPoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114921542924382218, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: patrolPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 103281839}
-    - target: {fileID: 114921542924382218, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: patrolPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1600552962}
-    - target: {fileID: 114921542924382218, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: patrolPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1023137945}
-    - target: {fileID: 95688338355938572, guid: 7ada9be20db1c0a4e8be5473a40b599c,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 79542d77117b811409c4e83b23b2f75d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ada9be20db1c0a4e8be5473a40b599c, type: 3}
 --- !u!1 &371786406
@@ -2203,7 +2163,7 @@ PrefabInstance:
     - target: {fileID: 8204374966658808793, guid: f235f78fad7d4b6438c7dfad859a4ebe,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8203144041053376339, guid: f235f78fad7d4b6438c7dfad859a4ebe,
         type: 3}
@@ -3677,7 +3637,6 @@ MonoBehaviour:
   originalSpeed: 0
   patrolPoints: []
   minDistToPlayer: 3
-  margin: 0.1
   movableTarget: {fileID: 2000729688}
 --- !u!1 &1871765883987217
 GameObject:
@@ -3823,6 +3782,7 @@ MonoBehaviour:
   movement: {fileID: 0}
   aggroRange: 5
   aggressing: 0
+  deathMaterial: {fileID: 0}
   babyBomb: 1
   bigBabyBomb: 0
   speedBubbles: 1

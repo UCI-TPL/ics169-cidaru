@@ -6,6 +6,8 @@
 		_DisplaceTex("Displacement Texture", 2D) = "white" {}
 		_Magnitude("Magnitude", Range(0,0.1)) = 1
 		_Color("Tint", Color) = (1,1,1,1)
+		_Cutoff("Cutoff", Range(0,1)) = 0
+		_Fade("Fade", Range(0, 1)) = 0
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 		SubShader
@@ -55,15 +57,22 @@
 				sampler2D _MainTex;
 				sampler2D _DisplaceTex;
 				float _Magnitude;
+				float _Cutoff;
+				float4 _Color;
+				float _Fade;
 
-				float4 frag(v2f i) : SV_Target
+				fixed4 frag(v2f i) : SV_Target
 				{
-					float2 distuv = float2(i.uv.x + _Time.x * 2, i.uv.y + _Time.x * 2);
+					fixed4 transit = tex2D(_DisplaceTex, i.uv);
 
-					float2 disp = tex2D(_DisplaceTex, distuv).xy;
-					disp = ((disp * 2) - 1) * _Magnitude;
-					saturate(disp);
-					float4 col = tex2D(_MainTex, i.uv + disp);
+					fixed2 direction = float2(0,0);
+					direction = normalize(float2((transit.r - 0.5) * 2, (transit.g - 0.5) * 2));
+
+					fixed4 col = tex2D(_MainTex, i.uv + _Cutoff * direction);
+
+					if (transit.b < _Cutoff)
+						return col = lerp(col, _Color, _Fade);
+
 					return col;
 				}
 				ENDCG

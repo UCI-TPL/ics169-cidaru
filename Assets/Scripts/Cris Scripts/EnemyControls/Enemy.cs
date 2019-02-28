@@ -18,8 +18,11 @@ public class Enemy : MonoBehaviour {
     [HideInInspector]
     public bool aggressing; // whether or not the enemy is going after the player
 
+    public Material deathMaterial;  //material that holds the death animation shader
+
     private GameObject player; 
     private Health hp;
+    private bool deathAnim; //if true, then the death animation has started to play
 
     [Header("Affected By")] // All powers this enemy can be affected by
     public bool babyBomb;
@@ -44,6 +47,7 @@ public class Enemy : MonoBehaviour {
         currentState = EnemyState.Normal;
         radius = 0f;
         aggressing = false;
+        deathAnim = false;
 
         attackStyle = GetComponent<EnemyAttack>();
         movement = GetComponent<EnemyMovement>();
@@ -183,11 +187,35 @@ public class Enemy : MonoBehaviour {
     private void checkDeath()
     {
         // Checks if enemy is dead and destroys them
-        if (hp.currentHealth <= 0)
+        if (hp.currentHealth <= 0 && !deathAnim)
         {
-            if (GetComponent<DropController>())
-                GetComponent<DropController>().calculateDrop();
-            Destroy(gameObject);
+            //Amanda was here
+            StartCoroutine(DeathAnimation());
+            deathAnim = true;
+            
         }
+    }
+
+    IEnumerator DeathAnimation()
+    {
+        float timer = 0.9f;
+        if (deathMaterial != null)
+        {
+            Renderer rend = GetComponent<Renderer>();
+            Texture mainTex = GetComponent<SpriteRenderer>().sprite.texture;
+            rend.material = deathMaterial;
+            rend.material.SetFloat("_StartTime", Time.timeSinceLevelLoad);
+            rend.material.SetInt("_MainTexWidth", mainTex.width);
+            rend.material.SetInt("_MainTexHeight", mainTex.height);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else
+        {
+            timer = 0;
+        }
+        yield return new WaitForSeconds(timer);
+        if (GetComponent<DropController>())
+            GetComponent<DropController>().calculateDrop();
+        Destroy(gameObject);
     }
 }

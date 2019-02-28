@@ -5,6 +5,9 @@
 		_Color("Color", Color) = (1, 1, 1, 1)
 		_MainTex("Texture",2D) = "white" {}
 		_NoiseTex("Noise Texture", 2D) = "white" {}
+		_MainTexWidth("Main Texture Width", int) = 32
+		_MainTexHeight("Main Texture Height", int) = 32
+		_PixelMul("Pixel Size Multiplier", float) = 1.0
 		_DissolveSpeed("Dissolve Speed", float) = 1.0
 		_DissolveColor1("Dissolve Color 1", Color) = (1, 1, 1, 1)
 		_ColorThreshold1("Color Threshold 1", float) = 1.0
@@ -38,6 +41,9 @@
 			float4 _DissolveColor1;
 			sampler2D _MainTex;
 			sampler2D _NoiseTex;
+			int _MainTexWidth;
+			int _MainTexHeight;
+			float _PixelMul;
 			float _DissolveSpeed;
 			float _ColorThreshold1;
 			float _StartTime;
@@ -73,18 +79,21 @@
 			{
 
 				// sample noise texture
-				float4 noiseSample = tex2Dlod(_NoiseTex, float4(input.uv.xy, 0, 0));
-				
+				//float4 noiseSample = tex2Dlod(_NoiseTex, float4(input.uv.xy, 0, 0));
+				float4 noiseSample = tex2Dlod(_NoiseTex, float4(input.uv.x * _MainTexWidth / (32 * _PixelMul), input.uv.y * _MainTexHeight / (32 * _PixelMul), 0, 0));
+
 				//get main texture/color
 				float4 col = tex2D(_MainTex, input.uv);
 				
 				// edge color				
-				float thresh1 = _Time * _ColorThreshold1 - _StartTime;
+				//float thresh1 = _Time * _ColorThreshold1 - _StartTime;
+				float thresh1 = (_Time.y - _StartTime) * _ColorThreshold1;
 				float useDissolve1 = noiseSample - thresh1 < 0;
 				col.rgb = (1 - useDissolve1)*col.rgb + useDissolve1 * _DissolveColor1;
 				
 			
-				float threshold = _Time *_DissolveSpeed - _StartTime;
+				//float threshold = _Time *_DissolveSpeed - _StartTime;
+				float threshold = (_Time.y - _StartTime) * _DissolveSpeed;
 				clip(noiseSample - threshold);
 
 				

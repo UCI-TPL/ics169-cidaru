@@ -12,7 +12,7 @@ public class IntroDialogTextBox : MonoBehaviour
     public Animator momAnimator;
     public Animator trumpAnimator;
 
-    public float setNextLineBuffer = 0.2f;
+    public float setNextLineBuffer = 60f;
 
     private TextAsset textFile;
     private Text dialogBox;
@@ -40,6 +40,7 @@ public class IntroDialogTextBox : MonoBehaviour
             {
                 StopCoroutine(textTyping);
                 dialogBox.text = fileLines[currentLine];
+                nextLineBuffer = setNextLineBuffer;
                 dialogCoroutineStarted = false;
                 currentLine++;
             }
@@ -48,7 +49,8 @@ public class IntroDialogTextBox : MonoBehaviour
         {
             if (nextLineBuffer > 0)
             {
-                nextLineBuffer -= Time.deltaTime;
+                nextLineBuffer -= Time.unscaledDeltaTime;
+                print(nextLineBuffer);
             }
             else
             {
@@ -61,8 +63,15 @@ public class IntroDialogTextBox : MonoBehaviour
             }
         }
 
-        if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)))
-            IntroGameManager.introGM.endIntroDialogue();
+        if (nextLineBuffer > 0)
+        {
+            nextLineBuffer -= Time.unscaledDeltaTime;
+        }
+        else
+        {
+            if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)))
+                IntroGameManager.introGM.endIntroDialogue();
+        }
     }
 
     public void startText(TextAsset txt)

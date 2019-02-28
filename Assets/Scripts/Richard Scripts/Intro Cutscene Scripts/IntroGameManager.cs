@@ -278,6 +278,8 @@ public class IntroGameManager : MonoBehaviour
             dogDialogueCheck = true;
             return;
         }
+
+        NextState();
     }
 
     public void MontageTimeState()
@@ -355,6 +357,8 @@ public class IntroGameManager : MonoBehaviour
             currentState = IntroStates.MontageTime;
         else if (currentState == IntroStates.MontageTime)
             currentState = IntroStates.EndIntro;
+
+        ResetDialogueCheck();
     }
 
     private void ResetDialogueCheck()

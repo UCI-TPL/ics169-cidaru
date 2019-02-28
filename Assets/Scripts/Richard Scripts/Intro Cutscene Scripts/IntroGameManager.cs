@@ -352,6 +352,8 @@ public class IntroGameManager : MonoBehaviour
         else if (currentState == IntroStates.TrumpLeaves)
             currentState = IntroStates.DogReemerges;
         else if (currentState == IntroStates.DogReemerges)
+            currentState = IntroStates.MontageTime;
+        else if (currentState == IntroStates.MontageTime)
             currentState = IntroStates.EndIntro;
     }
 

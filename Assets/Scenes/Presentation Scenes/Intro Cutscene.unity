@@ -457,23 +457,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957d1c78eac56a441b03e153dbc87958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogBox: {fileID: 0}
-  avatarImage: {fileID: 0}
-  dialogText: {fileID: 0}
-  openingMomText: {fileID: 0}
-  openingBoyText: {fileID: 0}
-  dogEmergesDogText: {fileID: 0}
-  dogEmergesMomText: {fileID: 0}
-  dogLeavesDogText: {fileID: 0}
-  dogLeavesMomText: {fileID: 0}
-  enemiesAppearMomText: {fileID: 0}
-  trumpAppearsTrumpText: {fileID: 0}
-  trumpAppearsMomText: {fileID: 0}
-  trumpAppearsTrumpTextP2: {fileID: 0}
-  trumpShootTrumpText: {fileID: 0}
-  dogReemergesDogText: {fileID: 0}
-  dogReemergesBoyText: {fileID: 0}
-  dogReemergesDogTextP2: {fileID: 0}
+  dialogBox: {fileID: 1268609505}
+  dogAvatarImage: {fileID: 163459195}
+  boyAvatarImage: {fileID: 1325073262}
+  momAvatarImage: {fileID: 1974725791}
+  trumpAvatarImage: {fileID: 29763805}
+  dialogText: {fileID: 1057279807}
+  openingMomText: {fileID: 4900000, guid: c3109787d2ff4144dbaf7387768314b0, type: 3}
+  openingBoyText: {fileID: 4900000, guid: 1f08e00e9045f3545aa6893be985a6fb, type: 3}
+  dogEmergesBoyText: {fileID: 4900000, guid: 2e2ca7521800c184e9a712fd25a6eeb5, type: 3}
+  dogEmergesDogText: {fileID: 4900000, guid: d66604be5dc1eb947835994037552011, type: 3}
+  dogEmergesMomText: {fileID: 4900000, guid: 4a2f31834042bf54a9207db6e68f6561, type: 3}
+  dogLeavesDogText: {fileID: 4900000, guid: 7bb920fe25908494c9b76887a1178998, type: 3}
+  dogLeavesMomText: {fileID: 4900000, guid: 8c77ddeb6f4c54f4b97508b034907fc2, type: 3}
+  enemiesAppearMomText: {fileID: 4900000, guid: 742d5e225e4499c4f925bd6d5c3ddb3e,
+    type: 3}
+  trumpAppearsTrumpText: {fileID: 4900000, guid: a82d53ad2c21e5b4c811aad7c129ffe9,
+    type: 3}
+  trumpAppearsMomText: {fileID: 4900000, guid: 622742dded4694a44975dc425405bac4, type: 3}
+  trumpAppearsTrumpTextP2: {fileID: 4900000, guid: c540a731d1bdf18408b5cf5dd283e6ec,
+    type: 3}
+  trumpAppearsMomTextP2: {fileID: 4900000, guid: 91f46eb32f2b5e545b18e01d693d15de,
+    type: 3}
+  trumpAppearsTrumpTextP3: {fileID: 4900000, guid: 60cba39cfe2ba2c4f96deec285542277,
+    type: 3}
+  trumpShootMomText: {fileID: 4900000, guid: 7f5984cca6325e4498c77884f65446ec, type: 3}
+  trumpShootTrumpText: {fileID: 4900000, guid: 0008d71b1bba1b24587835e627e6d5c0, type: 3}
+  dogReemergesDogText: {fileID: 4900000, guid: 6c5acfefcdc7ee141b416c6fd49e3839, type: 3}
+  montageTimeDogText: {fileID: 4900000, guid: be1b8954a82eece4a843db49e69910fc, type: 3}
+  montageTimeBoyText: {fileID: 4900000, guid: 2712dd3868501494bbc4b6785a1f28de, type: 3}
+  montageTimeDogTextP2: {fileID: 4900000, guid: 49769426eb105494b9ea3aee66e3e360,
+    type: 3}
 --- !u!1 &501568380
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,11 +708,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1057279805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c098ef775dc3cd48aa9123e7a8915d5, type: 3}
+  m_Script: {fileID: 11500000, guid: c8c4fc0f32f208e4bbe08173b38a7396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   setDelayTimer: 0.0001
-  avatarImage: {fileID: 163459197}
+  dogAnimator: {fileID: 163459197}
+  boyAnimator: {fileID: 1325073264}
+  momAnimator: {fileID: 1974725793}
+  trumpAnimator: {fileID: 29763807}
   setNextLineBuffer: 0.2
 --- !u!114 &1057279808
 MonoBehaviour:
@@ -722,7 +739,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: e94df21a8c2e4d7439a63d2636bef03b, type: 3}
-    m_FontSize: 65
+    m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

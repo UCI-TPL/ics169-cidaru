@@ -7,7 +7,7 @@ public class DialogTextBox : MonoBehaviour {
     public float setDelayTimer;
     public Animator avatarImage;
 
-    public float setNextLineBuffer = 0.2f;
+    public float setNextLineBuffer;
 
     private TextAsset textFile;
     private Text dialogBox;
@@ -34,6 +34,7 @@ public class DialogTextBox : MonoBehaviour {
             if (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space))
             {
                 StopCoroutine(textTyping);
+                nextLineBuffer = setNextLineBuffer;
                 dialogBox.text = fileLines[currentLine];
                 dialogCoroutineStarted = false;
                 currentLine++;
@@ -41,9 +42,9 @@ public class DialogTextBox : MonoBehaviour {
         }
         else
         {
-            if (nextLineBuffer > 0)
+            if (nextLineBuffer > 0f)
             {
-                nextLineBuffer -= Time.deltaTime;
+                nextLineBuffer -= Time.unscaledDeltaTime;
             }
             else
             {
@@ -56,10 +57,17 @@ public class DialogTextBox : MonoBehaviour {
             }
         }
 
-        if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") ||Input.GetKeyDown(KeyCode.Space)) && GameManager.gm.isTutorial)
-            GameManager.gm.endTutorialDialogue();
-        else if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) && !GameManager.gm.isTutorial)
-            GameManager.gm.endDialogue();
+        if (nextLineBuffer > 0)
+        {
+            nextLineBuffer -= Time.fixedUnscaledDeltaTime;
+        }
+        else
+        {
+            if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) && GameManager.gm.isTutorial)
+                GameManager.gm.endTutorialDialogue();
+            else if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) && !GameManager.gm.isTutorial)
+                GameManager.gm.endDialogue();
+        }
     }
 
     public void startText(TextAsset txt)
@@ -90,6 +98,5 @@ public class DialogTextBox : MonoBehaviour {
         nextLineBuffer = setNextLineBuffer;
         dialogCoroutineStarted = false;
         avatarImage.SetBool("talking", false);
-
     }
 }

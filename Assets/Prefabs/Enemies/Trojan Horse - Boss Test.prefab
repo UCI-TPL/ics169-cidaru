@@ -232,8 +232,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackStyle: {fileID: 114982989142717036}
   movement: {fileID: 8894198818559106778}
+  aggroRange: 10
   aggressing: 0
+  deathMaterial: {fileID: 2100000, guid: 3f951a17c72c9cd499de8f391ed10623, type: 2}
   babyBomb: 0
+  bigBabyBomb: 0
   speedBubbles: 1
   vortex: 0
   rotationSpeed: 200
@@ -251,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 50
+  audioClips: {fileID: 0}
   currentHealth: 0
 --- !u!114 &114982989142717036
 MonoBehaviour:
@@ -268,6 +272,7 @@ MonoBehaviour:
   phase1Percent: 0.75
   phase2Percent: 0.25
   spawner: {fileID: 1823084294765170}
+  numChargesBeforeBirth: 0
 --- !u!114 &8894198818559106778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
+  chargeRotSpeed: 500
   leftWheel: {fileID: 1472372595434962}
   rightWheel: {fileID: 1037545487335296}
 --- !u!114 &114950268367083412
@@ -483,6 +489,8 @@ MonoBehaviour:
   destroyAfterSpawn: 0
   spawning: 0
   spawnNum: 2
+  prebirthWaitTime: 1
+  postbirthWaitTime: 0
 --- !u!1 &2911169910290309831
 GameObject:
   m_ObjectHideFlags: 0

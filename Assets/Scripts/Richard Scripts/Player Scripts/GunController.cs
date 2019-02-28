@@ -124,10 +124,12 @@ public class GunController : MonoBehaviour {
             gunPoint.GetChild(0).gameObject.SetActive(false);
             Cursor.SetCursor(mouseCursor, new Vector2(mouseCursor.width / 2, mouseCursor.height / 2), CursorMode.Auto);
         }
+
+        /*
         else
         {
             gunPoint.GetChild(0).gameObject.SetActive(true);
-        }
+        }*/
 
         intialGunPointX = gunPoint.localPosition.x;
 

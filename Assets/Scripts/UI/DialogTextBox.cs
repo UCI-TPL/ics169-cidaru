@@ -7,6 +7,8 @@ public class DialogTextBox : MonoBehaviour {
     public float setDelayTimer;
     public Animator avatarImage;
 
+    public float setNextLineBuffer;
+
     private TextAsset textFile;
     private Text dialogBox;
     private string[] fileLines;
@@ -15,20 +17,24 @@ public class DialogTextBox : MonoBehaviour {
     private bool dialogCoroutineStarted;
     private Coroutine textTyping;
 
+    private float nextLineBuffer;
+
     private void Awake()
     {
         delayTimer = setDelayTimer;
         dialogBox = GetComponent<Text>();
         dialogCoroutineStarted = false;
+        nextLineBuffer = setNextLineBuffer;
     }
 
     private void Update()
     {
         if (dialogCoroutineStarted)
         {
-            if (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button"))
+            if (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space))
             {
                 StopCoroutine(textTyping);
+                nextLineBuffer = setNextLineBuffer;
                 dialogBox.text = fileLines[currentLine];
                 dialogCoroutineStarted = false;
                 currentLine++;
@@ -36,17 +42,32 @@ public class DialogTextBox : MonoBehaviour {
         }
         else
         {
-            if ((Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && currentLine < fileLines.Length)
+            if (nextLineBuffer > 0f)
             {
-                textTyping = StartCoroutine(TextTyping());
-                dialogCoroutineStarted = true;
+                nextLineBuffer -= Time.unscaledDeltaTime;
+            }
+            else
+            {
+                if ((Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) &&
+                    currentLine < fileLines.Length)
+                {
+                    textTyping = StartCoroutine(TextTyping());
+                    dialogCoroutineStarted = true;
+                }
             }
         }
 
-        if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && GameManager.gm.isTutorial)
-            GameManager.gm.endTutorialDialogue();
-        else if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button")) && !GameManager.gm.isTutorial)
-            GameManager.gm.endDialogue();
+        if (nextLineBuffer > 0)
+        {
+            nextLineBuffer -= Time.fixedUnscaledDeltaTime;
+        }
+        else
+        {
+            if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) && GameManager.gm.isTutorial)
+                GameManager.gm.endTutorialDialogue();
+            else if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) && !GameManager.gm.isTutorial)
+                GameManager.gm.endDialogue();
+        }
     }
 
     public void startText(TextAsset txt)
@@ -74,8 +95,8 @@ public class DialogTextBox : MonoBehaviour {
         }
 
         currentLine++;
+        nextLineBuffer = setNextLineBuffer;
         dialogCoroutineStarted = false;
         avatarImage.SetBool("talking", false);
-
     }
 }

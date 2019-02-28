@@ -19,7 +19,7 @@ public class InteractableObject : MonoBehaviour {
 
     private void Update()
     {
-        if (Time.timeScale != 0 && Input.GetButtonDown("A Button") && playerInRange)
+        if (Time.timeScale != 0 && (Input.GetButtonDown("A Button") || Input.GetKeyDown(KeyCode.Space)) && playerInRange)
         {
             int textIndex = Random.Range(0, textFiles.Length);
             GameManager.gm.startDialogue(textFiles[textIndex]);

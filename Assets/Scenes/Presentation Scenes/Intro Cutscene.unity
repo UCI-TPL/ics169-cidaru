@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 29763806}
   - component: {fileID: 29763809}
   - component: {fileID: 29763808}
-  - component: {fileID: 29763807}
   m_Layer: 5
   m_Name: Trump Avatar Image
   m_TagString: Untagged
@@ -150,25 +149,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &29763807
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29763805}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 65a4447ed8340e54cb992baf8556d346, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &29763808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &163459196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -232,13 +212,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163459195}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2023387036}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.02}
   m_AnchorMax: {x: 0.25, y: 0.45}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -283,7 +263,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a0ae17147b62ea942ac28a9f482601ff, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 7bb662a0ed9b48b4f8ff8e5a349256ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -457,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957d1c78eac56a441b03e153dbc87958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatarName: {fileID: 501568382}
   dialogBox: {fileID: 1268609505}
   dogAvatarImage: {fileID: 163459195}
   boyAvatarImage: {fileID: 1325073262}
@@ -548,13 +529,13 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: e94df21a8c2e4d7439a63d2636bef03b, type: 3}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
@@ -714,8 +695,8 @@ MonoBehaviour:
   setDelayTimer: 0.0001
   dogAnimator: {fileID: 163459197}
   boyAnimator: {fileID: 0}
-  momAnimator: {fileID: 1974725793}
-  trumpAnimator: {fileID: 29763807}
+  momAnimator: {fileID: 0}
+  trumpAnimator: {fileID: 0}
   setNextLineBuffer: 0.5
 --- !u!114 &1057279808
 MonoBehaviour:
@@ -796,7 +777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0.02}
   m_AnchorMax: {x: 0.95, y: 0.27}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1268609507
@@ -854,7 +835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1325073263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -886,7 +867,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5d675f17f3be3bf4ea02a127b45f8d1d, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1007,7 +988,6 @@ GameObject:
   - component: {fileID: 1974725792}
   - component: {fileID: 1974725795}
   - component: {fileID: 1974725794}
-  - component: {fileID: 1974725793}
   m_Layer: 5
   m_Name: Mom Avatar Image
   m_TagString: Untagged
@@ -1034,25 +1014,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1974725793
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974725791}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 65a4447ed8340e54cb992baf8556d346, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1974725794
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class IntroDialogTextBox : MonoBehaviour
     private bool dialogCoroutineStarted;
     private Coroutine textTyping;
 
+    private IntroGameManager.AvatarState currentAvatar;
+
     private float nextLineBuffer;
 
     private void Awake()
@@ -50,7 +52,6 @@ public class IntroDialogTextBox : MonoBehaviour
             if (nextLineBuffer > 0)
             {
                 nextLineBuffer -= Time.unscaledDeltaTime;
-                print(nextLineBuffer);
             }
             else
             {
@@ -74,9 +75,11 @@ public class IntroDialogTextBox : MonoBehaviour
         }
     }
 
-    public void startText(TextAsset txt)
+    public void startText(TextAsset txt, IntroGameManager.AvatarState avatar)
     {
         textFile = txt;
+
+        currentAvatar = avatar;
 
         fileLines = (textFile.text.Split('\n'));
 
@@ -89,7 +92,8 @@ public class IntroDialogTextBox : MonoBehaviour
 
     IEnumerator TextTyping()
     {
-        dogAnimator.SetBool("talking", true);
+        if (currentAvatar == IntroGameManager.AvatarState.Dog)
+            dogAnimator.SetBool("talking", true);
 
         dialogBox.text = "";
         for (int i = 0; i < fileLines[currentLine].Length; i++)
@@ -101,7 +105,8 @@ public class IntroDialogTextBox : MonoBehaviour
         currentLine++;
         nextLineBuffer = setNextLineBuffer;
         dialogCoroutineStarted = false;
-        dogAnimator.SetBool("talking", false);
 
+        if (currentAvatar == IntroGameManager.AvatarState.Dog)
+            dogAnimator.SetBool("talking", false);
     }
 }

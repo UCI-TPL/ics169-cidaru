@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.K))
             {
-                health.TakeDamage(100);
+                health.TakeDamage(2);
             }
         }
     }

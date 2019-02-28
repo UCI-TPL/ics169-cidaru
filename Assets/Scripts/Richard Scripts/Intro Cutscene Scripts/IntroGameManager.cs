@@ -15,19 +15,34 @@ public class IntroGameManager : MonoBehaviour
         TrumpShoots,
         TrumpLeaves,
         DogReemerges,
+        MontageTime,
         EndIntro
     }
 
+    public enum AvatarState
+    {
+        Dog,
+        Mom,
+        Boy,
+        Trump
+    }
+
+    public static IntroGameManager introGM;
+
     [Header("Dialogue Box Objects")]
     public GameObject dialogBox;
-    public GameObject avatarImage;
-    public DialogTextBox dialogText;
+    public GameObject dogAvatarImage;
+    public GameObject boyAvatarImage;
+    public GameObject momAvatarImage;
+    public GameObject trumpAvatarImage;
+    public IntroDialogTextBox dialogText;
 
     [Header("Opening Dialogue Files")]
     public TextAsset openingMomText;
     public TextAsset openingBoyText;
 
     [Header("Dog Emerges Dialogue Files")]
+    public TextAsset dogEmergesBoyText;
     public TextAsset dogEmergesDogText;
     public TextAsset dogEmergesMomText;
 
@@ -42,14 +57,20 @@ public class IntroGameManager : MonoBehaviour
     public TextAsset trumpAppearsTrumpText;
     public TextAsset trumpAppearsMomText;
     public TextAsset trumpAppearsTrumpTextP2;
+    public TextAsset trumpAppearsMomTextP2;
+    public TextAsset trumpAppearsTrumpTextP3;
 
     [Header("Trump Shoots Dialogue Files")]
+    public TextAsset trumpShootMomText;
     public TextAsset trumpShootTrumpText;
 
     [Header("Dog Reemerges Dialogue Files")]
     public TextAsset dogReemergesDogText;
-    public TextAsset dogReemergesBoyText;
-    public TextAsset dogReemergesDogTextP2;
+
+    [Header("Montage Time Dialogue Files")]
+    public TextAsset montageTimeDogText;
+    public TextAsset montageTimeBoyText;
+    public TextAsset montageTimeDogTextP2;
 
     private bool textActive;
 
@@ -63,12 +84,15 @@ public class IntroGameManager : MonoBehaviour
     private bool dogDialogueCheckP2;
     private bool momDialogueCheckP2;
     private bool trumpDialogueCheckP2;
+    private bool trumpDialogueCheckP3;
 
     // Start is called before the first frame update
     void Awake()
     {
+        introGM = this;
+
         dialogBox.SetActive(false);
-        avatarImage.SetActive(false);
+        dogAvatarImage.SetActive(false);
 
         textActive = false;
         currentState = IntroStates.Opening;
@@ -97,6 +121,8 @@ public class IntroGameManager : MonoBehaviour
                 TrumpLeavesState();
             else if (currentState == IntroStates.DogReemerges)
                 DogReemergesState();
+            else if (currentState == IntroStates.MontageTime)
+                MontageTimeState();
             else if (currentState == IntroStates.EndIntro)
                 EndIntroState();
         }
@@ -123,6 +149,13 @@ public class IntroGameManager : MonoBehaviour
 
     public void DogEmergesState()
     {
+        if (!boyDialogueCheck)
+        {
+            startIntroDialogue(dogEmergesBoyText);
+            boyDialogueCheck = true;
+            return;
+        }
+
         if (!dogDialogueCheck)
         {
             startIntroDialogue(dogEmergesDogText);
@@ -201,6 +234,20 @@ public class IntroGameManager : MonoBehaviour
             return;
         }
 
+        if (!momDialogueCheck)
+        {
+            startIntroDialogue(trumpAppearsMomTextP2);
+            momDialogueCheck = true;
+            return;
+        }
+
+        if (!trumpDialogueCheckP3)
+        {
+            startIntroDialogue(trumpAppearsTrumpTextP3);
+            trumpDialogueCheckP3 = true;
+            return;
+        }
+
         NextState();
     }
 
@@ -231,17 +278,27 @@ public class IntroGameManager : MonoBehaviour
             dogDialogueCheck = true;
             return;
         }
+    }
+
+    public void MontageTimeState()
+    {
+        if (!dogDialogueCheck)
+        {
+            startIntroDialogue(montageTimeDogText);
+            dogDialogueCheck = true;
+            return;
+        }
 
         if (!boyDialogueCheck)
         {
-            startIntroDialogue(dogReemergesDogText);
+            startIntroDialogue(montageTimeDogText);
             boyDialogueCheck = true;
             return;
         }
 
         if (!dogDialogueCheckP2)
         {
-            startIntroDialogue(dogReemergesDogTextP2);
+            startIntroDialogue(montageTimeDogTextP2);
             dogDialogueCheckP2 = true;
             return;
         }
@@ -259,7 +316,7 @@ public class IntroGameManager : MonoBehaviour
         Time.timeScale = 0;
 
         dialogBox.SetActive(true);
-        avatarImage.SetActive(true);
+        dogAvatarImage.SetActive(true);
 
         dialogText.startText(text);
 
@@ -271,7 +328,7 @@ public class IntroGameManager : MonoBehaviour
         Time.timeScale = 1;
 
         dialogBox.SetActive(false);
-        avatarImage.SetActive(false);
+        dogAvatarImage.SetActive(false);
         
         textActive = false;
     }
@@ -306,5 +363,6 @@ public class IntroGameManager : MonoBehaviour
         trumpDialogueCheck = false;
         dogDialogueCheckP2 = false;
         momDialogueCheckP2 = false;
-}
+        trumpDialogueCheckP3 = false;
+    }
 }

@@ -91,6 +91,12 @@ public class MeleeEnemy : EnemyAttack {
         this.transform.Rotate(new Vector3(0, whirlwindSpeed, 0));
     }
 
+    private void swishySwishy()
+    {
+        //Appearance/Animation for the type of swish
+        this.transform.Rotate(new Vector3(0, 0, whirlwindSpeed));
+    }
+
     private void resetRotations()
     {
         //Reset weapon's rotations based on the enemy's sprite direction

@@ -189,10 +189,11 @@ public class Enemy : MonoBehaviour {
         // Checks if enemy is dead and destroys them
         if (hp.currentHealth <= 0 && !deathAnim)
         {
+            movement.enabled = false;
+            attackStyle.enabled = false;
             //Amanda was here
             StartCoroutine(DeathAnimation());
             deathAnim = true;
-            
         }
     }
 

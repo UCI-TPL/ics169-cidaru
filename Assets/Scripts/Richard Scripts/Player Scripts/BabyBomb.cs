@@ -64,11 +64,19 @@ public class BabyBomb : Bomb {
                     hitCollider.GetComponent<TutorialTrojan>().babyTutorialTree();
 
                 if (hitCollider.gameObject.tag == "Tree" || hitCollider.gameObject.tag == "Tutorial")
+                {
                     Instantiate(sprout, hitCollider.transform.position - new Vector3(0, 1), Quaternion.identity);
+                }
                 else if (hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
-                    Instantiate(miniTrojanShooter, hitCollider.transform.position, Quaternion.identity);
+                {
+                    GameObject miniBoy = Instantiate(miniTrojanShooter, hitCollider.transform.position, Quaternion.identity);
+
+                    hitCollider.transform.parent.parent.GetComponentInChildren<Door>().addEnemy(miniBoy);
+                }
                 else
+                {
                     Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                }
 
                 if (hitCollider.gameObject.tag == "Tree" || hitCollider.gameObject.tag == "Tutorial")
                     Destroy(hitCollider.transform.parent.gameObject);

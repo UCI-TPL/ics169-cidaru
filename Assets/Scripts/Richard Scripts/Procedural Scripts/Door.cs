@@ -213,4 +213,9 @@ public class Door : MonoBehaviour {
                 globalTurret.SetActive(false);
         }
     }
+
+    public void addEnemy(GameObject enemy)
+    {
+        enemies.Add(enemy);
+    }
 }

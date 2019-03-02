@@ -21,8 +21,21 @@ public class RangedMovement : EnemyMovement {
         }
     }
 
-    public override void Move(bool aggressing)
-    { 
+    protected override void Pursue()
+    {
         movableTarget.transform.position = (transform.position - player.transform.position).normalized * minDistToPlayer + player.transform.position;
+        MoveTo(movableTarget.transform.position);
+    }
+
+    protected override void updateAnimations()
+    {
+        ///Updates visuals and animations
+        if (anim)
+            anim.SetBool("walking", canMove);
+
+        if (player.transform.position.x < transform.position.x)
+            this.transform.localScale = new Vector3(-1.0f * startScale.x, transform.localScale.y);
+        else
+            this.transform.localScale = new Vector3(1.0f * startScale.x, transform.localScale.y);
     }
 }

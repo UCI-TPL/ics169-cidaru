@@ -28,6 +28,22 @@ public class RangedEnemy : EnemyAttack {
     {
         fireTimer -= Time.deltaTime;
 
+        animateWeapon();
+
+        // Timer to fire bullets on set intervals
+        if (fireTimer <= 0f)
+        {
+            weapon.GetComponent<Animator>().SetBool("Shooting", false); // Bow release animation
+            GameObject newBullet = Instantiate(bullet, weapon.transform.position, Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
+
+            newBullet.tag = "Enemy Bullet";
+
+            fireTimer = setFireTimer;
+        }
+    }
+
+    private void animateWeapon()
+    {
         // Bow loading animation
         weapon.GetComponent<Animator>().SetBool("Shooting", true);
 
@@ -41,16 +57,5 @@ public class RangedEnemy : EnemyAttack {
             weapon.transform.Rotate(new Vector3(0, 0, -90));
         else if (weapon.name.Equals("Gun"))
             weapon.transform.Rotate(new Vector3(0, 0, -90));
-
-        // Timer to fire bullets on set intervals
-        if (fireTimer <= 0f)
-        {
-            weapon.GetComponent<Animator>().SetBool("Shooting", false); // Bow release animation
-            GameObject newBullet = Instantiate(bullet, weapon.transform.position, Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
-
-            newBullet.tag = "Enemy Bullet";
-
-            fireTimer = setFireTimer;
-        }
     }
 }

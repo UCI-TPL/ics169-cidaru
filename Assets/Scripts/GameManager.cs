@@ -68,6 +68,16 @@ public class GameManager : MonoBehaviour {
     public GameObject uiIcons;
     public GameObject hpUI;
 
+    [Header("Initial Dialogue of Levels")]
+    public TextAsset level1Text;
+    public TextAsset level2Text;
+    public TextAsset level3Text;
+    public TextAsset preBossText;
+    public TextAsset postBossText;
+
+    [Header("Respawn Dialogue")]
+    public List<TextAsset> respawnDialogues;
+
     [Header("Tutorial Fields (DO NOT FILL BELOW IF NOT TUTORIAL)")]
     public bool isTutorial = false;
     
@@ -107,6 +117,8 @@ public class GameManager : MonoBehaviour {
 
     private Fader fade;
 
+    private bool initialDialogue;
+
     private bool playerTalking;
 
     private ControlsUIText controlsUIText;
@@ -126,6 +138,8 @@ public class GameManager : MonoBehaviour {
 
         minimapPos = GameObject.Find("Minimap Objects").transform;
         cameraColPos = GameObject.Find("Camera Collider").transform;
+
+        initialDialogue = false;
 
         fade = GetComponent<Fader>();
 
@@ -203,6 +217,12 @@ public class GameManager : MonoBehaviour {
 
     private void gameplayLoop()
     {
+        if (!initialDialogue)
+        {
+            PerformInitialDialogue();
+            initialDialogue = true;
+        }
+
         if (playerHp.dead() && !respawning)
         {
             Time.timeScale = 0f;
@@ -276,6 +296,8 @@ public class GameManager : MonoBehaviour {
         GetComponent<PauseController>().enabled = true;
 
         respawning = false;
+
+        //startDialogue(respawnDialogues[Random.Range(0, respawnDialogues.Count)]);
     }
 
     public void updateMinimapPosition(Vector3 newPos)
@@ -535,6 +557,16 @@ public class GameManager : MonoBehaviour {
             dc.SetActive(false);
 
         NextState();
+    }
+
+    public void PerformInitialDialogue()
+    {
+        if (PlayerPrefs.GetInt("Level") == 2)
+            startDialogue(level1Text);
+        else if (PlayerPrefs.GetInt("Level") == 3)
+            startDialogue(level2Text);
+        else if (PlayerPrefs.GetInt("Level") == 4)
+            startDialogue(level3Text);
     }
 
     public void startDialogue(TextAsset text)

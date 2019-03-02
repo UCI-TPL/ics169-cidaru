@@ -94,6 +94,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRend: {fileID: 8298367439991697489}
   thisRend: {fileID: 8168625874690570457}
+--- !u!1 &5543524855393462293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7548382034805589526}
+  m_Layer: 12
+  m_Name: Movable Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7548382034805589526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543524855393462293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8203144041053376339}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8204374966658808793
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,13 +138,13 @@ GameObject:
   - component: {fileID: 8143073105865380977}
   - component: {fileID: 8092704674700588217}
   - component: {fileID: 8092783171500926777}
-  - component: {fileID: 8088476563698880845}
   - component: {fileID: 8092476737017562179}
   - component: {fileID: 8109834078944721969}
   - component: {fileID: 5555893389859743354}
   - component: {fileID: 1791210863005761163}
   - component: {fileID: 1572145264316146227}
-  - component: {fileID: 161680774256678897}
+  - component: {fileID: 3987071234122271464}
+  - component: {fileID: 4358665753409850525}
   m_Layer: 12
   m_Name: Ranged Normie
   m_TagString: Enemy
@@ -135,6 +165,7 @@ Transform:
   m_Children:
   - {fileID: 8199206064688636771}
   - {fileID: 1063499146359575743}
+  - {fileID: 7548382034805589526}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -245,8 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6609b624b8e1c448a00bcf0cff368bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackStyle: {fileID: 8088476563698880845}
-  movement: {fileID: 0}
+  attackStyle: {fileID: 4358665753409850525}
+  movement: {fileID: 3987071234122271464}
   aggroRange: 10
   aggressing: 0
   deathMaterial: {fileID: 2100000, guid: 3f951a17c72c9cd499de8f391ed10623, type: 2}
@@ -271,21 +302,6 @@ MonoBehaviour:
   startingHealth: 4
   audioClips: {fileID: 11400000, guid: 8c2505ddd89e2874f9c314425ba69ce3, type: 2}
   currentHealth: 0
---- !u!114 &8088476563698880845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8204374966658808793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bafc18275b3c8439f2aee96a455e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setFireTimer: 0.8
-  bullet: {fileID: 6016123406094753196, guid: fc01f0d34d023a9408743bba524f37ee, type: 3}
-  weapon: {fileID: 8205199487189952435}
 --- !u!114 &8092476737017562179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +472,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &161680774256678897
+--- !u!114 &3987071234122271464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -465,13 +481,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8204374966658808793}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdb5ef4ad5cb52d43a893ec809f9b807, type: 3}
+  m_Script: {fileID: 11500000, guid: 4965c621a0b0f424c838a51a22389a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   repathRate: 0.5
   target: {fileID: 0}
-  canSearch: 0
-  canMove: 0
+  canSearch: 1
+  canMove: 1
   speed: 3
   enableRotation: 0
   rotationIn2D: 0
@@ -480,9 +496,26 @@ MonoBehaviour:
   switchPathInterpolationSpeed: 5
   originalSpeed: 0
   patrolPoints: []
-  timeBetweenTeleport: 3
-  minDist: 2
-  maxDist: 6
+  minDistToPlayer: 2
+  movableTarget: {fileID: 5543524855393462293}
+--- !u!114 &4358665753409850525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8204374966658808793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80257d097a5f7af4e9290d9d48697e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setFireTimer: 1
+  bullet: {fileID: 6016123406094753196, guid: fc01f0d34d023a9408743bba524f37ee, type: 3}
+  weapon: {fileID: 8205199487189952435}
+  numShots: 6
+  restTime: 3
+  stopMoveOnRest: 1
 --- !u!1 &8205199487189952435
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class NextLevel : MonoBehaviour {
 
             if (PlayerPrefs.GetInt("Level") == 2)
                 GameManager.gm.LoadNextLevel();
-            else if (PlayerPrefs.GetInt("Level") == 4)
+            else if (PlayerPrefs.GetInt("Level") == 5)
                 GameManager.gm.LoadBossLevel();
             else
                 GameManager.gm.ReloadLevel();

@@ -8,39 +8,53 @@ public class BossAttack : EnemyAttack {
      *               damages player when runs them over.
      */
 
+    [Header("Base Info")]
     public int dmg = 3;
     public float phase1Percent = (float) 0.75; //the percent of health before the boss enters phase1
     public float phase2Percent = (float) 0.25; //the percent of health before the boss enters phase2
-
-    public GameObject spawner;
-    public int numChargesBeforeBirth;
-
+    
+    /// HP stuff
     private Health hp;
     private int phase1Health;
     private int phase2Health;
 
+    /// Extra Charge stuff
     private float originalChargeDist;
     private ChargeMovement chargeMove;
+
+    [Header("Phase 1")]
+    /// Spawning stuff
+    public GameObject spawner;
+    public float spawnRate; //the rate at which it spawns spawners
+    public float spawnDuration; //the amount of time it takes to spawn
+
+    private float spawnerTimer;
+    private float spawnDurationTimer;
+
+    //[Header("Phase 2")]
+    //public int numCharges;
+
 
     private void Start()
     {
         hp = GetComponent<Health>();
         phase1Health = (int) (phase1Percent * hp.startingHealth);
         phase2Health = (int) (phase2Percent * hp.startingHealth);
+
+        spawnerTimer = spawnRate;
+        spawnDurationTimer = 0;
     }
 
     private void Awake()
     {
         originalChargeDist = GetComponent<ChargeMovement>().chargeDistance;
         chargeMove = (ChargeMovement)GetComponent<Enemy>().movement;
-        spawner.GetComponent<Spawner>().setContinuousSpawn(false);
     }
 
     public override void Attack()
     {
         if (hp.currentHealth >= phase2Health && hp.currentHealth <= (phase1Health))
         {
-            Debug.Log("Phase 1");
             Phase1();
         }
         else if (hp.currentHealth <= (phase2Health))
@@ -55,32 +69,28 @@ public class BossAttack : EnemyAttack {
         }
     }
 
-    private bool isCharging()
-    {
-        return GetComponent<EnemyMovement>().originalSpeed < GetComponent<EnemyMovement>().speed;
-    }
-
     private void Phase1()
     {
-        //GetComponent<ChargeMovement>().chargeDistance = originalChargeDist * 0.75f;
-        spawner.GetComponent<Spawner>().setContinuousSpawn(false);
+        spawnerTimer += Time.deltaTime;
 
-        if (chargeMove.getNumTimesCharged() >= numChargesBeforeBirth+1)
+        if (spawnerTimer >= spawnRate)
         {
-            GetComponent<Enemy>().movement.enabled = false;
-            spawner.SetActive(true);
-            spawner.GetComponent<Spawner>().Spawn();
-            chargeMove.resetNumTimesCharged();
-        }
-        else if (chargeMove.getNumTimesCharged() == 0 && !spawner.GetComponent<Spawner>().spawning)
-        {
-            GetComponent<Enemy>().movement.enabled = true;
+            spawnDurationTimer += Time.deltaTime;
+            GetComponent<ChargeMovement>().cancelCharge();
+            GetComponent<ChargeMovement>().enabled = false;
+
+            if (spawnDurationTimer >= spawnDuration)
+            {
+                Instantiate(spawner, transform.position, transform.rotation);
+                spawnDurationTimer = 0f;
+                spawnerTimer = 0f;
+                GetComponent<ChargeMovement>().enabled = true;
+            }
         }
     }
 
     private void Phase2()
     {
         ///TODO: implement lol
-        Phase1();
     }
 }

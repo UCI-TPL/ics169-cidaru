@@ -30,25 +30,22 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (continuousSpawn)
+        if (totalTimer <= spawnDelay)
         {
-            if (totalTimer <= spawnDelay)
-            {
-                totalTimer += Time.deltaTime;
-                timer = timeInterval;
-                return;
-            }
-
-            timer += Time.deltaTime;
-            if (timer >= timeInterval)
-            {
-                if (spawnCount < spawnLimit)
-                    StartCoroutine(SpawnThing());
-                timer = 0;
-            }
-
-            checkLimit(); //Destroys gameObject if at or over limit
+            totalTimer += Time.deltaTime;
+            timer = timeInterval;
+            return;
         }
+
+        timer += Time.deltaTime;
+        if (timer >= timeInterval)
+        {
+            if (spawnCount < spawnLimit)
+                SpawnThing();
+            timer = 0;
+        }
+
+        checkLimit(); //Destroys gameObject if at or over limit
     }
 
     public void Spawn()
@@ -56,15 +53,14 @@ public class Spawner : MonoBehaviour
         if (continuousSpawn)
             timer = timeInterval;
         else if (spawnCount < spawnLimit)
-                StartCoroutine(SpawnThing());
+                SpawnThing();
     }
 
-    protected virtual IEnumerator SpawnThing()
+    protected virtual void SpawnThing()
     {
         spawning = true;
         spawnCount++;
         Instantiate(thingToSpawn, transform.position, Quaternion.identity);
-        yield return new WaitForSecondsRealtime(0);
         spawning = false;
     }
 

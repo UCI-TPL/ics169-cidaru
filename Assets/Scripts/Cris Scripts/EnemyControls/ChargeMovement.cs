@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class ChargeMovement : EnemyMovement {
 
     #region Charge Vars
     [Header("Charging")]
     public GameObject movableTarget;
+    public ParticleSystem particleEffect;
     public float chargeDistance = 0f; //The closest the player needs to be for charge
     public float chargeTime = 0f; //The time takes to charge (how long it waits)
     public float chargePower = 0f; //The speed/power increase multiplier
@@ -58,12 +60,16 @@ public class ChargeMovement : EnemyMovement {
             StartCoroutine(Wait(.3f));
             speed = originalSpeed;
             charged = false;
+            if (particleEffect)
+                particleEffect.Stop();
         }
         if (collision.transform.tag.Contains("Obstacle"))
         {
             MoveAwayFrom(target.position);
             speed = originalSpeed;
             charged = false;
+            if (particleEffect)
+                particleEffect.Stop();
         }
     }
 
@@ -95,12 +101,15 @@ public class ChargeMovement : EnemyMovement {
         }
         else //charged == true
         {
-            movableTarget.transform.position = chargedTarget;
+            NNInfo nn = AstarPath.active.GetNearest(chargedTarget, NNConstraint.Default);
+            movableTarget.transform.position = nn.clampedPosition;
             if ((int)distFromTarget(target.position) == 0)
             {
                 StartCoroutine(Wait(.5f));
                 speed = originalSpeed;
                 charged = false;
+                if (particleEffect)
+                    particleEffect.Stop();
             }
         }
         MoveTo(target.position);
@@ -127,6 +136,11 @@ public class ChargeMovement : EnemyMovement {
 
     private void chargeAnimations()
     {
+        if (particleEffect && !particleEffect.isPlaying)
+        {
+            particleEffect.Play();
+        }
+
         if (tag.Contains("Enemy Boss"))
         {
             //Horse "Animations"
@@ -199,9 +213,12 @@ public class ChargeMovement : EnemyMovement {
         /// Resets variables so that when called it sets the enemy
         /// to its original, uncharged state
         charged = false;
+        if (particleEffect)
+            particleEffect.Stop();
         canMove = true;
         speed = originalSpeed;
         movableTarget.transform.position = player.transform.position;
+        StopAllCoroutines();
     }
 
     public int getNumTimesCharged()
@@ -212,5 +229,10 @@ public class ChargeMovement : EnemyMovement {
     public void resetNumTimesCharged()
     {
         numTimesCharged = 0;
+    }
+
+    public bool getCharged()
+    {
+        return charged;
     }
 }

@@ -10,6 +10,13 @@ public class TutorialTrigger : MonoBehaviour
 
     public bool portalTrigger = false;
 
+    [Header("Room Trigger Type")]
+    public bool singleRoomTrigger = true;
+    public bool doubleLRTrigger = false;
+    public bool doubleRLTrigger = false;
+    public bool doubleTBTrigger = false;
+    public bool doubleBTTrigger = false;
+
     void Awake()
     {
         foreach (GameObject door in doors)
@@ -20,7 +27,16 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GameManager.gm.updateMinimapPosition(transform.parent.position);
+            if (singleRoomTrigger)
+                GameManager.gm.updateMinimapPosition(transform.parent.position);
+            else if (doubleLRTrigger)
+                GameManager.gm.updateDoubleLRMinimapPosition(transform.parent.position + new Vector3(11, 0, 0));
+            else if (doubleRLTrigger)
+                GameManager.gm.updateDoubleLRMinimapPosition(transform.parent.position + new Vector3(-12, 0, 0));
+            else if (doubleTBTrigger)
+                GameManager.gm.updateDoubleTBMinimapPosition(transform.parent.position + new Vector3(0, -10, 0));
+            else if (doubleBTTrigger)
+                GameManager.gm.updateDoubleTBMinimapPosition(transform.parent.position + new Vector3(0, 9, 0));
 
             gameObject.SetActive(false);
 

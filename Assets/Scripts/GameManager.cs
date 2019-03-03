@@ -82,14 +82,16 @@ public class GameManager : MonoBehaviour {
     public bool isTutorial = false;
     
     [Header("Room Conditions")]
-    public List<GameObject> destroyableVases = new List<GameObject>();
-    public GameObject trappedTrojan;
-    public GameObject hogTiedTrojan;
+    public List<GameObject> introDestroyableVases = new List<GameObject>();
+    public List<GameObject> vortexTrappedTrojan;
+    public GameObject babyHogTiedTrojan;
+    public GameObject babyYaYeetTrojan;
 
     [Header("Room Doors")]
-    public GameObject shootMoveRoomDoor;
-    public List<GameObject> vortexRoomDoors;
-    public List<GameObject> babyRoomDoors;
+    public List<GameObject> shootRoomDoors;
+    public GameObject vortexRoomDoor;
+    public GameObject babyRoomDoor;
+    public GameObject portalRoomDoor;
 
     [Header("Cutscene Text Files")]
     public TextAsset[] moveShootTextFiles;
@@ -524,7 +526,7 @@ public class GameManager : MonoBehaviour {
     // Check if the vases have been cleared
     public void checkVaseRoomCleared()
     {
-        foreach (GameObject destroyableVase in destroyableVases)
+        foreach (GameObject destroyableVase in introDestroyableVases)
         {
             // If not cleared, return
             if (destroyableVase != null)
@@ -532,7 +534,8 @@ public class GameManager : MonoBehaviour {
         }
 
         // Disable all doors after clearing
-        shootMoveRoomDoor.SetActive(false);
+        foreach (GameObject shootRoomDoor in shootRoomDoors)
+            shootRoomDoor.SetActive(false);
 
         NextState();
     }
@@ -541,9 +544,8 @@ public class GameManager : MonoBehaviour {
     {
         if (trappedTrojan != null)
             return;
-
-        foreach (GameObject dc in vortexRoomDoors)
-            dc.SetActive(false);
+        
+        vortexRoomDoor.SetActive(false);
 
         NextState();
     }
@@ -552,9 +554,8 @@ public class GameManager : MonoBehaviour {
     {
         if (hogTiedTrojan != null)
             return;
-
-        foreach (GameObject dc in babyRoomDoors)
-            dc.SetActive(false);
+        
+        babyRoomDoor.SetActive(false);
 
         NextState();
     }

@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 4
+  isTiedTrojan: 0
   audioClips: {fileID: 11400000, guid: 8c2505ddd89e2874f9c314425ba69ce3, type: 2}
   currentHealth: 0
 --- !u!114 &8092476737017562179
@@ -510,11 +511,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80257d097a5f7af4e9290d9d48697e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setFireTimer: 1
+  setFireTimer: 0.1
   bullet: {fileID: 6016123406094753196, guid: fc01f0d34d023a9408743bba524f37ee, type: 3}
   weapon: {fileID: 8205199487189952435}
-  numShots: 6
-  restTime: 3
+  numShots: 3
+  restTime: 2
   stopMoveOnRest: 1
 --- !u!1 &8205199487189952435
 GameObject:

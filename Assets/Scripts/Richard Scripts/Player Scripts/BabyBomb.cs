@@ -25,6 +25,10 @@ public class BabyBomb : Bomb {
     // Audio of baby bomb
     private AudioSource audioSource;
 
+    // Particle Emitter of baby bomb
+    private ParticleSystem emitter;
+    public float emissionTimer = 0.1f;
+
     // Condition of whether the baby bomb has exploded yet
     private bool exploded;
 
@@ -32,6 +36,7 @@ public class BabyBomb : Bomb {
     {
         sprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        emitter = GetComponent<ParticleSystem>();
         exploded = false;
     }
 
@@ -90,8 +95,19 @@ public class BabyBomb : Bomb {
             sprite.enabled = false;
             audioSource.Play();
 
+            // Shoot diapers out
+            StartCoroutine("emit");
+
+
             // Destroy object after specified time
             Destroy(gameObject, 1.5f);
         }
 	}
+
+    private IEnumerator emit()
+    {
+        emitter.Play();
+        yield return new WaitForSeconds(emissionTimer);
+        emitter.Stop();
+    }
 }

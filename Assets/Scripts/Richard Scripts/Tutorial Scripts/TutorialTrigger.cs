@@ -43,15 +43,12 @@ public class TutorialTrigger : MonoBehaviour
 
             gameObject.SetActive(false);
 
-            if (gameObject.name == "Entry Trigger")
-            {
-                HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
+            HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
 
-                foreach (HighlightRoom roomSpriteController in roomSpriteControllers)
-                    roomSpriteController.resetRoom();
+            foreach (HighlightRoom roomSpriteController in roomSpriteControllers)
+                roomSpriteController.resetRoom();
 
-                roomSprite.highlightRoomSprite();
-            }
+            roomSprite.highlightRoomSprite();
 
             if (portalTrigger)
                 GameObject.Find("Portal").GetComponent<NextLevel>().Activate();

@@ -27,6 +27,8 @@ public class TutorialStatue : MonoBehaviour
         {
             GameManager.gm.startDialogue(textFile);
 
+            GameManager.gm.slowRoomComplete = true;
+
             foreach (Turret turret in turrets)
                 turret.enabled = false;
 

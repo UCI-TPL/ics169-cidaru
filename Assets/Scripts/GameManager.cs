@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("Room Doors")]
     public List<GameObject> shootRoomDoors;
+    public GameObject shootRoomPortalDoor;
     public GameObject vortexRoomDoor;
     public GameObject babyRoomDoor;
     public GameObject portalRoomDoor;
@@ -136,9 +137,12 @@ public class GameManager : MonoBehaviour {
 
     private bool respawning;
 
-    private bool babyRoomComplete;
-    private bool vortexRoomComplete;
-    private bool slowRoomComplete;
+    [HideInInspector]
+    public bool babyRoomComplete;
+    [HideInInspector]
+    public bool vortexRoomComplete;
+    [HideInInspector]
+    public bool slowRoomComplete;
 
     private void Awake()
     {
@@ -568,8 +572,9 @@ public class GameManager : MonoBehaviour {
                 return;
         }
 
-
         vortexRoomDoor.SetActive(false);
+
+        vortexRoomComplete = true;
 
         NextState();
     }
@@ -596,6 +601,8 @@ public class GameManager : MonoBehaviour {
         }
 
         babyRoomDoor.SetActive(false);
+
+        babyRoomComplete = true;
 
         NextState();
     }
@@ -728,6 +735,9 @@ public class GameManager : MonoBehaviour {
 
         if (slowRoomComplete)
             shootRoomDoors[2].SetActive(true);
+
+        if (vortexRoomComplete && babyRoomComplete && slowRoomComplete)
+            shootRoomPortalDoor.SetActive(false);
     }
     #endregion Tutorial Functions
 }

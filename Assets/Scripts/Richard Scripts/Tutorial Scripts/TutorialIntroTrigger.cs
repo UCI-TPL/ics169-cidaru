@@ -17,15 +17,14 @@ public class TutorialIntroTrigger : MonoBehaviour
             if (GameManager.gm.currentState != GameManager.TutorialStates.ShootRoom)
                 GameManager.gm.nextState = stateToChange;
 
-            if (gameObject.name == "Entry Trigger")
-            {
-                HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
+            GameManager.gm.checkIntroDoorOpen();
 
-                foreach (HighlightRoom roomSpriteController in roomSpriteControllers)
-                    roomSpriteController.resetRoom();
+            HighlightRoom[] roomSpriteControllers = FindObjectsOfType<HighlightRoom>();
 
-                roomSprite.highlightRoomSprite();
-            }
+            foreach (HighlightRoom roomSpriteController in roomSpriteControllers)
+                roomSpriteController.resetRoom();
+
+            roomSprite.highlightRoomSprite();
         }
     }
 }

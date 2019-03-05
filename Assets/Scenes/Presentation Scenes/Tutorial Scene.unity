@@ -191,12 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &250246719 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8750889636897511326, guid: ab08e219d3b9d2149ae4a6d1750b4317,
-    type: 3}
-  m_PrefabInstance: {fileID: 284624519394904128}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &314631011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,6 +1506,7 @@ MonoBehaviour:
   - {fileID: 1786295553}
   - {fileID: 1111035163}
   - {fileID: 2137917033}
+  shootRoomPortalDoor: {fileID: 1514448047331577514}
   vortexRoomDoor: {fileID: 6536543514072190122}
   babyRoomDoor: {fileID: 7664709247027095182}
   portalRoomDoor: {fileID: 4156120513513498768}
@@ -1535,6 +1530,9 @@ MonoBehaviour:
   vortexCD: {fileID: 8237130395867546538}
   currentState: 0
   nextState: 0
+  babyRoomComplete: 0
+  vortexRoomComplete: 0
+  slowRoomComplete: 0
 --- !u!4 &4011435035848033
 Transform:
   m_ObjectHideFlags: 0
@@ -1885,11 +1883,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5290917595062551440, guid: ab08e219d3b9d2149ae4a6d1750b4317,
-        type: 3}
-      propertyPath: door
-      value: 
-      objectReference: {fileID: 250246719}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab08e219d3b9d2149ae4a6d1750b4317, type: 3}
 --- !u!4 &529745561912287406 stripped
@@ -1974,6 +1967,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1425194287384430585, guid: 133c687b0394d0a45a46b35a3f82228c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 133c687b0394d0a45a46b35a3f82228c, type: 3}
+--- !u!1 &1514448047331577514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1716509228186423416, guid: 133c687b0394d0a45a46b35a3f82228c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1514448047331577513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3036045784119474690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3036045784119474690, guid: de315961d7b85ce47ac4022c95d74a67,

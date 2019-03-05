@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TutorialTrigger : MonoBehaviour
 {
-    public GameObject[] doors;
+    public GameObject door;
 
     public HighlightRoom roomSprite;
 
     public bool portalTrigger = false;
+
+    public GameManager.TutorialStates stateToChange;
 
     [Header("Room Trigger Type")]
     public bool singleRoomTrigger = true;
@@ -19,8 +21,7 @@ public class TutorialTrigger : MonoBehaviour
 
     void Awake()
     {
-        foreach (GameObject door in doors)
-            door.SetActive(false);
+        door.SetActive(false);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +39,8 @@ public class TutorialTrigger : MonoBehaviour
             else if (doubleBTTrigger)
                 GameManager.gm.updateDoubleTBMinimapPosition(transform.parent.position + new Vector3(0, 9, 0));
 
+            GameManager.gm.nextState = stateToChange;
+
             gameObject.SetActive(false);
 
             if (gameObject.name == "Entry Trigger")
@@ -49,16 +52,12 @@ public class TutorialTrigger : MonoBehaviour
 
                 roomSprite.highlightRoomSprite();
             }
+
             if (portalTrigger)
                 GameObject.Find("Portal").GetComponent<NextLevel>().Activate();
 
-            foreach (GameObject door in doors)
-            {
-                if (gameObject.name == "Entry Trigger")
-                    door.SetActive(true);
-                else
-                    door.SetActive(false);
-            }
+            door.SetActive(true);
+
         }
     }
 }

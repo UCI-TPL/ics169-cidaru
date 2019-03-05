@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5691681098111618031}
   - component: {fileID: 5746569880903226093}
   - component: {fileID: 5746568121695169729}
-  - component: {fileID: 5725344964975870011}
   - component: {fileID: 5630494589252378804}
   - component: {fileID: 5630494589252378805}
   - component: {fileID: 6243596749366275548}
@@ -165,25 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drop: {fileID: 1347093599493600, guid: 9052feb30ca8bf34f8462d1d1919df30, type: 3}
   probability: 15
---- !u!95 &5725344964975870011
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5630494589252378807}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 214f851c66ff94f4c99a06a6138d0e59, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5630494589252378804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +192,7 @@ MonoBehaviour:
   destroyedObject: {fileID: 0}
   rotationSpeed: 200
   isVase: 0
+  isTrojan: 1
 --- !u!82 &6243596749366275548
 AudioSource:
   m_ObjectHideFlags: 0

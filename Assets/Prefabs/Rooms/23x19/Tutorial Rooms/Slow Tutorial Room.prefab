@@ -136,7 +136,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1856501835689921960}
   - component: {fileID: 1802205948859359398}
-  - component: {fileID: 1754276256645425030}
   - component: {fileID: 1858103877569527888}
   m_Layer: 0
   m_Name: Trigger Area
@@ -175,25 +174,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3
---- !u!114 &1754276256645425030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858103876629187822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7290407285aef494e91ab173ff8a04b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textFiles:
-  - {fileID: 4900000, guid: 16fb39abca9667d439f90eaba1bb28d7, type: 3}
-  - {fileID: 4900000, guid: cf536612bbb9c7f49a9e16b4625b343b, type: 3}
-  - {fileID: 4900000, guid: a672b85eff2036e47b0df3627f199ca8, type: 3}
-  - {fileID: 4900000, guid: 1c9d98bf260dc144d9e195fc6863374a, type: 3}
-  - {fileID: 4900000, guid: db8a9100f0f569b4289e703fc2f8d14c, type: 3}
-  uiIndicator: {fileID: 8856656630268956580}
 --- !u!114 &1858103877569527888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6e128fbaafe7748beeea61e2482bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFile: {fileID: 0}
+  textFile: {fileID: 4900000, guid: 33e6b69b45ac3ba48950f23c6da879f0, type: 3}
   uiIndicator: {fileID: 8856656630268956580}
   turrets:
   - {fileID: 8591954623676290084}
@@ -12756,10 +12736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5965ff0d4ed5ad140aa105bd17b7eaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doors:
-  - {fileID: 8750889636897511326}
+  door: {fileID: 8750889636897511326}
   roomSprite: {fileID: 8607247148123724799}
   portalTrigger: 0
+  stateToChange: 4
   singleRoomTrigger: 0
   doubleLRTrigger: 1
   doubleRLTrigger: 0
@@ -13589,11 +13569,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8609891890272597245}
     m_Modifications:
-    - target: {fileID: 1142087018697654764, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
-        type: 3}
-      propertyPath: m_Name
-      value: Double_RL_Walls
-      objectReference: {fileID: 0}
     - target: {fileID: 4658209665149542387, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13648,6 +13623,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142087018697654764, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
+        type: 3}
+      propertyPath: m_Name
+      value: Double_RL_Walls
       objectReference: {fileID: 0}
     - target: {fileID: 7052267590236165069, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
         type: 3}
@@ -13824,8 +13804,7 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[20].y
       value: 10.046489
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6885299380641404210, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b, type: 3}
 --- !u!4 &677394375387918036 stripped
 Transform:

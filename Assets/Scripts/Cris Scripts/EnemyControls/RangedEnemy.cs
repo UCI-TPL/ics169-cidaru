@@ -56,5 +56,8 @@ public class RangedEnemy : EnemyAttack {
             weapon.transform.Rotate(new Vector3(0, 0, -90));
         else if (weapon.name.Equals("Gun"))
             weapon.transform.Rotate(new Vector3(0, 0, -90));
+
+        if (GetComponent<Health>().dead())
+            Destroy(weapon);
     }
 }

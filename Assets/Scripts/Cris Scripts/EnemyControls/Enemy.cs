@@ -191,6 +191,7 @@ public class Enemy : MonoBehaviour {
         {
             movement.enabled = false;
             attackStyle.enabled = false;
+
             //Amanda was here
             StartCoroutine(DeathAnimation());
             deathAnim = true;

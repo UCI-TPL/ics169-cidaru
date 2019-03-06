@@ -36,6 +36,9 @@ public class MeleeEnemy : EnemyAttack {
 
     public override void Attack()
     {
+        if (GetComponent<Health>().dead())
+            Destroy(weapon);
+
         if (whirlwindLimit == 0) //No whirlwind, no worries
             return;
 

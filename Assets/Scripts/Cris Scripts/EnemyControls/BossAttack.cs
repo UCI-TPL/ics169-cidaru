@@ -143,6 +143,7 @@ public class BossAttack : EnemyAttack {
             spawnDurationTimer += Time.deltaTime;
             chargeMove.cancelCharge();
             chargeMove.enabled = false;
+            hp.setInvincible(true);
 
             if (spawnDurationTimer >= spawnDuration)
             {
@@ -150,6 +151,7 @@ public class BossAttack : EnemyAttack {
                 spawnDurationTimer = 0f;
                 spawnerTimer = 0f;
                 chargeMove.enabled = true;
+                hp.setInvincible(false);
             }
         }
     }

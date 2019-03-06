@@ -90,10 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawners:
-  - {fileID: 0}
   - {fileID: 1426126521261650}
-  - {fileID: 0}
   - {fileID: 1005875974553080}
+  - {fileID: 466914290034584350}
+  - {fileID: 2602110356155118102}
   turrets: []
   doorColliders:
   - {fileID: 5175483087000726066}
@@ -6261,6 +6261,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6618e62535e99642a221b0b21214bc9, type: 3}
+--- !u!1 &2602110356155118102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2797037043028506972, guid: e6618e62535e99642a221b0b21214bc9,
+    type: 3}
+  m_PrefabInstance: {fileID: 201993248664652618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2596559921149518244 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2793721296436669166, guid: e6618e62535e99642a221b0b21214bc9,
@@ -6496,6 +6502,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6618e62535e99642a221b0b21214bc9, type: 3}
+--- !u!1 &466914290034584350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2797037043028506972, guid: e6618e62535e99642a221b0b21214bc9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2354188868938502722}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &463458419002521772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2793721296436669166, guid: e6618e62535e99642a221b0b21214bc9,
@@ -6509,6 +6521,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4705920003410064}
     m_Modifications:
+    - target: {fileID: 303050894707598588, guid: 10c802b75de91eb478f68059da02c087,
+        type: 3}
+      propertyPath: m_Name
+      value: T_Walls
+      objectReference: {fileID: 0}
     - target: {fileID: 303050894707598590, guid: 10c802b75de91eb478f68059da02c087,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6564,11 +6581,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 303050894707598588, guid: 10c802b75de91eb478f68059da02c087,
-        type: 3}
-      propertyPath: m_Name
-      value: T_Walls
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c802b75de91eb478f68059da02c087, type: 3}
 --- !u!4 &5173007414882150554 stripped
@@ -6584,10 +6596,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4583197133055256}
     m_Modifications:
-    - target: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
-      propertyPath: m_Name
-      value: Top Door
-      objectReference: {fileID: 0}
     - target: {fileID: 4918098998693684, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -6631,6 +6639,10 @@ PrefabInstance:
     - target: {fileID: 4918098998693684, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556730520890814, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}
+      propertyPath: m_Name
+      value: Top Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89b89322c2df07b438d1e8e1d5b737c3, type: 3}

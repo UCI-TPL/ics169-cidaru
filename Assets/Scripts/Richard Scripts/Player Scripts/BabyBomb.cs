@@ -25,6 +25,10 @@ public class BabyBomb : Bomb {
     // Audio of baby bomb
     private AudioSource audioSource;
 
+    // Particle Emitter of baby bomb
+    private ParticleSystem emitter;
+    public float emissionTimer = 0.1f;
+
     // Condition of whether the baby bomb has exploded yet
     private bool exploded;
 
@@ -32,6 +36,7 @@ public class BabyBomb : Bomb {
     {
         sprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        emitter = GetComponent<ParticleSystem>();
         exploded = false;
     }
 
@@ -57,15 +62,16 @@ public class BabyBomb : Bomb {
                     continue;
                 if (hitCollider.gameObject.tag.Contains("Turret"))
                     continue;
-                if (hitCollider.gameObject.layer == 14 && hitCollider.gameObject.tag != "Tree" && hitCollider.gameObject.tag != "Tutorial")
+                if (hitCollider.gameObject.layer == 14 && hitCollider.gameObject.tag != "Tree")
                     continue;
 
-                if (hitCollider.gameObject.tag == "Tutorial")
-                    hitCollider.GetComponent<TutorialTrojan>().babyTutorialTree();
-
-                if (hitCollider.gameObject.tag == "Tree" || hitCollider.gameObject.tag == "Tutorial")
+                if (hitCollider.gameObject.tag == "Tree")
                 {
                     Instantiate(sprout, hitCollider.transform.position - new Vector3(0, 1), Quaternion.identity);
+                } 
+                else if (hitCollider.gameObject.tag == "Tutorial")
+                {
+                    Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
                 }
                 else if (hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
                 {
@@ -78,7 +84,7 @@ public class BabyBomb : Bomb {
                     Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
                 }
 
-                if (hitCollider.gameObject.tag == "Tree" || hitCollider.gameObject.tag == "Tutorial")
+                if (hitCollider.gameObject.tag == "Tree")
                     Destroy(hitCollider.transform.parent.gameObject);
                 else
                     Destroy(hitCollider.gameObject);
@@ -90,8 +96,19 @@ public class BabyBomb : Bomb {
             sprite.enabled = false;
             audioSource.Play();
 
+            // Shoot diapers out
+            StartCoroutine("emit");
+
+
             // Destroy object after specified time
             Destroy(gameObject, 1.5f);
         }
 	}
+
+    private IEnumerator emit()
+    {
+        emitter.Play();
+        yield return new WaitForSeconds(emissionTimer);
+        emitter.Stop();
+    }
 }

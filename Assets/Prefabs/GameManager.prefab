@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 0}
   cameraPanTime: 0.1
-  roomStartDelay: 0.5
+  roomStartDelay: 0.2
   respawnTime: 2
   cameraPanning: 0
   confiner: {fileID: 0}
@@ -127,21 +127,30 @@ MonoBehaviour:
   postBossText: {fileID: 4900000, guid: 314fb22ba405c5347939d0c9c1359794, type: 3}
   respawnDialogues: []
   isTutorial: 0
-  destroyableVases: []
-  trappedTrojan: {fileID: 0}
-  hogTiedTrojan: {fileID: 0}
-  shootMoveRoomDoor: {fileID: 0}
-  vortexRoomDoors: []
-  babyRoomDoors: []
-  moveShootTextFiles: []
+  introDestroyableVases: []
+  vortexTrappedTrojans: []
+  babyHogTiedTrojan: []
+  babyYaYeetTrojan: {fileID: 0}
+  babyPortals: []
+  shootRoomDoors: []
+  shootRoomPortalDoor: {fileID: 0}
+  vortexRoomDoor: {fileID: 0}
+  babyRoomDoor: {fileID: 0}
+  portalRoomDoor: {fileID: 0}
+  shootTextFiles: []
   slowTextFiles: []
   vortexTextFiles: []
   babyTextFiles: []
   portalTextFiles: []
+  dashCD: {fileID: 0}
   slowCD: {fileID: 0}
   babyCD: {fileID: 0}
   vortexCD: {fileID: 0}
   currentState: 0
+  nextState: 0
+  babyRoomComplete: 0
+  vortexRoomComplete: 0
+  slowRoomComplete: 0
 --- !u!114 &114631073505308308
 MonoBehaviour:
   m_ObjectHideFlags: 0

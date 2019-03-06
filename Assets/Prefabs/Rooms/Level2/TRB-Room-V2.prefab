@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1611580357821555112}
   - component: {fileID: 1486485137725520828}
   - component: {fileID: 1624024777805151930}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Right Door
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5516,7 +5516,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1842849745
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 100
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6050,6 +6050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e332d1586006ca34fb1a666b8e8dc0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomFound: 0
   isCopyRoom: 0
   copyRoom: {fileID: 0}
 --- !u!1 &1961059714241246091
@@ -6552,7 +6553,7 @@ GameObject:
   - component: {fileID: 3344618212678659942}
   - component: {fileID: 3210842423851748910}
   - component: {fileID: 3359889644765029162}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Top Door
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6658,7 +6659,7 @@ GameObject:
   - component: {fileID: 6343132743239038250}
   - component: {fileID: 6556159296753890632}
   - component: {fileID: 6400939591968008512}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Bot Door
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6892,6 +6893,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1955780668430591025}
     m_Modifications:
+    - target: {fileID: 1728087906513378, guid: 849f59b6494b87d4687392dcb074bead, type: 3}
+      propertyPath: m_Name
+      value: Melee Spawner
+      objectReference: {fileID: 0}
     - target: {fileID: 4354065946265578, guid: 849f59b6494b87d4687392dcb074bead, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3009856
@@ -6935,10 +6940,6 @@ PrefabInstance:
     - target: {fileID: 4354065946265578, guid: 849f59b6494b87d4687392dcb074bead, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1728087906513378, guid: 849f59b6494b87d4687392dcb074bead, type: 3}
-      propertyPath: m_Name
-      value: Melee Spawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849f59b6494b87d4687392dcb074bead, type: 3}
@@ -7180,6 +7181,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1955780668430591025}
     m_Modifications:
+    - target: {fileID: 84847744787405011, guid: 70fd4a6235e9ab944a69ad6bd2994453,
+        type: 3}
+      propertyPath: m_Name
+      value: Treefab
+      objectReference: {fileID: 0}
     - target: {fileID: 6298508932883721582, guid: 70fd4a6235e9ab944a69ad6bd2994453,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7235,11 +7241,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 84847744787405011, guid: 70fd4a6235e9ab944a69ad6bd2994453,
-        type: 3}
-      propertyPath: m_Name
-      value: Treefab
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70fd4a6235e9ab944a69ad6bd2994453, type: 3}
 --- !u!4 &910192769755268116 stripped
@@ -7255,6 +7256,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1955780668430591025}
     m_Modifications:
+    - target: {fileID: 1313794117771326, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
+      propertyPath: m_Name
+      value: platform 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4624306063563560, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -7298,10 +7303,6 @@ PrefabInstance:
     - target: {fileID: 4624306063563560, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1313794117771326, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}
-      propertyPath: m_Name
-      value: platform 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3410a4195cd535446a45fcaa70c668c3, type: 3}

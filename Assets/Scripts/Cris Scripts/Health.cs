@@ -7,6 +7,7 @@ public class Health : MonoBehaviour {
     public int startingHealth = 1;
 
     [Header("Sound Effect Bank (For Enemies)")]
+    public bool isTiedTrojan = false;
     public SFXStorage audioClips;
     
     [HideInInspector]
@@ -23,7 +24,7 @@ public class Health : MonoBehaviour {
         currentHealth = startingHealth;
         isDead = false;
 
-        if (gameObject.tag == "Enemy")
+        if (gameObject.tag == "Enemy" || isTiedTrojan)
         {
             chosenSFX = audioClips.soundEffs[Random.Range(0, audioClips.soundEffs.Count)];
             audioSource = GetComponent<AudioSource>();
@@ -37,7 +38,7 @@ public class Health : MonoBehaviour {
         {
             currentHealth -= amount;
 
-            if (gameObject.tag == "Enemy")
+            if (gameObject.tag == "Enemy" || isTiedTrojan)
             {
                 audioSource.pitch = Random.Range(0.8f, 1f);
                 audioSource.Play();

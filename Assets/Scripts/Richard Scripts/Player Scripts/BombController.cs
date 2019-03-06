@@ -58,14 +58,14 @@ public class BombController : MonoBehaviour {
     private bool CheckSlowTutorialCondition()
     {
         return (GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.SlowRoom ||
-            GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomPost ||
-            GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
+            GameManager.gm.currentState == GameManager.TutorialStates.SlowRoomPost || GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
     }
 
     private bool CheckBabysTutorialCondition()
     {
-        return (GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoom ||
-            GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPost ||
+        return (GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPart1 ||
+            GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPart1End || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPart2 ||
+            GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPart2End || GameManager.gm.currentState == GameManager.TutorialStates.BabyRoomPost ||
             GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
     }
 

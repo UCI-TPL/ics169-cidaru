@@ -8,7 +8,9 @@ public class IntroGameManager : MonoBehaviour
     public enum IntroStates
     {
         Opening,
+        DogEmergesAction,
         DogEmerges,
+        DogLeavesAction,
         DogLeaves,
         EnemiesAppear,
         ActionPhase,
@@ -29,6 +31,9 @@ public class IntroGameManager : MonoBehaviour
     }
 
     public static IntroGameManager introGM;
+
+    [Header("Animation Objects")]
+    public GameObject dogEmergesObjects;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -76,6 +81,8 @@ public class IntroGameManager : MonoBehaviour
 
     private bool textActive;
 
+    private bool animationActive;
+
     private IntroStates currentState;
 
     // Dialogue Check
@@ -96,6 +103,10 @@ public class IntroGameManager : MonoBehaviour
         dialogBox.SetActive(false);
         dogAvatarImage.SetActive(false);
 
+        animationActive = false;
+
+        dogEmergesObjects.SetActive(false);
+
         textActive = false;
         currentState = IntroStates.Opening;
     }
@@ -107,7 +118,9 @@ public class IntroGameManager : MonoBehaviour
         {
             if (currentState == IntroStates.Opening)
                 OpeningState();
-            else if (currentState == IntroStates.DogEmerges)
+            else if (currentState == IntroStates.DogEmergesAction)
+                DogEmergesActionState();
+            else if (currentState == IntroStates.DogEmerges && !animationActive)
                 DogEmergesState();
             else if (currentState == IntroStates.DogLeaves)
                 DogLeavesState();
@@ -147,6 +160,13 @@ public class IntroGameManager : MonoBehaviour
         }
 
         NextState();
+    }
+
+    public void DogEmergesActionState()
+    {
+        dogEmergesObjects.SetActive(true);
+
+        animationActive = true;
     }
 
     public void DogEmergesState()
@@ -341,8 +361,12 @@ public class IntroGameManager : MonoBehaviour
     public void NextState()
     {
         if (currentState == IntroStates.Opening)
+            currentState = IntroStates.DogEmergesAction;
+        else if (currentState == IntroStates.DogEmergesAction)
             currentState = IntroStates.DogEmerges;
         else if (currentState == IntroStates.DogEmerges)
+            currentState = IntroStates.DogLeavesAction;
+        else if (currentState == IntroStates.DogLeavesAction)
             currentState = IntroStates.DogLeaves;
         else if (currentState == IntroStates.DogLeaves)
             currentState = IntroStates.EnemiesAppear;
@@ -361,6 +385,7 @@ public class IntroGameManager : MonoBehaviour
         else if (currentState == IntroStates.MontageTime)
             currentState = IntroStates.EndIntro;
 
+        animationActive = false;
         ResetDialogueCheck();
     }
 

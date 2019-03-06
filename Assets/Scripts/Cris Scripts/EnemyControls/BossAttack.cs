@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BossAttack : EnemyAttack {
     /* Defines how the Boss attacks
-     * Trojan Horse: Spawns out of itself incrementally,
-     *               damages player when runs them over.
+     * All Phases: Charges at player
+     * Phase 1: Incrementally summons enemy spawners
+     * Phase 2: Bullet Hell
      */
+
+    [Header("FOR TESTING ONLY")]
+    public bool demo = false; //if true, checks below to see which phase and runs it
+    public Phase phase;
 
     [Header("Base Info")]
     public int dmg = 3;
@@ -47,11 +52,22 @@ public class BossAttack : EnemyAttack {
     private Animator gunHolderAnim;
     private LevelsOFHell currentHell;
 
+    public enum Phase
+    { One, Two}
+
     public enum LevelsOFHell
     {
         Basic,
         Wiggly,
-        Pulse
+        Pulse,
+        HalfCirc,
+        Arc,
+        AimedArc,
+        FrontBlast,
+        AimedFrontBlast,
+        HarderBasic,
+        HarderWiggly,
+        HarderPulse
     }
 
     private void Start()
@@ -81,12 +97,32 @@ public class BossAttack : EnemyAttack {
 
     public override void Attack()
     {
-        //if (hp.currentHealth >= phase2Health && hp.currentHealth <= (phase1Health))
-        //{
-        //    Phase1();
-        //}
-        //else if (hp.currentHealth <= (phase2Health))
+        if (demo)
+            phaseDemo();
+        else
+            checkPhase();
+    }
+
+    private void checkPhase()
+    {
+        if (hp.currentHealth >= phase2Health && hp.currentHealth <= (phase1Health))
+        {
+            Phase1();
+        }
+        else if (hp.currentHealth <= (phase2Health))
             Phase2();
+    }
+
+    private void phaseDemo()
+    {
+        if (phase == Phase.One)
+        {
+            Phase1();
+        }
+        else if (phase == Phase.Two)
+        {
+            Phase2();
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -122,19 +158,17 @@ public class BossAttack : EnemyAttack {
     {
         ///Bullet Hell
         gunHolder.SetActive(true);
-        //if (chargeMove.getNumTimesCharged() == numCharges)
-        //{
-        //    chargeMove.enabled = false;
-        //    HellTime();
-        //}
-        chargeMove.enabled = false;
-        //aimedArcHell(1, 3);
+        if (chargeMove.getNumTimesCharged() >= numCharges)
+        {
+            chargeMove.enabled = false;
+            HellTime();
+        }
     }
 
+    #region Phase 2
     private void HellTime()
     {
         ///The main function that controls the bullet hells and which one happens
-
         hellTimer += Time.deltaTime;
 
         ///Setting up your own personal hell
@@ -148,6 +182,27 @@ public class BossAttack : EnemyAttack {
                 break;
             case LevelsOFHell.Pulse:
                 pulsingHell(1); ///1 sec between pulses
+                break;
+            case LevelsOFHell.HalfCirc:
+                halfCircleHell(1);
+                break;
+            case LevelsOFHell.Arc:
+                arcHell(1, 3);
+                break;
+            case LevelsOFHell.AimedArc:
+                aimedArcHell(0.5f, 3);
+                break;
+            case LevelsOFHell.FrontBlast:
+                frontBlastHell(3);
+                break;
+            case LevelsOFHell.HarderBasic:
+                basicHell(2, 8);
+                break;
+            case LevelsOFHell.HarderPulse:
+                pulsingHell(0.5f);
+                break;
+            case LevelsOFHell.HarderWiggly:
+                wigglyHell(2, 8);
                 break;
             default:
                 basicHell(1, 4);
@@ -197,8 +252,8 @@ public class BossAttack : EnemyAttack {
     private void arcHell(float pulseRate, int width)
     {
         gunHolderAnim.SetInteger("Phase", 0); ///no extra movement
-        Vector3[] halfCircDirections = getArcDirections(width);
-        pulsePattern(pulseRate, halfCircDirections);
+        Vector3[] arcDirections = getArcDirections(width);
+        pulsePattern(pulseRate, arcDirections);
     }
 
     private void aimedArcHell(float pulseRate, int width)
@@ -207,9 +262,12 @@ public class BossAttack : EnemyAttack {
         arcHell(pulseRate, width);
     }
 
-    private void tighterArcHell()
+    private void tighterArcHell(float pulseRate, int width, int fillNum)
     {
+        gunHolderAnim.SetInteger("Phase", 0); ///no extra movement
 
+        //insert interpolation here
+        //pulsePattern(pulseRate, directions);
     }
 
     private void frontBlastHell(int width)
@@ -385,6 +443,14 @@ public class BossAttack : EnemyAttack {
 
     private void setNextPhase()
     {
+        if (demo)
+            setDemoPhases();
+        else
+            setActualPhases();
+    }
+
+    private void setActualPhases()
+    {
         switch (currentHell)
         {
             case LevelsOFHell.Basic:
@@ -394,6 +460,15 @@ public class BossAttack : EnemyAttack {
                 currentHell = LevelsOFHell.Pulse;
                 break;
             case LevelsOFHell.Pulse:
+                currentHell = LevelsOFHell.HalfCirc;
+                break;
+            case LevelsOFHell.HalfCirc:
+                currentHell = LevelsOFHell.AimedArc;
+                break;
+            case LevelsOFHell.AimedArc:
+                currentHell = LevelsOFHell.FrontBlast;
+                break;
+            case LevelsOFHell.FrontBlast:
                 currentHell = LevelsOFHell.Basic;
                 break;
             default:
@@ -401,5 +476,61 @@ public class BossAttack : EnemyAttack {
                 break;
         }
     }
+
+    private void setDemoPhases()
+    {
+        switch (currentHell)
+        {
+            case LevelsOFHell.Basic:
+                Debug.Log("Mode Set To: HARDER BASIC");
+                currentHell = LevelsOFHell.HarderBasic;
+                break;
+            case LevelsOFHell.HarderBasic:
+                Debug.Log("Mode Set To: WIGGLY");
+                currentHell = LevelsOFHell.Wiggly;
+                break;
+            case LevelsOFHell.Wiggly:
+                Debug.Log("Mode Set To: HARDER WIGGLY");
+                currentHell = LevelsOFHell.HarderWiggly;
+                break;
+            case LevelsOFHell.HarderWiggly:
+                Debug.Log("Mode Set To: PULSE");
+                currentHell = LevelsOFHell.Pulse;
+                break;
+            case LevelsOFHell.Pulse:
+                Debug.Log("Mode Set To: HARDER PULSE");
+                currentHell = LevelsOFHell.HarderPulse;
+                break;
+            case LevelsOFHell.HarderPulse:
+                Debug.Log("Mode Set To: HALF CIRC");
+                currentHell = LevelsOFHell.HalfCirc;
+                break;
+            case LevelsOFHell.HalfCirc:
+                Debug.Log("Mode Set To: ARC");
+                currentHell = LevelsOFHell.Arc;
+                break;
+            case LevelsOFHell.Arc:
+                Debug.Log("Mode Set To: ANIMED ARC");
+                currentHell = LevelsOFHell.AimedArc;
+                break;
+            case LevelsOFHell.AimedArc:
+                Debug.Log("Mode Set To: FRONT BLAST");
+                currentHell = LevelsOFHell.FrontBlast;
+                break;
+            case LevelsOFHell.FrontBlast:
+                Debug.Log("Mode Set To: AIMED FRONT BLAST");
+                currentHell = LevelsOFHell.AimedFrontBlast;
+                break;
+            case LevelsOFHell.AimedFrontBlast:
+                Debug.Log("Mode Set To: BASIC");
+                currentHell = LevelsOFHell.Basic;
+                break;
+            default:
+                Debug.Log("Mode Set To: BASIC");
+                currentHell = LevelsOFHell.Basic;
+                break;
+        }
+    }
+    #endregion
     #endregion
 }

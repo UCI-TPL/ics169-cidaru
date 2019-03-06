@@ -33,6 +33,8 @@ public class RangedEnemy : EnemyAttack {
 
     protected void Shoot()
     {
+        if (!weapon)
+            return;
         weapon.GetComponent<Animator>().SetBool("Shooting", false); // Bow release animation
         GameObject newBullet = Instantiate(bullet, weapon.transform.position, Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
 
@@ -43,8 +45,12 @@ public class RangedEnemy : EnemyAttack {
 
     protected void animateWeapon()
     {
+        if (!weapon)
+            return;
+
         // Bow loading animation
-        weapon.GetComponent<Animator>().SetBool("Shooting", true);
+        if (weapon.GetComponent<Animator>())
+            weapon.GetComponent<Animator>().SetBool("Shooting", true);
 
         // Rotating the Bow to point at Player
         Vector3 newUp = new Vector3(weapon.transform.position.x - player.transform.position.x,

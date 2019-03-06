@@ -211,7 +211,15 @@ public class GunController : MonoBehaviour {
             #endregion Old Elemental Weapon Shoot Conditions
 
             // Normal weapon shooting
-            NormalShoot();
+            if (GameManager.gm.isTutorial)
+            {
+                if (CheckShootTutorialCondition())
+                    NormalShoot();
+            }
+            else
+            {
+                NormalShoot();
+            }
 
             #region Old Reload Timer
             /*
@@ -254,6 +262,13 @@ public class GunController : MonoBehaviour {
     {
         return (GameManager.gm.currentState == GameManager.TutorialStates.VortexRoomStart || GameManager.gm.currentState == GameManager.TutorialStates.VortexRoom ||
             GameManager.gm.currentState == GameManager.TutorialStates.VortexRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.VortexRoomPost ||
+            GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
+    }
+
+    private bool CheckShootTutorialCondition()
+    {
+        return (GameManager.gm.currentState == GameManager.TutorialStates.ShootRoom || GameManager.gm.currentState == GameManager.TutorialStates.ShootRoomStart ||
+            GameManager.gm.currentState == GameManager.TutorialStates.ShootRoomEnd || GameManager.gm.currentState == GameManager.TutorialStates.ShootRoomPost ||
             GameManager.gm.currentState == GameManager.TutorialStates.PortalRoomPost);
     }
 

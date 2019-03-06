@@ -13370,7 +13370,7 @@ GameObject:
   - component: {fileID: 6946671019067373109}
   m_Layer: 20
   m_Name: Left Door
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13569,6 +13569,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8609891890272597245}
     m_Modifications:
+    - target: {fileID: 1142087018697654764, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
+        type: 3}
+      propertyPath: m_Name
+      value: Double_RL_Walls
+      objectReference: {fileID: 0}
     - target: {fileID: 4658209665149542387, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13624,10 +13629,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1142087018697654764, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
+    - target: {fileID: 6885299380641404210, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
         type: 3}
-      propertyPath: m_Name
-      value: Double_RL_Walls
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7052267590236165069, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
         type: 3}
@@ -13803,11 +13808,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[20].y
       value: 10.046489
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885299380641404210, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b2ebb0ec88aa743b36eeb1ae82c66b, type: 3}

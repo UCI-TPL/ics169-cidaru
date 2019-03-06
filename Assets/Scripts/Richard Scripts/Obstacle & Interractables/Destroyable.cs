@@ -119,13 +119,14 @@ public class Destroyable : MonoBehaviour {
     // Destroys object when called
     public virtual void Death()
     {
-        GameObject rubble = new GameObject();
+        GameObject rubble = null;
 
         if (!isTrojan)
             rubble = Instantiate(destroyedObject, transform.position, Quaternion.identity);
 
         if (isVase)
             rubble.GetComponent<SpritePicker>().pickVaseRubbleSprite(GetComponent<SpriteRenderer>().sprite);
+
 
         if (GetComponent<DropController>())
             GetComponent<DropController>().calculateDrop();

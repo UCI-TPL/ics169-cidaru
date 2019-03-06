@@ -62,6 +62,8 @@ public class BabyBomb : Bomb {
                     continue;
                 if (hitCollider.gameObject.tag.Contains("Turret"))
                     continue;
+                if (hitCollider.gameObject.layer == 14 && hitCollider.gameObject.tag != "Tree")
+                    continue;
 
                 if (hitCollider.gameObject.tag == "Tree")
                 {
@@ -82,7 +84,7 @@ public class BabyBomb : Bomb {
                     Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
                 }
 
-                if (hitCollider.gameObject.tag == "Tree" || hitCollider.gameObject.tag == "Tutorial")
+                if (hitCollider.gameObject.tag == "Tree")
                     Destroy(hitCollider.transform.parent.gameObject);
                 else
                     Destroy(hitCollider.gameObject);

@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> introDestroyableVases = new List<GameObject>();
     public List<GameObject> vortexTrappedTrojans;
     public List<GameObject> babyHogTiedTrojan;
-    public List<GameObject> babyYaYeetTrojans;
+    public GameObject babyYaYeetTrojan;
+    public List<GameObject> babyPortals;
 
     [Header("Room Doors")]
     public List<GameObject> shootRoomDoors;
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour {
 
     private bool textActive;
     
-    [HideInInspector]
+    //[HideInInspector]
     public TutorialStates currentState;
 
     [HideInInspector]
@@ -473,7 +474,10 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.ShootRoomPost)
             {
-                // SKIP ACTION
+                dashCD.SetActive(false);
+                slowCD.SetActive(false);
+                babyCD.SetActive(false);
+                vortexCD.SetActive(false);
             }
             else if (currentState == TutorialStates.SlowRoomStart && !textActive)
             {
@@ -493,6 +497,8 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.VortexRoom)
             {
+                dashCD.SetActive(false);
+                babyCD.SetActive(false);
                 slowCD.SetActive(false);
                 vortexCD.SetActive(true);
 
@@ -512,6 +518,8 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.BabyRoomPart1)
             {
+                dashCD.SetActive(false);
+                slowCD.SetActive(false);
                 vortexCD.SetActive(false);
                 babyCD.SetActive(true);
 
@@ -520,10 +528,15 @@ public class GameManager : MonoBehaviour {
             else if (currentState == TutorialStates.BabyRoomPart1End && !textActive)
             {
                 startTutorialDialogue(babyTextFiles[1]);
+
+                babyYaYeetTrojan.SetActive(true);
+
+                foreach (GameObject babyPortal in babyPortals)
+                    babyPortal.SetActive(true);
             }
             else if (currentState == TutorialStates.BabyRoomPart2)
             {
-                // ADD PART 2 CHECK
+                checkBabyRoomPart2Cleared();
             }
             else if (currentState == TutorialStates.BabyRoomPart2End && !textActive)
             {
@@ -539,6 +552,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.PortalRoomPost)
             {
+                dashCD.SetActive(true);
                 vortexCD.SetActive(true);
                 babyCD.SetActive(true);
                 slowCD.SetActive(true);
@@ -593,12 +607,8 @@ public class GameManager : MonoBehaviour {
 
     public void checkBabyRoomPart2Cleared()
     {
-        foreach (GameObject babyYaYeetTrojan in babyYaYeetTrojans)
-        {
-            // If not cleared, return
-            if (babyYaYeetTrojan != null)
-                return;
-        }
+        if (babyYaYeetTrojan != null)
+            return;
 
         babyRoomDoor.SetActive(false);
 
@@ -672,16 +682,6 @@ public class GameManager : MonoBehaviour {
 
         NextState();
         textActive = false;
-    }
-
-    public void NextState(TutorialStates state)
-    {
-        if (currentState == TutorialStates.ShootRoomStart)
-            currentState = TutorialStates.ShootRoom;
-        else if (currentState == TutorialStates.ShootRoom)
-            currentState = TutorialStates.ShootRoomEnd;
-        else if (currentState == TutorialStates.ShootRoomEnd)
-            currentState = TutorialStates.ShootRoomPost;
     }
 
     public void NextState()

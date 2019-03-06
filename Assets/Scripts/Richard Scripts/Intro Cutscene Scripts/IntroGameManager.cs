@@ -12,6 +12,7 @@ public class IntroGameManager : MonoBehaviour
         DogEmerges,
         DogLeavesAction,
         DogLeaves,
+        EnemiesAppearAction,
         EnemiesAppear,
         ActionPhase,
         TrumpAppears,
@@ -34,6 +35,8 @@ public class IntroGameManager : MonoBehaviour
 
     [Header("Animation Objects")]
     public GameObject dogEmergesObjects;
+    public Animator dogEmergesAnim;
+    public Animator boyLeavesAnim;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -122,8 +125,12 @@ public class IntroGameManager : MonoBehaviour
                 DogEmergesActionState();
             else if (currentState == IntroStates.DogEmerges && !animationActive)
                 DogEmergesState();
+            else if (currentState == IntroStates.DogLeavesAction && !animationActive)
+                DogLeavesActionState();
             else if (currentState == IntroStates.DogLeaves)
                 DogLeavesState();
+            else if (currentState == IntroStates.EnemiesAppearAction && !animationActive)
+                EnemiesAppearActionState();
             else if (currentState == IntroStates.EnemiesAppear)
                 EnemiesAppearState();
             else if (currentState == IntroStates.ActionPhase)
@@ -195,6 +202,13 @@ public class IntroGameManager : MonoBehaviour
         NextState();
     }
 
+    public void DogLeavesActionState()
+    {
+        dogEmergesAnim.SetBool("leave", true);
+
+        animationActive = true;
+    }
+
     public void DogLeavesState()
     {
         if (!dogDialogueCheck)
@@ -212,6 +226,14 @@ public class IntroGameManager : MonoBehaviour
         }
 
         NextState();
+    }
+
+    public void EnemiesAppearActionState()
+    {
+        dogEmergesAnim.SetBool("disappear", true);
+        boyLeavesAnim.SetBool("leave", true);
+
+        animationActive = true;
     }
 
     public void EnemiesAppearState()
@@ -369,6 +391,8 @@ public class IntroGameManager : MonoBehaviour
         else if (currentState == IntroStates.DogLeavesAction)
             currentState = IntroStates.DogLeaves;
         else if (currentState == IntroStates.DogLeaves)
+            currentState = IntroStates.EnemiesAppearAction;
+        else if (currentState == IntroStates.EnemiesAppearAction)
             currentState = IntroStates.EnemiesAppear;
         else if (currentState == IntroStates.EnemiesAppear)
             currentState = IntroStates.ActionPhase;

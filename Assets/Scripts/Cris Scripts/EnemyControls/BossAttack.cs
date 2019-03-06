@@ -10,9 +10,9 @@ public class BossAttack : EnemyAttack {
 
     [Header("Base Info")]
     public int dmg = 3;
-    public float phase1Percent = (float) 0.75; //the percent of health before the boss enters phase1
-    public float phase2Percent = (float) 0.25; //the percent of health before the boss enters phase2
-    
+    public float phase1Percent = (float)0.75; //the percent of health before the boss enters phase1
+    public float phase2Percent = (float)0.25; //the percent of health before the boss enters phase2
+
     /// HP stuff
     private Health hp;
     private int phase1Health;
@@ -31,33 +31,61 @@ public class BossAttack : EnemyAttack {
     private float spawnerTimer;
     private float spawnDurationTimer;
 
-    //[Header("Phase 2")]
-    //public int numCharges;
+    [Header("Phase 2")]
+    public int numCharges = 1;
+    public float bulletHellDuration = 3f;
+    public float setFireTimer = 1f;
+    public GameObject bullet;
+    public GameObject gunHolder;
 
+    /// Timers
+    private float hellTimer;
+    private float fireTimer;
+    private float pulseTimer;
+
+    /// Misc important
+    private Animator gunHolderAnim;
+    private LevelsOFHell currentHell;
+
+    public enum LevelsOFHell
+    {
+        Basic,
+        Wiggly,
+        Pulse
+    }
 
     private void Start()
     {
+        player = GameObject.Find("Player");
+
         hp = GetComponent<Health>();
         phase1Health = (int) (phase1Percent * hp.startingHealth);
         phase2Health = (int) (phase2Percent * hp.startingHealth);
 
         spawnerTimer = spawnRate;
         spawnDurationTimer = 0;
+
+        hellTimer = 0f;
+        fireTimer = setFireTimer;
+        pulseTimer = 0f;
+        currentHell = LevelsOFHell.Basic;
+        gunHolderAnim = gunHolder.GetComponent<Animator>();
+        gunHolder.SetActive(false);
     }
 
     private void Awake()
     {
         originalChargeDist = GetComponent<ChargeMovement>().chargeDistance;
-        chargeMove = (ChargeMovement)GetComponent<Enemy>().movement;
+        chargeMove = GetComponent<ChargeMovement>();
     }
 
     public override void Attack()
     {
-        if (hp.currentHealth >= phase2Health && hp.currentHealth <= (phase1Health))
-        {
-            Phase1();
-        }
-        else if (hp.currentHealth <= (phase2Health))
+        //if (hp.currentHealth >= phase2Health && hp.currentHealth <= (phase1Health))
+        //{
+        //    Phase1();
+        //}
+        //else if (hp.currentHealth <= (phase2Health))
             Phase2();
     }
 
@@ -71,26 +99,307 @@ public class BossAttack : EnemyAttack {
 
     private void Phase1()
     {
+        ///Birthing some dudes
         spawnerTimer += Time.deltaTime;
 
         if (spawnerTimer >= spawnRate)
         {
             spawnDurationTimer += Time.deltaTime;
-            GetComponent<ChargeMovement>().cancelCharge();
-            GetComponent<ChargeMovement>().enabled = false;
+            chargeMove.cancelCharge();
+            chargeMove.enabled = false;
 
             if (spawnDurationTimer >= spawnDuration)
             {
                 Instantiate(spawner, transform.position, transform.rotation);
                 spawnDurationTimer = 0f;
                 spawnerTimer = 0f;
-                GetComponent<ChargeMovement>().enabled = true;
+                chargeMove.enabled = true;
             }
         }
     }
 
     private void Phase2()
     {
-        ///TODO: implement lol
+        ///Bullet Hell
+        gunHolder.SetActive(true);
+        //if (chargeMove.getNumTimesCharged() == numCharges)
+        //{
+        //    chargeMove.enabled = false;
+        //    HellTime();
+        //}
+        chargeMove.enabled = false;
+        //aimedArcHell(1, 3);
     }
+
+    private void HellTime()
+    {
+        ///The main function that controls the bullet hells and which one happens
+
+        hellTimer += Time.deltaTime;
+
+        ///Setting up your own personal hell
+        switch (currentHell)
+        {
+            case LevelsOFHell.Basic:
+                basicHell(1, 4); ///x1 speed, 4 guns
+                break;
+            case LevelsOFHell.Wiggly:
+                wigglyHell(1, 4); ///x1 speed, 4 guns
+                break;
+            case LevelsOFHell.Pulse:
+                pulsingHell(1); ///1 sec between pulses
+                break;
+            default:
+                basicHell(1, 4);
+                break;
+        }
+
+        if (hellTimer >= bulletHellDuration)
+        {
+            resetForNextPart();
+        }
+    }
+
+    #region Levels of Hell
+    private void basicHell(float speed, int guns)
+    {
+        ///A replica of the SlowRotation one that Dom did
+        gunHolderAnim.SetInteger("Phase", 1); ///basic turning
+        gunHolderAnim.speed = speed; 
+        Shoot(guns);
+    }
+    
+    private void wigglyHell(float speed, int guns)
+    {
+        ///A replica of the 90DegreeWiggle that Dom did
+        ///Applicable stages: 1,2,4
+        gunHolderAnim.SetInteger("Phase", 2); ///wiggly
+        gunHolderAnim.speed = speed;
+        Shoot(guns);
+    }
+
+    private void pulsingHell(float pulseRate)
+    {
+        ///Bullets "pulse" out in a circle like waves
+        ///fastest suggested pulseRate is 0.03, otherwise it lags
+        gunHolderAnim.SetInteger("Phase", 0); ///no extra movement
+        Vector3[] allDirections = getDirections(16);
+        pulsePattern(pulseRate, allDirections);
+    }
+
+    private void halfCircleHell(float pulseRate)
+    {
+        gunHolderAnim.SetInteger("Phase", 0); ///no extra movement
+        Vector3[] halfCircDirections = getArcDirections(5);
+        pulsePattern(pulseRate, halfCircDirections);
+    }
+
+    private void arcHell(float pulseRate, int width)
+    {
+        gunHolderAnim.SetInteger("Phase", 0); ///no extra movement
+        Vector3[] halfCircDirections = getArcDirections(width);
+        pulsePattern(pulseRate, halfCircDirections);
+    }
+
+    private void aimedArcHell(float pulseRate, int width)
+    {
+        gunHolder.transform.rotation = Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position);
+        arcHell(pulseRate, width);
+    }
+
+    private void tighterArcHell()
+    {
+
+    }
+
+    private void frontBlastHell(int width)
+    {
+        gunHolderAnim.SetInteger("Phase", 0); ///no extra movement
+        Vector3[] arcDirections = getArcDirections(width);
+        ShootAt(arcDirections);
+    }
+    
+    private void aimedFrontBlastHell(int width)
+    {
+        gunHolder.transform.rotation = Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position);
+        frontBlastHell(width);
+    }
+    #endregion
+
+
+    #region Bullet Spawning Stuff
+    private void Shoot(int numGuns)
+    {
+        ///Shoots evenly spaced guns
+        ///numGuns allowed: 1,2,4,8,16
+        Vector3[] allDirections = getDirections(numGuns);
+        ShootAt(allDirections);
+    }
+
+    private void ShootAt(Vector3[] directions)
+    {
+        ///Shoots in the given directions based on the fireTimer
+        fireTimer -= Time.deltaTime;
+
+        /// Timer to fire bullets on set intervals
+        if (fireTimer <= 0f)
+        {
+            foreach (Vector3 direction in directions)
+            {
+                instantiateBullet(direction);
+            }
+            fireTimer = setFireTimer;
+        }
+    }
+
+    private void pulsePattern(float pulseRate, Vector3[] allDirections)
+    {
+        ///Instead of the regular fire, fires a bunch in patterned bursts
+        ///The patterns depend on the directions
+        pulseTimer += Time.deltaTime;
+
+        if (pulseTimer >= pulseRate)
+        {
+            foreach (Vector3 direction in allDirections)
+            {
+                instantiateBullet(direction);
+            }
+            pulseTimer = 0;
+        }
+    }
+
+    private void instantiateBullet(Vector3 direction)
+    {
+        ///Instantiated a bullet that will shoot in the specified direction
+        GameObject newBullet = Instantiate(bullet, gunHolder.transform.position, Quaternion.LookRotation(Vector3.forward, direction));
+        newBullet.tag = "Enemy Bullet";
+    }
+    #endregion
+
+    #region Direction Stuff
+    private Vector3[] getDirections(int numDirections)
+    {
+        ///Will get the directions based off gunHolder
+        ///Possible total directions: 1,2,4,8,16
+        
+        Vector3[] allDirections = new Vector3[numDirections];
+
+        Transform gunPlace = gunHolder.transform;
+        if (numDirections >= 1)
+            allDirections[0] = gunPlace.up; ///up, 90deg
+        if (numDirections >= 2)
+            allDirections[1] = -gunPlace.up; ///down, 270deg
+        if (numDirections >= 4)
+        {
+            allDirections[2] = -gunPlace.right; ///left, 180deg
+            allDirections[3] = gunPlace.right; ///right, 0deg
+        }
+        if (numDirections >= 8)
+        {
+            allDirections[4] = allDirections[0] + allDirections[3]; /// 45deg
+            allDirections[5] = allDirections[0] + allDirections[2]; /// 135deg
+            allDirections[6] = allDirections[1] + allDirections[2]; /// 225deg
+            allDirections[7] = allDirections[1] + allDirections[3]; /// 315deg
+        }
+        if (numDirections == 16) ///////FIX
+        {
+            ///top right
+            allDirections[8] = allDirections[4] + allDirections[0];
+            allDirections[9] = allDirections[4] + allDirections[3];
+
+            ///top left
+            allDirections[10] = allDirections[5] + allDirections[0];
+            allDirections[11] = allDirections[5] + allDirections[2];
+
+            ///bottom left
+            allDirections[12] = allDirections[6] + allDirections[1];
+            allDirections[13] = allDirections[6] + allDirections[2];
+
+            ///bottom right
+            allDirections[14] = allDirections[7] + allDirections[1];
+            allDirections[15] = allDirections[7] + allDirections[3];
+        }
+        return allDirections;
+    }
+
+    private Vector3[] getArcDirections(int width)
+    {
+        ///Returns (2*width - 1) directions that form an arc
+        ///but with a max of 8, for a num_dir of 15
+        Vector3[] allDirections = getDirections(16); /// as much of the circle as feasible imo
+
+        int num_dir = (2 * width) - 1;
+        Vector3[] arc = new Vector3[num_dir];
+
+        if (num_dir >= 1)
+            arc[0] = allDirections[0]; ///forward, center
+        if (num_dir >= 3)
+        {
+            arc[1] = allDirections[8];
+            arc[2] = allDirections[10];
+        }
+        if (num_dir >= 5)
+        {
+            arc[3] = allDirections[4];
+            arc[4] = allDirections[5];
+        }
+        if (num_dir >= 7)
+        {
+            arc[5] = allDirections[9];
+            arc[6] = allDirections[11];
+        }
+        if (num_dir >= 9)
+        {
+            arc[7] = allDirections[3];
+            arc[8] = allDirections[2];
+        }
+        if (num_dir >= 11)
+        {
+            arc[9] = -arc[6];
+            arc[10] = -arc[5];
+        }
+        if (num_dir >= 13)
+        {
+            arc[11] = -arc[4];
+            arc[12] = -arc[3];
+        }
+        if (num_dir == 15)
+        {
+            arc[13] = -arc[2];
+            arc[14] = -arc[1];
+        }
+        return arc;
+    }
+    #endregion
+
+    #region Phase stuff
+    private void resetForNextPart()
+    {
+        hellTimer = 0;
+        chargeMove.resetNumTimesCharged();
+        chargeMove.enabled = true;
+
+        gunHolderAnim.SetInteger("Phase", 0);
+        setNextPhase();
+    }
+
+    private void setNextPhase()
+    {
+        switch (currentHell)
+        {
+            case LevelsOFHell.Basic:
+                currentHell = LevelsOFHell.Wiggly;
+                break;
+            case LevelsOFHell.Wiggly:
+                currentHell = LevelsOFHell.Pulse;
+                break;
+            case LevelsOFHell.Pulse:
+                currentHell = LevelsOFHell.Basic;
+                break;
+            default:
+                currentHell = LevelsOFHell.Basic;
+                break;
+        }
+    }
+    #endregion
 }

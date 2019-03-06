@@ -1301,20 +1301,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM vcam1
       objectReference: {fileID: 0}
+    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 452523781}
     - target: {fileID: 261255543026098133, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1912143301}
+    - target: {fileID: 261255543026098133, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7522224
+      value: -1.5038891
       objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70555556
+      value: -1.4222224
       objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
@@ -1361,11 +1371,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
-        type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 452523781}
     - target: {fileID: 8420358951206305833, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_IsActive
@@ -1662,6 +1667,37 @@ PrefabInstance:
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 1971447972}
+    - target: {fileID: 114151132987145036, guid: 696e55d6b0d721f4c95eabc5227ae85b,
+        type: 3}
+      propertyPath: startingHealth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982989142717036, guid: 696e55d6b0d721f4c95eabc5227ae85b,
+        type: 3}
+      propertyPath: setFireTimer
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982989142717036, guid: 696e55d6b0d721f4c95eabc5227ae85b,
+        type: 3}
+      propertyPath: phase2Percent
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982989142717036, guid: 696e55d6b0d721f4c95eabc5227ae85b,
+        type: 3}
+      propertyPath: phase1Percent
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114982989142717036, guid: 696e55d6b0d721f4c95eabc5227ae85b,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 6016123406094753196, guid: 18df687ac851386488f2ba3f8a818e3f,
+        type: 3}
+    - target: {fileID: 114982989142717036, guid: 696e55d6b0d721f4c95eabc5227ae85b,
+        type: 3}
+      propertyPath: spawnRate
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696e55d6b0d721f4c95eabc5227ae85b, type: 3}
 --- !u!4 &1404266632 stripped
@@ -1772,7 +1808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466509951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7522224, y: -0.70555556, z: -10}
+  m_LocalPosition: {x: -1.5038891, y: -1.4222224, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1612424228}
@@ -1864,7 +1900,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 21.638798
+  field of view: 36.984455
   orthographic: 1
   orthographic size: 6
   m_Depth: -1
@@ -2299,7 +2335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912143300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7522222, y: -0.70555556, z: 0}
+  m_LocalPosition: {x: -1.503889, y: -1.4222224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 151662096}
@@ -2326,7 +2362,7 @@ MonoBehaviour:
     weight: 1
     radius: 0
   - target: {fileID: 1404266632}
-    weight: 0.2
+    weight: 0.5
     radius: 0
 --- !u!1001 &1923431238
 PrefabInstance:

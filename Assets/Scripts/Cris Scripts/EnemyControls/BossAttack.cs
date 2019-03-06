@@ -9,10 +9,6 @@ public class BossAttack : EnemyAttack {
      * Phase 2: Bullet Hell
      */
 
-    [Header("FOR TESTING ONLY")]
-    public bool demo = false; //if true, checks below to see which phase and runs it
-    public Phase phase;
-
     [Header("Base Info")]
     public int dmg = 3;
     public float phase1Percent = (float)0.75; //the percent of health before the boss enters phase1
@@ -51,6 +47,10 @@ public class BossAttack : EnemyAttack {
     /// Misc important
     private Animator gunHolderAnim;
     private LevelsOFHell currentHell;
+
+    [Header("FOR TESTING ONLY")]
+    public bool demo = false; //if true, checks below to see which phase and runs it
+    public Phase phase;
 
     public enum Phase
     { One, Two}

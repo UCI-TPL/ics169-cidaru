@@ -23,6 +23,9 @@ public class BossAttack : EnemyAttack {
     private float originalChargeDist;
     private ChargeMovement chargeMove;
 
+    // Animation
+    private Animator anim;
+
     [Header("Phase 1")]
     /// Spawning stuff
     public GameObject spawner;
@@ -75,6 +78,8 @@ public class BossAttack : EnemyAttack {
     {
         player = GameObject.Find("Player");
 
+        anim = GetComponent<Animator>();
+
         hp = GetComponent<Health>();
         phase1Health = (int) (phase1Percent * hp.startingHealth);
         phase2Health = (int) (phase2Percent * hp.startingHealth);
@@ -87,7 +92,6 @@ public class BossAttack : EnemyAttack {
         pulseTimer = 0f;
         currentHell = LevelsOFHell.Basic;
         gunHolderAnim = gunHolder.GetComponent<Animator>();
-        gunHolder.SetActive(false);
         shield.SetActive(false);
     }
 
@@ -162,9 +166,27 @@ public class BossAttack : EnemyAttack {
 
     private void Phase2()
     {
+        ///Reseting Phases
+        if (anim.GetInteger("Phase") < 2)
+        {
+            anim.SetInteger("Phase", 2);
+            return;
+        }
+        if (anim.GetInteger("Phase") == 2 && anim.GetCurrentAnimatorStateInfo(0).IsName("Comedic Pause"))
+        {
+            hp.setInvincible(true);
+            chargeMove.enabled = false;
+            return;
+        }
+        else if (anim.GetInteger("Phase") == 2)
+        {
+            chargeMove.enabled = true;
+            hp.setInvincible(false);
+        }
+
+
         ///Bullet Hell
-        gunHolder.SetActive(true);
-        if (chargeMove.getNumTimesCharged() >= numCharges)
+        if (chargeMove.getNumTimesCharged() > numCharges)
         {
             chargeMove.enabled = false;
             HellTime();
@@ -441,6 +463,7 @@ public class BossAttack : EnemyAttack {
     {
         hellTimer = 0;
         chargeMove.resetNumTimesCharged();
+        chargeMove.cancelCharge();
         chargeMove.enabled = true;
 
         gunHolderAnim.SetInteger("Phase", 0);

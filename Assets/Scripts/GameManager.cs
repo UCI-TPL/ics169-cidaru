@@ -252,7 +252,7 @@ public class GameManager : MonoBehaviour {
             
             GetComponent<PauseController>().enabled = false;
 
-            if (SceneManager.GetActiveScene().buildIndex == 2)
+            if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4)
                 StartCoroutine(RespawnMap());
             else if (SceneManager.GetActiveScene().buildIndex == 3)
                 StartCoroutine(DeathReloadLevel());

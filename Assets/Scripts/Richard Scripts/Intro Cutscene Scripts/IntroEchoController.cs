@@ -26,7 +26,7 @@ public class IntroEchoController : MonoBehaviour
             echo.GetComponent<SpriteRenderer>().sprite = sr.sprite;
             echo.GetComponent<SpriteRenderer>().flipX = sr.flipX;
 
-            Destroy(echo, 0.005f);
+            Destroy(echo, 0.02f);
             spawnTime = setSpawnTime;
         }
         else if (spawnTime > 0)

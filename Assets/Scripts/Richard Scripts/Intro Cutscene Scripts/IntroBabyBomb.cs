@@ -7,6 +7,7 @@ public class IntroBabyBomb : Bomb
 {
     // Object to change objects into
     public GameObject baby;
+    public GameObject tomatoBaby;
 
     public GameObject miniTrojanShooter;
 

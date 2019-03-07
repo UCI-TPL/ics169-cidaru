@@ -15,6 +15,7 @@ public class IntroGameManager : MonoBehaviour
         EnemiesAppearAction,
         EnemiesAppear,
         ActionPhase,
+        TrumpAppearsAction,
         TrumpAppears,
         TrumpShoots,
         TrumpLeaves,
@@ -40,6 +41,7 @@ public class IntroGameManager : MonoBehaviour
     public GameObject backGunStaff;
     public GameObject frontGunStaff;
     public GameObject vortexSpawner;
+    public GameObject trumpAppearsObjects;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -138,6 +140,8 @@ public class IntroGameManager : MonoBehaviour
                 EnemiesAppearState();
             else if (currentState == IntroStates.ActionPhase && !animationActive)
                 ActionPhaseState();
+            else if (currentState == IntroStates.TrumpAppearsAction && !animationActive)
+                TrumpAppearsActionState();
             else if (currentState == IntroStates.TrumpAppears)
                 TrumpAppearsState();
             else if (currentState == IntroStates.TrumpShoots)
@@ -260,6 +264,13 @@ public class IntroGameManager : MonoBehaviour
         animationActive = true;
     }
 
+    public void TrumpAppearsActionState()
+    {
+        trumpAppearsObjects.SetActive(true);
+
+        animationActive = true;
+    }
+
     public void TrumpAppearsState()
     {
         if (!trumpDialogueCheck)
@@ -283,10 +294,10 @@ public class IntroGameManager : MonoBehaviour
             return;
         }
 
-        if (!momDialogueCheck)
+        if (!momDialogueCheckP2)
         {
             startIntroDialogue(trumpAppearsMomTextP2, AvatarState.Mom, "Momdalf");
-            momDialogueCheck = true;
+            momDialogueCheckP2 = true;
             return;
         }
 
@@ -402,6 +413,8 @@ public class IntroGameManager : MonoBehaviour
         else if (currentState == IntroStates.EnemiesAppear)
             currentState = IntroStates.ActionPhase;
         else if (currentState == IntroStates.ActionPhase)
+            currentState = IntroStates.TrumpAppearsAction;
+        else if (currentState == IntroStates.TrumpAppearsAction)
             currentState = IntroStates.TrumpAppears;
         else if (currentState == IntroStates.TrumpAppears)
             currentState = IntroStates.TrumpShoots;

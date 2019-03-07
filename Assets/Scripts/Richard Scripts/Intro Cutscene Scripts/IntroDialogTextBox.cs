@@ -94,6 +94,8 @@ public class IntroDialogTextBox : MonoBehaviour
     {
         if (currentAvatar == IntroGameManager.AvatarState.Dog)
             dogAnimator.SetBool("talking", true);
+        else if (currentAvatar == IntroGameManager.AvatarState.Trump)
+            trumpAnimator.SetBool("talking", true);
 
         dialogBox.text = "";
         for (int i = 0; i < fileLines[currentLine].Length; i++)
@@ -108,5 +110,7 @@ public class IntroDialogTextBox : MonoBehaviour
 
         if (currentAvatar == IntroGameManager.AvatarState.Dog)
             dogAnimator.SetBool("talking", false);
+        else if (currentAvatar == IntroGameManager.AvatarState.Trump)
+            trumpAnimator.SetBool("talking", false);
     }
 }

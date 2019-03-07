@@ -196,6 +196,17 @@ public class Vortex : MonoBehaviour {
             // Sets object to be "within" vortex
             col.transform.parent = vortexInside.transform;
         }
+        else if (vortexState == VortexStates.Succ && col.gameObject.tag == "Tutorial")
+        {
+            // Layer change to change how collision works
+            col.gameObject.layer = 11;
+            
+            // Starts rotation of projectile
+            col.gameObject.GetComponent<RotatingController>().startVortex(transform.position);
+
+            // Sets object to be "within" vortex
+            col.transform.parent = vortexInside.transform;
+        }
     }
 
 }

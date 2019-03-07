@@ -37,6 +37,9 @@ public class IntroGameManager : MonoBehaviour
     public GameObject dogEmergesObjects;
     public Animator dogEmergesAnim;
     public Animator boyLeavesAnim;
+    public GameObject backGunStaff;
+    public GameObject frontGunStaff;
+    public GameObject vortexSpawner;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -133,7 +136,7 @@ public class IntroGameManager : MonoBehaviour
                 EnemiesAppearActionState();
             else if (currentState == IntroStates.EnemiesAppear)
                 EnemiesAppearState();
-            else if (currentState == IntroStates.ActionPhase)
+            else if (currentState == IntroStates.ActionPhase && !animationActive)
                 ActionPhaseState();
             else if (currentState == IntroStates.TrumpAppears)
                 TrumpAppearsState();
@@ -250,9 +253,11 @@ public class IntroGameManager : MonoBehaviour
 
     public void ActionPhaseState()
     {
-        // FILL THIS UP WITH SCRIPTED ACTIONS
+        backGunStaff.SetActive(false);
+        frontGunStaff.SetActive(true);
+        vortexSpawner.SetActive(true);
 
-        NextState();
+        animationActive = true;
     }
 
     public void TrumpAppearsState()

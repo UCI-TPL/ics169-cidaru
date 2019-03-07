@@ -17,10 +17,14 @@ public class IntroGameManager : MonoBehaviour
         ActionPhase,
         TrumpAppearsAction,
         TrumpAppears,
+        TrumpShootsAction,
         TrumpShoots,
         TrumpLeaves,
+        DogReemergesAction,
         DogReemerges,
+        MontageTimeAction,
         MontageTime,
+        EndIntroAction,
         EndIntro
     }
 
@@ -42,6 +46,11 @@ public class IntroGameManager : MonoBehaviour
     public GameObject frontGunStaff;
     public GameObject vortexSpawner;
     public GameObject trumpAppearsObjects;
+    public GameObject trump;
+    public GameObject mom;
+    public GameObject droppedStaff;
+    public GameObject dogReemergesObjects;
+    public Animator gundalfReemergesAnim;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -144,14 +153,22 @@ public class IntroGameManager : MonoBehaviour
                 TrumpAppearsActionState();
             else if (currentState == IntroStates.TrumpAppears)
                 TrumpAppearsState();
+            else if (currentState == IntroStates.TrumpShootsAction && !animationActive)
+                TrumpShootsActionState();
             else if (currentState == IntroStates.TrumpShoots)
                 TrumpShootsState();
-            else if (currentState == IntroStates.TrumpLeaves)
+            else if (currentState == IntroStates.TrumpLeaves && !animationActive)
                 TrumpLeavesState();
+            else if (currentState == IntroStates.DogReemergesAction && !animationActive)
+                DogReemergesActionState();
             else if (currentState == IntroStates.DogReemerges)
                 DogReemergesState();
+            else if (currentState == IntroStates.MontageTimeAction && !animationActive)
+                MontageTimeActionState();
             else if (currentState == IntroStates.MontageTime)
                 MontageTimeState();
+            else if (currentState == IntroStates.EndIntroAction && !animationActive)
+                EndIntroActionState();
             else if (currentState == IntroStates.EndIntro)
                 EndIntroState();
         }
@@ -311,6 +328,15 @@ public class IntroGameManager : MonoBehaviour
         NextState();
     }
 
+    public void TrumpShootsActionState()
+    {
+        // SCRIPTED ACTION
+
+        animationActive = true;
+
+        NextState();
+    }
+
     public void TrumpShootsState()
     {
         if (!trumpDialogueCheck)
@@ -326,8 +352,20 @@ public class IntroGameManager : MonoBehaviour
     public void TrumpLeavesState()
     {
         // SCRIPTED ACTION
+        trump.SetActive(false);
+        mom.SetActive(false);
+        droppedStaff.SetActive(true);
+
+        animationActive = true;
 
         NextState();
+    }
+
+    public void DogReemergesActionState()
+    {
+        dogReemergesObjects.SetActive(true);
+
+        animationActive = true;
     }
 
     public void DogReemergesState()
@@ -340,6 +378,13 @@ public class IntroGameManager : MonoBehaviour
         }
 
         NextState();
+    }
+
+    public void MontageTimeActionState()
+    {
+        gundalfReemergesAnim.SetBool("move", true);
+
+        animationActive = true;
     }
 
     public void MontageTimeState()
@@ -366,6 +411,13 @@ public class IntroGameManager : MonoBehaviour
         }
 
         NextState();
+    }
+
+    public void EndIntroActionState()
+    {
+        gundalfReemergesAnim.SetBool("move2", true);
+
+        animationActive = true;
     }
 
     public void EndIntroState()
@@ -417,14 +469,22 @@ public class IntroGameManager : MonoBehaviour
         else if (currentState == IntroStates.TrumpAppearsAction)
             currentState = IntroStates.TrumpAppears;
         else if (currentState == IntroStates.TrumpAppears)
+            currentState = IntroStates.TrumpShootsAction;
+        else if (currentState == IntroStates.TrumpShootsAction)
             currentState = IntroStates.TrumpShoots;
         else if (currentState == IntroStates.TrumpShoots)
             currentState = IntroStates.TrumpLeaves;
         else if (currentState == IntroStates.TrumpLeaves)
+            currentState = IntroStates.DogReemergesAction;
+        else if (currentState == IntroStates.DogReemergesAction)
             currentState = IntroStates.DogReemerges;
         else if (currentState == IntroStates.DogReemerges)
+            currentState = IntroStates.MontageTimeAction;
+        else if (currentState == IntroStates.MontageTimeAction)
             currentState = IntroStates.MontageTime;
         else if (currentState == IntroStates.MontageTime)
+            currentState = IntroStates.EndIntroAction;
+        else if (currentState == IntroStates.EndIntroAction)
             currentState = IntroStates.EndIntro;
 
         animationActive = false;

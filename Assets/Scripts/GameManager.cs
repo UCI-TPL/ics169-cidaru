@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour {
 
             if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4)
                 StartCoroutine(RespawnMap());
-            else if (SceneManager.GetActiveScene().buildIndex == 3)
+            else if (SceneManager.GetActiveScene().buildIndex == 5)
                 StartCoroutine(DeathReloadLevel());
         }
 

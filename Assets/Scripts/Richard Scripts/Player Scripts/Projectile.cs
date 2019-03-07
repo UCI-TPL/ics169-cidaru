@@ -132,6 +132,10 @@ public class Projectile : MonoBehaviour {
     {
         // Resets current state
         currentMovement = ProjectileMovementState.Normal;
+        if (GetComponent<TrailRenderer>())
+            GetComponent<TrailRenderer>().startColor = Color.cyan;
+        if (GetComponent<SpriteRenderer>())
+            GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     // Called when the object is invisible to the camera

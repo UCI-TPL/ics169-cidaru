@@ -38,6 +38,7 @@ public class BossAttack : EnemyAttack {
     public float setFireTimer = 1f;
     public GameObject bullet;
     public GameObject gunHolder;
+    public GameObject shield;
 
     /// Timers
     private float hellTimer;
@@ -87,6 +88,7 @@ public class BossAttack : EnemyAttack {
         currentHell = LevelsOFHell.Basic;
         gunHolderAnim = gunHolder.GetComponent<Animator>();
         gunHolder.SetActive(false);
+        shield.SetActive(false);
     }
 
     private void Awake()
@@ -144,6 +146,7 @@ public class BossAttack : EnemyAttack {
             chargeMove.cancelCharge();
             chargeMove.enabled = false;
             hp.setInvincible(true);
+            shield.SetActive(true);
 
             if (spawnDurationTimer >= spawnDuration)
             {
@@ -152,6 +155,7 @@ public class BossAttack : EnemyAttack {
                 spawnerTimer = 0f;
                 chargeMove.enabled = true;
                 hp.setInvincible(false);
+                shield.SetActive(false);
             }
         }
     }

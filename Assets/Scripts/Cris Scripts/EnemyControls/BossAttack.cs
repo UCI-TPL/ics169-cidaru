@@ -178,18 +178,19 @@ public class BossAttack : EnemyAttack {
             chargeMove.enabled = false;
             return;
         }
-        else if (anim.GetInteger("Phase") == 2)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Phase2"))
         {
             chargeMove.enabled = true;
             hp.setInvincible(false);
         }
 
-
         ///Bullet Hell
         if (chargeMove.getNumTimesCharged() > numCharges)
         {
+            anim.SetInteger("Phase", 3);
             chargeMove.enabled = false;
-            HellTime();
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Hell"))
+                HellTime();
         }
     }
 
@@ -464,10 +465,10 @@ public class BossAttack : EnemyAttack {
         hellTimer = 0;
         chargeMove.resetNumTimesCharged();
         chargeMove.cancelCharge();
-        chargeMove.enabled = true;
 
         gunHolderAnim.SetInteger("Phase", 0);
         setNextPhase();
+        anim.SetInteger("Phase", 4);
     }
 
     private void setNextPhase()

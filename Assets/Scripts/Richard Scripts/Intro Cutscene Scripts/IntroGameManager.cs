@@ -46,8 +46,7 @@ public class IntroGameManager : MonoBehaviour
     public GameObject frontGunStaff;
     public GameObject vortexSpawner;
     public GameObject trumpAppearsObjects;
-    public GameObject trump;
-    public GameObject mom;
+    public Animator trumpShootsAnim;
     public GameObject droppedStaff;
     public GameObject dogReemergesObjects;
     public Animator gundalfReemergesAnim;
@@ -330,15 +329,20 @@ public class IntroGameManager : MonoBehaviour
 
     public void TrumpShootsActionState()
     {
-        // SCRIPTED ACTION
+        trumpShootsAnim.SetBool("shoot", true);
 
         animationActive = true;
-
-        NextState();
     }
 
     public void TrumpShootsState()
     {
+        if (!momDialogueCheck)
+        {
+            startIntroDialogue(trumpShootMomText, AvatarState.Mom, "Momdalf");
+            momDialogueCheck = true;
+            return;
+        }
+
         if (!trumpDialogueCheck)
         {
             startIntroDialogue(trumpShootTrumpText, AvatarState.Trump, "N. Pres");
@@ -352,8 +356,6 @@ public class IntroGameManager : MonoBehaviour
     public void TrumpLeavesState()
     {
         // SCRIPTED ACTION
-        trump.SetActive(false);
-        mom.SetActive(false);
         droppedStaff.SetActive(true);
 
         animationActive = true;

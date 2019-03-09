@@ -85,7 +85,9 @@ public class GameManager : MonoBehaviour {
     [Header("Room Conditions")]
     public List<GameObject> introDestroyableVases = new List<GameObject>();
     public List<GameObject> vortexTrappedTrojans;
-    public List<GameObject> babyHogTiedTrojan;
+    public List<GameObject> babyHogTiedTrojan1;
+    public List<GameObject> babyHogTiedTrojan2;
+    public List<GameObject> babyHogTiedTrojan3;
     public GameObject babyYaYeetTrojan;
     public List<GameObject> babyPortals;
 
@@ -137,6 +139,8 @@ public class GameManager : MonoBehaviour {
     private RoomTemplates templates;
 
     private bool respawning;
+
+    private bool babyRoomPhase1Complete = false;
 
     [HideInInspector]
     public bool babyRoomComplete;
@@ -193,6 +197,7 @@ public class GameManager : MonoBehaviour {
 
             currentState = TutorialStates.ShootRoomStart;
 
+            babyRoomPhase1Complete = false;
             babyRoomComplete = false;
             slowRoomComplete = false;
             vortexRoomComplete = false;
@@ -595,14 +600,15 @@ public class GameManager : MonoBehaviour {
 
     public void checkBabyRoomPart1Cleared()
     {
-        foreach (GameObject babyHogTiedTrojanObject in babyHogTiedTrojan)
-        {
-            // If not cleared, return
-            if (babyHogTiedTrojanObject != null)
-                return;
-        }
-
-        NextState();
+        if (babyHogTiedTrojan1[0] == null && babyHogTiedTrojan1[1] == null)
+            babyRoomPhase1Complete = true;
+        else if (babyHogTiedTrojan2[0] == null && babyHogTiedTrojan2[1] == null)
+            babyRoomPhase1Complete = true;
+        else if (babyHogTiedTrojan3[0] == null && babyHogTiedTrojan3[1] == null)
+            babyRoomPhase1Complete = true;
+        
+        if (babyRoomPhase1Complete)
+            NextState();
     }
 
     public void checkBabyRoomPart2Cleared()
@@ -619,11 +625,11 @@ public class GameManager : MonoBehaviour {
 
     public void PerformInitialDialogue()
     {
-        if (PlayerPrefs.GetInt("Level") == 2)
+        if (PlayerPrefs.GetInt("Level") == 3)
             startDialogue(level1Text);
-        else if (PlayerPrefs.GetInt("Level") == 3)
-            startDialogue(level2Text);
         else if (PlayerPrefs.GetInt("Level") == 4)
+            startDialogue(level2Text);
+        else if (PlayerPrefs.GetInt("Level") == 5)
             startDialogue(level3Text);
     }
 

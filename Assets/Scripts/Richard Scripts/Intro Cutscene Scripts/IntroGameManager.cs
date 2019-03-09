@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class IntroGameManager : MonoBehaviour
 {
@@ -106,6 +107,8 @@ public class IntroGameManager : MonoBehaviour
 
     private IntroStates currentState;
 
+    private Fader fade;
+
     // Dialogue Check
     private bool dogDialogueCheck;
     private bool boyDialogueCheck;
@@ -120,6 +123,8 @@ public class IntroGameManager : MonoBehaviour
     void Awake()
     {
         introGM = this;
+
+        fade = GetComponent<Fader>();
 
         dialogBox.SetActive(false);
         dogAvatarImage.SetActive(false);
@@ -177,7 +182,7 @@ public class IntroGameManager : MonoBehaviour
                 MontageTimeState();
             else if (currentState == IntroStates.EndIntroAction && !animationActive)
                 EndIntroActionState();
-            else if (currentState == IntroStates.EndIntro)
+            else if (currentState == IntroStates.EndIntro && Time.timeScale != 0f)
                 EndIntroState();
         }
     }
@@ -445,7 +450,7 @@ public class IntroGameManager : MonoBehaviour
 
     public void EndIntroState()
     {
-        // SCRIPTED ACTION
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void startIntroDialogue(TextAsset text, AvatarState avatar, string name)
@@ -547,5 +552,25 @@ public class IntroGameManager : MonoBehaviour
         dogAvatarImage.SetActive(false);
         momAvatarImage.SetActive(false);
         trumpAvatarImage.SetActive(false);
+    }
+
+    public void LoadNextLevel()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    IEnumerator FadeWait(int sceneIndex)
+    {
+        float fadeTime = fade.BeginSceneFade(1);
+        fade.BeginAudioFade(1);
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(fadeTime);
+
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(sceneIndex);
     }
 }

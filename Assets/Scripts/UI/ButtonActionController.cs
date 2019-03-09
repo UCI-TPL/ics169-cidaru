@@ -41,10 +41,15 @@ public class ButtonActionController : MonoBehaviour {
 
         int currentLevel = PlayerPrefs.GetInt("Level");
 
+        if (currentLevel != 1)
+            StartCoroutine(FadeWait(currentLevel));
+
+        /*
         if (currentLevel == 2 || currentLevel == 3)
             StartCoroutine(FadeWait(2));
         else if (currentLevel == 4)
             StartCoroutine(FadeWait(3));
+        */
     }
 
     public void LoadNewGame()

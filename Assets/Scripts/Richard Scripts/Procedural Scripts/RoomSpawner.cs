@@ -263,6 +263,14 @@ public class RoomSpawner : MonoBehaviour {
                 return false;
         }
 
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (verticalDistance * Vector3.up))
+                return false;
+        }
+
         return true;
     }
 
@@ -275,6 +283,14 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position + (-verticalDistance * Vector3.up))
+                return false;
+        }
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (-verticalDistance * Vector3.up))
                 return false;
         }
 
@@ -293,6 +309,14 @@ public class RoomSpawner : MonoBehaviour {
                 return false;
         }
 
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (horizontalDistance * Vector3.left))
+                return false;
+        }
+
         return true;
     }
 
@@ -305,6 +329,14 @@ public class RoomSpawner : MonoBehaviour {
         foreach (GameObject d in destroyers)
         {
             if (d.transform.position == transform.position + (-horizontalDistance * Vector3.left))
+                return false;
+        }
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            if (sp.transform.position == transform.position + (-horizontalDistance * Vector3.left))
                 return false;
         }
 

@@ -33,7 +33,7 @@ public class NextLevel : MonoBehaviour {
         {
             PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
 
-            if (PlayerPrefs.GetInt("Level") == 4)
+            if (PlayerPrefs.GetInt("Level") == 6)
                 GameManager.gm.LoadBossLevel();
             else
                 GameManager.gm.LoadNextLevel(); 

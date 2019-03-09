@@ -19,6 +19,8 @@ public class IntroGameManager : MonoBehaviour
         TrumpAppears,
         TrumpShootsAction,
         TrumpShoots,
+        TrumpPostShootsAction,
+        TrumpPostShoots,
         TrumpLeaves,
         DogReemergesAction,
         DogReemerges,
@@ -47,7 +49,10 @@ public class IntroGameManager : MonoBehaviour
     public GameObject vortexSpawner;
     public GameObject trumpAppearsObjects;
     public Animator trumpShootsAnim;
+    public IntroMomHitControl momHitControl;
+    public Animator momAnim;
     public GameObject droppedStaff;
+    public GameObject bossExitPortal;
     public GameObject dogReemergesObjects;
     public Animator gundalfReemergesAnim;
 
@@ -156,6 +161,10 @@ public class IntroGameManager : MonoBehaviour
                 TrumpShootsActionState();
             else if (currentState == IntroStates.TrumpShoots)
                 TrumpShootsState();
+            else if (currentState == IntroStates.TrumpPostShootsAction && !animationActive)
+                TrumpPostShootsActionState();
+            else if (currentState == IntroStates.TrumpPostShoots)
+                TrumpPostShootsState();
             else if (currentState == IntroStates.TrumpLeaves && !animationActive)
                 TrumpLeavesState();
             else if (currentState == IntroStates.DogReemergesAction && !animationActive)
@@ -343,6 +352,21 @@ public class IntroGameManager : MonoBehaviour
             return;
         }
 
+        NextState();
+    }
+
+    public void TrumpPostShootsActionState()
+    {
+        momHitControl.enabled = true;
+        frontGunStaff.SetActive(false);
+        droppedStaff.SetActive(true);
+        momAnim.SetBool("hit", true);
+
+        animationActive = true;
+    }
+
+    public void TrumpPostShootsState()
+    {
         if (!trumpDialogueCheck)
         {
             startIntroDialogue(trumpShootTrumpText, AvatarState.Trump, "N. Pres");
@@ -355,12 +379,9 @@ public class IntroGameManager : MonoBehaviour
 
     public void TrumpLeavesState()
     {
-        // SCRIPTED ACTION
-        droppedStaff.SetActive(true);
+        bossExitPortal.SetActive(true);
 
         animationActive = true;
-
-        NextState();
     }
 
     public void DogReemergesActionState()
@@ -475,6 +496,10 @@ public class IntroGameManager : MonoBehaviour
         else if (currentState == IntroStates.TrumpShootsAction)
             currentState = IntroStates.TrumpShoots;
         else if (currentState == IntroStates.TrumpShoots)
+            currentState = IntroStates.TrumpPostShootsAction;
+        else if (currentState == IntroStates.TrumpPostShootsAction)
+            currentState = IntroStates.TrumpPostShoots;
+        else if (currentState == IntroStates.TrumpPostShoots)
             currentState = IntroStates.TrumpLeaves;
         else if (currentState == IntroStates.TrumpLeaves)
             currentState = IntroStates.DogReemergesAction;

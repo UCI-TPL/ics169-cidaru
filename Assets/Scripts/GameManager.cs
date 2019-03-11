@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour {
 
     private bool textActive;
     
-    //[HideInInspector]
+    [HideInInspector]
     public TutorialStates currentState;
 
     [HideInInspector]
@@ -490,6 +490,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.SlowRoom)
             {
+                dashCD.SetActive(true);
                 slowCD.SetActive(true);
             }
             else if (currentState == TutorialStates.SlowRoomPost)
@@ -631,6 +632,8 @@ public class GameManager : MonoBehaviour {
             startDialogue(level2Text);
         else if (PlayerPrefs.GetInt("Level") == 5)
             startDialogue(level3Text);
+        else if (PlayerPrefs.GetInt("Level") == 6)
+            startDialogue(preBossText);
     }
 
     public void startDialogue(TextAsset text)

@@ -105,7 +105,7 @@ public class IntroGameManager : MonoBehaviour
 
     private bool animationActive;
 
-    private IntroStates currentState;
+    public IntroStates currentState;
 
     private Fader fade;
 
@@ -140,6 +140,12 @@ public class IntroGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Start"))
+        {
+            currentState = IntroStates.EndIntro;
+            Time.timeScale = 1f;
+        }
+            
         if (Time.timeScale != 0f)
         {
             if (currentState == IntroStates.Opening)

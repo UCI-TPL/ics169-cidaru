@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -633514475
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300188, guid: 7fc1345e7a485fe4bb7221742bdf784b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 2
+  isTiedTrojan: 0
   audioClips: {fileID: 0}
   currentHealth: 0
 --- !u!114 &6884595565466081887
@@ -137,6 +138,7 @@ MonoBehaviour:
     type: 3}
   rotationSpeed: 200
   isVase: 0
+  isTrojan: 0
 --- !u!61 &6828769451207959395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drop: {fileID: 1347093599493600, guid: 9052feb30ca8bf34f8462d1d1919df30, type: 3}
-  probability: 15
+  probability: 7
 --- !u!1 &8258726823871857120
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +245,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -633514475
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300188, guid: 7fc1345e7a485fe4bb7221742bdf784b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.4}

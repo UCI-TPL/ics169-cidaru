@@ -20,6 +20,8 @@ public class Destroyable : MonoBehaviour {
     public bool isVase = false;
     public bool isTrojan = false;
 
+    public GameObject trojanSFX;
+
     // Center of vortex in which the object rotates around
     protected Vector3 center;
 
@@ -123,10 +125,11 @@ public class Destroyable : MonoBehaviour {
 
         if (!isTrojan)
             rubble = Instantiate(destroyedObject, transform.position, Quaternion.identity);
+        else
+            Instantiate(trojanSFX, transform.position, Quaternion.identity);
 
         if (isVase)
             rubble.GetComponent<SpritePicker>().pickVaseRubbleSprite(GetComponent<SpriteRenderer>().sprite);
-
 
         if (GetComponent<DropController>())
             GetComponent<DropController>().calculateDrop();

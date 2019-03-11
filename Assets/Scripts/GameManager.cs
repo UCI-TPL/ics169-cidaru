@@ -112,6 +112,9 @@ public class GameManager : MonoBehaviour {
     public GameObject vortexCD;
 
     private bool textActive;
+
+    public Transform respawnPoint;
+    public AudioSource doorAudio;
     
     //[HideInInspector]
     public TutorialStates currentState;
@@ -429,7 +432,7 @@ public class GameManager : MonoBehaviour {
 
         Time.timeScale = 1;
 
-        if (isTutorial && (currentState != TutorialStates.ShootRoom || currentState != TutorialStates.ShootRoomPost))
+        if (isTutorial && currentState != TutorialStates.ShootRoom)
             currentState = nextState;
     }
 
@@ -492,6 +495,8 @@ public class GameManager : MonoBehaviour {
             {
                 //dashCD.SetActive(true);
                 slowCD.SetActive(true);
+
+                checkSlowRoom();
             }
             else if (currentState == TutorialStates.SlowRoomPost)
             {
@@ -580,6 +585,8 @@ public class GameManager : MonoBehaviour {
         foreach (GameObject shootRoomDoor in shootRoomDoors)
             shootRoomDoor.SetActive(false);
 
+        doorAudio.Play();
+
         NextState();
     }
 
@@ -588,15 +595,17 @@ public class GameManager : MonoBehaviour {
         foreach (GameObject vortexTrappedTrojan in vortexTrappedTrojans)
         {
             // If not cleared, return
-            if (vortexTrappedTrojan != null)
-                return;
+            if (vortexTrappedTrojan == null)
+            {
+                vortexRoomDoor.SetActive(false);
+
+                vortexRoomComplete = true;
+
+                doorAudio.Play();
+
+                NextState();
+            }
         }
-
-        vortexRoomDoor.SetActive(false);
-
-        vortexRoomComplete = true;
-
-        NextState();
     }
 
     public void checkBabyRoomPart1Cleared()
@@ -621,7 +630,19 @@ public class GameManager : MonoBehaviour {
 
         babyRoomComplete = true;
 
+        doorAudio.Play();
+
         NextState();
+    }
+
+    public void checkSlowRoom()
+    {
+        if (!playerHp.isMaxHealth())
+        {
+            player.transform.position = respawnPoint.position;
+
+            playerHp.MaxHeal();
+        }
     }
 
     public void PerformInitialDialogue()
@@ -746,7 +767,10 @@ public class GameManager : MonoBehaviour {
             shootRoomDoors[2].SetActive(true);
 
         if (vortexRoomComplete && babyRoomComplete && slowRoomComplete)
+        {
             shootRoomPortalDoor.SetActive(false);
+            doorAudio.Play();
+        }
     }
     #endregion Tutorial Functions
 }

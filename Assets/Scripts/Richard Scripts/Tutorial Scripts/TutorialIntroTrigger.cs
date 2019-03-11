@@ -12,8 +12,6 @@ public class TutorialIntroTrigger : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GameManager.gm.updateMinimapPosition(transform.parent.position);
-
             if (GameManager.gm.currentState != GameManager.TutorialStates.ShootRoom)
             {
                 GameManager.gm.nextState = stateToChange;
@@ -27,6 +25,9 @@ public class TutorialIntroTrigger : MonoBehaviour
                 roomSpriteController.resetRoom();
 
             roomSprite.highlightRoomSprite();
+
+            GameManager.gm.updateMinimapPosition(transform.parent.position);
+
         }
     }
 }

@@ -13,6 +13,8 @@ public class TutorialStatue : MonoBehaviour
 
     public GameObject door;
 
+    public AudioSource doorAudio;
+
     private bool playerInRange = false;
 
     private void Awake()
@@ -38,6 +40,7 @@ public class TutorialStatue : MonoBehaviour
                 Destroy(enemyBullet);
 
             door.SetActive(false);
+            doorAudio.Play();
         }
     }
 

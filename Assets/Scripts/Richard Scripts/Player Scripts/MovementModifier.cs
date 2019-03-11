@@ -46,6 +46,7 @@ public class MovementModifier : MonoBehaviour {
 	void Update () {
 
         // Increase speed if ability is ready and button is pressed
+        /*
         if (GameManager.gm.isTutorial)
         {
             if ((Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("Left Trigger") > 0) && !speedUp && !cooldown && CheckSlowTutorialCondition())
@@ -56,7 +57,11 @@ public class MovementModifier : MonoBehaviour {
             if ((Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("Left Trigger") > 0) && !speedUp && !cooldown)
                 StartSpeedUp();
         }
-		
+        */
+
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetAxisRaw("Left Trigger") > 0) && !speedUp && !cooldown)
+            StartSpeedUp();
+
 
         // During speed up
         if (speedUp)

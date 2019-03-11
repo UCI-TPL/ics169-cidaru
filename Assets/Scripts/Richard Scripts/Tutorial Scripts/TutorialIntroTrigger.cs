@@ -15,7 +15,9 @@ public class TutorialIntroTrigger : MonoBehaviour
             GameManager.gm.updateMinimapPosition(transform.parent.position);
 
             if (GameManager.gm.currentState != GameManager.TutorialStates.ShootRoom)
+            {
                 GameManager.gm.nextState = stateToChange;
+            }
 
             GameManager.gm.checkIntroDoorOpen();
 

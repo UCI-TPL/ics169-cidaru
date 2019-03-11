@@ -106,14 +106,14 @@ public class GameManager : MonoBehaviour {
     public TextAsset[] portalTextFiles;
 
     [Header("Individual Skill CD")]
-    public GameObject dashCD;
+    //public GameObject dashCD;
     public GameObject slowCD;
     public GameObject babyCD;
     public GameObject vortexCD;
 
     private bool textActive;
     
-    [HideInInspector]
+    //[HideInInspector]
     public TutorialStates currentState;
 
     [HideInInspector]
@@ -466,7 +466,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.ShootRoom)
             {
-                dashCD.SetActive(false);
+                //dashCD.SetActive(false);
                 slowCD.SetActive(false);
                 babyCD.SetActive(false);
                 vortexCD.SetActive(false);
@@ -479,7 +479,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.ShootRoomPost)
             {
-                dashCD.SetActive(false);
+                //dashCD.SetActive(false);
                 slowCD.SetActive(false);
                 babyCD.SetActive(false);
                 vortexCD.SetActive(false);
@@ -490,7 +490,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.SlowRoom)
             {
-                dashCD.SetActive(true);
+                //dashCD.SetActive(true);
                 slowCD.SetActive(true);
             }
             else if (currentState == TutorialStates.SlowRoomPost)
@@ -503,7 +503,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.VortexRoom)
             {
-                dashCD.SetActive(false);
+                //dashCD.SetActive(false);
                 babyCD.SetActive(false);
                 slowCD.SetActive(false);
                 vortexCD.SetActive(true);
@@ -524,7 +524,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.BabyRoomPart1)
             {
-                dashCD.SetActive(false);
+                //dashCD.SetActive(false);
                 slowCD.SetActive(false);
                 vortexCD.SetActive(false);
                 babyCD.SetActive(true);
@@ -558,7 +558,7 @@ public class GameManager : MonoBehaviour {
             }
             else if (currentState == TutorialStates.PortalRoomPost)
             {
-                dashCD.SetActive(true);
+                //dashCD.SetActive(true);
                 vortexCD.SetActive(true);
                 babyCD.SetActive(true);
                 slowCD.SetActive(true);

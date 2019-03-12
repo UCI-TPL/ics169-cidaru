@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 983171429}
   - component: {fileID: 983171428}
   - component: {fileID: 983171431}
+  - component: {fileID: 983171432}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -661,6 +662,23 @@ MonoBehaviour:
   intensity: 0.798
   flipIntensity: 0.483
   colorIntensity: 1
+--- !u!114 &983171432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983171426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade8adf98fed8fa438586867ac6e83d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
+  transitionTex: {fileID: 2800000, guid: 3b989e19466c5f24fa16472c260d4cb7, type: 3}
+  fadeTime: 1
+  fade: 1
+  unfade: 0
 --- !u!1 &1022237478 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8237130395589059670, guid: 7a5c5a87146d7dd45887252db36b430b,
@@ -848,6 +866,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM vcam1
       objectReference: {fileID: 0}
+    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 452523781}
     - target: {fileID: 261255543026098133, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_Follow
@@ -908,11 +931,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
-        type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 452523781}
     - target: {fileID: 3346032482076368550, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_IsActive

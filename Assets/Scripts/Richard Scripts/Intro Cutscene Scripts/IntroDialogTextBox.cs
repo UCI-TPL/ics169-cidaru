@@ -23,6 +23,7 @@ public class IntroDialogTextBox : MonoBehaviour
     private Coroutine textTyping;
 
     private IntroGameManager.AvatarState currentAvatar;
+    private EndGameManager.AvatarState endCurrentAvatar;
 
     private float nextLineBuffer;
 
@@ -75,6 +76,21 @@ public class IntroDialogTextBox : MonoBehaviour
         }
     }
 
+    public void startText(TextAsset txt, EndGameManager.AvatarState avatar)
+    {
+        textFile = txt;
+
+        endCurrentAvatar = avatar;
+
+        fileLines = (textFile.text.Split('\n'));
+
+        currentLine = 0;
+
+        dialogCoroutineStarted = true;
+
+        textTyping = StartCoroutine(OutroGameManagerTextTyping());
+    }
+
     public void startText(TextAsset txt, IntroGameManager.AvatarState avatar)
     {
         textFile = txt;
@@ -111,6 +127,30 @@ public class IntroDialogTextBox : MonoBehaviour
         if (currentAvatar == IntroGameManager.AvatarState.Dog)
             dogAnimator.SetBool("talking", false);
         else if (currentAvatar == IntroGameManager.AvatarState.Trump)
+            trumpAnimator.SetBool("talking", false);
+    }
+
+    IEnumerator OutroGameManagerTextTyping()
+    {
+        if (endCurrentAvatar == EndGameManager.AvatarState.Dog)
+            dogAnimator.SetBool("talking", true);
+        else if (endCurrentAvatar == EndGameManager.AvatarState.Trump)
+            trumpAnimator.SetBool("talking", true);
+
+        dialogBox.text = "";
+        for (int i = 0; i < fileLines[currentLine].Length; i++)
+        {
+            dialogBox.text += fileLines[currentLine][i];
+            yield return new WaitForSecondsRealtime(delayTimer);
+        }
+
+        currentLine++;
+        nextLineBuffer = setNextLineBuffer;
+        dialogCoroutineStarted = false;
+
+        if (endCurrentAvatar == EndGameManager.AvatarState.Dog)
+            dogAnimator.SetBool("talking", false);
+        else if (endCurrentAvatar == EndGameManager.AvatarState.Trump)
             trumpAnimator.SetBool("talking", false);
     }
 }

@@ -82,8 +82,8 @@ public class BabyBomb : Bomb {
                 }
                 else if (hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
                 {
-                    //GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
-                    //pf.GetComponent<Animator>().SetInteger("PoofType", 1); //sets poof to big boi size
+                    GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
+                    pf.GetComponent<Animator>().SetInteger("PoofType", 1); //sets poof to big boi size
                     GameObject miniBoy = Instantiate(miniTrojanShooter, hitCollider.transform.position, Quaternion.identity);
 
                     hitCollider.transform.parent.parent.GetComponentInChildren<Door>().addEnemy(miniBoy);

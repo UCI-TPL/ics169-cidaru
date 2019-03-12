@@ -20,8 +20,8 @@ public class BossHealthUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         hpSlider.value = hp.currentHealth;
-        if (hp.currentHealth <= 0)
-            win();
+        //if (hp.currentHealth <= 0)
+        //    win();
 	}
 
     void win()

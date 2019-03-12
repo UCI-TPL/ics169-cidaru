@@ -195,8 +195,16 @@ public class Enemy : MonoBehaviour {
             movement.enabled = false;
             attackStyle.enabled = false;
 
-            //Amanda was here
-            StartCoroutine(DeathAnimation());
+            if (!gameObject.tag.Contains("Boss"))
+            {
+                //Amanda was here
+                StartCoroutine(DeathAnimation());
+            }
+            else
+            {
+                GetComponent<Animator>().SetBool("death", true);
+                GetComponent<Animator>().applyRootMotion = false;
+            }
             deathAnim = true;
         }
     }

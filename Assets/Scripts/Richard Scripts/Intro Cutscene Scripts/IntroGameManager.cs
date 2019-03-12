@@ -456,6 +456,7 @@ public class IntroGameManager : MonoBehaviour
 
     public void EndIntroState()
     {
+        PlayerPrefs.SetInt("Level", 2);
         StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
@@ -558,12 +559,6 @@ public class IntroGameManager : MonoBehaviour
         dogAvatarImage.SetActive(false);
         momAvatarImage.SetActive(false);
         trumpAvatarImage.SetActive(false);
-    }
-
-    public void LoadNextLevel()
-    {
-        Time.timeScale = 0;
-        StartCoroutine(FadeWait(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     IEnumerator FadeWait(int sceneIndex)

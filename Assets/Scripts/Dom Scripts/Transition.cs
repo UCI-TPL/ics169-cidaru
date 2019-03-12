@@ -20,6 +20,8 @@ public class Transition : MonoBehaviour
     {
         timer = 0;
         transMat.SetFloat("_Cutoff", 0f);
+        if (unfade)
+            transMat.SetFloat("_Cutoff", 1f);
     }
 
     public void Update()
@@ -31,7 +33,7 @@ public class Transition : MonoBehaviour
         if (fade && transMat.GetFloat("_Cutoff") <= 0.9999)
         {
             print(timer);
-            timer += Time.deltaTime / fadeTime;
+            timer += Time.unscaledDeltaTime / fadeTime;
             transMat.SetFloat("_Cutoff", Mathf.Lerp(0, 1, timer));
         }
         else if (!unfade)
@@ -42,7 +44,7 @@ public class Transition : MonoBehaviour
 
         if (unfade && transMat.GetFloat("_Cutoff") >= 0.001)
         {
-            timer += Time.deltaTime / fadeTime;
+            timer += Time.unscaledDeltaTime / fadeTime;
             transMat.SetFloat("_Cutoff", Mathf.Lerp(1, 0, timer));
         }
         else if (!fade)
@@ -58,7 +60,7 @@ public class Transition : MonoBehaviour
             Graphics.Blit(src, dst, transMat);
     }
 
-    public void toBlack() { fade = true; }
-    public void fromBlack() { unfade = true; }
+    public void toBlack() { transMat.SetFloat("_Cutoff", 0f);  fade = true; }
+    public void fromBlack() { transMat.SetFloat("_Cutoff", 1f);  unfade = true; }
 
 }

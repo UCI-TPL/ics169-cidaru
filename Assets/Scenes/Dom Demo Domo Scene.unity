@@ -1770,7 +1770,7 @@ PrefabInstance:
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.9199996
+      value: 3.6749995
       objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
@@ -2242,6 +2242,7 @@ MonoBehaviour:
   bigBabyBomb: 0
   speedBubbles: 1
   vortex: 1
+  babyNum: 0
   rotationSpeed: 250
   radius: 0
 --- !u!61 &1158593947
@@ -3246,7 +3247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797802262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.356133, y: -1.3994031, z: -10}
+  m_LocalPosition: {x: 2.1004794, y: -1.3894429, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2017036776}
@@ -3338,9 +3339,9 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 42.225716
+  field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7.3499994
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3384,8 +3385,8 @@ MonoBehaviour:
   transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
   transitionTex: {fileID: 2800000, guid: df6d1321dd908ab4f97f166c8a37c4c9, type: 3}
   fadeTime: 1
-  fade: 1
-  unfade: 1
+  fade: 0
+  unfade: 0
 --- !u!1 &1814424446
 GameObject:
   m_ObjectHideFlags: 0

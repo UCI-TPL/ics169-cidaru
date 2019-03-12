@@ -30,6 +30,9 @@ public class Enemy : MonoBehaviour {
     public bool speedBubbles;
     public bool vortex;
 
+    [Header("Baby Bomb Stuff")]
+    public int babyNum = 0;
+
     [Header("Vortex Stuff")] // Stuff used for vortex-specific effects
     public float rotationSpeed = 200f;
     public float radius = 0f;

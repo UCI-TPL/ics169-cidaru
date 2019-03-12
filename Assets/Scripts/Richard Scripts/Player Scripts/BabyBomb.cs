@@ -11,6 +11,8 @@ public class BabyBomb : Bomb {
 
     public GameObject sprout;
 
+    public GameObject poof;
+
     // Object layers in which the baby bomb will interact with
     public LayerMask interactableLayer;
 
@@ -67,21 +69,31 @@ public class BabyBomb : Bomb {
 
                 if (hitCollider.gameObject.tag == "Tree")
                 {
+                    GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
+                    pf.GetComponent<Animator>().SetInteger("PoofType", 0); //tree poof
                     Instantiate(sprout, hitCollider.transform.position - new Vector3(0, 1), Quaternion.identity);
                 } 
                 else if (hitCollider.gameObject.tag == "Tutorial")
                 {
-                    Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
+                    pf.GetComponent<Animator>().SetInteger("PoofType", 2);
+                    GameObject bb = Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    bb.GetComponent<Animator>().SetInteger("BabyNum", 0);
                 }
                 else if (hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
                 {
+                    //GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
+                    //pf.GetComponent<Animator>().SetInteger("PoofType", 1); //sets poof to big boi size
                     GameObject miniBoy = Instantiate(miniTrojanShooter, hitCollider.transform.position, Quaternion.identity);
 
                     hitCollider.transform.parent.parent.GetComponentInChildren<Door>().addEnemy(miniBoy);
                 }
                 else
                 {
-                    Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
+                    pf.GetComponent<Animator>().SetInteger("PoofType", 2);
+                    GameObject bb = Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    bb.GetComponent<Animator>().SetInteger("BabyNum", hitCollider.GetComponent<Enemy>().babyNum);
                 }
 
                 if (hitCollider.gameObject.tag == "Tree")

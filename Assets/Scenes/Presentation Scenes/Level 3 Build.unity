@@ -748,6 +748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
   currentTexture: {fileID: 2800000, guid: 38161daee2261724b95db8acb097dcff, type: 3}
+  audioSource: {fileID: 2064953451}
   fadeTime: 1
   fade: 0
   unfade: 0
@@ -2414,6 +2415,11 @@ PrefabInstance:
       propertyPath: mapText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
@@ -2429,3 +2435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f989d4bcc1e4e243b851fa19ec67f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2064953451 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
+    type: 3}
+  m_PrefabInstance: {fileID: 2064953449}
+  m_PrefabAsset: {fileID: 0}

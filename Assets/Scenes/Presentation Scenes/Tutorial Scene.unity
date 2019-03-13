@@ -622,6 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
   currentTexture: {fileID: 2800000, guid: 38161daee2261724b95db8acb097dcff, type: 3}
+  audioSource: {fileID: 82484934678387727}
   fadeTime: 1
   fade: 0
   unfade: 0
@@ -1411,7 +1412,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b1658f522a4e3e84899c3d43499671e5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1708,6 +1709,11 @@ PrefabInstance:
       propertyPath: doorAudio
       value: 
       objectReference: {fileID: 1239791577}
+    - target: {fileID: 5290917595062551440, guid: ab08e219d3b9d2149ae4a6d1750b4317,
+        type: 3}
+      propertyPath: stateToChange
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab08e219d3b9d2149ae4a6d1750b4317, type: 3}
 --- !u!4 &284624519394904129 stripped
@@ -1879,6 +1885,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8288845881111235457, guid: 7ce50d210fe70894a86d1f146b40a846,
+        type: 3}
+      propertyPath: stateToChange
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ce50d210fe70894a86d1f146b40a846, type: 3}
 --- !u!1 &6536543514072190122 stripped
@@ -1977,6 +1988,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640610796097445364, guid: de315961d7b85ce47ac4022c95d74a67,
+        type: 3}
+      propertyPath: stateToChange
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de315961d7b85ce47ac4022c95d74a67, type: 3}
@@ -2543,6 +2559,11 @@ PrefabInstance:
       propertyPath: thisRend
       value: 
       objectReference: {fileID: 2092753450}
+    - target: {fileID: 5050447831352543336, guid: 2e9ad04265f4a5b47b4010df674df9cc,
+        type: 3}
+      propertyPath: stateToChange
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9ad04265f4a5b47b4010df674df9cc, type: 3}
 --- !u!4 &9110284957329312306 stripped

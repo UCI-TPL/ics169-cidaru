@@ -8,6 +8,8 @@ public class Transition : MonoBehaviour
 
     public Texture2D currentTexture;
 
+    public AudioSource audioSource;
+
     public float fadeTime = 1f;
 
     [SerializeField]
@@ -33,6 +35,7 @@ public class Transition : MonoBehaviour
         if (fade && transMat.GetFloat("_Cutoff") <= 0.9999)
         {
             timer += Time.unscaledDeltaTime / fadeTime;
+            audioSource.volume = Mathf.Lerp(0.5f, 0f, timer);
             transMat.SetFloat("_Cutoff", Mathf.Lerp(0, 1, timer));
         }
         else if (!unfade)
@@ -44,6 +47,7 @@ public class Transition : MonoBehaviour
         if (unfade && transMat.GetFloat("_Cutoff") >= 0.001)
         {
             timer += Time.unscaledDeltaTime / fadeTime;
+            audioSource.volume = Mathf.Lerp(0f, 0.5f, timer);
             transMat.SetFloat("_Cutoff", Mathf.Lerp(1, 0, timer));
         }
         else if (!fade)

@@ -59,7 +59,11 @@ public class IntroDialogTextBox : MonoBehaviour
                 if ((Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)) &&
                     currentLine < fileLines.Length)
                 {
-                    textTyping = StartCoroutine(TextTyping());
+                    if (IntroGameManager.introGM != null)
+                        textTyping = StartCoroutine(TextTyping());
+                    else
+                        textTyping = StartCoroutine(OutroGameManagerTextTyping());
+
                     dialogCoroutineStarted = true;
                 }
             }
@@ -72,7 +76,12 @@ public class IntroDialogTextBox : MonoBehaviour
         else
         {
             if (currentLine >= fileLines.Length && (Input.GetMouseButtonUp(0) || Input.GetButtonDown("A Button") || Input.GetButtonDown("B Button") || Input.GetKeyDown(KeyCode.Space)))
-                IntroGameManager.introGM.endIntroDialogue();
+            {
+                if (IntroGameManager.introGM != null)
+                    IntroGameManager.introGM.endIntroDialogue();
+                else
+                    EndGameManager.endGM.endIntroDialogue();
+            }
         }
     }
 

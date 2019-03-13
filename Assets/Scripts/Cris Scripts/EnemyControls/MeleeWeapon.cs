@@ -9,9 +9,11 @@ public class MeleeWeapon : MonoBehaviour {
 
     public int dmg = 1;
     public bool deflection;
+    public GameObject weaponEcho;
 
     private bool startDeflection;
     private Quaternion startRotation;
+    private bool attackAnim;
 
     public enum WeaponState
     {
@@ -124,6 +126,28 @@ public class MeleeWeapon : MonoBehaviour {
             transform.rotation = Quaternion.Inverse(startRotation);
         else
             transform.rotation = startRotation;
+        attackAnim = false;
+    }
+
+    public void swooshDown(int numEcho, Vector3 endRotation)
+    {
+        if (!attackAnim && weaponEcho)
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            for (int i = 0; i < numEcho; i++)
+            {
+                GameObject echo = Instantiate(weaponEcho, transform.position, transform.rotation);
+
+                echo.GetComponent<SpriteRenderer>().color = new Color(sr.color.r, sr.color.g, sr.color.b, .5f);
+                float rotateZBy = (endRotation.z/i) * Mathf.Sign(transform.localScale.x);
+                echo.transform.Rotate(new Vector3(0, 0, rotateZBy));
+                echo.GetComponent<SpriteRenderer>().flipX = Mathf.Sign(transform.localScale.x) == -1;
+                
+                Destroy(echo, 0.25f);
+            }
+        }
+        attackAnim = true;
+        transform.Rotate(endRotation);
     }
 
 }

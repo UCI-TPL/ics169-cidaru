@@ -174,9 +174,11 @@ public class ChargeMovement : EnemyMovement {
         else
         {
             ////Turns the weapon parallel to the "ground"
-            weapon.transform.Rotate(new Vector3(weapon.transform.rotation.x,
+            Vector3 endRo = new Vector3(weapon.transform.rotation.x,
                                                 weapon.transform.rotation.y,
-                                                -80));
+                                                -80);
+            weapon.transform.Rotate(endRo);
+            //weapon.swooshDown(5, endRo);
         }
     }
 

@@ -190,22 +190,24 @@ public class Enemy : MonoBehaviour {
     private void checkDeath()
     {
         // Checks if enemy is dead and destroys them
-        if (hp.currentHealth <= 0 && !deathAnim)
+        if (hp.currentHealth <= 0)
         {
             movement.enabled = false;
             attackStyle.enabled = false;
-
-            if (!gameObject.tag.Contains("Boss"))
+            if (!deathAnim)
             {
-                //Amanda was here
-                StartCoroutine(DeathAnimation());
+                if (!gameObject.tag.Contains("Boss"))
+                {
+                    //Amanda was here
+                    StartCoroutine(DeathAnimation());
+                }
+                else
+                {
+                    GetComponent<Animator>().SetBool("death", true);
+                    GetComponent<Animator>().applyRootMotion = false;
+                }
+                deathAnim = true;
             }
-            else
-            {
-                GetComponent<Animator>().SetBool("death", true);
-                GetComponent<Animator>().applyRootMotion = false;
-            }
-            deathAnim = true;
         }
     }
 

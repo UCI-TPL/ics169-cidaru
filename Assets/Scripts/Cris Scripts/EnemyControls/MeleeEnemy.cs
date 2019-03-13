@@ -104,7 +104,8 @@ public class MeleeEnemy : EnemyAttack {
     private void resetRotations()
     {
         //Reset weapon's rotations based on the enemy's sprite direction
-        weapon.GetComponent<MeleeWeapon>().resetRotations();
+        if (weapon)
+            weapon.GetComponent<MeleeWeapon>().resetRotations();
 
         //Reset enemy's rotations (mainly for tasSpin)
         transform.rotation = startRotation;
@@ -114,7 +115,8 @@ public class MeleeEnemy : EnemyAttack {
     {
         resetRotations();
         hp.setInvincible(false);
-        weapon.GetComponent<MeleeWeapon>().deflection = false;
+        if (weapon)
+            weapon.GetComponent<MeleeWeapon>().deflection = false;
         return;
     }
 }

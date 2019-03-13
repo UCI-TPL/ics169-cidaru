@@ -23,7 +23,7 @@ public class RangedMovement : EnemyMovement {
 
     protected override void Pursue()
     {
-        movableTarget.transform.position = (transform.position - player.transform.position).normalized * minDistToPlayer + player.transform.position;
+        updateTarget();
         MoveTo(movableTarget.transform.position);
     }
 
@@ -37,5 +37,16 @@ public class RangedMovement : EnemyMovement {
             this.transform.localScale = new Vector3(-1.0f * startScale.x, transform.localScale.y);
         else
             this.transform.localScale = new Vector3(1.0f * startScale.x, transform.localScale.y);
+    }
+
+    private void updateTarget()
+    {
+        Vector3 newPos = (transform.position - player.transform.position).normalized * minDistToPlayer + player.transform.position;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.position + player.transform.position);
+        if (hit && (hit.transform.CompareTag("Obstacle") || hit.transform.CompareTag("Tree") || hit.transform.CompareTag("Destroyable")))
+            movableTarget.transform.position = player.transform.position;
+        else
+            movableTarget.transform.position = newPos;
     }
 }

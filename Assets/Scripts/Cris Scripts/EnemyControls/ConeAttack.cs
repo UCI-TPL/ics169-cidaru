@@ -34,19 +34,19 @@ public class ConeAttack : EnemyAttack
         {
             if (chargeTimer < chargeTime)
             {
-                Debug.Log("charging...");
+                //Debug.Log("charging...");
                 chargeTimer += Time.deltaTime;
                 chargeWeapon();
             }
             else
             {
-                Debug.Log("Attacking");
+                //Debug.Log("Attacking");
                 attackTimer += Time.deltaTime;
                 attackWeapon();
             }
             if (attackTimer >= attackTime)
             {
-                Debug.Log("Reseting");
+                //Debug.Log("Reseting");
                 resetWeapon();
                 chargeTimer = 0;
                 attackTimer = 0;

@@ -24,6 +24,20 @@ public class BossCheatCode : MonoBehaviour
                 FindObjectOfType<BossHealthUI>().gameObject.GetComponent<Health>().currentHealth = 0;
             }
         }
+        if (Input.GetKey("o") && Input.GetKey("p"))
+        {
+            if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Boss Scene"))
+            {
+                cheating = true;
+                PlayerPrefs.SetInt("Level", 6);
+                SceneManager.LoadScene(6);
+            }
+            else
+            {
+                cheating = true;
+                FindObjectOfType<BossHealthUI>().gameObject.GetComponent<Health>().currentHealth = 0;
+            }
+        }
 
     }
 }

@@ -1440,6 +1440,12 @@ PrefabInstance:
     - {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
     - {fileID: 114124410891964584, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}
+--- !u!82 &639460423 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
+    type: 3}
+  m_PrefabInstance: {fileID: 639460422}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &639663232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1470,7 +1476,7 @@ PrefabInstance:
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5088892
+      value: -0.50888896
       objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
@@ -2193,7 +2199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466509951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5088892, y: -0.008333333, z: -10}
+  m_LocalPosition: {x: -0.50888896, y: -0.008333333, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1612424228}
@@ -2285,7 +2291,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 45.654907
+  field of view: 45.673527
   orthographic: 1
   orthographic size: 6
   m_Depth: -1
@@ -2317,6 +2323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
   currentTexture: {fileID: 2800000, guid: 38161daee2261724b95db8acb097dcff, type: 3}
+  audioSource: {fileID: 639460423}
   fadeTime: 1
   fade: 0
   unfade: 0

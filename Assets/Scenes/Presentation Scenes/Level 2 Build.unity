@@ -867,11 +867,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM vcam1
       objectReference: {fileID: 0}
-    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
-        type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 452523781}
     - target: {fileID: 261255543026098133, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_Follow
@@ -932,21 +927,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3346032482076368550, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385974220857333868, guid: 921a59ac7b158ed40992f9eee6b97bd1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8420358951206305833, guid: 921a59ac7b158ed40992f9eee6b97bd1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 452523781}
     - target: {fileID: 9017595030714697300, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_IsActive
@@ -965,6 +950,21 @@ PrefabInstance:
     - target: {fileID: 4932817001241230673, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346032482076368550, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420358951206305833, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385974220857333868, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1068,16 +1068,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8237130395828796224, guid: 7a5c5a87146d7dd45887252db36b430b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237130395589059670, guid: 7a5c5a87146d7dd45887252db36b430b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237130394647464195, guid: 7a5c5a87146d7dd45887252db36b430b,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1366,26 +1356,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237130396058504723, guid: 7a5c5a87146d7dd45887252db36b430b,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 983171430}
-    - target: {fileID: 8237130396058504723, guid: 7a5c5a87146d7dd45887252db36b430b,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1747713225
-      objectReference: {fileID: 0}
-    - target: {fileID: 8237130396058504720, guid: 7a5c5a87146d7dd45887252db36b430b,
-        type: 3}
-      propertyPath: transition
-      value: 
-      objectReference: {fileID: 983171432}
-    - target: {fileID: 8237130396058504734, guid: 7a5c5a87146d7dd45887252db36b430b,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8237130394993545870, guid: 7a5c5a87146d7dd45887252db36b430b,
         type: 3}
@@ -1697,7 +1667,32 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4231607389617120666, guid: 7a5c5a87146d7dd45887252db36b430b,
+    - target: {fileID: 8237130394647464195, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237130396058504723, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 983171430}
+    - target: {fileID: 8237130396058504723, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1747713225
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237130396058504720, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 983171432}
+    - target: {fileID: 8237130396058504734, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237130395589059670, guid: 7a5c5a87146d7dd45887252db36b430b,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1721,6 +1716,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231607389617120666, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a5c5a87146d7dd45887252db36b430b, type: 3}
@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   astarData:
-    dataString: UEsDBBQAAAgIAACAn+teMa1aDwIAAGIEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1U8uO2yAU/RWLdROR1Emd7qZ5tdK0E02m6hrDdYyCwQLcPEb59wLGYzej8cb4nHsP93H8ioipgdpnYrlCX5PJpwRxoyqwmtMHeRDgQOzARvJC6WrNDrBUxhoHb4gw4CitrM+WDnpN0Nm9Fj7jEjOv/p3c3ImCtKD7MDyedXHh1Ec2kgpS1cD2/Ap9whR3wu4UAqViEGNaDaqE4CZWg+yl9hTa1yVoQI5nnLjmQhWTse+2BH4orZccZj8VhQEbO9DksuLaTamVRd+ULb1WRcyxLe4vEY2/aDLPFvNQWCv7813EaBLoQqvqe3fzJLRlS06Pz+RCibGD6Q7h1aD4MKUTEUeSC/hTgvyltlo1kjnyRTc+tTEwXfWfb80tS6DHHm9LvQOberCnOPTZeDHH6TxNs/UIZ93Cxov2SZPbLQzlvBS8ygOVDoCHMzdxzA7aCxVWE6wC2q3xh2ss+MjEKx3qq/1t4IUchoaLxIZrYx0Vp0Eaqx65PG41Z8PoDl9xYx95xduJe+/4vnPVaB+N1mEZfkyNXSotQQ9FapBE2MvOXWzv7XHHfZy1IdSqbnmR6/6xu5QA9/EY31E7dXqzwaHh7H+ToS95UWSMZRjnGH+m+SjN83xasBmmeQYkXaDgQi5dXUTsWuHYjtuL7H0gneO8op9qstWkDs5nmpy2/Fop00dyWag91QDyqVUILd3+AVBLAwQUAAAICAAAgJ/rNbAKvjQAAAA3AAAAEgAkAGdyYXBoMF9lZGl0b3IuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWyslPzk5NUbJSCCkqTdVRUCrOyC93rSgpSgQKuSXmFIPECjLL8kuAfCXn1LyS1CKlWgBQSwMEFAAACAgAAICf64ZHJVJtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw1rPQMzTQUVBKL0osyCgGihiCOKWZKSB2tJJ5UlqaRUqKhYFBkoGBcXKSrklSUpJRWoqpQXKSRWqiiaVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAICf614xrVoPAgAAYgQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAICf6zWwCr40AAAANwAAABIAJAAAAAAAAAAAAAAAXAIAAGdyYXBoMF9lZGl0b3IuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+uGRyVSbQAAAHgAAAAJACQAAAAAAAAAAAAAAOQCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAMAAwAcAQAAnAMAAAAA
+    dataString: UEsDBBQAAAgIAACAn+syA1lfEwIAAGoEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1U9mOmzAU/RXk5yZyMiSFvk2ztdK0E02m6rMxF7BibOSlWUb599oGBiZVeSE5567nHt4Q0Q1Q80IMk+hLNPsUIaZlDUYx+ihKDg7EDrSCFVLVm7yEldRGO3hLuAZHKWl8tnDQW4TO7pX6jEuXefXv6OZ+URAG1BCGp4s+bhqn/lnG8w8ZVlBO6gbyA7vCkPiA+wbzRRsoZA5dTFuVSs6Z7qZC5tJ4Ch2aChQgx+eMuCXDNLOp37oCVlbGlxxnPxeFBtNtoshlzZRTqy2LvkpT+Vo10cd2uD+EW99otkzSZRisLfvjn4jJLNCFkvW3vvMsrGUqRo8v5EKJNiOVx/B6NHxQ6UT4kWQcflcgfsqdklbkjnxV1qdaDfP18Pd9uVUF9Djg7ah3oG1G9+pEX0zTJY6XcZxsJjjpDzZN2yeObrcgynnFWZ211x0Bj2emO5kddOAynCZYBpQ743e3WPCT7lo61E/7S8MrKcfG64gtU9o4qlODWCOfmDjuFMvH0T2+Zto8sZq1invv+L0zaZWPRptwDC+TNSupBKhxkQYE4eayd43NvT3uuP9nbQk1sj9ex/Xf2l1KgId4jO+ovTy926C0LP9oMvQ5K4okzxOMM4wfaDaJsyybF/kC0ywBEqcouJAJNxfh+7Zwt467ixh8IJzjfEWvarRTpAnOzxU57di1lnqIZKKQB6oAxHNbIax0+wtQSwMEFAAACAgAAICf6zWwCr40AAAANwAAABIAJABncmFwaDBfZWRpdG9yLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVsrJT85OTVGyUggpKk3VUVAqzsgvd60oKUoECrkl5hSDxAoyy/JLgHwl59S8ktQipVoAUEsDBBQAAAgIAACAn+uGRyVSbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNaz0DM00FFQSi9KLMgoBooYgjilmSkgdrSSeVJamkVKioWBQZKBgXFykq5JUlKSUVqKqUFykkVqoomlUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+syA1lfEwIAAGoEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+s1sAq+NAAAADcAAAASACQAAAAAAAAAAAAAAGACAABncmFwaDBfZWRpdG9yLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/rhkclUm0AAAB4AAAACQAkAAAAAAAAAAAAAADoAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAADAAMAHAEAAKADAAAAAA==
     upgradeData: 
     data_backup: 
     file_cachedStartup: {fileID: 0}
@@ -2386,6 +2386,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1487039178326622, guid: 853fcca2bb71770419b1621f4cd1a9f1,
         type: 3}
+    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ad44a41626459e441a917160b3374553, type: 3}
+    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
         type: 3}
       propertyPath: sprintText
@@ -2410,16 +2420,6 @@ PrefabInstance:
         type: 3}
       propertyPath: mapText
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ad44a41626459e441a917160b3374553, type: 3}
-    - target: {fileID: 82484933184400486, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}

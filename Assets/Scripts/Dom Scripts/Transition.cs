@@ -69,8 +69,22 @@ public class Transition : MonoBehaviour
         fade = true;
     }
 
+    public void fadeToBlack(Texture2D texture)
+    {
+        currentTexture = texture;
+        transMat.SetFloat("_Cutoff", 0f);
+        fade = true;
+    }
+
     public void unfadeFromBlack()
     {
+        transMat.SetFloat("_Cutoff", 1f);
+        unfade = true;
+    }
+
+    public void unfadeFromBlack(Texture2D texture)
+    {
+        currentTexture = texture;
         transMat.SetFloat("_Cutoff", 1f);
         unfade = true;
     }

@@ -6,6 +6,17 @@ using UnityEngine.UI;
 
 public class ButtonActionController : MonoBehaviour {
     public Transition transition;
+
+    public bool swirl = false;
+    public bool side = false;
+    public bool top = false;
+    public bool angle = false;
+
+    public Texture2D swirlTexture;
+    public Texture2D sideTexture;
+    public Texture2D topDownTexture;
+    public Texture2D angleTexture;
+
     //private Fader fade;
     private GameObject eventSystem;
 

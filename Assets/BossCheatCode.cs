@@ -12,9 +12,17 @@ public class BossCheatCode : MonoBehaviour
     {
         if (Input.GetButton("X Button") && Input.GetButton("Y Button") &&  Input.GetButton("Left Bumper") &&  Input.GetButton("Right Bumper") && !cheating)
         {
-            cheating = true;
-            PlayerPrefs.SetInt("Level", 6);
-            SceneManager.LoadScene(6);
+            if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Boss Scene"))
+            {
+                cheating = true;
+                PlayerPrefs.SetInt("Level", 6);
+                SceneManager.LoadScene(6);
+            }
+            else
+            {
+                cheating = true;
+                FindObjectOfType<BossHealthUI>().gameObject.GetComponent<Health>().currentHealth = 0;
+            }
         }
 
     }

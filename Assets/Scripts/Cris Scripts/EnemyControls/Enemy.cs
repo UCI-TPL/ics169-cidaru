@@ -208,6 +208,11 @@ public class Enemy : MonoBehaviour {
                 }
                 deathAnim = true;
             }
+            if (deathAnim && gameObject.tag.Contains("Boss"))
+            {
+                if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Done"))
+                    FindObjectOfType<GameManager>().LoadNextLevel();
+            }
         }
     }
 

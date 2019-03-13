@@ -7,7 +7,7 @@ public class IntroBabyBomb : Bomb
 {
     // Object to change objects into
     public GameObject baby;
-    public GameObject tomatoBaby;
+    public GameObject poof;
 
     public GameObject miniTrojanShooter;
 
@@ -74,7 +74,14 @@ public class IntroBabyBomb : Bomb
                 }
                 else if (hitCollider.gameObject.tag == "Tutorial")
                 {
-                    Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    //Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    GameObject pf = Instantiate(poof, hitCollider.transform.position, Quaternion.identity);
+                    pf.GetComponent<Animator>().SetInteger("PoofType", 2);
+                    GameObject bb = Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
+                    if (hitCollider.gameObject.name.Contains("2"))
+                        bb.GetComponent<Animator>().SetInteger("BabyNum", 3);
+                    else
+                        bb.GetComponent<Animator>().SetInteger("BabyNum", 4);
                 }
                 else if (hitCollider.gameObject.GetComponent<Enemy>().bigBabyBomb)
                 {
@@ -86,7 +93,7 @@ public class IntroBabyBomb : Bomb
                 {
                     Instantiate(baby, hitCollider.transform.position, Quaternion.identity);
                 }
-                
+
                 if (hitCollider.gameObject.tag == "Tree")
                     Destroy(hitCollider.transform.parent.gameObject);
                 else

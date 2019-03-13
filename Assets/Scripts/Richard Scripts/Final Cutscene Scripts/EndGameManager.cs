@@ -31,7 +31,17 @@ public class EndGameManager : MonoBehaviour
     }
 
     [Header("Animation Objects")]
+    public Material deathMaterial;
+    public Renderer trumpRend;
+    private Texture trumpTexture;
+    public Renderer hatRend;
+    private Texture hatTexture;
+    public Animator filterAnim;
     public GameObject momAppearsObjects;
+    public Animator momAnim;
+    public Animator boyAnim;
+    public Animator dogAnim;
+    public GameObject finalPortal;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -142,9 +152,39 @@ public class EndGameManager : MonoBehaviour
 
     public void TrumpDeathActionState()
     {
-        // SCRIPTED DEATH
+        StartCoroutine(BossDeathAnimation());
 
         animationActive = true;
+    }
+
+    IEnumerator BossDeathAnimation()
+    {
+        trumpTexture = trumpRend.GetComponent<SpriteRenderer>().sprite.texture;
+        hatTexture = hatRend.GetComponent<SpriteRenderer>().sprite.texture;
+
+        filterAnim.SetBool("fade", true);
+
+        float timer = 0.9f;
+        if (deathMaterial != null)
+        {
+            trumpRend.material = deathMaterial;
+            trumpRend.material.SetFloat("_StartTime", Time.timeSinceLevelLoad);
+            trumpRend.material.SetInt("_MainTexWidth", trumpTexture.width);
+            trumpRend.material.SetInt("_MainTexHeight", trumpTexture.height);
+
+            hatRend.material = deathMaterial;
+            hatRend.material.SetFloat("_StartTime", Time.timeSinceLevelLoad);
+            hatRend.material.SetInt("_MainTexWidth", hatTexture.width);
+            hatRend.material.SetInt("_MainTexHeight", hatTexture.height);
+        }
+        else
+        {
+            timer = 0;
+        }
+
+        yield return new WaitForSeconds(timer + 0.3f);
+
+        NextState();
     }
 
     public void TrumpDeathPostState()
@@ -187,7 +227,9 @@ public class EndGameManager : MonoBehaviour
 
     public void ComeTogetherActionState()
     {
-        // SCRIPTED COME TOGETHER
+        momAnim.SetBool("move", true);
+        boyAnim.SetBool("move", true);
+
         animationActive = true;
     }
 
@@ -205,7 +247,10 @@ public class EndGameManager : MonoBehaviour
 
     public void DogJoinsActionState()
     {
-        // SCRIPTED DOG JOINS
+        momAnim.SetBool("jump", true);
+        boyAnim.SetBool("jump", true);
+        dogAnim.SetBool("move", true);
+
         animationActive = true;
     }
 
@@ -213,6 +258,8 @@ public class EndGameManager : MonoBehaviour
     {
         if (!dogDialogueCheck)
         {
+            momAnim.SetBool("jump", false);
+            boyAnim.SetBool("jump", false);
             startIntroDialogue(dogJoinsDogText, AvatarState.Dog, "GunDog");
             dogDialogueCheck = true;
             return;
@@ -223,6 +270,8 @@ public class EndGameManager : MonoBehaviour
 
     public void PortalOpensActionState()
     {
+        finalPortal.SetActive(true);
+
         animationActive = true;
     }
 
@@ -237,6 +286,7 @@ public class EndGameManager : MonoBehaviour
 
         if (!boyDialogueCheck)
         {
+            boyAnim.SetBool("emoji", true);
             startIntroDialogue(portalOpeningBoyText, AvatarState.Boy, "Gundalf");
             boyDialogueCheck = true;
             return;
@@ -247,6 +297,10 @@ public class EndGameManager : MonoBehaviour
 
     public void RelocateActionState()
     {
+        momAnim.SetBool("leave", true);
+        boyAnim.SetBool("leave", true);
+        dogAnim.SetBool("leave", true);
+
         animationActive = true;
     }
 

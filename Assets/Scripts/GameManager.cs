@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
         ShootRoom,
         ShootRoomEnd,
         ShootRoomPost,
+        ShootRoomPostPost,
         SlowRoomStart,
         SlowRoom,
         SlowRoomPost,
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour {
 
     public Transform respawnPoint;
     public AudioSource doorAudio;
+    public GameObject startDoorTrigger;
     
     //[HideInInspector]
     public TutorialStates currentState;
@@ -486,6 +488,16 @@ public class GameManager : MonoBehaviour {
                 slowCD.SetActive(false);
                 babyCD.SetActive(false);
                 vortexCD.SetActive(false);
+
+                if (vortexRoomComplete && babyRoomComplete && slowRoomComplete)
+                    startTutorialDialogue(shootTextFiles[2]);
+            }
+            else if (currentState == TutorialStates.ShootRoomPostPost)
+            {
+                startDoorTrigger.SetActive(false);
+                slowCD.SetActive(false);
+                babyCD.SetActive(false);
+                vortexCD.SetActive(false);
             }
             else if (currentState == TutorialStates.SlowRoomStart && !textActive)
             {
@@ -723,6 +735,8 @@ public class GameManager : MonoBehaviour {
             currentState = TutorialStates.ShootRoomEnd;
         else if (currentState == TutorialStates.ShootRoomEnd)
             currentState = TutorialStates.ShootRoomPost;
+        else if (currentState == TutorialStates.ShootRoomPost)
+            currentState = TutorialStates.ShootRoomPostPost;
 
         // Slow Room State Change Condition
         if (currentState == TutorialStates.SlowRoomStart)

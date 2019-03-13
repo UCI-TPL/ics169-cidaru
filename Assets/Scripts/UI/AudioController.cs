@@ -17,8 +17,11 @@ public class AudioController : MonoBehaviour {
 
     public void PlayMenuSelect()
     {
-        audioSource.clip = menuSelect;
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.clip = menuSelect;
+            audioSource.Play();
+        }
     }
 
     public void PlayMenuMove()

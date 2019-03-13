@@ -552,7 +552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983171426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24999952, y: 0.25, z: -10}
+  m_LocalPosition: {x: 0.24999976, y: 0.25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1038082825}
@@ -675,9 +675,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
-  transitionTex: {fileID: 2800000, guid: 3b989e19466c5f24fa16472c260d4cb7, type: 3}
+  currentTexture: {fileID: 2800000, guid: 38161daee2261724b95db8acb097dcff, type: 3}
   fadeTime: 1
-  fade: 1
+  fade: 0
   unfade: 0
 --- !u!1 &1022237478 stripped
 GameObject:
@@ -866,11 +866,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CM vcam1
       objectReference: {fileID: 0}
-    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
-        type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 452523781}
     - target: {fileID: 261255543026098133, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_Follow
@@ -879,7 +874,7 @@ PrefabInstance:
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.24999952
+      value: 0.24999976
       objectReference: {fileID: 0}
     - target: {fileID: 261255543026098132, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
@@ -931,6 +926,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 261255543026098134, guid: 921a59ac7b158ed40992f9eee6b97bd1,
+        type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 452523781}
     - target: {fileID: 3346032482076368550, guid: 921a59ac7b158ed40992f9eee6b97bd1,
         type: 3}
       propertyPath: m_IsActive
@@ -1313,6 +1313,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8237130396058504723, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 983171430}
+    - target: {fileID: 8237130396058504723, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1747713225
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237130396058504720, guid: 7a5c5a87146d7dd45887252db36b430b,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 983171432}
     - target: {fileID: 8237130396058504734, guid: 7a5c5a87146d7dd45887252db36b430b,
         type: 3}
       propertyPath: m_Volume
@@ -2387,6 +2402,21 @@ PrefabInstance:
       propertyPath: uiIcons
       value: 
       objectReference: {fileID: 1294693697}
+    - target: {fileID: 114454594926690280, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 983171432}
+    - target: {fileID: 114124410891964584, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: minRooms
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114124410891964584, guid: 700837840e0bb91419e2c60a7cb75c05,
+        type: 3}
+      propertyPath: maxRooms
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05,
         type: 3}
       propertyPath: sprintText
@@ -2411,16 +2441,6 @@ PrefabInstance:
         type: 3}
       propertyPath: mapText
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114124410891964584, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: minRooms
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114124410891964584, guid: 700837840e0bb91419e2c60a7cb75c05,
-        type: 3}
-      propertyPath: maxRooms
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114754815866935822, guid: 700837840e0bb91419e2c60a7cb75c05, type: 3}

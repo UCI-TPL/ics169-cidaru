@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndGameManager : MonoBehaviour
 {
@@ -27,7 +28,8 @@ public class EndGameManager : MonoBehaviour
         Dog,
         Mom,
         Boy,
-        Trump
+        Trump,
+        Emoji
     }
 
     [Header("Animation Objects")]
@@ -42,6 +44,7 @@ public class EndGameManager : MonoBehaviour
     public Animator boyAnim;
     public Animator dogAnim;
     public GameObject finalPortal;
+    public GameObject credits;
 
     [Header("Dialogue Box Objects")]
     public Text avatarName;
@@ -50,6 +53,7 @@ public class EndGameManager : MonoBehaviour
     public GameObject boyAvatarImage;
     public GameObject momAvatarImage;
     public GameObject trumpAvatarImage;
+    public GameObject emojiAvatarImage;
     public IntroDialogTextBox dialogText;
 
     [Header("Trump Death Dialogue File")]
@@ -73,7 +77,8 @@ public class EndGameManager : MonoBehaviour
     public TextAsset portalOpeningMomText;
     public TextAsset portalOpeningBoyText;
 
-    private Fader fade;
+    //private Fader fade;
+    public Transition transition;
 
     private bool dogDialogueCheck;
     private bool boyDialogueCheck;
@@ -88,12 +93,15 @@ public class EndGameManager : MonoBehaviour
 
     public static EndGameManager endGM;
 
+    private bool creditsFinished;
+    private bool active;
+
     // Start is called before the first frame update
     void Awake()
     {
         endGM = this;
 
-        fade = GetComponent<Fader>();
+        //fade = GetComponent<Fader>();
 
         dialogBox.SetActive(false);
         dogAvatarImage.SetActive(false);
@@ -102,11 +110,20 @@ public class EndGameManager : MonoBehaviour
 
         textActive = false;
         currentState = EndStates.TrumpDeath;
+
+        creditsFinished = false;
+        active = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (creditsFinished && (Input.GetButtonDown("A Button") || Input.GetKeyDown(KeyCode.Space)) && !active)
+        {
+            active = true;
+            StartCoroutine(FadeWait(0));
+        }
+
         if (Time.timeScale != 0f)
         {
             if (currentState == EndStates.TrumpDeath)
@@ -136,6 +153,17 @@ public class EndGameManager : MonoBehaviour
             else if (currentState == EndStates.Credit && !animationActive)
                 CreditActionState();
         }
+    }
+
+    IEnumerator FadeWait(int sceneIndex)
+    {
+        transition.fadeToBlack();
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(sceneIndex);
     }
 
     public void TrumpDeathState()
@@ -183,6 +211,8 @@ public class EndGameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(timer + 0.3f);
+
+        GetComponent<AudioSource>().Play();
 
         NextState();
     }
@@ -287,7 +317,7 @@ public class EndGameManager : MonoBehaviour
         if (!boyDialogueCheck)
         {
             boyAnim.SetBool("emoji", true);
-            startIntroDialogue(portalOpeningBoyText, AvatarState.Boy, "Gundalf");
+            startIntroDialogue(portalOpeningBoyText, AvatarState.Emoji, "Gundalf");
             boyDialogueCheck = true;
             return;
         }
@@ -306,6 +336,8 @@ public class EndGameManager : MonoBehaviour
 
     public void CreditActionState()
     {
+        credits.SetActive(true);
+
         animationActive = true;
     }
 
@@ -342,6 +374,8 @@ public class EndGameManager : MonoBehaviour
             momAvatarImage.SetActive(true);
         else if (avatar == AvatarState.Trump)
             trumpAvatarImage.SetActive(true);
+        else if (avatar == AvatarState.Emoji)
+            emojiAvatarImage.SetActive(true);
     }
 
     private void DeactivateAvatar()
@@ -350,6 +384,7 @@ public class EndGameManager : MonoBehaviour
         dogAvatarImage.SetActive(false);
         momAvatarImage.SetActive(false);
         trumpAvatarImage.SetActive(false);
+        emojiAvatarImage.SetActive(false);
     }
 
     private void ResetDialogueCheck()
@@ -389,5 +424,10 @@ public class EndGameManager : MonoBehaviour
 
         animationActive = false;
         ResetDialogueCheck();
+    }
+
+    public void activateCreditsFinished()
+    {
+        creditsFinished = true;
     }
 }

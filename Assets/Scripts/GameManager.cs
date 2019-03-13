@@ -129,7 +129,8 @@ public class GameManager : MonoBehaviour {
     private Transform minimapPos;
     private Transform cameraColPos;
 
-    private Fader fade;
+    //private Fader fade;
+    public Transition transition;
 
     private bool initialDialogue;
 
@@ -164,7 +165,7 @@ public class GameManager : MonoBehaviour {
 
         initialDialogue = false;
 
-        fade = GetComponent<Fader>();
+        //fade = GetComponent<Fader>();
 
         if (PlayerPrefs.GetInt("Mouse") != 0)
             Cursor.visible = true;
@@ -397,10 +398,9 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator FadeWait(int sceneIndex)
     {
-        float fadeTime = fade.BeginSceneFade(1);
-        fade.BeginAudioFade(1);
+        transition.fadeToBlack();
 
-        yield return new WaitForSecondsRealtime(fadeTime);
+        yield return new WaitForSecondsRealtime(2f);
 
         Time.timeScale = 1;
 

@@ -107,7 +107,8 @@ public class IntroGameManager : MonoBehaviour
 
     public IntroStates currentState;
 
-    private Fader fade;
+    //private Fader fade;
+    public Transition transition;
 
     // Dialogue Check
     private bool dogDialogueCheck;
@@ -124,7 +125,7 @@ public class IntroGameManager : MonoBehaviour
     {
         introGM = this;
 
-        fade = GetComponent<Fader>();
+        //fade = GetComponent<Fader>();
 
         dialogBox.SetActive(false);
         dogAvatarImage.SetActive(false);
@@ -215,6 +216,7 @@ public class IntroGameManager : MonoBehaviour
     public void DogEmergesActionState()
     {
         dogEmergesObjects.SetActive(true);
+        GetComponent<AudioSource>().Stop();
 
         animationActive = true;
     }
@@ -563,12 +565,14 @@ public class IntroGameManager : MonoBehaviour
 
     IEnumerator FadeWait(int sceneIndex)
     {
-        float fadeTime = fade.BeginSceneFade(1);
-        fade.BeginAudioFade(1);
+        //float fadeTime = fade.BeginSceneFade(1);
+        //fade.BeginAudioFade(1);
+
+        transition.fadeToBlack();
 
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(fadeTime);
+        yield return new WaitForSecondsRealtime(2f);
 
         Time.timeScale = 1f;
 

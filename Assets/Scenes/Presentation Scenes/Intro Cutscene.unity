@@ -920,7 +920,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217499358}
-  - component: {fileID: 217499357}
   - component: {fileID: 217499359}
   - component: {fileID: 217499361}
   - component: {fileID: 217499360}
@@ -931,21 +930,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &217499357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217499356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d809a57d02c8a8b46beeaa1fd2e34e99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: a573d23c0f816834db8f86b12904ac3c, type: 3}
-  sceneFadeSpeed: 0.8
-  audioFadeSpeed: 0.5
 --- !u!4 &217499358
 Transform:
   m_ObjectHideFlags: 0
@@ -1116,6 +1100,7 @@ MonoBehaviour:
   montageTimeDogTextP2: {fileID: 4900000, guid: 49769426eb105494b9ea3aee66e3e360,
     type: 3}
   currentState: 0
+  transition: {fileID: 2130934438}
 --- !u!114 &217499361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4341,6 +4326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8471d75da94197945a7f389699fc6020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 2130934438}
 --- !u!114 &2023387033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4389,8 +4375,8 @@ Canvas:
   m_GameObject: {fileID: 2023387029}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 2130934436}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4398,7 +4384,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1747713225
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &2023387036
@@ -4626,6 +4612,7 @@ GameObject:
   - component: {fileID: 2130934437}
   - component: {fileID: 2130934436}
   - component: {fileID: 2130934435}
+  - component: {fileID: 2130934438}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4697,6 +4684,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130934438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130934434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade8adf98fed8fa438586867ac6e83d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transMat: {fileID: 2100000, guid: 0bd765b4e29722e44bb2abc3a6533fba, type: 2}
+  currentTexture: {fileID: 2800000, guid: 3b989e19466c5f24fa16472c260d4cb7, type: 3}
+  fadeTime: 1
+  fade: 0
+  unfade: 0
 --- !u!1 &1052338415879374
 GameObject:
   m_ObjectHideFlags: 0

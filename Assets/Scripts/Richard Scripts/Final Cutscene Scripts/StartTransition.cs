@@ -20,7 +20,7 @@ public class StartTransition : MonoBehaviour
     {
         transition.fadeToBlack();
 
-        yield return new WaitForSecondsRealtime(1.2f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         roomBackground.SetActive(true);
         troyBackground.SetActive(false);

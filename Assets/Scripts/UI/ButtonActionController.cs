@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonActionController : MonoBehaviour {
-    private Fader fade;
+    public Transition transition;
+    //private Fader fade;
     private GameObject eventSystem;
 
     void Awake()
     {
-        fade = GameObject.Find("GameManager").GetComponent<Fader>();
+        //fade = GameObject.Find("GameManager").GetComponent<Fader>();
         eventSystem = GameObject.Find("EventSystem");
     }
 
@@ -61,10 +62,12 @@ public class ButtonActionController : MonoBehaviour {
 
     IEnumerator FadeWait(int sceneIndex)
     {
-        float fadeTime = fade.BeginSceneFade(1);
-        fade.BeginAudioFade(1);
+        //float fadeTime = fade.BeginSceneFade(1);
+        //fade.BeginAudioFade(1);
 
-        yield return new WaitForSecondsRealtime(fadeTime);
+        transition.fadeToBlack();
+
+        yield return new WaitForSecondsRealtime(2f);
 
         Time.timeScale = 1;
 
@@ -79,10 +82,12 @@ public class ButtonActionController : MonoBehaviour {
 
     IEnumerator FadeQuitWait()
     {
-        float fadeTime = fade.BeginSceneFade(1);
-        fade.BeginAudioFade(1);
+        //float fadeTime = fade.BeginSceneFade(1);
+        //fade.BeginAudioFade(1);
 
-        yield return new WaitForSecondsRealtime(fadeTime * 2);
+        transition.fadeToBlack();
+
+        yield return new WaitForSecondsRealtime(2f);
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

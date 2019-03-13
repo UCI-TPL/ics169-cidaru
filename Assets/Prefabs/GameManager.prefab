@@ -52,7 +52,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4560867641833878}
-  - component: {fileID: 114362678605636900}
   - component: {fileID: 114454594926690280}
   - component: {fileID: 114631073505308308}
   - component: {fileID: 114124410891964584}
@@ -79,21 +78,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114362678605636900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099862756406228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d809a57d02c8a8b46beeaa1fd2e34e99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: a573d23c0f816834db8f86b12904ac3c, type: 3}
-  sceneFadeSpeed: 0.8
-  audioFadeSpeed: 0.5
 --- !u!114 &114454594926690280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,12 +128,14 @@ MonoBehaviour:
   vortexTextFiles: []
   babyTextFiles: []
   portalTextFiles: []
-  dashCD: {fileID: 0}
   slowCD: {fileID: 0}
   babyCD: {fileID: 0}
   vortexCD: {fileID: 0}
+  respawnPoint: {fileID: 0}
+  doorAudio: {fileID: 0}
   currentState: 0
   nextState: 0
+  transition: {fileID: 0}
   babyRoomComplete: 0
   vortexRoomComplete: 0
   slowRoomComplete: 0

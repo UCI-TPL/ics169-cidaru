@@ -1336,24 +1336,26 @@ MonoBehaviour:
   babyRoomDoor: {fileID: 7664709247027095182}
   portalRoomDoor: {fileID: 4156120513513498768}
   shootTextFiles:
-  - {fileID: 4900000, guid: 4bbc35f3260fe534486271a0729ea4c8, type: 3}
-  - {fileID: 4900000, guid: 60ee22bd4baa37348bd414a3801d95bd, type: 3}
+  - {fileID: 4900000, guid: 8f67561ecc372074ca426354f38a8510, type: 3}
+  - {fileID: 4900000, guid: f4a9378062dee3044870bf6d97dd957d, type: 3}
+  - {fileID: 4900000, guid: f0c07e70c3b3a4d4da9198efb779bff1, type: 3}
   slowTextFiles:
-  - {fileID: 4900000, guid: ea7288bfe27e1c9499ef6a70f07a4daa, type: 3}
+  - {fileID: 4900000, guid: 75d1f9e6561ce4c49b1d12d4920230af, type: 3}
   vortexTextFiles:
-  - {fileID: 4900000, guid: cca4373a4815f224c9b8488f508715e1, type: 3}
-  - {fileID: 4900000, guid: cc9f0b814f2bdc541bd6d893fa9d863a, type: 3}
+  - {fileID: 4900000, guid: 1d71676886eaac14da894d3ef956159b, type: 3}
+  - {fileID: 4900000, guid: 76f89ce0f9863d84e9a28f4d95d8bb04, type: 3}
   babyTextFiles:
-  - {fileID: 4900000, guid: bcadf2eb7c91403468799e828fe7781d, type: 3}
-  - {fileID: 4900000, guid: fad85a8224fd00944b81cb7e854f7e07, type: 3}
-  - {fileID: 4900000, guid: 3aa3e4eaf4a04b042999db1db2323daf, type: 3}
+  - {fileID: 4900000, guid: f2012406d73fbb741a8994896aa4488f, type: 3}
+  - {fileID: 4900000, guid: 8cf13c23dc93def4fa6dc669cf502e6d, type: 3}
+  - {fileID: 4900000, guid: 94fff7b4135f78b419a274c427bcb989, type: 3}
   portalTextFiles:
-  - {fileID: 4900000, guid: 314fb22ba405c5347939d0c9c1359794, type: 3}
+  - {fileID: 4900000, guid: e0a3868da80428e449a9883a9ea9c414, type: 3}
   slowCD: {fileID: 8237130395867546539}
   babyCD: {fileID: 8237130395867546540}
   vortexCD: {fileID: 8237130395867546538}
   respawnPoint: {fileID: 284624519394904129}
   doorAudio: {fileID: 1239791577}
+  startDoorTrigger: {fileID: 7748545989772363291}
   currentState: 0
   nextState: 0
   transition: {fileID: 983171432}
@@ -2053,6 +2055,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133c687b0394d0a45a46b35a3f82228c, type: 3}
+--- !u!1 &7748545989772363291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1321083550242086855, guid: 133c687b0394d0a45a46b35a3f82228c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7748545989772363290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8237130395867546536
 PrefabInstance:
   m_ObjectHideFlags: 0

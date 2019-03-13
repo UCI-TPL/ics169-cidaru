@@ -109,6 +109,7 @@ public class IntroGameManager : MonoBehaviour
 
     //private Fader fade;
     public Transition transition;
+    public AudioClip momSong;
 
     // Dialogue Check
     private bool dogDialogueCheck;
@@ -239,6 +240,8 @@ public class IntroGameManager : MonoBehaviour
 
         if (!momDialogueCheck)
         {
+            GetComponent<AudioSource>().clip = momSong;
+            GetComponent<AudioSource>().Play();
             startIntroDialogue(dogEmergesMomText, AvatarState.Mom, "MomDalf");
             momDialogueCheck = true;
             return;

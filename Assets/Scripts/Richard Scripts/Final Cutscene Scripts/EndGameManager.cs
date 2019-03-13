@@ -79,6 +79,8 @@ public class EndGameManager : MonoBehaviour
 
     //private Fader fade;
     public Transition transition;
+    
+    public AudioClip creditSong;
 
     private bool dogDialogueCheck;
     private bool boyDialogueCheck;

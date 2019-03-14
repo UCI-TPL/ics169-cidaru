@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 1
   deflection: 1
+  weaponEcho: {fileID: 0}
   rotationSpeed: 200
 --- !u!61 &7128464282458819277
 BoxCollider2D:
@@ -247,7 +248,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 46d694def4b8ef94287251eef221c9d6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

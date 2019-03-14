@@ -3917,7 +3917,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4560867005160912}
-  - component: {fileID: 114362679241769314}
   - component: {fileID: 82484933688969248}
   - component: {fileID: 1099863395194771}
   m_Layer: 0
@@ -4005,7 +4004,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d98ecd9c6918c6f4391584cec211af99, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4103,21 +4102,6 @@ Transform:
   m_Father: {fileID: 1715858417}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114362679241769314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099863395194770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d809a57d02c8a8b46beeaa1fd2e34e99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: a573d23c0f816834db8f86b12904ac3c, type: 3}
-  sceneFadeSpeed: 0.8
-  audioFadeSpeed: 0.5
 --- !u!222 &2208231216885386920
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4977,6 +4961,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 1466509953}
+  swirlTexture: {fileID: 2800000, guid: 38161daee2261724b95db8acb097dcff, type: 3}
+  sideTexture: {fileID: 2800000, guid: df6d1321dd908ab4f97f166c8a37c4c9, type: 3}
+  topDownTexture: {fileID: 2800000, guid: 3b989e19466c5f24fa16472c260d4cb7, type: 3}
+  angleTexture: {fileID: 2800000, guid: cc626b85114b83943942151500e81f59, type: 3}
 --- !u!223 &8237130395908027966
 Canvas:
   m_ObjectHideFlags: 0

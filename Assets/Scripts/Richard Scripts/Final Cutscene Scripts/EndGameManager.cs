@@ -95,6 +95,10 @@ public class EndGameManager : MonoBehaviour
 
     public static EndGameManager endGM;
 
+    private AudioSource audioSource;
+    private bool unfadingMusic;
+    private float fadeTimer;
+
     private bool creditsFinished;
     private bool active;
 
@@ -113,6 +117,10 @@ public class EndGameManager : MonoBehaviour
         textActive = false;
         currentState = EndStates.TrumpDeath;
 
+        audioSource = GetComponent<AudioSource>();
+        fadeTimer = 0f;
+        unfadingMusic = false;
+
         creditsFinished = false;
         active = false;
     }
@@ -124,6 +132,16 @@ public class EndGameManager : MonoBehaviour
         {
             active = true;
             StartCoroutine(FadeWait(0));
+        }
+
+        if (unfadingMusic)
+        {
+            fadeTimer += Time.unscaledDeltaTime * 2f;
+            
+            audioSource.volume = Mathf.Lerp(0f, 0.5f, fadeTimer);
+
+            if (fadeTimer >= 1f)
+                unfadingMusic = false;
         }
 
         if (Time.timeScale != 0f)
@@ -214,7 +232,9 @@ public class EndGameManager : MonoBehaviour
 
         yield return new WaitForSeconds(timer + 0.3f);
 
-        GetComponent<AudioSource>().Play();
+        fadeTimer = 0f;
+        unfadingMusic = true;
+        audioSource.Play();
 
         NextState();
     }

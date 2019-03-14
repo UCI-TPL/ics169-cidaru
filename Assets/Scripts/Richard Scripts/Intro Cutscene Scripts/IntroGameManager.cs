@@ -111,6 +111,11 @@ public class IntroGameManager : MonoBehaviour
     public Transition transition;
     public AudioClip momSong;
 
+    private bool fadingMusic;
+    private bool unfadingMusic;
+    private float timer;
+    private AudioSource audioSource;
+
     // Dialogue Check
     private bool dogDialogueCheck;
     private bool boyDialogueCheck;
@@ -135,6 +140,10 @@ public class IntroGameManager : MonoBehaviour
 
         dogEmergesObjects.SetActive(false);
 
+        audioSource = GetComponent<AudioSource>();
+        fadingMusic = false;
+        unfadingMusic = false;
+
         textActive = false;
         currentState = IntroStates.Opening;
     }
@@ -146,6 +155,27 @@ public class IntroGameManager : MonoBehaviour
         {
             currentState = IntroStates.EndIntro;
             Time.timeScale = 1f;
+        }
+
+        if (fadingMusic)
+        {
+            timer += Time.unscaledDeltaTime / 2f;
+            audioSource.volume = Mathf.Lerp(0.5f, 0f, timer);
+
+            if (audioSource.volume <= 0f)
+            {
+                fadingMusic = false;
+                audioSource.Stop();
+            }
+        }
+
+        if (unfadingMusic)
+        {
+            timer += Time.unscaledDeltaTime / 2f;
+            audioSource.volume = Mathf.Lerp(0f, 0.5f, timer);
+
+            if (audioSource.volume >= 0.5f)
+                unfadingMusic = false;
         }
             
         if (Time.timeScale != 0f)
@@ -217,7 +247,8 @@ public class IntroGameManager : MonoBehaviour
     public void DogEmergesActionState()
     {
         dogEmergesObjects.SetActive(true);
-        GetComponent<AudioSource>().Stop();
+        timer = 0f;
+        fadingMusic = true;
 
         animationActive = true;
     }
@@ -240,8 +271,10 @@ public class IntroGameManager : MonoBehaviour
 
         if (!momDialogueCheck)
         {
-            GetComponent<AudioSource>().clip = momSong;
-            GetComponent<AudioSource>().Play();
+            audioSource.clip = momSong;
+            timer = 0f;
+            unfadingMusic = true;
+            audioSource.Play();
             startIntroDialogue(dogEmergesMomText, AvatarState.Mom, "MomDalf");
             momDialogueCheck = true;
             return;

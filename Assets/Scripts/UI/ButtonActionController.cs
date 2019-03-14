@@ -7,11 +7,6 @@ using UnityEngine.UI;
 public class ButtonActionController : MonoBehaviour {
     public Transition transition;
 
-    public bool swirl = false;
-    public bool side = false;
-    public bool top = false;
-    public bool angle = false;
-
     public Texture2D swirlTexture;
     public Texture2D sideTexture;
     public Texture2D topDownTexture;
@@ -44,7 +39,7 @@ public class ButtonActionController : MonoBehaviour {
     public void LoadSceneByIndex(int sceneIndex)
     {
         eventSystem.SetActive(false);
-        StartCoroutine(FadeWait(sceneIndex));
+        StartCoroutine(FadeContinueWait(sceneIndex));
     }
 
     public void LoadContinue()
@@ -54,7 +49,7 @@ public class ButtonActionController : MonoBehaviour {
         int currentLevel = PlayerPrefs.GetInt("Level");
 
         if (currentLevel != 1)
-            StartCoroutine(FadeWait(currentLevel));
+            StartCoroutine(FadeContinueWait(currentLevel));
 
         /*
         if (currentLevel == 2 || currentLevel == 3)
@@ -73,10 +68,21 @@ public class ButtonActionController : MonoBehaviour {
 
     IEnumerator FadeWait(int sceneIndex)
     {
+        transition.fadeToBlack(topDownTexture);
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    IEnumerator FadeContinueWait(int sceneIndex)
+    {
         //float fadeTime = fade.BeginSceneFade(1);
         //fade.BeginAudioFade(1);
 
-        transition.fadeToBlack();
+        transition.fadeToBlack(swirlTexture);
 
         yield return new WaitForSecondsRealtime(2f);
 
@@ -96,7 +102,7 @@ public class ButtonActionController : MonoBehaviour {
         //float fadeTime = fade.BeginSceneFade(1);
         //fade.BeginAudioFade(1);
 
-        transition.fadeToBlack();
+        transition.fadeToBlack(topDownTexture);
 
         yield return new WaitForSecondsRealtime(2f);
 
